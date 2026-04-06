@@ -1,0 +1,91 @@
+.footer {
+  padding: 80px 16px 16px;
+  background: #fff;
+}
+
+.inner {
+  max-width: 1248px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.columns {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.columnHeading {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #000;
+}
+
+.columnLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.textLink {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.textLink:hover {
+  opacity: 0.7;
+}
+
+/* Big wordmark at the bottom */
+.wordmark {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 8vw, 120px);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .top {
+    flex-direction: column;
+  }
+  .logos {
+    flex: none;
+  }
+  .columns {
+    flex-direction: column;
+    gap: 32px;
+  }
+}

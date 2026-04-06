@@ -1,0 +1,45 @@
+.wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.divider {
+  height: 1px;
+  background: #000;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  padding: 0;
+  overflow: hidden;
+}
+
+.content {
+  display: block;
+  white-space: nowrap;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+  color: #000;
+  padding: 30px 0;
+  animation: scroll 22s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    font-size: 24px;
+    padding: 20px 0;
+  }
+}

@@ -1,0 +1,38 @@
+.main {
+  min-height: 60vh;
+}
+
+.header {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding: 80px 16px 0;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #000;
+}
+
+.list {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 16px 96px;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 40px;
+  }
+
+  .header {
+    padding-top: 48px;
+  }
+
+  .list {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+}

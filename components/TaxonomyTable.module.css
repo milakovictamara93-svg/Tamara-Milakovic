@@ -1,0 +1,140 @@
+.table {
+  margin: 40px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  font-family: var(--font-body);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  background: #111110;
+}
+
+.hcell {
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #a0a09b;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 160px 1fr 1fr;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.typeCell {
+  padding: 14px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  background: #f5f5f3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+}
+
+.typeName {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+}
+
+.typeTrigger {
+  font-size: 11px;
+  color: #8a8a84;
+  line-height: 1.4;
+}
+
+.cell {
+  padding: 14px;
+  font-size: 12px;
+  color: #555550;
+  line-height: 1.55;
+}
+
+.cell + .cell {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cellLabel {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  margin-bottom: 4px;
+}
+
+/* Dark row (permission state) */
+.dark .typeCell {
+  background: #111110;
+}
+
+.dark .typeName {
+  color: #ececea;
+}
+
+.dark .typeTrigger {
+  color: #636360;
+}
+
+/* Footer */
+.footer {
+  padding: 16px;
+  background: #f5f5f3;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.footerLabel {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  margin-bottom: 10px;
+}
+
+.questions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.question {
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 6px;
+  font-size: 12px;
+  color: #555550;
+  line-height: 1.4;
+  background: #fff;
+}
+
+@media (max-width: 640px) {
+  .header,
+  .row {
+    grid-template-columns: 1fr;
+  }
+
+  .hcell:not(:first-child) {
+    display: none;
+  }
+
+  .typeCell {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .cell + .cell {
+    border-left: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .questions {
+    grid-template-columns: 1fr;
+  }
+}
