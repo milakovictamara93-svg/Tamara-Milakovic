@@ -1,0 +1,155 @@
+.main {
+  min-height: 60vh;
+}
+
+/* Hero logos */
+.hero {
+  padding: 40px 16px 0;
+}
+
+.heroInner {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding-top: 64px;
+  padding-bottom: 8px;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Heading */
+.headingSection {
+  padding: 0 16px;
+}
+
+.headingInner {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding-top: 8px;
+  padding-bottom: 80px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #000;
+}
+
+/* Work grid */
+.grid {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 16px 80px;
+}
+
+/* Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardEmpty {
+  flex: 1;
+}
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  letter-spacing: -0.64px;
+}
+
+.cardTitle:hover {
+  opacity: 0.75;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000;
+  max-width: 420px;
+}
+
+.cardTags {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #525252;
+}
+
+.readMore {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+  .heading {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 40px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    padding-bottom: 48px;
+  }
+
+  .cardTitle {
+    font-size: 24px;
+  }
+
+  .logos img {
+    width: 100px;
+    height: auto;
+  }
+}
