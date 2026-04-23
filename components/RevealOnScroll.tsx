@@ -21,13 +21,22 @@ export default function RevealOnScroll({ children, delay = 0 }: RevealOnScrollPr
       ([entry]) => {
         if (entry.isIntersecting) {
           el.setAttribute('data-visible', 'true');
-          observer.disconnect();
+        } else {
+          el.removeAttribute('data-visible');
         }
       },
       { threshold: 0.1 }
     );
 
-    observer.observe(el);
+    // Double rAF ensures the browser paints opacity:0 before the
+    // observer fires — without this, above-the-fold elements get
+    // data-visible set before the hidden state is ever rendered.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        observer.observe(el);
+      });
+    });
+
     return () => observer.disconnect();
   }, []);
 

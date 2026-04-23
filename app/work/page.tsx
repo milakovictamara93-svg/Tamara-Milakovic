@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import RevealOnScroll from '@/components/RevealOnScroll';
+import TextLink from '@/components/TextLink';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -88,13 +89,7 @@ export default function WorkPage() {
                         </Link>
                         <p className={styles.cardDesc}>{project.description}</p>
                         <p className={styles.cardTags}>{project.tags}</p>
-                        <Link
-                          href={href}
-                          className={styles.readMore}
-                          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                        >
-                          Read more
-                        </Link>
+                        <TextLink href={href} external={isExternal}>Read more</TextLink>
                       </div>
                     </div>
                   </RevealOnScroll>
