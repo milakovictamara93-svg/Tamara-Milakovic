@@ -8,7 +8,7 @@ interface MarqueeProps {
 
 export default function Marquee({ text }: MarqueeProps) {
   // Repeat text enough times to fill wide screens
-  const repeated = Array(4).fill(text).join('   ·   ');
+  const repeated = Array(4).fill(text).join('   ');
 
   return (
     <div className={styles.wrapper}>
