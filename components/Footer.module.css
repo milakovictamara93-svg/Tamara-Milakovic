@@ -65,22 +65,10 @@
   text-underline-offset: 2px;
 }
 
-/* Big wordmark at the bottom — full width, links to homepage */
+/* Big wordmark — SVG text fills 100% of container width */
 .wordmark {
-  display: block;
-  font-family: var(--font-heading);
-  font-size: clamp(48px, 9.5vw, 130px);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: #000;
-  white-space: nowrap;
-  text-decoration: none;
   width: 100%;
-}
-
-.wordmark:hover {
-  opacity: 0.7;
+  line-height: 1;
 }
 
 @media (max-width: 768px) {

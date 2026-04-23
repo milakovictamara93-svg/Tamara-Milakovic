@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import TextLink from './TextLink';
 import AnimatedLogos from './AnimatedLogos';
 import styles from './Footer.module.css';
 
@@ -14,35 +14,41 @@ export default function Footer() {
             <div className={styles.column}>
               <p className={styles.columnHeading}>Selected work</p>
               <div className={styles.columnLinks}>
-                <Link href="/work/pax8" className={styles.textLink}>
-                  Pax8: PowerPoint Slide and a Prayer
-                </Link>
-                <Link href="/work/scaler" className={styles.textLink}>
-                  Scaler: When the Problem Is Your Fault
-                </Link>
+                <TextLink href="/work/pax8">Pax8: PowerPoint Slide and a Prayer</TextLink>
+                <TextLink href="/work/scaler">Scaler: When the Problem Is Your Fault</TextLink>
               </div>
             </div>
             <div className={styles.column}>
               <p className={styles.columnHeading}>Contact</p>
               <div className={styles.columnLinks}>
-                <a href="mailto:tamaraoctostudio@gmail.com" className={styles.textLink}>
-                  Send me an email
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/tamaramilakovic/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.textLink}
-                >
-                  Find me on LinkedIn
-                </a>
+                <TextLink href="mailto:tamaraoctostudio@gmail.com">Send me an email</TextLink>
+                <TextLink href="https://www.linkedin.com/in/tamaramilakovic/" external>Find me on LinkedIn</TextLink>
               </div>
             </div>
           </div>
         </div>
-        <Link href="/" className={styles.wordmark} aria-label="Go to homepage">
-          Tamara Milakovic
-        </Link>
+
+        <div className={styles.wordmark} aria-label="Tamara Milakovic">
+          <svg
+            viewBox="0 0 1000 90"
+            width="100%"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <text
+              x="0"
+              y="82"
+              fontFamily="'DM Sans', sans-serif"
+              fontWeight="600"
+              fontSize="90"
+              textLength="1000"
+              lengthAdjust="spacing"
+              fill="black"
+            >
+              Tamara Milakovic
+            </text>
+          </svg>
+        </div>
       </div>
     </footer>
   );

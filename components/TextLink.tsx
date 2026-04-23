@@ -7,6 +7,12 @@ interface TextLinkProps {
   external?: boolean;
 }
 
+const ArrowIcon = () => (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M6.18182 11.0227L5.01136 9.86364L8.51705 6.35795H0V4.66477H8.51705L5.01136 1.16477L6.18182 0L11.6932 5.51136L6.18182 11.0227Z" fill="black"/>
+  </svg>
+);
+
 export default function TextLink({ href, children, external }: TextLinkProps) {
   return (
     <Link
@@ -15,7 +21,9 @@ export default function TextLink({ href, children, external }: TextLinkProps) {
       {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     >
       <span className={styles.arrowWrap}>
-        <span className={styles.arrow}>→</span>
+        <span className={styles.arrow}>
+          <ArrowIcon />
+        </span>
       </span>
       <span>{children}</span>
     </Link>

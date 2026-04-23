@@ -24,24 +24,10 @@
   color: #000;
   white-space: nowrap;
   text-decoration: none;
-  position: relative;
 }
 
-.link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1.5px;
-  background: #000;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.2s ease;
-}
-
-.link:hover::after {
-  transform: scaleX(1);
+.link:hover {
+  font-style: italic;
 }
 
 .links {

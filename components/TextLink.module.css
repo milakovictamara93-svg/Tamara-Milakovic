@@ -13,17 +13,19 @@
 /* Arrow clip: takes no space when hidden */
 .arrowWrap {
   display: inline-flex;
+  align-items: center;
   max-width: 0;
   overflow: hidden;
   transition: max-width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .arrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   flex-shrink: 0;
-  white-space: nowrap;
   transform: translateX(-6px);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-right: 6px;
 }
 
 .link:hover .arrowWrap {
