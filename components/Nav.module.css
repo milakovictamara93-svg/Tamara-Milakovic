@@ -27,7 +27,7 @@
 }
 
 .link:hover {
-  font-style: italic;
+  opacity: 0.5;
 }
 
 .links {

@@ -10,13 +10,13 @@
   text-decoration: none;
 }
 
-/* Arrow clip: takes no space when hidden */
 .arrowWrap {
   display: inline-flex;
   align-items: center;
-  max-width: 0;
-  overflow: hidden;
-  transition: max-width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 18px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
 .arrow {
@@ -25,11 +25,10 @@
   flex-shrink: 0;
   transform: translateX(-6px);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  padding-right: 6px;
 }
 
 .link:hover .arrowWrap {
-  max-width: 20px;
+  opacity: 1;
 }
 
 .link:hover .arrow {

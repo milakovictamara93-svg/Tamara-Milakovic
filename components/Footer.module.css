@@ -65,10 +65,13 @@
   text-underline-offset: 2px;
 }
 
-/* Big wordmark — SVG text fills 100% of container width */
 .wordmark {
-  width: 100%;
+  font-family: var(--font-body);
+  font-size: clamp(40px, calc(9.92vw - 3px), 124px);
+  font-weight: 600;
   line-height: 1;
+  color: #000;
+  white-space: nowrap;
 }
 
 @media (max-width: 768px) {

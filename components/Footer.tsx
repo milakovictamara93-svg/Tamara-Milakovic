@@ -28,26 +28,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className={styles.wordmark} aria-label="Tamara Milakovic">
-          <svg
-            viewBox="0 0 1000 90"
-            width="100%"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-          >
-            <text
-              x="0"
-              y="82"
-              fontFamily="'DM Sans', sans-serif"
-              fontWeight="600"
-              fontSize="90"
-              textLength="1000"
-              lengthAdjust="spacing"
-              fill="black"
-            >
-              Tamara Milakovic
-            </text>
-          </svg>
+        <div className={styles.wordmark}>
+          Tamara Milakovic
         </div>
       </div>
     </footer>
