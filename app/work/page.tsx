@@ -36,7 +36,7 @@ const projects = [
   },
 ];
 
-const marqueeText = 'The work is the argument.   Everything else is details.';
+const marqueeText = 'The work is the argument. 👆 Everything else is details. 🤏';
 
 export default function WorkPage() {
   const rows = [projects.slice(0, 2), projects.slice(2, 4)];
