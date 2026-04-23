@@ -40,9 +40,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className={styles.wordmark} aria-label="Tamara Milakovic">
+        <Link href="/" className={styles.wordmark} aria-label="Go to homepage">
           Tamara Milakovic
-        </div>
+        </Link>
       </div>
     </footer>
   );

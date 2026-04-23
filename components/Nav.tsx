@@ -5,9 +5,7 @@ export default function Nav() {
   return (
     <header className={styles.nav}>
       <div className={styles.inner}>
-        <Link href="/" className={styles.brand}>
-          Tamara Milakovic
-        </Link>
+        <Link href="/" className={styles.link}>Tamara Milakovic</Link>
         <nav className={styles.links}>
           <Link href="/work" className={styles.link}>Work</Link>
           <Link href="/articles" className={styles.link}>Articles</Link>
