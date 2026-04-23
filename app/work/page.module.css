@@ -81,13 +81,13 @@
   font-weight: 600;
   line-height: 1.2;
   color: #000;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  text-decoration: none;
   letter-spacing: -0.64px;
 }
 
 .cardTitle:hover {
-  opacity: 0.75;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .cardDesc {

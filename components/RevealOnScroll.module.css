@@ -1,0 +1,16 @@
+.reveal {
+  /* visible by default (no JS / SSR) */
+}
+
+.reveal[data-init='true'] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease-out var(--delay, 0ms),
+    transform 0.65s ease-out var(--delay, 0ms);
+}
+
+.reveal[data-visible='true'] {
+  opacity: 1;
+  transform: translateY(0);
+}

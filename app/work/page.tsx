@@ -4,6 +4,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
 import AnimatedLogos from '@/components/AnimatedLogos';
+import RevealOnScroll from '@/components/RevealOnScroll';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -60,41 +61,43 @@ export default function WorkPage() {
         <div className={styles.grid}>
           {rows.map((row, ri) => (
             <div key={ri} className={styles.row}>
-              {row.map((project) => {
+              {row.map((project, ci) => {
                 const isExternal = !!project.href;
                 const href = project.href ?? `/work/${project.slug}`;
                 return (
-                  <div key={project.slug} className={styles.card}>
-                    <Link href={href} {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
-                      <div className={styles.imageWrap}>
-                        <Image
-                          src={project.image}
-                          alt={project.title}
-                          fill
-                          className={styles.image}
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
+                  <RevealOnScroll key={project.slug} delay={ci * 150}>
+                    <div className={styles.card}>
+                      <Link href={href} {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                        <div className={styles.imageWrap}>
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className={styles.image}
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                          />
+                        </div>
+                      </Link>
+                      <div className={styles.cardBody}>
+                        <Link
+                          href={href}
+                          className={styles.cardTitle}
+                          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          {project.title}
+                        </Link>
+                        <p className={styles.cardDesc}>{project.description}</p>
+                        <p className={styles.cardTags}>{project.tags}</p>
+                        <Link
+                          href={href}
+                          className={styles.readMore}
+                          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          Read more
+                        </Link>
                       </div>
-                    </Link>
-                    <div className={styles.cardBody}>
-                      <Link
-                        href={href}
-                        className={styles.cardTitle}
-                        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
-                        {project.title}
-                      </Link>
-                      <p className={styles.cardDesc}>{project.description}</p>
-                      <p className={styles.cardTags}>{project.tags}</p>
-                      <Link
-                        href={href}
-                        className={styles.readMore}
-                        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      >
-                        Read more
-                      </Link>
                     </div>
-                  </div>
+                  </RevealOnScroll>
                 );
               })}
               {row.length === 1 && <div className={styles.cardEmpty} />}
