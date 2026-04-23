@@ -8,7 +8,7 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.logos}>
-            <Image src="/logo-arrow.svg" alt="Arrow" width={80} height={92} />
+            <Image src="/logo-arrow.svg" alt="Arrow" width={80} height={80} />
             <Image src="/logo-sun.svg" alt="Sun" width={80} height={80} />
           </div>
           <div className={styles.columns}>

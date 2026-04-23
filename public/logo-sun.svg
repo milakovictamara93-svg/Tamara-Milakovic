@@ -1,13 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" fill="none">
-  <g transform="translate(75,75)">
-    <line x1="0" y1="-70" x2="0" y2="-45" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <line x1="0" y1="45" x2="0" y2="70" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <line x1="-70" y1="0" x2="-45" y2="0" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <line x1="45" y1="0" x2="70" y2="0" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <line x1="-49.5" y1="-49.5" x2="-33" y2="-33" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <line x1="33" y1="33" x2="49.5" y2="49.5" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <line x1="49.5" y1="-49.5" x2="33" y2="-33" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <line x1="-33" y1="33" x2="-49.5" y2="49.5" stroke="#FEC40A" stroke-width="11" stroke-linecap="square"/>
-    <circle cx="0" cy="0" r="30" fill="#FEC40A"/>
-  </g>
+<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M82.501 0L82.5078 37.2588L96.7734 2.83887L110.632 8.5791L96.3799 43.0049L122.731 16.6641L133.338 27.2705L106.996 53.6211L141.423 39.3701L147.163 53.2285L112.742 67.4932L150.002 67.501V82.501L112.742 82.5078L147.163 96.7734L141.423 110.632L106.996 96.3799L133.338 122.731L122.731 133.338L96.3799 106.996L110.632 141.423L96.7734 147.163L82.5078 112.742L82.501 150.002H67.501L67.4932 112.742L53.2285 147.163L39.3701 141.423L53.6211 106.996L27.2705 133.338L16.6641 122.731L43.0049 96.3799L8.5791 110.632L2.83887 96.7734L37.2588 82.5078L0 82.501V67.501L37.2588 67.4932L2.83887 53.2285L8.5791 39.3701L43.0049 53.6211L16.6641 27.2705L27.2705 16.6641L53.6211 43.0049L39.3701 8.5791L53.2285 2.83887L67.4932 37.2588L67.501 0H82.501Z" fill="#FEC40A"/>
 </svg>

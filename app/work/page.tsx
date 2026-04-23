@@ -47,7 +47,7 @@ export default function WorkPage() {
         <div className={styles.hero}>
           <div className={styles.heroInner}>
             <div className={styles.logos}>
-              <Image src="/logo-arrow.svg" alt="Arrow" width={150} height={172} />
+              <Image src="/logo-arrow.svg" alt="Arrow" width={150} height={150} />
               <Image src="/logo-sun.svg" alt="Sun" width={150} height={150} />
             </div>
           </div>
