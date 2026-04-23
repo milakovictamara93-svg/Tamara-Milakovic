@@ -6,8 +6,8 @@
   opacity: 0;
   transform: translateY(28px);
   transition:
-    opacity 0.65s ease-out var(--delay, 0ms),
-    transform 0.65s ease-out var(--delay, 0ms);
+    opacity 0.65s ease-out calc(200ms + var(--delay, 0ms)),
+    transform 0.65s ease-out calc(200ms + var(--delay, 0ms));
 }
 
 .reveal[data-visible='true'] {
