@@ -14,45 +14,9 @@
   padding-bottom: 8px;
 }
 
-.logos {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.logoArrow {
-  animation: walkIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.logoSun {
-  animation: spinIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
-}
-
-@keyframes walkIn {
-  from {
-    transform: translateX(-80px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes spinIn {
-  from {
-    transform: rotate(-360deg);
-    opacity: 0;
-  }
-  to {
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-}
-
 /* Heading */
 .headingSection {
-  padding: 0 16px;
+  padding: 40px 16px 0;
 }
 
 .headingInner {
@@ -169,6 +133,10 @@
     font-size: 40px;
   }
 
+  .headingSection {
+    padding-top: 24px;
+  }
+
   .row {
     grid-template-columns: 1fr;
     padding-bottom: 48px;
@@ -176,10 +144,5 @@
 
   .cardTitle {
     font-size: 24px;
-  }
-
-  .logos img {
-    width: 100px;
-    height: auto;
   }
 }

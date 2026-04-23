@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
+import AnimatedLogos from '@/components/AnimatedLogos';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -46,14 +47,7 @@ export default function WorkPage() {
       <main className={styles.main}>
         <div className={styles.hero}>
           <div className={styles.heroInner}>
-            <div className={styles.logos}>
-              <div className={styles.logoArrow}>
-                <Image src="/logo-arrow.svg" alt="Arrow" width={150} height={150} />
-              </div>
-              <div className={styles.logoSun}>
-                <Image src="/logo-sun.svg" alt="Sun" width={150} height={150} />
-              </div>
-            </div>
+            <AnimatedLogos size={150} />
           </div>
         </div>
 

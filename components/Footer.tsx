@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import AnimatedLogos from './AnimatedLogos';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -8,8 +8,7 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.top}>
           <div className={styles.logos}>
-            <Image src="/logo-arrow.svg" alt="Arrow" width={80} height={80} />
-            <Image src="/logo-sun.svg" alt="Sun" width={80} height={80} />
+            <AnimatedLogos size={80} />
           </div>
           <div className={styles.columns}>
             <div className={styles.column}>
