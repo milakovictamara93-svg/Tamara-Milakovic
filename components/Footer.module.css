@@ -26,8 +26,9 @@
 
 .columns {
   flex: 1;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: start;
   gap: 40px;
 }
 
@@ -67,7 +68,7 @@
 
 .wordmark {
   font-family: var(--font-body);
-  font-size: clamp(40px, calc(9.92vw - 3px), 124px);
+  font-size: 120px;
   font-weight: 600;
   line-height: 1;
   color: #000;

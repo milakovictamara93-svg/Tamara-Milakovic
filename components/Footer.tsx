@@ -1,5 +1,6 @@
 import TextLink from './TextLink';
 import AnimatedLogos from './AnimatedLogos';
+import FitWordmark from './FitWordmark';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -28,9 +29,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className={styles.wordmark}>
-          Tamara Milakovic
-        </div>
+        <FitWordmark />
       </div>
     </footer>
   );
