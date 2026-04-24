@@ -3,6 +3,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
+import Marquee from '@/components/Marquee';
 import ArticleSidebar from './ArticleSidebar';
 import styles from './page.module.css';
 
@@ -241,12 +242,12 @@ export default function Pax8Page() {
                   </div>
                 </section>
 
-                <p className={styles.closingLine}><em>No brief. No stakeholders. No problem.</em></p>
-
               </div>
             </div>
           </div>
         </div>
+
+        <Marquee text="No brief. 💼 No stakeholders. 👨🏻 No problem. 🤜🤛" />
 
       </main>
       <Footer />
