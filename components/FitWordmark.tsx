@@ -10,14 +10,19 @@ export default function FitWordmark() {
     if (!el || !el.parentElement) return;
 
     const fit = () => {
-      el.style.fontSize = '100px';
       const parentWidth = el.parentElement!.offsetWidth;
-      const textWidth = el.scrollWidth;
-      if (!parentWidth || !textWidth) return;
+      if (!parentWidth) return;
+      // Shrink to natural text width to measure it
+      el.style.fontSize = '100px';
+      el.style.width = 'max-content';
+      const textWidth = el.offsetWidth;
+      el.style.width = '';
+      if (!textWidth) return;
       el.style.fontSize = `${(parentWidth / textWidth) * 100}px`;
     };
 
     fit();
+    document.fonts.ready.then(fit);
     const ro = new ResizeObserver(fit);
     ro.observe(el.parentElement!);
     return () => ro.disconnect();
