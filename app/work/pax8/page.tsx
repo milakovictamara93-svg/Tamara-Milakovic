@@ -59,11 +59,11 @@ export default function Pax8Page() {
               <div className={styles.meta}>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Role</span>
-                  <span className={styles.metaValue}>Product designer</span>
+                  <span className={styles.metaValue}>Product Designer - UX strategy, interaction design, design systems</span>
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Scope</span>
-                  <span className={styles.metaValue}>0→1 across 2 surfaces</span>
+                  <span className={styles.metaValue}>0 → 1 product design across Analytics Center and Promo Center</span>
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Domain</span>
@@ -71,7 +71,7 @@ export default function Pax8Page() {
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Team</span>
-                  <span className={styles.metaValue}>Cross-functional</span>
+                  <span className={styles.metaValue}>Cross-functional - PM owned the roadmap, I owned design direction. No dedicated PM for the first phase, which meant facilitating alignment conversations that would normally sit with product</span>
                 </div>
               </div>
             </div>
@@ -118,9 +118,7 @@ export default function Pax8Page() {
                     <p>Meanwhile, the inventory we had to build on? Disorganized. Missing content. Missing pricing logic. Missing any clear explanation of what a partner would actually <em>do</em> with these items.</p>
                     <p>This wasn&rsquo;t a UX problem yet. It was a clarity problem dressed up as a UX problem.</p>
                     <p>So before I opened Figma, I did something slower and more important: I got everyone in the same room and stayed there until we had one shared answer to one question.</p>
-                  </div>
-                  <h3 className={styles.subheading}>What does success look like for a partner who uses this in their first week?</h3>
-                  <div className={styles.sectionBody}>
+                    <p><strong>What does success look like for a partner who uses this in their first week?</strong></p>
                     <p>That question cut through everything. It made the abstract concrete. It gave the stakeholder debate a finish line. And it gave me the design constraint I needed: the product had to move someone from <em>not knowing what to do</em> to <em>confident that they did the right thing</em> — without requiring them to already know how monetization worked.</p>
                     <p>On a project with no brief and no designated owner, the first design deliverable wasn&rsquo;t a wireframe. It was a shared question that forced alignment. That&rsquo;s the work that doesn&rsquo;t show up in a Figma file — but it&rsquo;s often the work that determines whether a product ships coherently or not.</p>
                   </div>
@@ -216,7 +214,7 @@ export default function Pax8Page() {
                     <p>It still took time. It took more prototypes. It took a lot of conversations that were really about trust, not design. But by the time the behavioral contracts and the loop structure were defined and shared, the team had something they hadn&rsquo;t had at the start: a common model of what we were building and why it would work.</p>
                     <p>That shift — from everyone having a different product in their heads to everyone working from the same one — was the most important design output of the entire project. It just doesn&rsquo;t fit in a Figma file.</p>
                   </div>
-                  <ImagePlaceholder caption="Before/after of a stakeholder session — a conceptual diagram showing the fragmented mental models that existed before the loop model was introduced, versus the shared reference point after." />
+                  <ImagePlaceholder caption="Before/after of a stakeholder session - not a literal screenshot, but a conceptual diagram showing the fragmented mental models that existed before the loop model was introduced, versus the shared reference point after. This is the artifact that aligned the room." />
                 </section>
 
                 <section id="s9" className={styles.section}>
