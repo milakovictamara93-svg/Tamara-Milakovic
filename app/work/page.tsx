@@ -34,7 +34,6 @@ const projects = [
     description: 'A platform restyling that 85% of users chose voluntarily.',
     tags: 'B2B SaaS',
     image: '/work/beyond.png',
-    href: 'https://www.figma.com/design/KcxEy4LxEOQCS6YhFJkBLK?node-id=142-2527',
   },
 ];
 

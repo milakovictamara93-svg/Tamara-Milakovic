@@ -236,7 +236,7 @@ export default function ScalerPage() {
         {/* Next case study */}
         <div className={styles.nextCaseStudy}>
           <div className={styles.nextCaseStudyInner}>
-            <a href="https://www.figma.com/design/KcxEy4LxEOQCS6YhFJkBLK?node-id=142-2527" target="_blank" rel="noopener noreferrer" className={styles.nextCaseStudyCard}>
+            <a href="/work/beyond" className={styles.nextCaseStudyCard}>
               <div className={styles.nextCaseStudyImage}>
                 <Image
                   src="/work/beyond.png"
