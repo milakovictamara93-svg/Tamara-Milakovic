@@ -28,7 +28,7 @@ const navItems = [
 function ArticleImage({ src, alt, small }: { src: string; alt: string; small?: boolean }) {
   return (
     <div className={small ? styles.articleImageWrapSmall : styles.articleImageWrap}>
-      <Image src={src} alt={alt} fill className={styles.articleImg} sizes="(max-width: 768px) 100vw, 800px" />
+      <Image src={src} alt={alt} fill className={styles.articleImg} sizes="(max-width: 768px) 100vw, (max-width: 1024px) calc(100vw - 260px), 988px" />
     </div>
   );
 }
