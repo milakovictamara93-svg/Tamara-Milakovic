@@ -19,7 +19,7 @@ const projects = [
     title: 'Pax8: Building a Monetisation System from a PowerPoint Slide and a Prayer',
     description: 'How I turned a vague commercial opportunity into a coherent product before anyone noticed we were making it up.',
     tags: 'B2B SaaS · Monetisation · 0→1',
-    image: '/work/pax8.png',
+    image: '/work/Pax8-hero.jpg',
   },
   {
     slug: 'scaler',
