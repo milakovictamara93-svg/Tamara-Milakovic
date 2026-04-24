@@ -25,11 +25,10 @@ const navItems = [
   { id: 's10', label: 'Building from nothing' },
 ];
 
-function ImagePlaceholder({ caption }: { caption: string }) {
+function ImagePlaceholder() {
   return (
     <div className={styles.imagePlaceholderWrap}>
       <div className={styles.imagePlaceholderBox} />
-      <p className={styles.imagePlaceholderCaption}>{caption}</p>
     </div>
   );
 }
@@ -143,7 +142,7 @@ export default function Pax8Page() {
                   <div className={styles.sectionBody}>
                     <p>If the product couldn&rsquo;t support those four questions as a <em>connected sequence</em>, individual screens could be excellent and the experience would still fail. This became the design spine - and a filter. Every surface, every interaction, every handoff had to move the user forward through that loop or it didn&rsquo;t belong. Any feature that couldn&rsquo;t be located within the sequence was either misplaced or unnecessary. That&rsquo;s a sharper test than &ldquo;is this valuable?&rdquo; - because almost everything feels valuable in isolation.</p>
                   </div>
-                  <ImagePlaceholder caption="The four questions as a design filter - shown as a decision framework mapped to the product areas responsible for answering each: Analytics owns What/Why, Opportunity owns What next, Promo Center owns execution, Measurement owns Did it work." />
+                  <ImagePlaceholder />
                 </section>
 
                 <section id="s4" className={styles.section}>
@@ -157,8 +156,8 @@ export default function Pax8Page() {
                     <p>The alternative was inline recommendations embedded directly within Analytics - surfacing suggestions alongside the charts, without a dedicated layer. It felt more lightweight. We rejected it because it conflated two different cognitive modes: interpreting data and deciding what to do about it. Doing both at once in the same surface increases cognitive load at exactly the moment it needs to decrease. A dedicated Opportunity layer gives the user permission to stop analysing and start acting. That transition needs its own space.</p>
                     <p>When a partner moves from Analytics into Promo Center through an Opportunity, their intent travels with them. They don&rsquo;t have to reconstruct their reasoning. The context is carried. The next step is obvious. And critically - it feels like a confident choice, not a guess. The layer looks simple from the outside - a card with a recommendation and a button. Underneath it is a deliberate translation: performance signal → interpretation → suggested action → pre-filled context in the builder. Each step reduces the cognitive work the partner has to do. The card is the visible surface. The reduction in mental overhead is the actual design.</p>
                   </div>
-                  <ImagePlaceholder caption="The Opportunity layer in detail - showing how a performance signal in Analytics (e.g. low impressions on a product category) becomes a structured recommendation with context, suggested action, and a direct entry point into Promo Center." />
-                  <ImagePlaceholder caption="The loop - a diagram showing the four-stage sequence: Analytics → Opportunity → Promo Center → Measurement, with callouts showing how context is carried between surfaces and what would break if any stage were missing." />
+                  <ImagePlaceholder />
+                  <ImagePlaceholder />
                 </section>
 
                 <section id="s5" className={styles.section}>
@@ -183,7 +182,7 @@ export default function Pax8Page() {
                     <p>So I pushed for something that felt outside my lane but was absolutely necessary: an inventory audit and a content standard for how items needed to be described before they could appear in Promo Center.</p>
                     <p>This is the part of the story that doesn&rsquo;t show up in most case studies, because it&rsquo;s not &ldquo;design&rdquo; in the conventional sense. But on a greenfield product, waiting for someone else to fix foundational problems means designing on sand. Pushing into product and content territory was uncomfortable. It was also required. The willingness to own problems upstream of your lane is what separates a designer who ships good work from one who ships work that actually functions.</p>
                   </div>
-                  <ImagePlaceholder caption="Before/after example of an inventory item - one with missing/inconsistent content, one with the standardized content structure applied." />
+                  <ImagePlaceholder />
                 </section>
 
                 <section id="s7" className={styles.section}>
@@ -193,14 +192,14 @@ export default function Pax8Page() {
                     <p>Because this was greenfield, I had a choice that most designers don&rsquo;t get: I could define behavioral standards <em>before</em> the product scaled, instead of trying to retrofit them afterward.</p>
                     <p>I treated that as a strategic opportunity, not a design task.</p>
                   </div>
-                  <ImagePlaceholder caption="Interaction contracts overview - a reference sheet showing the key behavioral rules defined for both surfaces: filter persistence, drill behavior, exploration vs commitment states, empty/loading/error handling." />
+                  <ImagePlaceholder />
                   <div className={styles.sectionBody}>
                     <p>Interaction contracts were written for the moments most likely to drift: how filtering behaves across both surfaces and whether it persists. What drill interactions mean and when they escalate into full detail views. Where exploration ends and commitment begins - the line between browsing and buying intent matters enormously in a monetization context. How empty, loading, and error states maintain orientation without breaking the flow of the loop.</p>
                     <p><strong>Validation timing was handled deliberately.</strong> In a monetization product, stakes are real. Validate too early and you interrupt flow. Validate too late and you create regret.</p>
                     <p>We considered inline validation on every field change - a standard pattern for enterprise forms. We rejected it because in a monetization context, constant micro-feedback before a user has formed intent creates anxiety, not confidence. Instead we validated on intentional commit points: when a partner chose to preview or submit. One honest confirmation at the right moment, not a running commentary. In a context where a partner is committing real budget, getting this wrong erodes trust faster than almost any other design failure.</p>
                     <p><strong>Lifecycle status was treated as first-class UX.</strong> A promotion isn&rsquo;t just active or inactive. It&rsquo;s pending, live, paused, ended, under-budget, over-performing. Each of those states means something different about what the partner should do next. Clear status language isn&rsquo;t a labeling exercise - it&rsquo;s how a partner decides whether to act, wait, or change course. Get it wrong and the product feels unpredictable. Get it right and it feels like it&rsquo;s working <em>with</em> you.</p>
                   </div>
-                  <ImagePlaceholder caption="Lifecycle status model - a visual map of promotion states, transitions, and what each state communicates to the partner about their next action." />
+                  <ImagePlaceholder />
                 </section>
 
                 <section id="s8" className={styles.section}>
@@ -215,7 +214,7 @@ export default function Pax8Page() {
                     <p>It still took time. It took more prototypes. It took a lot of conversations that were really about trust, not design. But by the time the behavioral contracts and the loop structure were defined and shared, the team had something they hadn&rsquo;t had at the start: a common model of what we were building and why it would work.</p>
                     <p>That shift - from everyone having a different product in their heads to everyone working from the same one - was the most important design output of the entire project. It just doesn&rsquo;t fit in a Figma file.</p>
                   </div>
-                  <ImagePlaceholder caption="Before/after of a stakeholder session - not a literal screenshot, but a conceptual diagram showing the fragmented mental models that existed before the loop model was introduced, versus the shared reference point after. This is the artifact that aligned the room." />
+                  <ImagePlaceholder />
                 </section>
 
                 <section id="s9" className={styles.section}>
@@ -227,7 +226,7 @@ export default function Pax8Page() {
                     <p>The most telling shift was in how conversations happened. Before the loop model existed, every stakeholder meeting started with a different product in the room. After it was visible and shared, disagreements became more specific. Design reviews moved faster. The team stopped re-establishing what we were building and started evaluating whether the work met the standard. The product answered questions that used to require a meeting.</p>
                     <p>That&rsquo;s the kind of impact that&rsquo;s hard to put in a dashboard - but it&rsquo;s exactly what makes everything else possible.</p>
                   </div>
-                  <ImagePlaceholder caption="System overview - a single diagram showing all four surfaces and how they connect, with the Opportunity layer highlighted as the bridge between Analytics and Promo Center." />
+                  <ImagePlaceholder />
                 </section>
 
                 <section id="s10" className={styles.section}>
