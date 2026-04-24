@@ -202,7 +202,7 @@ export default function BeyondPage() {
           </div>
         </div>
 
-        <Marquee text="The platform looked like what it was. Finally. ✦" />
+        <Marquee text="The ambition was always there. 🏃‍♀️ The UI just needed to catch up. 🏃‍♀️" />
 
       </main>
       <Footer />

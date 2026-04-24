@@ -257,7 +257,7 @@ export default function ScalerPage() {
           </div>
         </div>
 
-        <Marquee text="Tables got smaller. 📊 Confidence got bigger. 💪" />
+        <Marquee text="Tables got smaller. 🤏 Confidence got bigger. 💪" />
 
       </main>
       <Footer />
