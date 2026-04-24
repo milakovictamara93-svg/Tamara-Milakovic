@@ -178,9 +178,11 @@ export default function Pax8Page() {
                     <p>I killed it.</p>
                     <p>Not because it was a bad idea in principle - comparative benchmarking has genuine value in the right context. I killed it because of what it would have done to these specific users in this specific product at this specific moment.</p>
                     <p><strong>The problem was threefold.</strong> First, benchmark data in monetization contexts is inherently noisy - comparing a 5-person partner to a 500-person partner on the same metric produces a number that looks meaningful and isn&rsquo;t. Second, adding a toggle to every chart turns every analytical view into two views. Cognitive load doubles. Interpretation confidence drops. Third - and most importantly - it would have pulled users sideways out of the loop. Instead of moving from <em>what&rsquo;s happening</em> to <em>what should I do</em>, they&rsquo;d be stuck in <em>how do I compare</em>, which is a different question that leads nowhere actionable.</p>
-                    <p>The loop was the product. Anything that broke the loop didn&rsquo;t belong in it - no matter how smart it sounded. The request didn&rsquo;t disappear - it moved to the backlog with a clear condition: benchmarks could be revisited once the core loop was established and partners had enough baseline data to make comparison meaningful. That&rsquo;s a different feature in a different context. Killing it here wasn&rsquo;t a no - it was a not yet.</p>
                   </div>
                   <ArticleImage src="/work/pax8-5.jpg" alt="Rejected: benchmark comparison toggles break the loop by redirecting users from 'what should I do?' to 'how do I compare?'" />
+                  <div className={styles.sectionBody}>
+                    <p>The loop was the product. Anything that broke the loop didn&rsquo;t belong in it - no matter how smart it sounded. The request didn&rsquo;t disappear - it moved to the backlog with a clear condition: benchmarks could be revisited once the core loop was established and partners had enough baseline data to make comparison meaningful. That&rsquo;s a different feature in a different context. Killing it here wasn&rsquo;t a no - it was a not yet.</p>
+                  </div>
                 </section>
 
                 <section id="s6" className={styles.section}>
@@ -202,9 +204,11 @@ export default function Pax8Page() {
                     <p>Because this was greenfield, I had a choice that most designers don&rsquo;t get: I could define behavioral standards <em>before</em> the product scaled, instead of trying to retrofit them afterward.</p>
                     <p>I treated that as a strategic opportunity, not a design task.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-7.jpg" alt="Behavioral rules: four categories defined once and applied everywhere — filter persistence, drill interactions, exploration vs commitment, empty/loading/error states." />
                   <div className={styles.sectionBody}>
                     <p>Interaction contracts were written for the moments most likely to drift: how filtering behaves across both surfaces and whether it persists. What drill interactions mean and when they escalate into full detail views. Where exploration ends and commitment begins - the line between browsing and buying intent matters enormously in a monetization context. How empty, loading, and error states maintain orientation without breaking the flow of the loop.</p>
+                  </div>
+                  <ArticleImage src="/work/pax8-7.jpg" alt="Behavioral rules: four categories defined once and applied everywhere — filter persistence, drill interactions, exploration vs commitment, empty/loading/error states." />
+                  <div className={styles.sectionBody}>
                     <p><strong>Validation timing was handled deliberately.</strong> In a monetization product, stakes are real. Validate too early and you interrupt flow. Validate too late and you create regret.</p>
                     <p>We considered inline validation on every field change - a standard pattern for enterprise forms. We rejected it because in a monetization context, constant micro-feedback before a user has formed intent creates anxiety, not confidence. Instead we validated on intentional commit points: when a partner chose to preview or submit. One honest confirmation at the right moment, not a running commentary. In a context where a partner is committing real budget, getting this wrong erodes trust faster than almost any other design failure.</p>
                     <p><strong>Lifecycle status was treated as first-class UX.</strong> A promotion isn&rsquo;t just active or inactive. It&rsquo;s pending, live, paused, ended, under-budget, over-performing. Each of those states means something different about what the partner should do next. Clear status language isn&rsquo;t a labeling exercise - it&rsquo;s how a partner decides whether to act, wait, or change course. Get it wrong and the product feels unpredictable. Get it right and it feels like it&rsquo;s working <em>with</em> you.</p>
