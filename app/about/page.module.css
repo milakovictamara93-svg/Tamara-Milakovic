@@ -1,0 +1,159 @@
+.main {
+  min-height: 60vh;
+}
+
+/* Hero logos — same pattern as work page */
+.hero {
+  padding: 40px 16px 0;
+}
+
+.heroInner {
+  max-width: 1248px;
+  margin: 0 auto;
+  padding-top: 64px;
+  padding-bottom: 8px;
+}
+
+/* Two-column content */
+.contentSection {
+  padding: 40px 16px 80px;
+}
+
+.contentInner {
+  max-width: 1248px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+/* Left sticky column */
+.left {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 52px;
+}
+
+.greeting {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000;
+}
+
+.photoWrap {
+  width: 308px;
+  aspect-ratio: 308 / 411;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background: #d9d0c7;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.role {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000;
+}
+
+.specialties {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #525252;
+}
+
+/* Right scrollable column */
+.right {
+  flex: 1 0 0;
+  min-width: 0;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000;
+}
+
+.howIWork {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionLabel {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #525252;
+}
+
+.howIWorkBody {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .contentInner {
+    flex-direction: column;
+  }
+
+  .left {
+    position: static;
+    flex: none;
+    width: 100%;
+  }
+
+  .photoWrap {
+    width: 100%;
+    max-width: 308px;
+  }
+
+  .right {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    gap: 48px;
+  }
+
+  .bio,
+  .howIWorkBody {
+    font-size: 18px;
+  }
+}
