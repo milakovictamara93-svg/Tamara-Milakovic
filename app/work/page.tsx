@@ -26,7 +26,7 @@ const projects = [
     title: 'Scaler: When the Frankenstein Problem Is Partly Your Fault',
     description: 'When the platform grew faster than its rules and the design system that stopped the drift.',
     tags: 'ESG Analytics · Design Systems · SaaS',
-    image: '/work/scaler.png',
+    image: '/work/scaler-hero.jpg',
   },
   {
     slug: 'beyond',

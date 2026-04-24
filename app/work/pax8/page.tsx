@@ -267,7 +267,7 @@ export default function Pax8Page() {
             <a href="/work/scaler" className={styles.nextCaseStudyCard}>
               <div className={styles.nextCaseStudyImage}>
                 <Image
-                  src="/work/scaler.jpg"
+                  src="/work/scaler-hero.jpg"
                   alt="Scaler dashboard"
                   fill
                   className={styles.heroImg}
