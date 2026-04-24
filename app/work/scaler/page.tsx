@@ -5,6 +5,7 @@ import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
 import Marquee from '@/components/Marquee';
 import ArticleSidebar from './ArticleSidebar';
+import ArticleImageReveal from '@/components/ArticleImageReveal';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -25,13 +26,6 @@ const navItems = [
   { id: 's10', label: 'Systems thinking' },
 ];
 
-function ArticleImage({ src, alt, small }: { src: string; alt: string; small?: boolean }) {
-  return (
-    <div className={small ? styles.articleImageWrapSmall : styles.articleImageWrap}>
-      <Image src={src} alt={alt} fill className={styles.articleImg} sizes="(max-width: 768px) 100vw, (max-width: 1024px) calc(100vw - 260px), 988px" />
-    </div>
-  );
-}
 
 export default function ScalerPage() {
   return (
@@ -126,7 +120,7 @@ export default function ScalerPage() {
                     <p>That&rsquo;s the moment the design system stopped being a nice-to-have and became the only honest path forward. Not because someone told me to build it. Because I had created a gap that was already costing people time and producing inconsistency &mdash; and I was the only one who could close it.</p>
                     <p>The instinct in that moment is to give feedback and move on. The harder move is to ask why the problem exists at all &mdash; and to accept your own role in creating it. A design system built from that kind of honest audit is fundamentally different from one built to follow best practice. It&rsquo;s not built to be correct. It&rsquo;s built to fix something real.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-1.jpg" alt="Scaler design system foundation — the moment the gap became visible." />
+                  <ArticleImageReveal src="/work/scaler-1.jpg" alt="Scaler design system foundation — the moment the gap became visible." />
                 </section>
 
                 <section id="s3" className={styles.section}>
@@ -138,7 +132,7 @@ export default function ScalerPage() {
                     <p>None of it was dramatic in isolation. Individually, each decision was defensible. Together, they added up to a product that required constant re-orientation &mdash; a tax on every user, paid in small increments, across every session.</p>
                     <p>In a platform where users are doing serious analytical work &mdash; tracking emissions targets, preparing compliance reports, cross-referencing supplier data &mdash; that tax is not acceptable. When interaction rules are unpredictable, users slow down and verify more. They re-check things they&rsquo;ve already done. They lose their place. The product wasn&rsquo;t broken. It was just expensive to use in ways nobody had measured yet.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-2.jpg" alt="Divergence map — interaction types across modules with variance highlighted." />
+                  <ArticleImageReveal src="/work/scaler-2.jpg" alt="Divergence map — interaction types across modules with variance highlighted." />
                 </section>
 
                 <section id="s4" className={styles.section}>
@@ -151,8 +145,8 @@ export default function ScalerPage() {
                     <p>The map plotted interaction categories &mdash; filtering, drilling, loading, navigation, empty states &mdash; against every active module. Each cell got one of three classifications: consistent, contextual variation, or forced relearning. The forced-relearning cells were the ones that mattered. Filter behaviour landed there across four modules. So did drill path escalation. Loading state layout anchoring was the most pervasive &mdash; it appeared in every module and nobody had named it as a problem yet, because each instance felt minor in isolation. The map made the cumulative weight of it visible for the first time.</p>
                     <p>That distinction became the design filter for everything that followed. Variance that forced relearning was a problem to solve. Variance that reflected context was a pattern to document. A design system that standardises everything is as broken as one that standardises nothing &mdash; the value isn&rsquo;t in making everything look the same, it&rsquo;s in making the same problems get solved the same way. That requires knowing which problems are actually the same, and that takes audit before architecture.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-3.jpg" alt="Behavioral audit output — interaction categories coded by divergence type across modules." />
-                  <ArticleImage src="/work/scaler-4.jpg" alt="Behavioral audit detail — forced relearning cells across filter behaviour and loading state anchoring." small />
+                  <ArticleImageReveal src="/work/scaler-3.jpg" alt="Behavioral audit output — interaction categories coded by divergence type across modules." />
+                  <ArticleImageReveal src="/work/scaler-4.jpg" alt="Behavioral audit detail — forced relearning cells across filter behaviour and loading state anchoring." small />
                 </section>
 
                 <section id="s5" className={styles.section}>
@@ -178,7 +172,7 @@ export default function ScalerPage() {
                     <p>Medium-high density with controlled expansion rules produced the best results across all three. Not the densest possible &mdash; that maximised information per pixel but destroyed scan speed. Not the most spacious &mdash; that felt comfortable but required too much scrolling on real datasets. The sweet spot was specific, testable, and documentable.</p>
                     <p>The result was a defined density standard rather than a designer preference. That distinction matters enormously in a team context &mdash; density decisions don&rsquo;t restart from scratch every time someone designs a new table. The answer already exists. You reference it, you extend it, you don&rsquo;t reinvent it. And when a stakeholder says &ldquo;this feels too dense,&rdquo; you have something to point to that isn&rsquo;t opinion.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-6.jpg" alt="Density comparison — three configurations on the same dataset showing why medium-high density won." />
+                  <ArticleImageReveal src="/work/scaler-6.jpg" alt="Density comparison — three configurations on the same dataset showing why medium-high density won." />
                 </section>
 
                 <section id="s7" className={styles.section}>
@@ -191,7 +185,7 @@ export default function ScalerPage() {
                     <p>The goal wasn&rsquo;t to prevent designers from thinking. It was to prevent designers from re-solving problems that had already been solved &mdash; and to give them a shared language for the moments when a new situation genuinely required a new answer.</p>
                     <p>Writing interaction contracts is uncomfortable because it forces decisions that most teams have been quietly avoiding. &ldquo;How does filtering work?&rdquo; seems like it has an obvious answer &mdash; until you ask it across six modules and get six different responses. The contract isn&rsquo;t the answer. It&rsquo;s the process of getting the team to agree on one.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-5.jpg" alt="Interaction contracts reference — behavioral rules for filtering, drilling, loading, and empty states." />
+                  <ArticleImageReveal src="/work/scaler-5.jpg" alt="Interaction contracts reference — behavioral rules for filtering, drilling, loading, and empty states." />
                 </section>
 
                 <section id="s8" className={styles.section}>
@@ -206,7 +200,7 @@ export default function ScalerPage() {
                     <p>It wasn&rsquo;t frictionless. One team had a genuinely complex edge case in their reporting module that didn&rsquo;t map cleanly to the drill pattern standard. Their instinct was to request an exception. My instinct was to understand why &mdash; and when I did, it turned out the edge case revealed a gap in the documentation, not a gap in the pattern itself. We updated the guidance together. That team became the system&rsquo;s most reliable internal advocates, because they&rsquo;d been part of making it better.</p>
                     <p>The hardest part of design systems work isn&rsquo;t building the system. It&rsquo;s building it in a way that people want to use. That requires understanding what makes guidance feel helpful versus prescriptive &mdash; and designing the documentation with the same care you&rsquo;d give any user-facing surface. The user of a design system is a designer mid-problem, under deadline, looking for a quick answer they can trust. Build for that person, not for the ideal reader.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-7.jpg" alt="Documentation example — scenario-based pattern entry with when-to-use rules and anti-pattern callout." />
+                  <ArticleImageReveal src="/work/scaler-7.jpg" alt="Documentation example — scenario-based pattern entry with when-to-use rules and anti-pattern callout." />
                 </section>
 
                 <section id="s9" className={styles.section}>
@@ -219,7 +213,7 @@ export default function ScalerPage() {
                     <p>For users, the most visible change was in multi-module workflows &mdash; tasks that required moving between the emissions module and supplier data stopped requiring a re-orientation at every surface boundary. The interaction logic transferred. Users stopped re-verifying things they&rsquo;d already understood. For the team, delivery became faster because fewer interaction decisions restart from zero. For the business, the design system became the connective tissue that lets a small team maintain a large, complex product without accumulating UX debt faster than they can pay it down.</p>
                     <p>Usage data at the individual feature level wasn&rsquo;t available for this case study &mdash; and I won&rsquo;t overstate what I can verify. What I can say with confidence is that the organisational effects were real: design reviews became more specific, pattern disputes decreased, and new functionality plugged into existing structures instead of introducing new ones. In a small team maintaining a complex product, that compounds quickly.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-8.jpg" alt="Before and after — design system adoption visible across new module surfaces." />
+                  <ArticleImageReveal src="/work/scaler-8.jpg" alt="Before and after — design system adoption visible across new module surfaces." />
                 </section>
 
                 <section id="s10" className={styles.section}>
@@ -230,8 +224,8 @@ export default function ScalerPage() {
                     <p>The most important thing I learned on this project is that a design system is only as good as the problem definition underneath it. Build it to achieve visual consistency and you&rsquo;ll get a library. Build it to stop behavioral drift in a complex multi-module product under active development with a small team &mdash; and you&rsquo;ll get infrastructure.</p>
                     <p>The transferable lesson: <strong>the system is not the destination. Predictable, learnable, extensible behavior is.</strong> The system is just how you get there and stay there &mdash; and a product that behaves like it knows what it&rsquo;s doing is worth every uncomfortable conversation it took to build it.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-9.jpg" alt="Scaler design system — predictable, learnable, extensible behavior across the full platform." />
-                  <ArticleImage src="/work/scaler-10.jpg" alt="Scaler design system — the system as infrastructure, not just documentation." small />
+                  <ArticleImageReveal src="/work/scaler-9.jpg" alt="Scaler design system — predictable, learnable, extensible behavior across the full platform." />
+                  <ArticleImageReveal src="/work/scaler-10.jpg" alt="Scaler design system — the system as infrastructure, not just documentation." small />
                 </section>
 
               </div>

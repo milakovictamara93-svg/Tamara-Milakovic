@@ -5,6 +5,7 @@ import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
 import Marquee from '@/components/Marquee';
 import ArticleSidebar from './ArticleSidebar';
+import ArticleImageReveal from '@/components/ArticleImageReveal';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -24,14 +25,6 @@ const navItems = [
   { id: 's9', label: 'What actually changed' },
   { id: 's10', label: 'Building from nothing' },
 ];
-
-function ArticleImage({ src, alt, small }: { src: string; alt: string; small?: boolean }) {
-  return (
-    <div className={small ? styles.articleImageWrapSmall : styles.articleImageWrap}>
-      <Image src={src} alt={alt} fill className={styles.articleImg} sizes="(max-width: 768px) 100vw, (max-width: 1024px) calc(100vw - 260px), 988px" />
-    </div>
-  );
-}
 
 export default function Pax8Page() {
   return (
@@ -124,7 +117,7 @@ export default function Pax8Page() {
                     <p>So before I opened Figma, I did something slower and more important: I got everyone in the same room and stayed there until we had one shared answer to one question.</p>
                     <p><strong>What does success look like for a partner who uses this in their first week?</strong></p>
                   </div>
-                  <ArticleImage src="/work/pax8-1.jpg" alt="Before: four stakeholders with four different products. After: one shared loop model." />
+                  <ArticleImageReveal src="/work/pax8-1.jpg" alt="Before: four stakeholders with four different products. After: one shared loop model." />
                   <div className={styles.sectionBody}>
                     <p>That question cut through everything. It made the abstract concrete. It gave the stakeholder debate a finish line. And it gave me the design constraint I needed: the product had to move someone from <em>not knowing what to do</em> to <em>confident that they did the right thing</em> - without requiring them to already know how monetization worked.</p>
                     <p>On a project with no brief and no designated owner, the first design deliverable wasn&rsquo;t a wireframe. It was a shared question that forced alignment. That&rsquo;s the work that doesn&rsquo;t show up in a Figma file - but it&rsquo;s often the work that determines whether a product ships coherently or not.</p>
@@ -149,7 +142,7 @@ export default function Pax8Page() {
                   <div className={styles.sectionBody}>
                     <p>If the product couldn&rsquo;t support those four questions as a <em>connected sequence</em>, individual screens could be excellent and the experience would still fail. This became the design spine - and a filter. Every surface, every interaction, every handoff had to move the user forward through that loop or it didn&rsquo;t belong. Any feature that couldn&rsquo;t be located within the sequence was either misplaced or unnecessary. That&rsquo;s a sharper test than &ldquo;is this valuable?&rdquo; - because almost everything feels valuable in isolation.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-2.jpg" alt="Design filter: four questions map to four product areas forming one loop." />
+                  <ArticleImageReveal src="/work/pax8-2.jpg" alt="Design filter: four questions map to four product areas forming one loop." />
                 </section>
 
                 <section id="s4" className={styles.section}>
@@ -159,14 +152,14 @@ export default function Pax8Page() {
                     <p>Most products show you the data. Most products give you the tools. Almost none of them do the hardest part: <strong>translate a performance gap into a decision.</strong></p>
                     <p>That translation - from &ldquo;my numbers are low&rdquo; to &ldquo;here&rsquo;s what I should do and why&rdquo; - is where users get lost, and where products quietly lose their value. I called it the bridge. And I treated it as the most important design problem in the entire system.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-3.jpg" alt="Four-stage pipeline: Analytics Center, Opportunity Layer, Promo Center, Measurement — context carried across every transition." />
+                  <ArticleImageReveal src="/work/pax8-3.jpg" alt="Four-stage pipeline: Analytics Center, Opportunity Layer, Promo Center, Measurement — context carried across every transition." />
                   <div className={styles.sectionBody}>
                     <p>The solution was an Opportunity layer: a surface that sits between Analytics and Promo Center and does the interpretive work for the user. Instead of leaving partners to stare at a chart and figure out what it means for their next action, Opportunities converted performance signals into explicit, actionable recommendations - with enough context to make the action feel justified, not just suggested.</p>
                     <p>This wasn&rsquo;t just a UX convenience. It was a product position. By owning the bridge, the product owned the decision moment - which is exactly where trust is built or lost in a monetization tool.</p>
                     <p>The alternative was inline recommendations embedded directly within Analytics - surfacing suggestions alongside the charts, without a dedicated layer. It felt more lightweight. We rejected it because it conflated two different cognitive modes: interpreting data and deciding what to do about it. Doing both at once in the same surface increases cognitive load at exactly the moment it needs to decrease. A dedicated Opportunity layer gives the user permission to stop analysing and start acting. That transition needs its own space.</p>
                     <p>When a partner moves from Analytics into Promo Center through an Opportunity, their intent travels with them. They don&rsquo;t have to reconstruct their reasoning. The context is carried. The next step is obvious. And critically - it feels like a confident choice, not a guess. The layer looks simple from the outside - a card with a recommendation and a button. Underneath it is a deliberate translation: performance signal → interpretation → suggested action → pre-filled context in the builder. Each step reduces the cognitive work the partner has to do. The card is the visible surface. The reduction in mental overhead is the actual design.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-4.jpg" alt="Signal detection to interpretation to opportunity card to pre-filled builder." />
+                  <ArticleImageReveal src="/work/pax8-4.jpg" alt="Signal detection to interpretation to opportunity card to pre-filled builder." />
                 </section>
 
                 <section id="s5" className={styles.section}>
@@ -179,7 +172,7 @@ export default function Pax8Page() {
                     <p>Not because it was a bad idea in principle - comparative benchmarking has genuine value in the right context. I killed it because of what it would have done to these specific users in this specific product at this specific moment.</p>
                     <p><strong>The problem was threefold.</strong> First, benchmark data in monetization contexts is inherently noisy - comparing a 5-person partner to a 500-person partner on the same metric produces a number that looks meaningful and isn&rsquo;t. Second, adding a toggle to every chart turns every analytical view into two views. Cognitive load doubles. Interpretation confidence drops. Third - and most importantly - it would have pulled users sideways out of the loop. Instead of moving from <em>what&rsquo;s happening</em> to <em>what should I do</em>, they&rsquo;d be stuck in <em>how do I compare</em>, which is a different question that leads nowhere actionable.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-5.jpg" alt="Rejected: benchmark comparison toggles break the loop by redirecting users from 'what should I do?' to 'how do I compare?'" />
+                  <ArticleImageReveal src="/work/pax8-5.jpg" alt="Rejected: benchmark comparison toggles break the loop by redirecting users from 'what should I do?' to 'how do I compare?'" />
                   <div className={styles.sectionBody}>
                     <p>The loop was the product. Anything that broke the loop didn&rsquo;t belong in it - no matter how smart it sounded. The request didn&rsquo;t disappear - it moved to the backlog with a clear condition: benchmarks could be revisited once the core loop was established and partners had enough baseline data to make comparison meaningful. That&rsquo;s a different feature in a different context. Killing it here wasn&rsquo;t a no - it was a not yet.</p>
                   </div>
@@ -194,7 +187,7 @@ export default function Pax8Page() {
                     <p>So I pushed for something that felt outside my lane but was absolutely necessary: an inventory audit and a content standard for how items needed to be described before they could appear in Promo Center.</p>
                     <p>This is the part of the story that doesn&rsquo;t show up in most case studies, because it&rsquo;s not &ldquo;design&rdquo; in the conventional sense. But on a greenfield product, waiting for someone else to fix foundational problems means designing on sand. Pushing into product and content territory was uncomfortable. It was also required. The willingness to own problems upstream of your lane is what separates a designer who ships good work from one who ships work that actually functions.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-6.jpg" alt="Before and after: applying a content standard to inventory items for clarity and decision quality." />
+                  <ArticleImageReveal src="/work/pax8-6.jpg" alt="Before and after: applying a content standard to inventory items for clarity and decision quality." />
                 </section>
 
                 <section id="s7" className={styles.section}>
@@ -207,13 +200,13 @@ export default function Pax8Page() {
                   <div className={styles.sectionBody}>
                     <p>Interaction contracts were written for the moments most likely to drift: how filtering behaves across both surfaces and whether it persists. What drill interactions mean and when they escalate into full detail views. Where exploration ends and commitment begins - the line between browsing and buying intent matters enormously in a monetization context. How empty, loading, and error states maintain orientation without breaking the flow of the loop.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-7.jpg" alt="Behavioral rules: four categories defined once and applied everywhere — filter persistence, drill interactions, exploration vs commitment, empty/loading/error states." />
+                  <ArticleImageReveal src="/work/pax8-7.jpg" alt="Behavioral rules: four categories defined once and applied everywhere — filter persistence, drill interactions, exploration vs commitment, empty/loading/error states." />
                   <div className={styles.sectionBody}>
                     <p><strong>Validation timing was handled deliberately.</strong> In a monetization product, stakes are real. Validate too early and you interrupt flow. Validate too late and you create regret.</p>
                     <p>We considered inline validation on every field change - a standard pattern for enterprise forms. We rejected it because in a monetization context, constant micro-feedback before a user has formed intent creates anxiety, not confidence. Instead we validated on intentional commit points: when a partner chose to preview or submit. One honest confirmation at the right moment, not a running commentary. In a context where a partner is committing real budget, getting this wrong erodes trust faster than almost any other design failure.</p>
                     <p><strong>Lifecycle status was treated as first-class UX.</strong> A promotion isn&rsquo;t just active or inactive. It&rsquo;s pending, live, paused, ended, under-budget, over-performing. Each of those states means something different about what the partner should do next. Clear status language isn&rsquo;t a labeling exercise - it&rsquo;s how a partner decides whether to act, wait, or change course. Get it wrong and the product feels unpredictable. Get it right and it feels like it&rsquo;s working <em>with</em> you.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-8.jpg" alt="Lifecycle status: six promotion states — Pending, Live, Paused, Ended, Under-budget, Over-performing — each communicating a next action." />
+                  <ArticleImageReveal src="/work/pax8-8.jpg" alt="Lifecycle status: six promotion states — Pending, Live, Paused, Ended, Under-budget, Over-performing — each communicating a next action." />
                 </section>
 
                 <section id="s8" className={styles.section}>
@@ -228,7 +221,7 @@ export default function Pax8Page() {
                     <p>It still took time. It took more prototypes. It took a lot of conversations that were really about trust, not design. But by the time the behavioral contracts and the loop structure were defined and shared, the team had something they hadn&rsquo;t had at the start: a common model of what we were building and why it would work.</p>
                     <p>That shift - from everyone having a different product in their heads to everyone working from the same one - was the most important design output of the entire project. It just doesn&rsquo;t fit in a Figma file.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-9.jpg" alt="Before: four stakeholders, four different products. After: one shared loop model with concrete outcomes." />
+                  <ArticleImageReveal src="/work/pax8-9.jpg" alt="Before: four stakeholders, four different products. After: one shared loop model with concrete outcomes." />
                 </section>
 
                 <section id="s9" className={styles.section}>
@@ -240,8 +233,8 @@ export default function Pax8Page() {
                     <p>The most telling shift was in how conversations happened. Before the loop model existed, every stakeholder meeting started with a different product in the room. After it was visible and shared, disagreements became more specific. Design reviews moved faster. The team stopped re-establishing what we were building and started evaluating whether the work met the standard. The product answered questions that used to require a meeting.</p>
                     <p>That&rsquo;s the kind of impact that&rsquo;s hard to put in a dashboard - but it&rsquo;s exactly what makes everything else possible.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-10.jpg" alt="Four surfaces. One connected experience: Analytics to Opportunity to Promo Center to Measurement, with outcome metrics." />
-                  <ArticleImage src="/work/pax8-11.jpg" alt="Four connected surfaces, one shared design spine, zero context rebuilt mid-session." small />
+                  <ArticleImageReveal src="/work/pax8-10.jpg" alt="Four surfaces. One connected experience: Analytics to Opportunity to Promo Center to Measurement, with outcome metrics." />
+                  <ArticleImageReveal src="/work/pax8-11.jpg" alt="Four connected surfaces, one shared design spine, zero context rebuilt mid-session." small />
                 </section>
 
                 <section id="s10" className={styles.section}>
@@ -253,7 +246,7 @@ export default function Pax8Page() {
                     <p>The transferable lesson: <strong>when a product spans insight and action, the bridge is the product.</strong> Dashboards don&rsquo;t win by being informative. Builders don&rsquo;t win by being powerful. Systems win when the next step is obvious, justified, and measurable.</p>
                     <p>I&rsquo;d build it again exactly the same way - just with slightly better inventory data at the start.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-12.jpg" alt="Pax8 StaySecure: Business overview with campaign builder panel." />
+                  <ArticleImageReveal src="/work/pax8-12.jpg" alt="Pax8 StaySecure: Business overview with campaign builder panel." />
                 </section>
 
               </div>
