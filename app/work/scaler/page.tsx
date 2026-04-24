@@ -42,7 +42,7 @@ export default function ScalerPage() {
         {/* Hero logos */}
         <div className={styles.hero}>
           <div className={styles.heroInner}>
-            <AnimatedLogos size={150} rightSrc="/logo-scaler.svg" rightAlt="Scaler" rightSize={96} spinDuration={1.2} />
+            <AnimatedLogos size={150} rightSrc="/logo-scaler.svg" rightAlt="Scaler" />
           </div>
         </div>
 
