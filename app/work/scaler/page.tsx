@@ -152,6 +152,7 @@ export default function ScalerPage() {
                     <p>That distinction became the design filter for everything that followed. Variance that forced relearning was a problem to solve. Variance that reflected context was a pattern to document. A design system that standardises everything is as broken as one that standardises nothing &mdash; the value isn&rsquo;t in making everything look the same, it&rsquo;s in making the same problems get solved the same way. That requires knowing which problems are actually the same, and that takes audit before architecture.</p>
                   </div>
                   <ArticleImage src="/work/scaler-3.jpg" alt="Behavioral audit output — interaction categories coded by divergence type across modules." />
+                  <ArticleImage src="/work/scaler-4.jpg" alt="Behavioral audit detail — forced relearning cells across filter behaviour and loading state anchoring." small />
                 </section>
 
                 <section id="s5" className={styles.section}>
@@ -165,7 +166,6 @@ export default function ScalerPage() {
                     <p>But the most important reason was this: perfect consistency was never the goal. <em>Stopping the drift was.</em> The problem wasn&rsquo;t that legacy modules were inconsistent with each other &mdash; it was that every new surface we shipped was making the problem worse. Forward-only meant new and modified surfaces follow the framework immediately. Legacy areas converge progressively. The Frankenstein problem stops growing on day one, and heals over time.</p>
                     <p>That&rsquo;s a different definition of success &mdash; and a more honest one for the situation we were actually in. Forward-only is a pragmatic call that requires defending, because it means accepting known inconsistency in the short term. The discipline is being explicit about what you&rsquo;re optimising for &mdash; stopping drift, not achieving perfection &mdash; and making sure the team understands why that&rsquo;s the right target. A framework that ships and gets adopted beats a perfect system that never lands.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-4.jpg" alt="Forward-only strategy — new surfaces follow the framework, legacy areas converge progressively." />
                 </section>
 
                 <section id="s6" className={styles.section}>
@@ -178,7 +178,7 @@ export default function ScalerPage() {
                     <p>Medium-high density with controlled expansion rules produced the best results across all three. Not the densest possible &mdash; that maximised information per pixel but destroyed scan speed. Not the most spacious &mdash; that felt comfortable but required too much scrolling on real datasets. The sweet spot was specific, testable, and documentable.</p>
                     <p>The result was a defined density standard rather than a designer preference. That distinction matters enormously in a team context &mdash; density decisions don&rsquo;t restart from scratch every time someone designs a new table. The answer already exists. You reference it, you extend it, you don&rsquo;t reinvent it. And when a stakeholder says &ldquo;this feels too dense,&rdquo; you have something to point to that isn&rsquo;t opinion.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-5.jpg" alt="Density comparison — three configurations on the same dataset showing why medium-high density won." />
+                  <ArticleImage src="/work/scaler-6.jpg" alt="Density comparison — three configurations on the same dataset showing why medium-high density won." />
                 </section>
 
                 <section id="s7" className={styles.section}>
@@ -191,7 +191,7 @@ export default function ScalerPage() {
                     <p>The goal wasn&rsquo;t to prevent designers from thinking. It was to prevent designers from re-solving problems that had already been solved &mdash; and to give them a shared language for the moments when a new situation genuinely required a new answer.</p>
                     <p>Writing interaction contracts is uncomfortable because it forces decisions that most teams have been quietly avoiding. &ldquo;How does filtering work?&rdquo; seems like it has an obvious answer &mdash; until you ask it across six modules and get six different responses. The contract isn&rsquo;t the answer. It&rsquo;s the process of getting the team to agree on one.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-6.jpg" alt="Interaction contracts reference — behavioral rules for filtering, drilling, loading, and empty states." />
+                  <ArticleImage src="/work/scaler-5.jpg" alt="Interaction contracts reference — behavioral rules for filtering, drilling, loading, and empty states." />
                 </section>
 
                 <section id="s8" className={styles.section}>
@@ -220,7 +220,6 @@ export default function ScalerPage() {
                     <p>Usage data at the individual feature level wasn&rsquo;t available for this case study &mdash; and I won&rsquo;t overstate what I can verify. What I can say with confidence is that the organisational effects were real: design reviews became more specific, pattern disputes decreased, and new functionality plugged into existing structures instead of introducing new ones. In a small team maintaining a complex product, that compounds quickly.</p>
                   </div>
                   <ArticleImage src="/work/scaler-8.jpg" alt="Before and after — design system adoption visible across new module surfaces." />
-                  <ArticleImage src="/work/scaler-9.jpg" alt="Multi-module workflow consistency — interaction logic transfers across surface boundaries." small />
                 </section>
 
                 <section id="s10" className={styles.section}>
@@ -231,7 +230,8 @@ export default function ScalerPage() {
                     <p>The most important thing I learned on this project is that a design system is only as good as the problem definition underneath it. Build it to achieve visual consistency and you&rsquo;ll get a library. Build it to stop behavioral drift in a complex multi-module product under active development with a small team &mdash; and you&rsquo;ll get infrastructure.</p>
                     <p>The transferable lesson: <strong>the system is not the destination. Predictable, learnable, extensible behavior is.</strong> The system is just how you get there and stay there &mdash; and a product that behaves like it knows what it&rsquo;s doing is worth every uncomfortable conversation it took to build it.</p>
                   </div>
-                  <ArticleImage src="/work/scaler-10.jpg" alt="Scaler design system — predictable, learnable, extensible behavior across the full platform." />
+                  <ArticleImage src="/work/scaler-9.jpg" alt="Scaler design system — predictable, learnable, extensible behavior across the full platform." />
+                  <ArticleImage src="/work/scaler-10.jpg" alt="Scaler design system — the system as infrastructure, not just documentation." small />
                 </section>
 
               </div>
