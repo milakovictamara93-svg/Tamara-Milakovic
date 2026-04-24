@@ -59,11 +59,11 @@ export default function Pax8Page() {
               <div className={styles.meta}>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Role</span>
-                  <span className={styles.metaValue}>Product Designer - UX strategy, interaction design, design systems</span>
+                  <span className={styles.metaValue}>Product designer</span>
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Scope</span>
-                  <span className={styles.metaValue}>0 → 1 product design across Analytics Center and Promo Center</span>
+                  <span className={styles.metaValue}>0→1 across 2 surfaces</span>
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Domain</span>
@@ -71,7 +71,7 @@ export default function Pax8Page() {
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Team</span>
-                  <span className={styles.metaValue}>Cross-functional - PM owned the roadmap, I owned design direction. No dedicated PM for the first phase, which meant facilitating alignment conversations that would normally sit with product</span>
+                  <span className={styles.metaValue}>Cross-functional</span>
                 </div>
               </div>
             </div>
@@ -111,6 +111,7 @@ export default function Pax8Page() {
                 </section>
 
                 <section id="s2" className={styles.section}>
+                  <h5 className={styles.sectionLabel}>Before anyone agreed on anything</h5>
                   <h2 className={styles.sectionHeading}>The real problem wasn&rsquo;t design. It was alignment.</h2>
                   <div className={styles.sectionBody}>
                     <p>Here&rsquo;s the thing nobody tells you about greenfield work: the hardest part isn&rsquo;t designing something from scratch. It&rsquo;s the moment you realize that <em>everyone has a different idea of what &ldquo;it&rdquo; is</em> — and they&rsquo;re all surprised you&rsquo;ve been working on this.</p>
