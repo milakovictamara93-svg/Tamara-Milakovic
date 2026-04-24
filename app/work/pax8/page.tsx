@@ -77,18 +77,22 @@ export default function Pax8Page() {
           </div>
         </div>
 
-        {/* Full-width hero image */}
-        <div className={styles.heroImage}>
-          <Image
-            src="/work/Pax8-hero.jpg"
-            alt="Pax8 analytics center"
-            fill
-            className={styles.heroImg}
-            sizes="100vw"
-            priority
-          />
+        {/* Hero image */}
+        <div className={styles.heroImageSection}>
+          <div className={styles.heroImageInner}>
+            <div className={styles.heroImage}>
+              <Image
+                src="/work/Pax8-hero.jpg"
+                alt="Pax8 analytics center"
+                fill
+                className={styles.heroImg}
+                sizes="(max-width: 1280px) 100vw, 1248px"
+                priority
+              />
+            </div>
+            <p className={styles.heroCaption}>Pax8 analytics center</p>
+          </div>
         </div>
-        <p className={styles.heroCaption}>Pax8 analytics center</p>
 
         {/* Article */}
         <div className={styles.article}>
