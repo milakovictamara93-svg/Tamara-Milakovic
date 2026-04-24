@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
@@ -29,7 +28,7 @@ export default function Pax8Page() {
           <div className={styles.introInner}>
             <div className={styles.introContent}>
               <div className={styles.titleBlock}>
-                <Link href="/work" className={styles.breadcrumb}>Work</Link>
+                <TextLink href="/work" back>Work</TextLink>
                 <h1 className={styles.title}>Pax8: Building a Monetisation System from a PowerPoint Slide and a Prayer</h1>
                 <p className={styles.subtitle}>How I turned a vague commercial opportunity into a coherent product before anyone noticed we were making it up.</p>
               </div>
@@ -148,10 +147,6 @@ export default function Pax8Page() {
                 <p>The monetisation product went from a PowerPoint slide to a shipped, cross-functional system used by vendors and internal teams across the platform. I&rsquo;m proud of the work. I&rsquo;m prouder of the process that made it coherent.</p>
               </div>
             </section>
-
-            <div className={styles.backLink}>
-              <TextLink href="/work">Back to work</TextLink>
-            </div>
 
           </div>
         </div>
