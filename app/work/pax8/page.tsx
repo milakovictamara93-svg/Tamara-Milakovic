@@ -123,10 +123,12 @@ export default function Pax8Page() {
                     <p>This wasn&rsquo;t a UX problem yet. It was a clarity problem dressed up as a UX problem.</p>
                     <p>So before I opened Figma, I did something slower and more important: I got everyone in the same room and stayed there until we had one shared answer to one question.</p>
                     <p><strong>What does success look like for a partner who uses this in their first week?</strong></p>
+                  </div>
+                  <ArticleImage src="/work/pax8-1.jpg" alt="Before: four stakeholders with four different products. After: one shared loop model." />
+                  <div className={styles.sectionBody}>
                     <p>That question cut through everything. It made the abstract concrete. It gave the stakeholder debate a finish line. And it gave me the design constraint I needed: the product had to move someone from <em>not knowing what to do</em> to <em>confident that they did the right thing</em> - without requiring them to already know how monetization worked.</p>
                     <p>On a project with no brief and no designated owner, the first design deliverable wasn&rsquo;t a wireframe. It was a shared question that forced alignment. That&rsquo;s the work that doesn&rsquo;t show up in a Figma file - but it&rsquo;s often the work that determines whether a product ships coherently or not.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-1.jpg" alt="Before: four stakeholders with four different products. After: one shared loop model." />
                 </section>
 
                 <section id="s3" className={styles.section}>
@@ -156,12 +158,14 @@ export default function Pax8Page() {
                   <div className={styles.sectionBody}>
                     <p>Most products show you the data. Most products give you the tools. Almost none of them do the hardest part: <strong>translate a performance gap into a decision.</strong></p>
                     <p>That translation - from &ldquo;my numbers are low&rdquo; to &ldquo;here&rsquo;s what I should do and why&rdquo; - is where users get lost, and where products quietly lose their value. I called it the bridge. And I treated it as the most important design problem in the entire system.</p>
+                  </div>
+                  <ArticleImage src="/work/pax8-3.jpg" alt="Four-stage pipeline: Analytics Center, Opportunity Layer, Promo Center, Measurement — context carried across every transition." />
+                  <div className={styles.sectionBody}>
                     <p>The solution was an Opportunity layer: a surface that sits between Analytics and Promo Center and does the interpretive work for the user. Instead of leaving partners to stare at a chart and figure out what it means for their next action, Opportunities converted performance signals into explicit, actionable recommendations - with enough context to make the action feel justified, not just suggested.</p>
                     <p>This wasn&rsquo;t just a UX convenience. It was a product position. By owning the bridge, the product owned the decision moment - which is exactly where trust is built or lost in a monetization tool.</p>
                     <p>The alternative was inline recommendations embedded directly within Analytics - surfacing suggestions alongside the charts, without a dedicated layer. It felt more lightweight. We rejected it because it conflated two different cognitive modes: interpreting data and deciding what to do about it. Doing both at once in the same surface increases cognitive load at exactly the moment it needs to decrease. A dedicated Opportunity layer gives the user permission to stop analysing and start acting. That transition needs its own space.</p>
                     <p>When a partner moves from Analytics into Promo Center through an Opportunity, their intent travels with them. They don&rsquo;t have to reconstruct their reasoning. The context is carried. The next step is obvious. And critically - it feels like a confident choice, not a guess. The layer looks simple from the outside - a card with a recommendation and a button. Underneath it is a deliberate translation: performance signal → interpretation → suggested action → pre-filled context in the builder. Each step reduces the cognitive work the partner has to do. The card is the visible surface. The reduction in mental overhead is the actual design.</p>
                   </div>
-                  <ArticleImage src="/work/pax8-3.jpg" alt="Four-stage pipeline: Analytics Center, Opportunity Layer, Promo Center, Measurement — context carried across every transition." />
                   <ArticleImage src="/work/pax8-4.jpg" alt="Signal detection to interpretation to opportunity card to pre-filled builder." />
                 </section>
 
