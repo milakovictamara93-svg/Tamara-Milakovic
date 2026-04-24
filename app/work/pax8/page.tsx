@@ -25,9 +25,9 @@ const navItems = [
   { id: 's10', label: 'Building from nothing' },
 ];
 
-function ArticleImage({ src, alt }: { src: string; alt: string }) {
+function ArticleImage({ src, alt, small }: { src: string; alt: string; small?: boolean }) {
   return (
-    <div className={styles.articleImageWrap}>
+    <div className={small ? styles.articleImageWrapSmall : styles.articleImageWrap}>
       <Image src={src} alt={alt} fill className={styles.articleImg} sizes="(max-width: 768px) 100vw, 800px" />
     </div>
   );
@@ -241,6 +241,7 @@ export default function Pax8Page() {
                     <p>That&rsquo;s the kind of impact that&rsquo;s hard to put in a dashboard - but it&rsquo;s exactly what makes everything else possible.</p>
                   </div>
                   <ArticleImage src="/work/pax8-10.jpg" alt="Four surfaces. One connected experience: Analytics to Opportunity to Promo Center to Measurement, with outcome metrics." />
+                  <ArticleImage src="/work/pax8-11.jpg" alt="Four connected surfaces, one shared design spine, zero context rebuilt mid-session." small />
                 </section>
 
                 <section id="s10" className={styles.section}>
@@ -252,6 +253,7 @@ export default function Pax8Page() {
                     <p>The transferable lesson: <strong>when a product spans insight and action, the bridge is the product.</strong> Dashboards don&rsquo;t win by being informative. Builders don&rsquo;t win by being powerful. Systems win when the next step is obvious, justified, and measurable.</p>
                     <p>I&rsquo;d build it again exactly the same way - just with slightly better inventory data at the start.</p>
                   </div>
+                  <ArticleImage src="/work/pax8-12.jpg" alt="Pax8 StaySecure: Business overview with campaign builder panel." />
                 </section>
 
               </div>
