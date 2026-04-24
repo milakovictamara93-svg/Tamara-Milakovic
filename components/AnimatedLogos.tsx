@@ -6,9 +6,11 @@ import styles from './AnimatedLogos.module.css';
 
 interface AnimatedLogosProps {
   size?: number;
+  rightSrc?: string;
+  rightAlt?: string;
 }
 
-export default function AnimatedLogos({ size = 150 }: AnimatedLogosProps) {
+export default function AnimatedLogos({ size = 150, rightSrc = '/logo-sun.svg', rightAlt = 'Sun' }: AnimatedLogosProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function AnimatedLogos({ size = 150 }: AnimatedLogosProps) {
         <Image src="/logo-arrow.svg" alt="Arrow" width={size} height={size} />
       </div>
       <div className={styles.sun}>
-        <Image src="/logo-sun.svg" alt="Sun" width={size} height={size} />
+        <Image src={rightSrc} alt={rightAlt} width={size} height={size} />
       </div>
     </div>
   );
