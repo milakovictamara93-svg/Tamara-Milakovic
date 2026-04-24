@@ -322,6 +322,10 @@
   line-height: 1.1;
   letter-spacing: -1.6px;
   color: #000;
+  text-decoration: none;
+}
+
+.nextCaseStudyCard:hover .nextCaseStudyTitle {
   text-decoration: underline;
 }
 
