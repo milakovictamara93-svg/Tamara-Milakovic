@@ -42,7 +42,7 @@ export default function ScalerPage() {
         {/* Hero logos */}
         <div className={styles.hero}>
           <div className={styles.heroInner}>
-            <AnimatedLogos size={150} rightSrc="/logo-scaler.svg" rightAlt="Scaler" />
+            <AnimatedLogos size={150} rightSrc="/logo-scaler.svg" rightAlt="Scaler" spinDuration={1.8} />
           </div>
         </div>
 
@@ -58,15 +58,15 @@ export default function ScalerPage() {
               <div className={styles.meta}>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Role</span>
-                  <span className={styles.metaValue}>Solo designer &rarr; Design lead &rarr; Design systems lead</span>
+                  <span className={styles.metaValue}>Design systems lead</span>
+                </div>
+                <div className={styles.metaCell}>
+                  <span className={styles.metaLabel}>Scope</span>
+                  <span className={styles.metaValue}>UX framework, interaction standards, design system</span>
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Domain</span>
                   <span className={styles.metaValue}>B2B SaaS / ESG &amp; Sustainability Analytics</span>
-                </div>
-                <div className={styles.metaCell}>
-                  <span className={styles.metaLabel}>Scope</span>
-                  <span className={styles.metaValue}>UX framework, interaction standards, and design system for a multi-module data-dense platform</span>
                 </div>
                 <div className={styles.metaCell}>
                   <span className={styles.metaLabel}>Team</span>
