@@ -242,27 +242,18 @@
   color: #000;
 }
 
-/* Image placeholders */
-.imagePlaceholderWrap {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.imagePlaceholderBox {
+/* Article images */
+.articleImageWrap {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: #f0f0f0;
   border-radius: 16px;
+  overflow: hidden;
+  background: #f5f5f5;
 }
 
-.imagePlaceholderCaption {
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: #525252;
-  text-align: center;
+.articleImg {
+  object-fit: contain;
 }
 
 /* Next case study card */
