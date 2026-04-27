@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
+import TextLink from '@/components/TextLink';
 import { getArticleBySlug, articles } from '@/lib/articles';
 import styles from './page.module.css';
 
@@ -56,7 +57,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
       {/* Article header */}
       <div className={styles.articleHeader}>
-        <Link href="/thinking" className={styles.backLink}>Thinking</Link>
+        <TextLink href="/thinking" back>Thinking</TextLink>
         <div className={styles.pill}>{article.category}</div>
         <h1 className={styles.title}>{article.title}</h1>
         <p className={styles.date}>{article.date}</p>
