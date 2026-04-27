@@ -50,9 +50,14 @@ export default async function ArticlePage({ params }: PageProps) {
       {/* Article header */}
       <div className={styles.articleHeader}>
         <TextLink href="/thinking" back>Thinking</TextLink>
-        <div className={styles.pill}>{article.category}</div>
         <h1 className={styles.title}>{article.title}</h1>
-        <p className={styles.date}>{article.date}</p>
+        <div className={styles.meta}>
+          <span className={styles.metaPill}>{article.category}</span>
+          <span className={styles.metaSep}>·</span>
+          <span className={styles.metaText}>{article.date}</span>
+          <span className={styles.metaSep}>·</span>
+          <span className={styles.metaText}>{article.readingTime} min read</span>
+        </div>
       </div>
 
       {/* Featured image (if any) */}
