@@ -73,7 +73,7 @@ export default function BeyondPage() {
           <div className={styles.heroImageInner}>
             <div className={styles.heroImage}>
               <Image
-                src="/work/beyond.png"
+                src="/work/Beyond hero.jpg"
                 alt="Beyond — platform restyling"
                 fill
                 className={styles.heroImg}
@@ -117,8 +117,8 @@ export default function BeyondPage() {
                     <p>When I showed the explorations to leadership, the reaction wasn&rsquo;t cautious approval &mdash; the &ldquo;interesting direction, let&rsquo;s discuss&rdquo; response you get when people are weighing options. It was recognition. <em>This is what we should look like.</em> That distinction matters enormously. A direction approved as a compromise gets implemented inconsistently. A direction adopted as a conviction gets defended.</p>
                   </div>
                   <BeforeAfterSlider
-                    before="/work/beyond-homepage-before.jpg"
-                    after="/work/beyond-homepage-after.jpg"
+                    before="/work/Beyond-Homepage old.jpg"
+                    after="/work/Beyond-Homepage new.jpg"
                     beforeAlt="Homepage — before"
                     afterAlt="Homepage — after"
                   />
@@ -145,8 +145,8 @@ export default function BeyondPage() {
                     <p>That layer doesn&rsquo;t transfer through documentation. It transfers through the moment when a designer makes a call and you&rsquo;re there to say <em>yes, that&rsquo;s it</em> &mdash; not because it follows the spec, but because it&rsquo;s right. Enough of those moments and the calibration becomes theirs, not yours. That&rsquo;s when the direction stops depending on you to hold it.</p>
                   </div>
                   <BeforeAfterSlider
-                    before="/work/beyond-calibration-before.jpg"
-                    after="/work/beyond-calibration-after.jpg"
+                    before="/work/Beyond-Technically correct.jpg"
+                    after="/work/Beyond-Actually right.jpg"
                     beforeAlt="Technically correct"
                     afterAlt="Actually right"
                   />
@@ -161,8 +161,8 @@ export default function BeyondPage() {
                     <p>I pushed back. Not because I lacked conviction in the direction, but because forcing a migration is a different kind of decision from proposing one. Users had built workflows and mental models around the existing interface. The fact that the new direction was better didn&rsquo;t make the disruption cost zero. Giving users agency over the transition &mdash; letting them move when they were ready, not when we were &mdash; was both more respectful and, I suspected, more likely to produce genuine adoption rather than grudging compliance.</p>
                   </div>
                   <BeforeAfterSlider
-                    before="/work/beyond-clientlist-before.jpg"
-                    after="/work/beyond-clientlist-after.jpg"
+                    before="/work/Beyond-Client list old.jpg"
+                    after="/work/Beyond-Client list new.jpg"
                     beforeAlt="Client list — before"
                     afterAlt="Client list — after"
                   />
