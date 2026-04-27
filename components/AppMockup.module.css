@@ -40,7 +40,7 @@
 /* Sidebar + content layout */
 .layout {
   display: flex;
-  min-height: 180px;
+  min-height: 140px;
 }
 
 .sidebar {
@@ -117,10 +117,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 28px 24px;
+  padding: 20px 24px;
   text-align: center;
   gap: 4px;
-  min-height: 160px;
+  min-height: 100px;
 }
 
 /* Icon */
