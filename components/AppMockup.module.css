@@ -110,7 +110,7 @@
   flex-shrink: 0;
 }
 
-/* Content area */
+/* Content area — tightened spacing */
 .content {
   flex: 1;
   display: flex;
