@@ -41,15 +41,10 @@
 }
 
 .metaPill {
-  display: inline-block;
   font-family: var(--font-body);
   font-size: 13px;
-  font-weight: 500;
-  line-height: 1;
-  background: #ececea;
-  color: #111;
-  padding: 4px 12px;
-  border-radius: 9999px;
+  font-weight: 400;
+  color: #8a8a84;
 }
 
 .metaSep {
