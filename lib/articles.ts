@@ -11,6 +11,17 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'the-design-problems-ai-creates',
+    title: 'The Design Problems AI Creates',
+    category: 'AI & Design',
+    tags: ['AI & Design', 'Research'],
+    date: 'April 29, 2026',
+    standfirst:
+      "Most articles about AI and design focus on what AI fixes. This one is about what it breaks — the problems that are real, underexamined, and increasingly showing up in products built with good intentions and the wrong assumptions.",
+    marqueeText: 'AI generates confidence faster than it generates understanding. ⚡ Know the difference. 🧠',
+    image: null,
+  },
+  {
     slug: 'ai-and-design-systems',
     title: 'AI and Design Systems',
     category: 'Design Systems',
