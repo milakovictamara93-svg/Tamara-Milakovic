@@ -40,7 +40,6 @@
 /* Sidebar + content layout */
 .layout {
   display: flex;
-  min-height: 140px;
 }
 
 .sidebar {
@@ -117,10 +116,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 24px;
+  padding: 80px 60px;
   text-align: center;
-  gap: 4px;
-  min-height: 100px;
+  gap: 16px;
 }
 
 /* Icon */
@@ -132,7 +130,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 0;
   color: #a0a09b;
   flex-shrink: 0;
 }
@@ -177,7 +175,7 @@
 
 .cta {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 0;
   padding: 7px 16px;
   border-radius: 6px;
   font-size: 12px;
