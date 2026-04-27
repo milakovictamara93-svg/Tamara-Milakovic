@@ -118,19 +118,14 @@
   color: #525252;
 }
 
-.readMore {
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.2;
+.cardArrow {
+  display: inline-flex;
   color: #000;
-  text-decoration: none;
-  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.readMore:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
+.card:hover .cardArrow {
+  transform: translateX(8px);
 }
 
 @media (max-width: 1024px) {

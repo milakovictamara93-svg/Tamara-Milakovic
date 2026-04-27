@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import TextLink from '@/components/TextLink';
+import Arrow from '@/components/Arrow';
 import type { Article } from '@/lib/articles';
 import styles from './ArticleCard.module.css';
 
@@ -8,16 +8,19 @@ interface ArticleCardProps {
 }
 
 export default function ArticleCard({ article }: ArticleCardProps) {
-  const href = `/articles/${article.slug}`;
   return (
-    <div className={styles.card}>
-      <div className={styles.meta}>
-        <span className={styles.category}>{article.category}</span>
-        <span className={styles.date}>{article.date}</span>
+    <Link href={`/articles/${article.slug}`} className={styles.card}>
+      <div className={styles.left}>
+        <div className={styles.meta}>
+          <span className={styles.category}>{article.category}</span>
+          <span className={styles.date}>{article.date}</span>
+        </div>
+        <h2 className={styles.title}>{article.title}</h2>
+        <p className={styles.standfirst}>{article.standfirst}</p>
       </div>
-      <Link href={href} className={styles.title}>{article.title}</Link>
-      <p className={styles.standfirst}>{article.standfirst}</p>
-      <TextLink href={href}>Read more</TextLink>
-    </div>
+      <div className={styles.arrowWrap}>
+        <Arrow size={48} className={styles.arrow} />
+      </div>
+    </Link>
   );
 }
