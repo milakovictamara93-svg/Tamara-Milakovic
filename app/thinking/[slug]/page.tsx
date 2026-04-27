@@ -47,14 +47,6 @@ export default async function ArticlePage({ params }: PageProps) {
     <>
       <Nav />
 
-      {/* Hero: arrow + sun logos */}
-      <div className={styles.hero}>
-        <div className={styles.heroInner}>
-          <Image src="/logo-arrow.svg" alt="" width={150} height={138} aria-hidden="true" />
-          <Image src="/logo-sun.svg" alt="" width={150} height={150} aria-hidden="true" />
-        </div>
-      </div>
-
       {/* Article header */}
       <div className={styles.articleHeader}>
         <TextLink href="/thinking" back>Thinking</TextLink>

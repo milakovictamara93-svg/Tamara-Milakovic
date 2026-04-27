@@ -6,6 +6,7 @@ import {
   ErrorMockup,
   PermissionMockup,
 } from '@/components/AppMockup';
+import RevealOnScroll from '@/components/RevealOnScroll';
 import styles from './content.module.css';
 
 export default function EmptyStatesContent() {
@@ -48,7 +49,7 @@ export default function EmptyStatesContent() {
         this, why does it matter, and what do I do first?
       </p>
 
-      <FirstUseMockup />
+      <RevealOnScroll><FirstUseMockup /></RevealOnScroll>
 
       {/* 2. User-cleared */}
       <h3 className={styles.h3}>2. User-cleared - you did it</h3>
@@ -67,7 +68,7 @@ export default function EmptyStatesContent() {
         out of the way.
       </p>
 
-      <UserClearedMockup />
+      <RevealOnScroll><UserClearedMockup /></RevealOnScroll>
 
       {/* 3. No results */}
       <h3 className={styles.h3}>3. No results - we looked, found nothing</h3>
@@ -84,7 +85,7 @@ export default function EmptyStatesContent() {
         don&rsquo;t need onboarding copy. They need help getting unstuck.
       </p>
 
-      <NoResultsMockup />
+      <RevealOnScroll><NoResultsMockup /></RevealOnScroll>
 
       {/* 4. Error state */}
       <h3 className={styles.h3}>4. Error state - something went wrong</h3>
@@ -104,7 +105,7 @@ export default function EmptyStatesContent() {
         It&rsquo;s a shrug.
       </p>
 
-      <ErrorMockup />
+      <RevealOnScroll><ErrorMockup /></RevealOnScroll>
 
       {/* 5. Permission state */}
       <h3 className={styles.h3}>5. Permission state - you can&rsquo;t see this yet</h3>
@@ -122,7 +123,7 @@ export default function EmptyStatesContent() {
         causes entirely avoidable support tickets.
       </p>
 
-      <PermissionMockup />
+      <RevealOnScroll><PermissionMockup /></RevealOnScroll>
 
       <hr className={styles.divider} />
 
