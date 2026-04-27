@@ -1,0 +1,189 @@
+.figure {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #f5f5f3;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.headerLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a8a84;
+  font-family: var(--font-body);
+}
+
+.caption {
+  display: block;
+  font-size: 12px;
+  color: #8a8a84;
+  font-style: italic;
+  padding: 8px 28px 12px;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: var(--font-body);
+}
+
+/* ── Readability tiers ──────────────────────────── */
+.tiersBody {
+  padding: 16px 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tier {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: 7px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.tierBadge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+.tierBadgeHigh {
+  background: #d6eed6;
+  color: #2d6a2d;
+}
+
+.tierBadgeMed {
+  background: #fef3cc;
+  color: #7a5c00;
+}
+
+.tierBadgeLow {
+  background: #fde8e4;
+  color: #8c2a1a;
+}
+
+.tierItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tierChip {
+  font-size: 12px;
+  color: #555550;
+  background: #f5f5f3;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-family: var(--font-body);
+}
+
+.tierNote {
+  font-size: 11px;
+  color: #8a8a84;
+  font-family: var(--font-body);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Linter vs Generator ──────────────────────────── */
+.compareColumns {
+  display: flex;
+}
+
+.compareCol {
+  flex: 1;
+  padding: 24px 28px;
+}
+
+.compareColDark {
+  background: #111;
+}
+
+.compareHeading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  margin-bottom: 20px;
+  font-family: var(--font-body);
+}
+
+.compareHeadingDark {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.compareItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: var(--font-body);
+}
+
+.compareItem:last-child {
+  border-bottom: none;
+}
+
+.compareItemDark {
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+
+.compareItemDark:last-child {
+  border-bottom: none;
+}
+
+.compareDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c2c2be;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.compareDotDark {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.compareItemText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.compareItemLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+}
+
+.compareItemLabelDark {
+  color: #fff;
+}
+
+.compareItemSub {
+  font-size: 12px;
+  color: #8a8a84;
+}
+
+.compareItemSubDark {
+  color: rgba(255, 255, 255, 0.4);
+}

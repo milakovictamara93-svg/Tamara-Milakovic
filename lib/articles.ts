@@ -11,13 +11,24 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'ai-and-design-systems',
+    title: 'AI and Design Systems',
+    category: 'Design Systems',
+    tags: ['Design Systems', 'AI & Design'],
+    date: 'April 22, 2026',
+    standfirst:
+      "Design systems exist to create consistency. AI generates from patterns. The instinct to combine them makes sense. Most teams doing this are finding it more complicated than it looks — and the complication is almost always the same one.",
+    marqueeText: 'AI can read your tokens. 📐 It cannot read the reasoning behind them. 🧩',
+    image: null,
+  },
+  {
     slug: 'what-actually-works-in-ai-design-workflow',
     title: 'What Actually Works in an AI-Assisted Design Workflow',
     category: 'AI & Design',
     tags: ['AI & Design', 'Workflow'],
     date: 'April 15, 2026',
     standfirst:
-      'I've tested a lot of AI tools in the last two years. Most of them don't save time. But some things actually work — not in the "this will change everything" sense, but in the sense that I now do them this way and wouldn't go back.',
+      "I’ve tested a lot of AI tools in the last two years. Most of them don’t save time. But some things actually work — not in the “this will change everything” sense, but in the sense that I now do them this way and wouldn’t go back.",
     marqueeText: 'AI is a fast generator. ⚡ You are still the only thing with judgment. 🧠',
     image: null,
   },
