@@ -17,7 +17,7 @@ export const articles: Article[] = [
     tags: ['Design Systems', 'AI & Design'],
     date: 'April 22, 2026',
     standfirst:
-      "Design systems exist to create consistency. AI generates from patterns. The instinct to combine them makes sense. Most teams doing this are finding it more complicated than it looks — and the complication is almost always the same one.",
+      "Design systems work is the area of design practice most immediately and materially affected by AI — and also the area where the distinction between what AI can do and what it can't matters most.",
     marqueeText: 'AI can read your tokens. 📐 It cannot read the reasoning behind them. 🧩',
     image: null,
   },

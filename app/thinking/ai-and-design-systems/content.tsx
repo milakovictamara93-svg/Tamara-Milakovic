@@ -1,110 +1,121 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { ReadabilityVisual, LinterVsGeneratorVisual } from './visuals';
+import { ArtifactsVisual, FrankensteinVisual } from './visuals';
 import styles from './content.module.css';
 
 export default function Content() {
   return (
     <div className={styles.article}>
       <p>
-        Design systems exist to create consistency. AI generates from patterns. The instinct to
-        combine them makes sense: feed the system in, get consistent outputs. Most teams doing this
-        are finding it more complicated than it looks &mdash; and the complication is almost always
-        the same one.
+        Design systems work is the area of design practice most immediately and materially affected
+        by AI &mdash; and also the area where the distinction between what AI can do and what it
+        can&rsquo;t matters most.
       </p>
 
       <p>
-        The surface-level promise works. If your system has well-defined tokens &mdash; spacing,
-        color, typography &mdash; AI can generate components that respect those tokens. If you have
-        component documentation written in plain language, AI can answer &ldquo;how should I use
-        this&rdquo; with reasonable accuracy. These are real gains, mostly in the direction of
-        developer productivity.
-      </p>
-
-      <p>
-        Where it breaks is rationale. Design systems don&rsquo;t just contain rules. They contain
-        the reasoning behind those rules: why this spacing scale and not a different one, why this
-        component exists as one thing and not two, why this pattern is deprecated and what replaced
-        it. That reasoning is rarely documented. It lives in the heads of the people who made the
-        decisions, in Slack threads that are three years old, in the memory of a conversation that
-        no one wrote down.
-      </p>
-
-      <RevealOnScroll><ReadabilityVisual /></RevealOnScroll>
-
-      <hr className={styles.divider} />
-
-      <p>
-        AI has no access to any of that. It works from what&rsquo;s written. If your design system
-        documentation is sparse, AI fills the gaps with plausible defaults that may or may not match
-        your actual decisions. The result is output that looks consistent with the tokens but makes
-        choices the system would have rejected &mdash; and because it looks finished, nobody catches
-        it until it&rsquo;s in production.
-      </p>
-
-      <p>
-        Design system drift isn&rsquo;t new, but AI accelerates the mechanism. Before AI, drift
-        happened because teams moved fast and didn&rsquo;t check. Now it happens because AI
-        generates confidently from incomplete information and the output looks done enough that
-        review gets skipped. The speed is a feature. The confidence is a problem.
-      </p>
-
-      <p>
-        The practical implication is that the value of a design system increases with the quality of
-        its documentation &mdash; not the quantity, the quality. Documentation that explains
-        rationale, captures exceptions, and describes the edge cases where the rule doesn&rsquo;t
-        apply is what makes AI output more trustworthy. That documentation is expensive to produce.
-        Most systems don&rsquo;t have it, and AI generation is a strong incentive to keep not having it.
+        The confusion comes from conflating two very different things: generating design system
+        artifacts, and making design system decisions. AI can do the first at speed. The second is
+        still entirely human work. Conflating them produces systems that look comprehensive but
+        don&rsquo;t hold.
       </p>
 
       <hr className={styles.divider} />
 
       <p>
-        The better use of AI with design systems is as a linter rather than a generator. Using AI to
-        check new components against system rules &mdash; flag spacing that&rsquo;s off-token, catch
-        color usage that violates contrast requirements, surface component patterns that duplicate
-        something that already exists &mdash; is a different kind of task. It doesn&rsquo;t require
-        the system to explain its reasoning. It just requires the system to have explicit rules,
-        which most systems do.
-      </p>
-
-      <RevealOnScroll><LinterVsGeneratorVisual /></RevealOnScroll>
-
-      <p>
-        The linter use case also compounds in a way that generation doesn&rsquo;t. Catching drift
-        early keeps the system tighter. A tighter system makes future AI generation more accurate.
-        The generator use case runs in the opposite direction: generation without strong
-        documentation produces drift, drift makes documentation less reliable, less reliable
-        documentation makes the next round of generation worse.
+        Generating component variants is fast and mostly reliable. If you have an established
+        pattern &mdash; a button with five states, a form field with three error conditions &mdash;
+        AI can generate all the variants, apply consistent spacing and color tokens, and produce a
+        first draft that&rsquo;s 80% of the way to production. The remaining 20% is edge case
+        handling, accessibility review, and the judgment call about whether the pattern is actually
+        correct. But 80% in twenty minutes is a real efficiency gain.
       </p>
 
       <p>
-        The teams that come out ahead are the ones that invest in documentation quality before they
-        start relying on AI generation. Not to make AI work &mdash; to make their system work, which
-        is a pre-existing problem that AI has just made more urgent to solve.
+        Documentation follows the same pattern. AI writes serviceable first-pass documentation from
+        component specifications. The output needs editing &mdash; it tends toward generic
+        descriptions that don&rsquo;t explain the why behind a decision &mdash; but it&rsquo;s
+        faster than starting from a blank page, and the editing process often surfaces gaps in the
+        specification itself.
+      </p>
+
+      <p>
+        Token naming and organisation is another genuine win. Given a set of design values, AI can
+        suggest systematic naming conventions, identify inconsistencies, and propose hierarchies.
+        This is tedious, rule-bound work that doesn&rsquo;t benefit from human creativity. AI does
+        it reliably.
+      </p>
+
+      <RevealOnScroll><ArtifactsVisual /></RevealOnScroll>
+
+      <hr className={styles.divider} />
+
+      <p>
+        Deciding what to standardise is not automatable. The hardest question in design systems work
+        isn&rsquo;t &ldquo;how do I build this component&rdquo; &mdash; it&rsquo;s &ldquo;should
+        this be a component at all.&rdquo; That decision requires understanding which problems
+        recur, which variations are genuinely distinct, which patterns are load-bearing, and which
+        ones reflect the accumulated drift of a product built by too many people without enough
+        shared agreements. AI has no knowledge of your product&rsquo;s history, your team&rsquo;s
+        working patterns, or the dynamics that made certain decisions happen the way they did.
+      </p>
+
+      <p>
+        Defining behavioral standards is also beyond what AI can reliably do. An AI can generate a
+        specification for how a dropdown should look. It cannot generate the interaction contract
+        that defines how filtering persists across surfaces, how drill interactions escalate, or what
+        the empty state means in the context of the specific workflow this component lives inside.
+        Those decisions require understanding the product deeply enough to have opinions about it.
+      </p>
+
+      <hr className={styles.divider} />
+
+      <p>
+        A design system that was generated quickly but not decided carefully produces a specific
+        failure: visual consistency without behavioral coherence. The components look like they
+        belong together. The interactions don&rsquo;t. Users experience the surface consistency as a
+        product that looks polished but feels unreliable &mdash; because the visual layer was
+        standardised and the behavioral layer wasn&rsquo;t.
+      </p>
+
+      <p>
+        This is the Frankenstein problem &mdash; not visible components drifting, but invisible
+        behavioral decisions made independently across modules. AI would have made the visual drift
+        faster to fix and entirely missed the underlying problem.
+      </p>
+
+      <RevealOnScroll><FrankensteinVisual /></RevealOnScroll>
+
+      <p>
+        The lesson is not to avoid AI in design systems work. It&rsquo;s to be clear about what
+        you&rsquo;re using it for. Generating artifacts: yes. Making the decisions that determine
+        whether those artifacts are correct: no.
+      </p>
+
+      <p>
+        AI can build the system faster. It cannot tell you what the system should be.
       </p>
 
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
           <li>
-            Supernova (2024).{' '}
-            <em>The future of AI in design systems.</em>{' '}
-            <a href="https://supernova.io/blog/the-future-of-ai-in-design-systems" target="_blank" rel="noopener noreferrer">
-              supernova.io
+            Standard Beagle Studio (2025).{' '}
+            <em>AI-Assisted Design Workflows: A Strategic Guide for Product Teams.</em>{' '}
+            <a href="https://standardbeagle.com/ai-assisted-design-workflows/" target="_blank" rel="noopener noreferrer">
+              standardbeagle.com
             </a>
           </li>
           <li>
-            Figma (2024).{' '}
-            <em>AI in design: what's actually changing.</em>{' '}
-            <a href="https://www.figma.com/blog/ai-in-design" target="_blank" rel="noopener noreferrer">
+            Figma (2026).{' '}
+            <em>How To Use AI for Product Design: 7 Use Cases.</em>{' '}
+            <a href="https://www.figma.com/resource-library/ai-for-product-design/" target="_blank" rel="noopener noreferrer">
               figma.com
             </a>
           </li>
           <li>
-            Nathan Curtis (2023).{' '}
-            <em>Documenting design decisions in a design system.</em>{' '}
-            <a href="https://medium.com/eightshapes-llc/documenting-design-decisions-1d9022a2c0a1" target="_blank" rel="noopener noreferrer">
-              medium.com
+            Netguru (2025).{' '}
+            <em>Design System Adoption Pitfalls.</em>{' '}
+            <a href="https://www.netguru.com/blog/design-system-adoption-pitfalls" target="_blank" rel="noopener noreferrer">
+              netguru.com
             </a>
           </li>
         </ol>

@@ -1,76 +1,69 @@
 import styles from './visuals.module.css';
 
-export function ReadabilityVisual() {
-  const tiers = [
+export function ArtifactsVisual() {
+  const wins = [
     {
-      badge: 'High',
-      badgeClass: styles.tierBadgeHigh,
-      items: ['Design tokens', 'Component specs', 'Usage examples', 'Naming conventions'],
-      note: 'AI can generate from this',
+      label: 'Component variants',
+      desc: 'All states and conditions from an established pattern, tokens applied',
+      gain: '80% in 20 min',
     },
     {
-      badge: 'Medium',
-      badgeClass: styles.tierBadgeMed,
-      items: ['Pattern guidelines', 'Accessibility rules', 'Composition logic'],
-      note: 'AI can reference this',
+      label: 'Documentation',
+      desc: 'First-pass docs from component specs — needs editing, faster than blank',
+      gain: 'Draft → edit',
     },
     {
-      badge: 'Low',
-      badgeClass: styles.tierBadgeLow,
-      items: ['Decision rationale', 'Deprecated history', 'Exception context'],
-      note: 'AI cannot access this',
+      label: 'Token naming',
+      desc: 'Systematic naming conventions, inconsistency flags, hierarchy proposals',
+      gain: 'Reliable',
     },
   ];
 
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Design system content by AI-readability</span>
+        <span className={styles.headerLabel}>Where AI genuinely accelerates design systems work</span>
       </div>
-      <div className={styles.tiersBody}>
-        {tiers.map((tier) => (
-          <div key={tier.badge} className={styles.tier}>
-            <span className={`${styles.tierBadge} ${tier.badgeClass}`}>{tier.badge}</span>
-            <div className={styles.tierItems}>
-              {tier.items.map((item) => (
-                <span key={item} className={styles.tierChip}>{item}</span>
-              ))}
-            </div>
-            <span className={styles.tierNote}>{tier.note}</span>
+      <div className={styles.winsBody}>
+        {wins.map((w) => (
+          <div key={w.label} className={styles.winRow}>
+            <span className={styles.winLabel}>{w.label}</span>
+            <span className={styles.winDesc}>{w.desc}</span>
+            <span className={styles.winGain}>{w.gain}</span>
           </div>
         ))}
       </div>
       <figcaption className={styles.caption}>
-        The most important design system content &mdash; the why behind the rules &mdash; is exactly what AI cannot read.
+        In each case, the remaining work is the judgment call &mdash; whether the pattern is actually correct, why a decision was made, whether an abstraction holds.
       </figcaption>
     </figure>
   );
 }
 
-export function LinterVsGeneratorVisual() {
-  const linter = [
-    { label: 'Flag off-token spacing', sub: 'Checks against defined spacing scale' },
-    { label: 'Catch contrast failures', sub: 'Flags color pairs that fail WCAG' },
-    { label: 'Identify duplicates', sub: 'Surfaces patterns that already exist in the system' },
-    { label: 'Enforce naming rules', sub: 'Consistent component and token naming' },
+export function FrankensteinVisual() {
+  const visual = [
+    { label: 'Components look consistent', sub: 'Spacing, color, and type tokens applied' },
+    { label: 'Variants generated at speed', sub: 'States and conditions all present' },
+    { label: 'Documentation exists', sub: 'Coverage is high' },
+    { label: 'Looks polished', sub: 'The surface holds together' },
   ];
 
-  const generator = [
-    { label: 'Invents missing rationale', sub: 'Fills undocumented gaps with plausible defaults' },
-    { label: 'Ignores deprecated patterns', sub: 'Uses what looks right, not what\'s current' },
-    { label: 'Drifts on edge cases', sub: 'No access to exception context or overrides' },
-    { label: 'Looks finished too early', sub: 'Output appears complete — review gets skipped' },
+  const behavioral = [
+    { label: 'Interaction contracts missing', sub: 'No shared standard for how filtering, drilling, persisting work' },
+    { label: 'Decisions made independently', sub: 'Each module solved the same problem differently' },
+    { label: 'Empty states context-free', sub: 'No behavioral meaning, just visual presence' },
+    { label: 'Feels unreliable', sub: 'The behavioral layer was never standardised' },
   ];
 
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>AI as linter vs. AI as generator</span>
+        <span className={styles.headerLabel}>The Frankenstein problem</span>
       </div>
       <div className={styles.compareColumns}>
         <div className={styles.compareCol}>
-          <div className={styles.compareHeading}>As a linter</div>
-          {linter.map((item) => (
+          <div className={styles.compareHeading}>Visual layer</div>
+          {visual.map((item) => (
             <div key={item.label} className={styles.compareItem}>
               <span className={styles.compareDot} />
               <div className={styles.compareItemText}>
@@ -81,8 +74,8 @@ export function LinterVsGeneratorVisual() {
           ))}
         </div>
         <div className={`${styles.compareCol} ${styles.compareColDark}`}>
-          <div className={`${styles.compareHeading} ${styles.compareHeadingDark}`}>As a generator</div>
-          {generator.map((item) => (
+          <div className={`${styles.compareHeading} ${styles.compareHeadingDark}`}>Behavioral layer</div>
+          {behavioral.map((item) => (
             <div key={item.label} className={`${styles.compareItem} ${styles.compareItemDark}`}>
               <span className={`${styles.compareDot} ${styles.compareDotDark}`} />
               <div className={styles.compareItemText}>
@@ -94,7 +87,7 @@ export function LinterVsGeneratorVisual() {
         </div>
       </div>
       <figcaption className={styles.caption}>
-        The linter use case compounds in value over time. The generator use case compounds in drift.
+        AI standardises what it can see. The behavioral layer &mdash; interaction contracts, persistence logic, contextual meaning &mdash; remains invisible to it.
       </figcaption>
     </figure>
   );

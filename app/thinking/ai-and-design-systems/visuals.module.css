@@ -32,76 +32,50 @@
   font-family: var(--font-body);
 }
 
-/* ── Readability tiers ──────────────────────────── */
-.tiersBody {
-  padding: 16px 28px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+/* ── Artifacts wins ────────────────────────────── */
+.winsBody {
+  padding: 8px 28px 16px;
 }
 
-.tier {
+.winRow {
   display: grid;
-  grid-template-columns: 90px 1fr auto;
+  grid-template-columns: 160px 1fr auto;
   align-items: center;
-  gap: 16px;
-  padding: 12px 14px;
-  border-radius: 7px;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.tierBadge {
-  font-size: 10px;
+.winRow:last-child {
+  border-bottom: none;
+}
+
+.winLabel {
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 9999px;
+  color: #111;
   font-family: var(--font-body);
-  text-align: center;
 }
 
-.tierBadgeHigh {
-  background: #d6eed6;
-  color: #2d6a2d;
-}
-
-.tierBadgeMed {
-  background: #fef3cc;
-  color: #7a5c00;
-}
-
-.tierBadgeLow {
-  background: #fde8e4;
-  color: #8c2a1a;
-}
-
-.tierItems {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tierChip {
-  font-size: 12px;
+.winDesc {
+  font-size: 13px;
   color: #555550;
-  background: #f5f5f3;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 5px;
-  padding: 2px 8px;
   font-family: var(--font-body);
+  line-height: 1.5;
 }
 
-.tierNote {
-  font-size: 11px;
-  color: #8a8a84;
-  font-family: var(--font-body);
-  text-align: right;
+.winGain {
+  font-size: 12px;
+  font-weight: 500;
+  color: #111;
+  background: #ececea;
+  padding: 3px 10px;
+  border-radius: 9999px;
   white-space: nowrap;
+  font-family: var(--font-body);
 }
 
-/* ── Linter vs Generator ──────────────────────────── */
+/* ── Frankenstein two-column ─────────────────────── */
 .compareColumns {
   display: flex;
 }
