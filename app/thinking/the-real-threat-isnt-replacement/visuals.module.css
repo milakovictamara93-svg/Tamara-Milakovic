@@ -10,7 +10,7 @@
 .header {
   display: flex;
   align-items: center;
-  padding: 10px 14px;
+  padding: 10px 28px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background: #fff;
 }
@@ -28,7 +28,7 @@
   font-size: 12px;
   color: #8a8a84;
   font-style: italic;
-  padding: 8px 14px 12px;
+  padding: 8px 28px 12px;
   background: #fff;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
   font-family: var(--font-body);
@@ -77,8 +77,8 @@
   border-bottom: none;
 }
 
-.stepFaded {
-  opacity: 0.3;
+.stepFaded .stepName {
+  color: #c2c2be;
 }
 
 .stepDot {
@@ -115,7 +115,6 @@
 
 .stepDescAuto {
   color: #c2c2be;
-  font-style: italic;
 }
 
 /* ── Divide visual ───────────────────────────── */
