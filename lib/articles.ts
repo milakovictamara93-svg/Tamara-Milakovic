@@ -18,8 +18,7 @@ export const articles: Article[] = [
     date: 'April 1, 2026',
     standfirst:
       'Open almost any design system documentation and find the empty state component. It will have a spot illustration, a headline, a short body copy, and maybe a call-to-action button. One component. One pattern. This is the problem.',
-    marqueeText:
-      'An empty state is not a gap to fill. It\'s a moment to orient.   ·   An empty state is not a gap to fill. It\'s a moment to orient.',
+    marqueeText: 'An empty state is not a gap to fill. 🫙 It\'s a moment to orient. 🧭',
     image: null,
   },
 ];
