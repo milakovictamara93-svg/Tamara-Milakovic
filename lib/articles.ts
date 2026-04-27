@@ -11,6 +11,17 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'prompting-is-a-design-skill',
+    title: 'Prompting Is a Design Skill',
+    category: 'AI & Design',
+    tags: ['AI & Design', 'Craft'],
+    date: 'May 6, 2026',
+    standfirst:
+      "Prompting is the act of translating intent into language precise enough for a system with no context, no taste, and no knowledge of your constraints to produce something useful. That translation is exactly the same cognitive work as writing a good brief or specifying interaction behavior precisely.",
+    marqueeText: 'The quality of your output is a direct measure of the clarity of your thinking. 🎯',
+    image: null,
+  },
+  {
     slug: 'the-design-problems-ai-creates',
     title: 'The Design Problems AI Creates',
     category: 'AI & Design',
