@@ -149,11 +149,6 @@ export default function EmptyStatesContent() {
         does. Prioritise the copy. The illustration follows.
       </p>
 
-      <p className={styles.closing}>
-        An empty state is not a gap to fill. It&rsquo;s a moment to orient.
-      </p>
-      <p className={styles.byline}>- Tamara Milakovic</p>
-
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
