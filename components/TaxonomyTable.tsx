@@ -38,7 +38,6 @@ const rows: TaxonomyRow[] = [
     trigger: 'Content exists, no access',
     feeling: 'Confused. They expected to see something here.',
     job: 'Explain without condescension. Who has access, how to get it.',
-    dark: true,
   },
 ];
 
