@@ -17,7 +17,7 @@
 .articleHeader {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 240px;
+  padding: 80px 240px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,7 +91,7 @@
 .body {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 240px;
+  padding: 40px 240px 80px;
 }
 
 .bodyInner {
@@ -107,7 +107,7 @@
 /* Tablet */
 @media (max-width: 1024px) {
   .articleHeader {
-    padding: 64px 80px;
+    padding: 64px 80px 32px;
   }
 
   .articleHeader .title {
@@ -119,7 +119,7 @@
   }
 
   .body {
-    padding: 64px 80px;
+    padding: 32px 80px 64px;
   }
 
   .heroInner {
@@ -157,6 +157,6 @@
   }
 
   .body {
-    padding: 40px 16px 64px;
+    padding: 24px 16px 64px;
   }
 }
