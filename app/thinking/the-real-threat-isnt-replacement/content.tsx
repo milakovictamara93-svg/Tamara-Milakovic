@@ -1,3 +1,5 @@
+import RevealOnScroll from '@/components/RevealOnScroll';
+import { OnRampVisual, DivideVisual } from './visuals';
 import styles from './content.module.css';
 
 export default function Content() {
@@ -26,6 +28,8 @@ export default function Content() {
         assets &mdash; is being automated fast. That&rsquo;s not a future prediction. That&rsquo;s
         happening now.
       </p>
+
+      <RevealOnScroll><OnRampVisual /></RevealOnScroll>
 
       <hr className={styles.divider} />
 
@@ -68,6 +72,8 @@ export default function Content() {
         Execution is automating. Judgment is not. Data processing is automating. Data interpretation
         is not. Production is automating. Direction is not.
       </p>
+
+      <RevealOnScroll><DivideVisual /></RevealOnScroll>
 
       <p>
         This plays out differently across seniority levels. Senior designers are relatively
