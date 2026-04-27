@@ -1,0 +1,73 @@
+.container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f0f0f0;
+  border: 1px solid #e0e0e0;
+  cursor: col-resize;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+}
+
+.img {
+  object-fit: cover;
+  pointer-events: none;
+  display: block;
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: white;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+.handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.labelBefore,
+.labelAfter {
+  position: absolute;
+  bottom: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 4px 10px;
+  border-radius: 100px;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+
+.labelBefore {
+  left: 16px;
+}
+
+.labelAfter {
+  right: 16px;
+}

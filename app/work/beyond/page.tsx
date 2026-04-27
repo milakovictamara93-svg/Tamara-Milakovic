@@ -6,6 +6,7 @@ import TextLink from '@/components/TextLink';
 import Marquee from '@/components/Marquee';
 import ArticleSidebar from './ArticleSidebar';
 import ArticleImageReveal from '@/components/ArticleImageReveal';
+import BeforeAfterSlider from '@/components/BeforeAfterSlider';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -115,7 +116,12 @@ export default function BeyondPage() {
                     <p>The goal wasn&rsquo;t novelty. It was credibility. Features that deserved a better container.</p>
                     <p>When I showed the explorations to leadership, the reaction wasn&rsquo;t cautious approval &mdash; the &ldquo;interesting direction, let&rsquo;s discuss&rdquo; response you get when people are weighing options. It was recognition. <em>This is what we should look like.</em> That distinction matters enormously. A direction approved as a compromise gets implemented inconsistently. A direction adopted as a conviction gets defended.</p>
                   </div>
-                  <ArticleImageReveal src="/work/beyond.png" alt="Before and after — the same platform surface at different levels of visual credibility." />
+                  <BeforeAfterSlider
+                    before="/work/beyond-homepage-before.jpg"
+                    after="/work/beyond-homepage-after.jpg"
+                    beforeAlt="Homepage — before"
+                    afterAlt="Homepage — after"
+                  />
                 </section>
 
                 <section id="s3" className={styles.section}>
@@ -138,7 +144,12 @@ export default function BeyondPage() {
                     <p>The pattern was consistent. Initial attempts were technically correct &mdash; right colours, right type scale, right spacing tokens. But something was off. The direction had been followed, not internalised. What was missing was the layer underneath the rules: why those colours in that context, why that spacing creates that reading, why this component needs more restraint rather than more polish.</p>
                     <p>That layer doesn&rsquo;t transfer through documentation. It transfers through the moment when a designer makes a call and you&rsquo;re there to say <em>yes, that&rsquo;s it</em> &mdash; not because it follows the spec, but because it&rsquo;s right. Enough of those moments and the calibration becomes theirs, not yours. That&rsquo;s when the direction stops depending on you to hold it.</p>
                   </div>
-                  <ArticleImageReveal src="/work/beyond.png" alt="Technically correct vs actually right — same tokens, different judgment." />
+                  <BeforeAfterSlider
+                    before="/work/beyond-calibration-before.jpg"
+                    after="/work/beyond-calibration-after.jpg"
+                    beforeAlt="Technically correct"
+                    afterAlt="Actually right"
+                  />
                 </section>
 
                 <section id="s5" className={styles.section}>
@@ -149,7 +160,12 @@ export default function BeyondPage() {
                     <p>The uncomfortable part was the inconsistency. Two visual themes in the same product felt like hedging &mdash; like we weren&rsquo;t fully committed to the direction we&rsquo;d spent months developing. Some people wanted a clean cutover. New theme on, old theme off, force the migration.</p>
                     <p>I pushed back. Not because I lacked conviction in the direction, but because forcing a migration is a different kind of decision from proposing one. Users had built workflows and mental models around the existing interface. The fact that the new direction was better didn&rsquo;t make the disruption cost zero. Giving users agency over the transition &mdash; letting them move when they were ready, not when we were &mdash; was both more respectful and, I suspected, more likely to produce genuine adoption rather than grudging compliance.</p>
                   </div>
-                  <ArticleImageReveal src="/work/beyond.png" alt="Theme switcher — the mechanism that gave users agency over the transition." />
+                  <BeforeAfterSlider
+                    before="/work/beyond-clientlist-before.jpg"
+                    after="/work/beyond-clientlist-after.jpg"
+                    beforeAlt="Client list — before"
+                    afterAlt="Client list — after"
+                  />
                 </section>
 
                 <section id="s6" className={styles.section}>
