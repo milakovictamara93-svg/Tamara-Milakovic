@@ -8,7 +8,7 @@ import { articles } from '@/lib/articles';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Articles — Tamara Milakovic',
+  title: 'Thinking — Tamara Milakovic',
   description: 'Writing on design systems, UX, and the decisions that happen upstream of the brief.',
 };
 
@@ -26,7 +26,7 @@ export default function ArticlesPage() {
 
         <div className={styles.headingSection}>
           <div className={styles.headingInner}>
-            <h1 className={styles.heading}>Writing</h1>
+            <h1 className={styles.heading}>Thinking</h1>
           </div>
         </div>
 
