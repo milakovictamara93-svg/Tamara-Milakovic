@@ -4,12 +4,6 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.14);
   background: #f5f5f3;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.mockup:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.09);
 }
 
 /* Chrome bar */
@@ -52,10 +46,9 @@
 .sidebar {
   width: 130px;
   border-right: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 8px 0;
+  padding: 0 0 8px;
   background: #fff;
   flex-shrink: 0;
-  align-self: flex-start;
 }
 
 .sidebarItem {
