@@ -8,7 +8,7 @@ export default function Nav() {
         <Link href="/" className={styles.link}>Tamara Milakovic</Link>
         <nav className={styles.links}>
           <Link href="/work" className={styles.link}>Work</Link>
-          <Link href="/articles" className={styles.link}>Thinking</Link>
+          <Link href="/thinking" className={styles.link}>Thinking</Link>
           <Link href="/about" className={styles.link}>About</Link>
           <Link href="/contact" className={styles.link}>Contact</Link>
         </nav>

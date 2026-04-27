@@ -36,7 +36,7 @@ export default async function ArticlePage({ params }: PageProps) {
   // Dynamically load the article content
   let ArticleContent: React.ComponentType | null = null;
   try {
-    const mod = await import(`@/app/articles/${slug}/content`);
+    const mod = await import(`@/app/thinking/${slug}/content`);
     ArticleContent = mod.default;
   } catch {
     // no content file — render nothing
@@ -56,7 +56,7 @@ export default async function ArticlePage({ params }: PageProps) {
 
       {/* Article header */}
       <div className={styles.articleHeader}>
-        <Link href="/articles" className={styles.backLink}>Articles</Link>
+        <Link href="/thinking" className={styles.backLink}>Thinking</Link>
         <div className={styles.pill}>{article.category}</div>
         <h1 className={styles.title}>{article.title}</h1>
         <p className={styles.date}>{article.date}</p>
