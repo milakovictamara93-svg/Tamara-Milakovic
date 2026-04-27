@@ -33,7 +33,7 @@ const projects: { slug: string; title: string; description: string; tags: string
     title: 'Beyond the Legacy: Restyling a Platform Without Losing It',
     description: 'A platform restyling that 85% of users chose voluntarily.',
     tags: 'B2B SaaS',
-    image: '/work/beyond.png',
+    image: '/work/Beyond hero.jpg',
   },
 ];
 
