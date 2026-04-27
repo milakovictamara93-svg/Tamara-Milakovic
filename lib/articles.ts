@@ -11,6 +11,17 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'the-real-threat-isnt-replacement',
+    title: 'The Real Threat Isn’t Replacement',
+    category: 'AI & Design',
+    tags: ['AI & Design', 'Career'],
+    date: 'April 8, 2026',
+    standfirst:
+      'The actual threat isn’t that AI replaces designers. It’s more specific, more immediate, and almost nobody is talking about it: the junior role that used to mean “write features” is compressing. The senior role that means “decide what to build and why” is not.',
+    marqueeText: 'The threat isn’t replacement. ⚠️ It’s irrelevance at the execution layer while the judgment layer goes unfilled. 🎯',
+    image: null,
+  },
+  {
     slug: 'empty-states-are-not-one-thing',
     title: 'Empty States Are Not One Thing',
     category: 'Design Systems',
