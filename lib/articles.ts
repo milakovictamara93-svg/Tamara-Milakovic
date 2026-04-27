@@ -11,6 +11,17 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'what-actually-works-in-ai-design-workflow',
+    title: 'What Actually Works in an AI-Assisted Design Workflow',
+    category: 'AI & Design',
+    tags: ['AI & Design', 'Workflow'],
+    date: 'April 15, 2026',
+    standfirst:
+      'I've tested a lot of AI tools in the last two years. Most of them don't save time. But some things actually work — not in the "this will change everything" sense, but in the sense that I now do them this way and wouldn't go back.',
+    marqueeText: 'AI is a fast generator. ⚡ You are still the only thing with judgment. 🧠',
+    image: null,
+  },
+  {
     slug: 'the-real-threat-isnt-replacement',
     title: 'The Real Threat Isn’t Replacement',
     category: 'AI & Design',
