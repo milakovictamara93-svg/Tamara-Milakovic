@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import Marquee from '@/components/Marquee';
 import RevealOnScroll from '@/components/RevealOnScroll';
+import Arrow from '@/components/Arrow';
+import TextLink from '@/components/TextLink';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -79,8 +81,8 @@ export default function HomePage() {
                     </Link>
                     <p className={styles.cardDesc}>{project.description}</p>
                     <p className={styles.cardTags}>{project.tags}</p>
-                    <Link href={`/work/${project.slug}`} className={styles.cardReadMore}>
-                      Read more
+                    <Link href={`/work/${project.slug}`} className={styles.cardArrow}>
+                      <Arrow size={36} />
                     </Link>
                   </div>
                 </div>
@@ -107,9 +109,7 @@ export default function HomePage() {
                   Monetisation systems
                 </p>
               </div>
-              <Link href="/about" className={styles.aboutLink}>
-                More about how I work
-              </Link>
+              <TextLink href="/about">More about how I work</TextLink>
             </div>
           </div>
         </section>
