@@ -13,7 +13,7 @@ export const metadata = {
   description: 'Selected product design work across B2B SaaS, design systems, and 0→1 products.',
 };
 
-const projects = [
+const projects: { slug: string; title: string; description: string; tags: string; image: string; href?: string }[] = [
   {
     slug: 'pax8',
     title: 'Pax8: Building a Monetisation System from a PowerPoint Slide and a Prayer',
