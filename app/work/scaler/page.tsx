@@ -239,7 +239,7 @@ export default function ScalerPage() {
             <a href="/work/beyond" className={styles.nextCaseStudyCard}>
               <div className={styles.nextCaseStudyImage}>
                 <Image
-                  src="/work/beyond.png"
+                  src="/work/Beyond hero.jpg"
                   alt="Beyond the Legacy"
                   fill
                   className={styles.heroImg}
