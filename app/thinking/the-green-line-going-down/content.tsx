@@ -1,3 +1,5 @@
+import RevealOnScroll from '@/components/RevealOnScroll';
+import { ChartContextVisual, RatingsDivergenceVisual } from './visuals';
 import styles from './content.module.css';
 
 export default function GreenLineContent() {
@@ -25,6 +27,8 @@ export default function GreenLineContent() {
         change behavior &mdash; unexplained decisions are a form of fiction.
       </p>
 
+      <RevealOnScroll><ChartContextVisual /></RevealOnScroll>
+
       <p>
         I worked on an ESG analytics platform where the users weren&rsquo;t reading annual reports.
         They were doing compliance work. Preparing regulatory filings. Cross-referencing supplier
@@ -44,7 +48,7 @@ export default function GreenLineContent() {
         The mechanism is usually structural. A compressed y-axis makes a modest improvement look
         dramatic &mdash; a well-documented manipulation tactic in which truncating the axis creates
         a deceptive visual-to-data ratio, making small changes appear far more significant than they
-        are [1]. Intensity-based metrics &mdash; emissions per dollar of revenue &mdash; can show
+        are. Intensity-based metrics &mdash; emissions per dollar of revenue &mdash; can show
         &ldquo;progress&rdquo; while absolute emissions climb. A conveniently chosen baseline year
         makes a target look ambitious when it isn&rsquo;t. None of this requires bad faith. It just
         requires not asking the hard question out loud.
@@ -59,14 +63,14 @@ export default function GreenLineContent() {
       </p>
 
       <p>
-        There are now over 600 different ESG scoring systems worldwide [2], each using different
+        There are now over 600 different ESG scoring systems worldwide, each using different
         indicators, different weights, different definitions of the same words. A landmark study by
         Berg, K&ouml;lbel, and Rigobon (2022), published in the <em>Review of Finance</em>, found
         that ratings for the same company from two different agencies can correlate as weakly as
-        0.38 &mdash; barely better than a coin flip [3]. Chevron, in 2023, was simultaneously rated
-        high-risk by Sustainalytics (second worst category out of five) and near-top-tier by MSCI
-        (A, third best out of seven) [4].
+        0.38 &mdash; barely better than a coin flip.
       </p>
+
+      <RevealOnScroll><RatingsDivergenceVisual /></RevealOnScroll>
 
       <p>
         When you build a product on top of that fragmented foundation and don&rsquo;t surface the
@@ -80,8 +84,8 @@ export default function GreenLineContent() {
         users can see the relationship between them. Uncertainty ranges shown, not hidden. As data
         visualization ethicist Xaqu&iacute;n G.V. puts it: make the scope and limitations of your
         data clear &mdash; note missing data, biases, and assumptions that may affect
-        interpretation. Disclose how data was collected, processed, and filtered [5]. That&rsquo;s
-        not a footnote. That&rsquo;s interface design.
+        interpretation. Disclose how data was collected, processed, and filtered. That&rsquo;s not
+        a footnote. That&rsquo;s interface design.
       </p>
 
       <p>
@@ -89,12 +93,7 @@ export default function GreenLineContent() {
         communicates honestly over the chart that communicates confidently.
       </p>
 
-      <p>
-        The green line going down is easy to make. Making it mean something is the work.
-      </p>
-
-      <p className={styles.closing}>Design the uncertainty, not just the trend.</p>
-      <p className={styles.byline}>Tamara Milakovic</p>
+      <p>The green line going down is easy to make. Making it mean something is the work.</p>
 
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>

@@ -1,0 +1,171 @@
+.figure {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #f5f5f3;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.headerLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a8a84;
+  font-family: var(--font-body);
+}
+
+.caption {
+  display: block;
+  font-size: 12px;
+  color: #8a8a84;
+  font-style: italic;
+  padding: 8px 28px 12px;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: var(--font-body);
+}
+
+/* ── Density experiment results ───────────────────── */
+.densityBody {
+  padding: 8px 28px 16px;
+}
+
+.densityRow {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.densityRow:last-child {
+  border-bottom: none;
+}
+
+.densityLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  font-family: var(--font-body);
+}
+
+.densityDesc {
+  font-size: 13px;
+  color: #555550;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.densityResult {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+.densityResultWin {
+  background: #111;
+  color: #fff;
+}
+
+.densityResultLoss {
+  background: #ececea;
+  color: #555550;
+}
+
+/* ── Signal vs noise ──────────────────────────────── */
+.compareColumns {
+  display: flex;
+}
+
+.compareCol {
+  flex: 1;
+  padding: 24px 28px;
+}
+
+.compareColDark {
+  background: #111;
+}
+
+.compareHeading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  margin-bottom: 20px;
+  font-family: var(--font-body);
+}
+
+.compareHeadingDark {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.compareItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-family: var(--font-body);
+}
+
+.compareItem:last-child {
+  border-bottom: none;
+}
+
+.compareItemDark {
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+
+.compareItemDark:last-child {
+  border-bottom: none;
+}
+
+.compareDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #c2c2be;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.compareDotDark {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.compareItemText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.compareItemLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+}
+
+.compareItemLabelDark {
+  color: #fff;
+}
+
+.compareItemSub {
+  font-size: 12px;
+  color: #8a8a84;
+}
+
+.compareItemSubDark {
+  color: rgba(255, 255, 255, 0.4);
+}

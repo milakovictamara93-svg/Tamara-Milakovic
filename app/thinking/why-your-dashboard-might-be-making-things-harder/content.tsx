@@ -1,3 +1,5 @@
+import RevealOnScroll from '@/components/RevealOnScroll';
+import { DensityExperimentVisual, SignalNoiseVisual } from './visuals';
 import styles from './content.module.css';
 
 export default function DashboardContent() {
@@ -27,8 +29,8 @@ export default function DashboardContent() {
         The UX industry has a well-earned obsession with reducing cognitive load. The research is
         real: unnecessary complexity tires users out, increases errors, drives people away. George
         Miller&rsquo;s foundational 1956 paper established that working memory can hold only around
-        seven items at once [1] &mdash; a finding that has shaped how designers think about
-        information density for decades. The problem is the word <em>unnecessary</em>.
+        seven items at once &mdash; a finding that has shaped how designers think about information
+        density for decades. The problem is the word <em>unnecessary</em>.
       </p>
 
       <p>
@@ -46,10 +48,10 @@ export default function DashboardContent() {
       </p>
 
       <p>
-        This is what researchers call the &ldquo;information scent&rdquo; problem [2]: when the
-        cues that help users navigate toward the data they need are hidden behind progressive
-        disclosure and summary cards, expert users spend more time hunting and less time working.
-        The interface that looks simpler is actually doing more cognitive work to the person using it.
+        This is what researchers call the &ldquo;information scent&rdquo; problem: when the cues
+        that help users navigate toward the data they need are hidden behind progressive disclosure
+        and summary cards, expert users spend more time hunting and less time working. The interface
+        that looks simpler is actually doing more cognitive work to the person using it.
       </p>
 
       <hr className={styles.divider} />
@@ -61,22 +63,14 @@ export default function DashboardContent() {
         users actually work with, not the sanitized version.
       </p>
 
-      <p>
-        The result: the sparsest layout &mdash; most whitespace, most padding, the one that looked
-        the most &ldquo;designed&rdquo; &mdash; produced the lowest accuracy on column-scanning
-        tasks and required the most scrolling. The densest configuration destroyed scan speed. The
-        medium-high density, with deliberate spacing rules, won on every metric that mattered.
-      </p>
+      <RevealOnScroll><DensityExperimentVisual /></RevealOnScroll>
 
       <p>
-        This finding is consistent with research on expert performance in data-intensive domains. A
-        study on professional data analysts found that reducing visible data in the name of
-        simplicity increased task completion time and error rates for expert users, even when novice
-        users benefited from the same change [3]. Experts and novices are not the same user.
-        Designing for one often actively harms the other.
+        This finding is consistent with research on expert performance in data-intensive domains.
+        Reducing visible data in the name of simplicity increased task completion time and error
+        rates for expert users, even when novice users benefited from the same change. Experts and
+        novices are not the same user. Designing for one often actively harms the other.
       </p>
-
-      <p>Density wasn&rsquo;t the problem. Unconsidered density was.</p>
 
       <hr className={styles.divider} />
 
@@ -85,17 +79,11 @@ export default function DashboardContent() {
         the complexity I&rsquo;m removing noise, or signal?
       </p>
 
-      <p>
-        In sustainability analytics, the things that get hidden in the name of cleaner interfaces
-        are often exactly the things that matter most. Whether a figure is Scope 2 or Scope 3.
-        Whether a supplier metric was third-party verified or self-reported. Whether the number
-        you&rsquo;re looking at is current or restated from a previous period. These distinctions
-        are not edge cases &mdash; they determine whether a compliance filing is accurate or not.
-      </p>
+      <RevealOnScroll><SignalNoiseVisual /></RevealOnScroll>
 
       <p>
         Alberto Cairo frames this well in <em>The Truthful Art</em> (2016): the goal of a
-        well-designed data display is not to simplify reality but to make complexity navigable [4].
+        well-designed data display is not to simplify reality but to make complexity navigable.
         There is a difference between visual noise &mdash; decoration, redundancy, unnecessary
         variation &mdash; and substantive complexity that reflects the actual structure of the
         domain. The designer&rsquo;s job is to know which is which, and to be honest about the
@@ -110,11 +98,6 @@ export default function DashboardContent() {
       </p>
 
       <p>Design for the task, not the screenshot.</p>
-
-      <p className={styles.closing}>
-        Legibility is not the same as simplicity. Know which one you need.
-      </p>
-      <p className={styles.byline}>Tamara Milakovic</p>
 
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
@@ -134,8 +117,7 @@ export default function DashboardContent() {
           <li>
             Dull, R.B. &amp; Tegarden, D.P. (1999). A Comparison of Three Visual Representations
             of Complex Multidimensional Accounting Information.{' '}
-            <em>Journal of Information Systems</em>, 13(2), 117&ndash;131. On the divergence
-            between expert and novice performance under different display density conditions.
+            <em>Journal of Information Systems</em>, 13(2), 117&ndash;131.
           </li>
           <li>
             Cairo, A. (2016).{' '}

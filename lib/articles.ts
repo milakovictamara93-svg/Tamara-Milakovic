@@ -84,6 +84,30 @@ export const articles: Article[] = [
     image: null,
   },
   {
+    slug: 'the-brief-is-a-hypothesis',
+    title: 'The Brief Is a Hypothesis, Not a Contract',
+    category: 'Design Process',
+    tags: ['Design Process', 'Research'],
+    date: 'March 11, 2026',
+    readingTime: 4,
+    standfirst:
+      "Someone hands you a brief. It says: redesign the onboarding flow. Users are dropping off. Most designers open Figma. The smarter move is to pause for thirty seconds and ask: how do we know that's the problem?",
+    marqueeText: 'The brief is where the work begins. 📋 Not where the thinking ends. 🧠',
+    image: null,
+  },
+  {
+    slug: 'design-systems-dont-fail-because-of-bad-components',
+    title: "Design Systems Don't Fail Because of Bad Components",
+    category: 'Design Systems',
+    tags: ['Design Systems', 'Process'],
+    date: 'March 4, 2026',
+    readingTime: 4,
+    standfirst:
+      "Every design system post-mortem sounds the same. The components were well-crafted. The documentation was thorough. Someone spent three months building a Figma library with every state, every variant, every edge case covered. And then nobody used it.",
+    marqueeText: 'A design system nobody uses is documentation. 📂 A design system that solves the right problem is infrastructure. 🏗️',
+    image: null,
+  },
+  {
     slug: 'the-green-line-going-down',
     title: 'The Green Line Going Down',
     category: 'Data Visualization',
