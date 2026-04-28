@@ -16,7 +16,7 @@ export default function ArticleCard({ article, headingAs: Heading = 'h2' }: Arti
           <span className={styles.category}>{article.category}</span>
           <span className={styles.date}>{article.date}</span>
         </div>
-        <Heading className={styles.title}>{article.title}</Heading>
+        <Heading className={`${styles.title}${headingAs === 'h3' ? ` ${styles.titleSmall}` : ''}`}>{article.title}</Heading>
         <p className={styles.standfirst}>{article.standfirst}</p>
       </div>
       <div className={styles.arrowWrap}>
