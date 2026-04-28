@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
@@ -7,6 +5,10 @@ import Marquee from '@/components/Marquee';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import Arrow from '@/components/Arrow';
 import TextLink from '@/components/TextLink';
+import ArticleCard from '@/components/ArticleCard';
+import { articles } from '@/lib/articles';
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -48,7 +50,7 @@ export default function HomePage() {
         <section className={styles.hero}>
           <div className={styles.heroInner}>
             <div className={styles.logos}>
-              <AnimatedLogos size={80} />
+              <AnimatedLogos size={150} />
             </div>
             <h1 className={styles.headline}>
               Most products have two problems. The second one is design.
@@ -88,6 +90,23 @@ export default function HomePage() {
                 </div>
               </RevealOnScroll>
             ))}
+          </div>
+        </section>
+
+        {/* Thinking */}
+        <section className={styles.thinkingSection}>
+          <div className={styles.thinkingInner}>
+            <h2 className={styles.thinkingHeading}>Thinking</h2>
+            <div className={styles.thinkingList}>
+              {articles.slice(0, 3).map((article, i) => (
+                <RevealOnScroll key={article.slug} delay={i * 80}>
+                  <ArticleCard article={article} />
+                </RevealOnScroll>
+              ))}
+            </div>
+            <div className={styles.thinkingFooter}>
+              <TextLink href="/thinking">View all writing</TextLink>
+            </div>
           </div>
         </section>
 
