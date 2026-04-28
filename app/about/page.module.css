@@ -4,28 +4,27 @@
 
 /* Hero logos — same pattern as work page */
 .hero {
-  padding: 40px 16px 0;
+  padding: 40px 0 0;
 }
 
 .heroInner {
   max-width: 1248px;
   margin: 0 auto;
-  padding-top: 64px;
-  padding-bottom: 8px;
+  padding: 64px 16px 8px;
 }
 
 /* Two-column content */
 .contentSection {
-  padding: 40px 16px 80px;
+  padding: 40px 0 80px;
 }
 
 .contentInner {
   max-width: 1248px;
   margin: 0 auto;
+  padding: 10px 16px;
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  padding: 10px 0;
 }
 
 /* Left sticky column */

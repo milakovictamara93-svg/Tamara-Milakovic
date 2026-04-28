@@ -1,5 +1,5 @@
 .footer {
-  padding: 80px 16px 16px;
+  padding: 80px 0 16px;
   background: #fff;
   border-top: 1px solid #000;
 }
@@ -7,6 +7,7 @@
 .inner {
   max-width: 1248px;
   margin: 0 auto;
+  padding: 0 16px;
   display: flex;
   flex-direction: column;
   gap: 80px;
