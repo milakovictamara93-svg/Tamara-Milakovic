@@ -122,13 +122,11 @@ export default function HomePage() {
         <section className={styles.thinkingSection}>
           <div className={styles.thinkingInner}>
             <h2 className={styles.thinkingHeading}>Thinking</h2>
-            <div className={styles.thinkingList}>
-              {articles.slice(0, 3).map((article, i) => (
-                <RevealOnScroll key={article.slug} delay={i * 80}>
-                  <ArticleCard article={article} headingAs="h3" />
-                </RevealOnScroll>
-              ))}
-            </div>
+            {articles.slice(0, 3).map((article, i) => (
+              <RevealOnScroll key={article.slug} delay={i * 80}>
+                <ArticleCard article={article} headingAs="h3" />
+              </RevealOnScroll>
+            ))}
             <div className={styles.thinkingFooter}>
               <TextLink href="/thinking">Read more</TextLink>
             </div>
