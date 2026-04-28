@@ -83,6 +83,30 @@ export const articles: Article[] = [
     marqueeText: 'An empty state is not a gap to fill. 🧙 It\'s a moment to orient. 🧭',
     image: null,
   },
+  {
+    slug: 'the-green-line-going-down',
+    title: 'The Green Line Going Down',
+    category: 'Data Visualization',
+    tags: ['Data Visualization', 'Ethics'],
+    date: 'March 25, 2026',
+    readingTime: 5,
+    standfirst:
+      "There's a chart in almost every sustainability report. You've seen it. A line, trending downward. Usually green. Sometimes a leaf somewhere nearby. It looks like evidence. It isn't, necessarily.",
+    marqueeText: 'Design the uncertainty, not just the trend. 📉',
+    image: null,
+  },
+  {
+    slug: 'why-your-dashboard-might-be-making-things-harder',
+    title: 'Why Your Dashboard Might Be Making Things Harder',
+    category: 'Product Design',
+    tags: ['Product Design', 'Research'],
+    date: 'March 18, 2026',
+    readingTime: 5,
+    standfirst:
+      "Picture a spreadsheet. Hundreds of rows. Emissions data, supplier records, compliance deadlines. A sustainability analyst opens it every morning and has to find something specific — a missing disclosure, a number that doesn't add up, a supplier who hasn't responded in six weeks.",
+    marqueeText: 'Legibility is not the same as simplicity. 📊 Know which one you need. 🧠',
+    image: null,
+  },
 ];
 
 export function getArticleBySlug(slug: string): Article | undefined {
