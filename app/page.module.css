@@ -130,7 +130,7 @@
 
 /* Thinking */
 .thinkingSection {
-  padding: 0 16px 80px;
+  padding: 120px 16px 80px;
 }
 
 .thinkingInner {
@@ -145,10 +145,6 @@
   line-height: 1.1;
   color: #000;
   padding-bottom: 40px;
-}
-
-.thinkingFooter {
-  padding-top: 8px;
 }
 
 /* About */

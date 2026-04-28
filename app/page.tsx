@@ -127,9 +127,6 @@ export default function HomePage() {
                 <ArticleCard article={article} headingAs="h3" />
               </RevealOnScroll>
             ))}
-            <div className={styles.thinkingFooter}>
-              <TextLink href="/thinking">Read more</TextLink>
-            </div>
           </div>
         </section>
 
