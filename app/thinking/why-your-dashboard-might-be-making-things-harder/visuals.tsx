@@ -46,53 +46,49 @@ export function DensityExperimentVisual() {
 }
 
 export function SignalNoiseVisual() {
-  const noise = [
-    { label: 'Decorative illustration', sub: 'Adds tone, doesn\'t carry information' },
-    { label: 'Redundant summary tiles', sub: 'Repeating what the table already shows' },
-    { label: 'Animated transitions', sub: 'Motion that doesn\'t communicate state change' },
-    { label: 'Marketing copy in UI', sub: '"Your sustainability journey starts here"' },
-  ];
-
-  const signal = [
-    { label: 'Scope 2 vs Scope 3', sub: 'Determines what the number actually means' },
-    { label: 'Verified vs self-reported', sub: 'Determines how much to trust the number' },
-    { label: 'Current vs restated', sub: 'Determines whether to act or investigate' },
-    { label: 'Methodology footnotes', sub: 'Determines whether comparisons are valid' },
-  ];
-
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>What gets removed in the name of simplicity vs. what actually needs to be there</span>
+        <span className={styles.headerLabel}>The same data row — simplified vs. legible</span>
       </div>
-      <div className={styles.compareColumns}>
-        <div className={styles.compareCol}>
-          <div className={styles.compareHeading}>Visual noise — removable</div>
-          {noise.map((item) => (
-            <div key={item.label} className={styles.compareItem}>
-              <span className={styles.compareDot} />
-              <div className={styles.compareItemText}>
-                <span className={styles.compareItemLabel}>{item.label}</span>
-                <span className={styles.compareItemSub}>{item.sub}</span>
-              </div>
+      <div className={styles.cardsRow}>
+        {/* Simple / stripped view */}
+        <div className={styles.cardPanel}>
+          <div className={styles.cardPanelTitle}>Simple</div>
+          <div className={styles.mockCard}>
+            <div className={styles.mockCardHeader}>Supplier emissions — Q4 2023</div>
+            <div className={styles.mockCardBody}>
+              <div className={styles.mockNumber}>42.3</div>
+              <div className={styles.mockUnit}>tCO2e</div>
+              <div className={styles.mockTrend}>↓ 14% vs last year</div>
+              <div className={styles.mockHidden}>Scope, method, restatements hidden behind &ldquo;See details&rdquo;</div>
             </div>
-          ))}
+          </div>
         </div>
-        <div className={`${styles.compareCol} ${styles.compareColDark}`}>
-          <div className={`${styles.compareHeading} ${styles.compareHeadingDark}`}>Load-bearing complexity</div>
-          {signal.map((item) => (
-            <div key={item.label} className={`${styles.compareItem} ${styles.compareItemDark}`}>
-              <span className={`${styles.compareDot} ${styles.compareDotDark}`} />
-              <div className={styles.compareItemText}>
-                <span className={`${styles.compareItemLabel} ${styles.compareItemLabelDark}`}>{item.label}</span>
-                <span className={`${styles.compareItemSub} ${styles.compareItemSubDark}`}>{item.sub}</span>
+
+        {/* Legible / expert view */}
+        <div className={`${styles.cardPanel} ${styles.cardPanelDark}`}>
+          <div className={`${styles.cardPanelTitle} ${styles.cardPanelTitleDark}`}>Legible</div>
+          <div className={`${styles.mockCard} ${styles.mockCardDark}`}>
+            <div className={`${styles.mockCardHeader} ${styles.mockCardHeaderDark}`}>Supplier emissions — Q4 2023</div>
+            <div className={styles.mockCardBody}>
+              <div className={`${styles.mockNumber} ${styles.mockNumberDark}`}>42.3</div>
+              <div className={`${styles.mockUnit} ${styles.mockUnitDark}`}>tCO2e</div>
+              <div className={`${styles.mockTrend} ${styles.mockTrendDark}`}>↓ 14% vs 49.2 tCO2e (Q4 2022)</div>
+              <div className={styles.mockMeta}>
+                <span className={`${styles.mockTag} ${styles.mockTagDark}`}>Scope 2</span>
+                <span className={`${styles.mockTag} ${styles.mockTagDark}`}>Self-reported</span>
+                <span className={`${styles.mockTag} ${styles.mockTagDark}`}>Restated</span>
+              </div>
+              <div className={`${styles.mockFlag} ${styles.mockFlagDark}`}>
+                ⚠ Methodology changed Q3 — prior periods adjusted
               </div>
             </div>
-          ))}
+          </div>
         </div>
       </div>
       <figcaption className={styles.caption}>
-        In sustainability analytics, the things most likely to be removed in the name of cleaner interfaces are often exactly the things that determine whether a compliance filing is accurate.
+        Same number. The left version looks cleaner. The right version tells you whether to act, investigate, or file. For compliance work, those are not the same thing.
       </figcaption>
     </figure>
   );

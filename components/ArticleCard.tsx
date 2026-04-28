@@ -13,8 +13,11 @@ export default function ArticleCard({ article, headingAs: Heading = 'h2' }: Arti
     <Link href={`/thinking/${article.slug}`} className={styles.card}>
       <div className={styles.left}>
         <div className={styles.meta}>
-          <span className={styles.category}>{article.category}</span>
-          <span className={styles.date}>{article.date}</span>
+          <span className={styles.metaCategory}>{article.category}</span>
+          <span className={styles.metaSep}>·</span>
+          <span className={styles.metaText}>{article.date}</span>
+          <span className={styles.metaSep}>·</span>
+          <span className={styles.metaText}>{article.readingTime} min read</span>
         </div>
         <Heading className={`${styles.title}${Heading === 'h3' ? ` ${styles.titleSmall}` : ''}`}>{article.title}</Heading>
         <p className={styles.standfirst}>{article.standfirst}</p>

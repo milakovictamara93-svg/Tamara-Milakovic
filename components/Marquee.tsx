@@ -7,7 +7,7 @@ interface MarqueeProps {
   duration?: number;
 }
 
-export default function Marquee({ text, duration = 45 }: MarqueeProps) {
+export default function Marquee({ text, duration = 60 }: MarqueeProps) {
   const repeated = Array(4).fill(text).join('   ');
 
   return (

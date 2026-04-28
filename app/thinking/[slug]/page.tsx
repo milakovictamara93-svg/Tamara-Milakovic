@@ -87,7 +87,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
       </div>
 
-      <Marquee text={article.marqueeText} duration={60} />
+      <Marquee text={article.marqueeText} />
       <Footer />
     </>
   );

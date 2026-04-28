@@ -38,7 +38,7 @@ export default function ArticlesPage() {
           ))}
         </div>
 
-        <Marquee text="Writing is thinking made visible. 💡 Thinking without writing is just vibes. 🌫️" duration={60} />
+        <Marquee text="Writing is thinking made visible. 💡 Thinking without writing is just vibes. 🌫️" />
 
       </main>
       <Footer />

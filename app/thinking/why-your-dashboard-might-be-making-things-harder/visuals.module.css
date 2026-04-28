@@ -83,89 +83,164 @@
   color: #555550;
 }
 
-/* ── Signal vs noise ──────────────────────────────── */
-.compareColumns {
+/* ── Signal vs noise — data card mockup ───────────── */
+.cardsRow {
   display: flex;
 }
 
-.compareCol {
+.cardPanel {
   flex: 1;
-  padding: 24px 28px;
+  padding: 20px 24px;
+  min-width: 0;
 }
 
-.compareColDark {
+.cardPanelDark {
   background: #111;
 }
 
-.compareHeading {
+.cardPanelTitle {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #8a8a84;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   font-family: var(--font-body);
 }
 
-.compareHeadingDark {
+.cardPanelTitleDark {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.compareItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 9px 0;
+.mockCard {
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+  overflow: hidden;
+}
+
+.mockCardDark {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.mockCardHeader {
+  padding: 10px 14px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 11px;
+  font-weight: 500;
+  color: #8a8a84;
   font-family: var(--font-body);
 }
 
-.compareItem:last-child {
-  border-bottom: none;
+.mockCardHeaderDark {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.3);
 }
 
-.compareItemDark {
-  border-bottom-color: rgba(255, 255, 255, 0.07);
-}
-
-.compareItemDark:last-child {
-  border-bottom: none;
-}
-
-.compareDot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #c2c2be;
-  flex-shrink: 0;
-  margin-top: 5px;
-}
-
-.compareDotDark {
-  background: rgba(255, 255, 255, 0.35);
-}
-
-.compareItemText {
+.mockCardBody {
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
 }
 
-.compareItemLabel {
-  font-size: 13px;
-  font-weight: 600;
+.mockNumber {
+  font-size: 28px;
+  font-weight: 700;
   color: #111;
+  font-family: var(--font-heading);
+  line-height: 1;
 }
 
-.compareItemLabelDark {
+.mockNumberDark {
   color: #fff;
 }
 
-.compareItemSub {
-  font-size: 12px;
+.mockUnit {
+  font-size: 11px;
   color: #8a8a84;
+  font-family: var(--font-body);
 }
 
-.compareItemSubDark {
-  color: rgba(255, 255, 255, 0.4);
+.mockUnitDark {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.mockTrend {
+  font-size: 12px;
+  font-weight: 500;
+  color: #16a34a;
+  font-family: var(--font-body);
+  margin-top: 4px;
+}
+
+.mockTrendDark {
+  color: #4ade80;
+}
+
+.mockMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.mockTag {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #f0f0ee;
+  color: #555550;
+  font-family: var(--font-body);
+}
+
+.mockTagDark {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.mockFlag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #b45309;
+  font-family: var(--font-body);
+  margin-top: 4px;
+  padding: 6px 8px;
+  background: #fef3c7;
+  border-radius: 4px;
+}
+
+.mockFlagDark {
+  background: rgba(234, 179, 8, 0.1);
+  color: #fbbf24;
+}
+
+.mockHidden {
+  font-size: 11px;
+  color: #bbb;
+  font-style: italic;
+  font-family: var(--font-body);
+  margin-top: 4px;
+}
+
+.mockHiddenDark {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 600px) {
+  .cardsRow {
+    flex-direction: column;
+  }
+
+  .densityRow {
+    grid-template-columns: 1fr auto;
+  }
+
+  .densityDesc {
+    display: none;
+  }
 }

@@ -32,91 +32,58 @@
   font-family: var(--font-body);
 }
 
-/* ── What the chart doesn't show ──────────────────── */
-.compareColumns {
+/* ── Chart comparison ─────────────────────────────── */
+.chartsRow {
   display: flex;
 }
 
-.compareCol {
+.chartPanel {
   flex: 1;
-  padding: 24px 28px;
+  padding: 20px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
 }
 
-.compareColDark {
+.chartPanelDark {
   background: #111;
 }
 
-.compareHeading {
+.chartPanelTitle {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #8a8a84;
-  margin-bottom: 20px;
   font-family: var(--font-body);
 }
 
-.compareHeadingDark {
+.chartPanelTitleDark {
   color: rgba(255, 255, 255, 0.4);
 }
 
-.compareItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: 9px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  font-family: var(--font-body);
+.chartSvg {
+  width: 100%;
+  display: block;
+  overflow: visible;
 }
 
-.compareItem:last-child {
-  border-bottom: none;
-}
-
-.compareItemDark {
-  border-bottom-color: rgba(255, 255, 255, 0.07);
-}
-
-.compareItemDark:last-child {
-  border-bottom: none;
-}
-
-.compareDot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #c2c2be;
-  flex-shrink: 0;
-  margin-top: 5px;
-}
-
-.compareDotDark {
-  background: rgba(255, 255, 255, 0.35);
-}
-
-.compareItemText {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.compareItemLabel {
-  font-size: 13px;
-  font-weight: 600;
-  color: #111;
-}
-
-.compareItemLabelDark {
-  color: #fff;
-}
-
-.compareItemSub {
-  font-size: 12px;
+.chartNote {
+  font-size: 11px;
   color: #8a8a84;
+  font-family: var(--font-body);
+  line-height: 1.4;
 }
 
-.compareItemSubDark {
-  color: rgba(255, 255, 255, 0.4);
+.chartNoteDark {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 600px) {
+  .chartsRow {
+    flex-direction: column;
+  }
 }
 
 /* ── ESG ratings divergence ──────────────────────── */
