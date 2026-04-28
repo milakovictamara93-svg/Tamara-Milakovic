@@ -93,22 +93,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Thinking */}
-        <section className={styles.thinkingSection}>
-          <div className={styles.thinkingInner}>
-            <h2 className={styles.thinkingHeading}>Thinking</h2>
-            <div className={styles.thinkingList}>
-              {articles.slice(0, 3).map((article, i) => (
-                <RevealOnScroll key={article.slug} delay={i * 80}>
-                  <ArticleCard article={article} />
-                </RevealOnScroll>
-              ))}
-            </div>
-            <div className={styles.thinkingFooter}>
-              <TextLink href="/thinking">View all writing</TextLink>
-            </div>
-          </div>
-        </section>
+        <hr className={styles.divider} />
 
         {/* About */}
         <section className={styles.about}>
@@ -129,6 +114,23 @@ export default function HomePage() {
                 </p>
               </div>
               <TextLink href="/about">More about how I work</TextLink>
+            </div>
+          </div>
+        </section>
+
+        {/* Thinking */}
+        <section className={styles.thinkingSection}>
+          <div className={styles.thinkingInner}>
+            <h2 className={styles.thinkingHeading}>Thinking</h2>
+            <div className={styles.thinkingList}>
+              {articles.slice(0, 3).map((article, i) => (
+                <RevealOnScroll key={article.slug} delay={i * 80}>
+                  <ArticleCard article={article} headingAs="h3" />
+                </RevealOnScroll>
+              ))}
+            </div>
+            <div className={styles.thinkingFooter}>
+              <TextLink href="/thinking">Read more</TextLink>
             </div>
           </div>
         </section>

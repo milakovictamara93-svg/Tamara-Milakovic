@@ -121,6 +121,13 @@
   transform: translateX(8px);
 }
 
+/* Full-width divider */
+.divider {
+  border: none;
+  border-top: 1px solid #000;
+  margin: 0;
+}
+
 /* Thinking */
 .thinkingSection {
   padding: 0 16px 80px;
@@ -133,11 +140,11 @@
 
 .thinkingHeading {
   font-family: var(--font-heading);
-  font-size: 64px;
+  font-size: 40px;
   font-weight: 600;
   line-height: 1.1;
   color: #000;
-  padding-bottom: 64px;
+  padding-bottom: 40px;
 }
 
 .thinkingList {
@@ -152,7 +159,6 @@
 /* About */
 .about {
   padding: 80px 16px;
-  border-top: 1px solid #000;
 }
 
 .aboutInner {
@@ -205,10 +211,6 @@
     font-size: 48px;
     letter-spacing: -1.5px;
   }
-
-  .thinkingHeading {
-    font-size: 48px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -248,8 +250,8 @@
   }
 
   .thinkingHeading {
-    font-size: 40px;
-    padding-bottom: 40px;
+    font-size: 32px;
+    padding-bottom: 32px;
   }
 
   .about {

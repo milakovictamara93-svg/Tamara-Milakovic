@@ -5,9 +5,10 @@ import styles from './ArticleCard.module.css';
 
 interface ArticleCardProps {
   article: Article;
+  headingAs?: 'h2' | 'h3';
 }
 
-export default function ArticleCard({ article }: ArticleCardProps) {
+export default function ArticleCard({ article, headingAs: Heading = 'h2' }: ArticleCardProps) {
   return (
     <Link href={`/thinking/${article.slug}`} className={styles.card}>
       <div className={styles.left}>
@@ -15,7 +16,7 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           <span className={styles.category}>{article.category}</span>
           <span className={styles.date}>{article.date}</span>
         </div>
-        <h2 className={styles.title}>{article.title}</h2>
+        <Heading className={styles.title}>{article.title}</Heading>
         <p className={styles.standfirst}>{article.standfirst}</p>
       </div>
       <div className={styles.arrowWrap}>
