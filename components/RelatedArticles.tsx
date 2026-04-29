@@ -23,9 +23,7 @@ export default function RelatedArticles({ current, all }: Props) {
           {related.map((article) => (
             <Link key={article.slug} href={`/thinking/${article.slug}`} className={styles.card}>
               <div className={styles.cardMeta}>
-                {article.tags.map((t) => (
-                  <span key={t} className={styles.tag}>{t}</span>
-                ))}
+                <span className={styles.tag}>{article.tags.join(' & ')}</span>
                 <span className={styles.metaSep}>·</span>
                 <span className={styles.readTime}>{article.readingTime} min</span>
               </div>
