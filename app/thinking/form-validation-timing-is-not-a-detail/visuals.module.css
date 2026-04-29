@@ -111,7 +111,7 @@
 }
 
 .mockInputActive {
-  border-color: #6366f1;
+  border-color: #22c55e;
 }
 
 .mockInputSuccess {
@@ -130,7 +130,7 @@
   display: inline-block;
   width: 1.5px;
   height: 13px;
-  background: #6366f1;
+  background: #22c55e;
   vertical-align: middle;
   margin-left: 1px;
   border-radius: 1px;
