@@ -53,57 +53,66 @@ export function LoadingPatternsVisual() {
 }
 
 export function LoadingDecisionVisual() {
-  const decisions = [
-    {
-      condition: 'Action will resolve in under 300ms with high confidence',
-      outcome: 'Show nothing',
-      muted: true,
-    },
-    {
-      condition: 'Action is low-stakes and easily reversible — like, toggle, mark complete',
-      outcome: 'Optimistic UI',
-      muted: false,
-    },
-    {
-      condition: 'User needs to see layout structure — content load under 10 seconds',
-      outcome: 'Skeleton screen',
-      muted: false,
-    },
-    {
-      condition: 'Duration is estimable — upload, export, batch operation',
-      outcome: 'Progress bar',
-      muted: false,
-    },
-    {
-      condition: 'Short wait, no layout to preview — 2 to 10 seconds',
-      outcome: 'Spinner',
-      muted: false,
-    },
-    {
-      condition: 'Long unknown wait — over 10 seconds, no progress estimate',
-      outcome: 'Spinner + copy',
-      muted: false,
-    },
-  ];
-
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The decision rule — condition to pattern</span>
+        <span className={styles.headerLabel}>The four patterns — what each looks like in use</span>
       </div>
-      <div className={styles.decisionBody}>
-        {decisions.map((row) => (
-          <div key={row.condition} className={styles.decisionRow}>
-            <span className={styles.decisionCondition}>{row.condition}</span>
-            <span className={`${styles.decisionOutcome} ${row.muted ? styles.decisionOutcomeMuted : ''}`}>
-              {row.outcome}
-            </span>
+      <div className={styles.patternGrid}>
+        <div className={styles.patternCard}>
+          <div className={styles.patternCardTitle}>Spinner</div>
+          <div className={styles.patternCardDemo}>
+            <div className={styles.mockButton}>
+              <span className={styles.mockSpinner} />
+              Saving changes…
+            </div>
           </div>
-        ))}
+          <div className={styles.patternCardMeta}>2–10s · single action · no layout to preview</div>
+        </div>
+
+        <div className={styles.patternCard}>
+          <div className={styles.patternCardTitle}>Skeleton screen</div>
+          <div className={styles.patternCardDemo}>
+            <div className={styles.skeletonLines}>
+              <div className={`${styles.skeletonBar} ${styles.skeletonBarFull}`} />
+              <div className={`${styles.skeletonBar} ${styles.skeletonBarMed}`} />
+              <div className={`${styles.skeletonBar} ${styles.skeletonBarShort}`} />
+            </div>
+          </div>
+          <div className={styles.patternCardMeta}>1–10s · known layout · content load</div>
+        </div>
+
+        <div className={`${styles.patternCard} ${styles.patternCardDark}`}>
+          <div className={`${styles.patternCardTitle} ${styles.patternCardTitleDark}`}>Progress bar</div>
+          <div className={styles.patternCardDemo}>
+            <div className={styles.mockProgress}>
+              <div className={`${styles.mockProgressName} ${styles.mockProgressNameDark}`}>report_q4.csv</div>
+              <div className={styles.progressTrack}>
+                <div className={styles.progressFill} style={{ width: '73%' }} />
+              </div>
+              <div className={`${styles.mockProgressMeta} ${styles.mockProgressMetaDark}`}>73% · 2.1 MB of 2.9 MB</div>
+            </div>
+          </div>
+          <div className={`${styles.patternCardMeta} ${styles.patternCardMetaDark}`}>10s+ · measurable operation</div>
+        </div>
+
+        <div className={`${styles.patternCard} ${styles.patternCardDark}`}>
+          <div className={`${styles.patternCardTitle} ${styles.patternCardTitleDark}`}>Optimistic UI</div>
+          <div className={styles.patternCardDemo}>
+            <div className={styles.mockOptimistic}>
+              <span className={styles.mockOptimisticStar}>★</span>
+              <span className={`${styles.mockOptimisticLabel} ${styles.mockOptimisticLabelDark}`}>
+                Saved to favourites
+              </span>
+              <span className={`${styles.mockOptimisticUndo} ${styles.mockOptimisticUndoDark}`}>Undo</span>
+            </div>
+          </div>
+          <div className={`${styles.patternCardMeta} ${styles.patternCardMetaDark}`}>&lt;300ms · reversible action</div>
+        </div>
       </div>
       <figcaption className={styles.caption}>
         Start from the condition, not the component. Duration, content type, and action stakes
-        determine the pattern &mdash; not which component happens to be in the design system.
+        determine the pattern — not which component is in the design system.
       </figcaption>
     </figure>
   );

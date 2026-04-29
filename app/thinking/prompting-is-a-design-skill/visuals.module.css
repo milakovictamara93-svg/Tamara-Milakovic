@@ -32,63 +32,135 @@
   font-family: var(--font-body);
 }
 
-/* ── Prompt anatomy table ──────────────────────── */
-.tableBody {
-  padding: 8px 28px 16px;
+/* ── Prompt box mockup ────────────────────────────── */
+.promptRow {
+  display: flex;
 }
 
-.tableHeadRow {
-  display: grid;
-  grid-template-columns: 110px 1fr 1fr;
-  gap: 20px;
-  padding: 10px 0 4px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  margin-bottom: 4px;
+.promptPanel {
+  flex: 1;
+  padding: 20px 24px;
+  min-width: 0;
 }
 
-.tableHead {
-  font-size: 10px;
+.promptPanelDark {
+  background: #111;
+}
+
+.promptPanelTitle {
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #8a8a84;
+  margin-bottom: 12px;
   font-family: var(--font-body);
 }
 
-.tableRow {
-  display: grid;
-  grid-template-columns: 110px 1fr 1fr;
-  align-items: start;
-  gap: 20px;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+.promptPanelTitleDark {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.tableRow:last-child {
-  border-bottom: none;
+.promptBox {
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 80px;
 }
 
-.tableLabel {
-  font-size: 13px;
-  font-weight: 600;
-  color: #111;
-  font-family: var(--font-body);
-  padding-top: 1px;
+.promptBoxDark {
+  background: #1a1a1a;
+  border-color: rgba(255, 255, 255, 0.09);
 }
 
-.tableCell {
+.promptLine {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.promptText {
   font-size: 13px;
   color: #555550;
   font-family: var(--font-body);
   line-height: 1.5;
 }
 
-.tableCellMissing {
-  color: #c2c2be;
-  font-style: italic;
+.promptTextDark {
+  color: rgba(255, 255, 255, 0.72);
 }
 
-/* ── Thinking shift two-column ───────────────────── */
+.promptTag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.promptTagTask     { background: rgba(99, 102, 241, 0.12); color: #6366f1; }
+.promptTagAudience { background: rgba(20, 184, 166, 0.12); color: #0d9488; }
+.promptTagTone     { background: rgba(245, 158, 11, 0.12); color: #d97706; }
+.promptTagScope    { background: rgba(239, 68, 68, 0.10);  color: #dc2626; }
+
+.promptOutput {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #f5f5f3;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.promptOutputDark {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.promptOutputLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #c2c2be;
+  font-family: var(--font-body);
+  margin-bottom: 4px;
+}
+
+.promptOutputLabelDark {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.promptOutputItem {
+  font-size: 12px;
+  color: #555550;
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.promptOutputItemDark {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.promptOutputNote {
+  font-size: 11px;
+  color: #c2c2be;
+  font-family: var(--font-body);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* ── Thinking shift compare columns ──────────────── */
 .compareColumns {
   display: flex;
 }
@@ -173,4 +245,11 @@
 
 .compareItemSubDark {
   color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 600px) {
+  .promptRow,
+  .compareColumns {
+    flex-direction: column;
+  }
 }
