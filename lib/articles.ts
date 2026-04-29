@@ -12,6 +12,30 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'loading-states-are-not-one-component',
+    title: 'Loading States Are Not One Component',
+    category: 'Design Systems',
+    tags: ['Design Systems', 'Patterns'],
+    date: 'May 20, 2026',
+    readingTime: 5,
+    standfirst:
+      "Every design system has a spinner. Most have added a skeleton screen component at some point. Some have a progress bar. What almost none of them have is a clear decision rule for which one to use when — which means developers reach for whichever is easiest to implement and designers ship whatever ships fastest.",
+    marqueeText: "Loading state is not a design afterthought. ⏳ It's the moment the product earns trust — or quietly loses it. 🔒",
+    image: null,
+  },
+  {
+    slug: 'form-validation-timing-is-not-a-detail',
+    title: 'Form Validation Timing Is Not a Detail',
+    category: 'Design Systems',
+    tags: ['Design Systems', 'Patterns'],
+    date: 'May 13, 2026',
+    readingTime: 5,
+    standfirst:
+      "Designers spend hours on the visual design of error messages — the red border, the icon, the copy. They spend almost no time on the question that determines whether those messages help or infuriate: when do they appear?",
+    marqueeText: "The error message is the last resort. ⛔ Timing is what determines whether you need one at all. ⏰",
+    image: null,
+  },
+  {
     slug: 'prompting-is-a-design-skill',
     title: 'Prompting Is a Design Skill',
     category: 'AI & Design',
