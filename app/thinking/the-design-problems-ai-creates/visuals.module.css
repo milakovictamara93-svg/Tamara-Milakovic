@@ -112,7 +112,7 @@
 }
 
 .compareHeadingDark {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .compareItem {
@@ -171,5 +171,5 @@
 }
 
 .compareItemSubDark {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.72);
 }

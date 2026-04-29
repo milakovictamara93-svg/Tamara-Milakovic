@@ -109,7 +109,7 @@
 }
 
 .cardPanelTitleDark {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .mockCard {
@@ -135,7 +135,7 @@
 
 .mockCardHeaderDark {
   border-bottom-color: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .mockCardBody {
@@ -164,7 +164,7 @@
 }
 
 .mockUnitDark {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .mockTrend {
@@ -198,7 +198,7 @@
 
 .mockTagDark {
   background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.72);
 }
 
 .mockFlag {

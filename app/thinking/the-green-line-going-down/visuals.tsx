@@ -76,23 +76,23 @@ export function ChartContextVisual() {
             <line x1={padL} y1={padT + ch} x2={padL + cw} y2={padT + ch} stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
             <line x1={padL} y1={padT} x2={padL} y2={padT + ch} stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
             {/* Y-axis labels */}
-            <text x={padL - 4} y={padT + 3} textAnchor="end" fill="rgba(255,255,255,0.3)" style={axisStyle}>120</text>
-            <text x={padL - 4} y={padT + ch + 3} textAnchor="end" fill="rgba(255,255,255,0.3)" style={axisStyle}>0</text>
+            <text x={padL - 4} y={padT + 3} textAnchor="end" fill="rgba(255,255,255,0.55)" style={axisStyle}>120</text>
+            <text x={padL - 4} y={padT + ch + 3} textAnchor="end" fill="rgba(255,255,255,0.55)" style={axisStyle}>0</text>
             {/* Line */}
-            <path d={honPath} fill="none" stroke="rgba(255,255,255,0.55)" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+            <path d={honPath} fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
             {/* Dots */}
             {xs.map((x, i) => (
-              <circle key={i} cx={x.toFixed(1)} cy={honYs[i].toFixed(1)} r="2.5" fill="rgba(255,255,255,0.55)" />
+              <circle key={i} cx={x.toFixed(1)} cy={honYs[i].toFixed(1)} r="2.5" fill="rgba(255,255,255,0.7)" />
             ))}
             {/* X labels */}
             {years.map((y, i) => (
-              <text key={i} x={xs[i].toFixed(1)} y={padT + ch + 14} textAnchor="middle" fill="rgba(255,255,255,0.25)" style={{ fontSize: 8, fontFamily: 'var(--font-body)' }}>{y}</text>
+              <text key={i} x={xs[i].toFixed(1)} y={padT + ch + 14} textAnchor="middle" fill="rgba(255,255,255,0.45)" style={{ fontSize: 8, fontFamily: 'var(--font-body)' }}>{y}</text>
             ))}
             {/* Annotation: intensity metric */}
-            <text x={xs[0] + 4} y={honYs[0] - 6} fill="rgba(255,255,255,0.4)" style={{ fontSize: 7.5, fontFamily: 'var(--font-body)', fontStyle: 'italic' }}>intensity metric, not absolute</text>
+            <text x={xs[0] + 4} y={honYs[0] - 6} fill="rgba(255,255,255,0.65)" style={{ fontSize: 7.5, fontFamily: 'var(--font-body)', fontStyle: 'italic' }}>intensity metric, not absolute</text>
             {/* Annotation: baseline */}
-            <line x1={xs[1].toFixed(1)} y1={padT + ch} x2={xs[1].toFixed(1)} y2={padT + ch + 4} stroke="rgba(255,255,255,0.25)" strokeWidth="1" />
-            <text x={xs[1].toFixed(1)} y={padT + ch + 14} textAnchor="middle" fill="rgba(255,255,255,0.4)" style={{ fontSize: 7, fontFamily: 'var(--font-body)' }}>↑ baseline</text>
+            <line x1={xs[1].toFixed(1)} y1={padT + ch} x2={xs[1].toFixed(1)} y2={padT + ch + 4} stroke="rgba(255,255,255,0.35)" strokeWidth="1" />
+            <text x={xs[1].toFixed(1)} y={padT + ch + 14} textAnchor="middle" fill="rgba(255,255,255,0.65)" style={{ fontSize: 7, fontFamily: 'var(--font-body)' }}>↑ baseline</text>
           </svg>
           <div className={`${styles.chartNote} ${styles.chartNoteDark}`}>Y-axis from 0. Same data: a 14% reduction over 5 years — intensity-based, 2019 baseline.</div>
         </div>

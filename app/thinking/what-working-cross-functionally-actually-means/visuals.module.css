@@ -50,7 +50,7 @@
   font-family: var(--font-body);
 }
 .compareHeadingDark {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.5);
 }
 .compareItem {
   display: flex;
@@ -80,7 +80,7 @@
 .compareItemLabel { font-size: 13px; font-weight: 600; color: #111; }
 .compareItemLabelDark { color: #fff; }
 .compareItemSub { font-size: 12px; color: #8a8a84; }
-.compareItemSubDark { color: rgba(255,255,255,0.4); }
+.compareItemSubDark { color: rgba(255, 255, 255, 0.72); }
 .tableBody { padding: 8px 28px 16px; }
 .tableRow {
   display: grid;
