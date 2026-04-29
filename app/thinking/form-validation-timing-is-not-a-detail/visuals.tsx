@@ -8,12 +8,13 @@ export function ValidationTimingVisual() {
       </div>
       <div className={styles.cardsRow}>
         <div className={styles.formPanel}>
+          <div className={styles.panelBadgeBad}>Don&rsquo;t</div>
           <div className={styles.formPanelTitle}>On keystroke</div>
           <div className={styles.mockField}>
             <div className={styles.mockLabel}>Email address</div>
             <div className={`${styles.mockInput} ${styles.mockInputError}`}>
               <span className={styles.mockValue}>john.doe</span>
-              <span className={styles.cursor}>|</span>
+              <span className={styles.cursor} />
             </div>
             <div className={styles.mockErrorMsg}>
               <span className={styles.mockErrorIcon}>⚠</span> Please enter a valid email address
@@ -22,17 +23,16 @@ export function ValidationTimingVisual() {
           <div className={styles.panelNote}>Error fires before the user has finished typing</div>
         </div>
 
-        <div className={`${styles.formPanel} ${styles.formPanelDark}`}>
-          <div className={`${styles.formPanelTitle} ${styles.formPanelTitleDark}`}>On blur (recommended)</div>
+        <div className={styles.formPanel}>
+          <div className={styles.panelBadgeGood}>Do</div>
+          <div className={styles.formPanelTitle}>On blur</div>
           <div className={styles.mockField}>
-            <div className={`${styles.mockLabel} ${styles.mockLabelDark}`}>Email address</div>
-            <div className={`${styles.mockInput} ${styles.mockInputActive} ${styles.mockInputDark}`}>
-              <span className={`${styles.mockValue} ${styles.mockValueDark}`}>john.doe</span>
-              <span className={`${styles.cursor} ${styles.cursorDark}`}>|</span>
+            <div className={styles.mockLabel}>Email address</div>
+            <div className={`${styles.mockInput} ${styles.mockInputActive}`}>
+              <span className={styles.mockValue}>john.doe</span>
+              <span className={styles.cursor} />
             </div>
-            <div className={`${styles.panelNote} ${styles.panelNoteDark}`}>
-              No error — user hasn&rsquo;t left the field yet
-            </div>
+            <div className={styles.panelNote}>No error — user hasn&rsquo;t left the field yet</div>
           </div>
         </div>
       </div>
@@ -58,7 +58,10 @@ export function RewardValidatePrincipleVisual() {
             <div className={styles.mockLabel}>Email address</div>
             <div className={`${styles.mockInput} ${styles.mockInputSuccess}`}>
               <span className={styles.mockValue}>sarah@company.com</span>
-              <span className={styles.successIcon}>✓</span>
+              <svg className={styles.checkIcon} width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <circle cx="8" cy="8" r="7" stroke="#22c55e" strokeWidth="1.5"/>
+                <path d="M5 8.5l2 2 4-4" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
             <div className={styles.mockSuccessMsg}>Looks good</div>
           </div>
@@ -67,17 +70,15 @@ export function RewardValidatePrincipleVisual() {
           </div>
         </div>
 
-        <div className={`${styles.formPanel} ${styles.formPanelDark}`}>
-          <div className={`${styles.formPanelTitle} ${styles.formPanelTitleDark}`}>Validate late</div>
+        <div className={styles.formPanel}>
+          <div className={styles.formPanelTitle}>Validate late</div>
           <div className={styles.mockField}>
-            <div className={`${styles.mockLabel} ${styles.mockLabelDark}`}>Email address</div>
-            <div className={`${styles.mockInput} ${styles.mockInputActive} ${styles.mockInputDark}`}>
-              <span className={`${styles.mockValue} ${styles.mockValueDark}`}>sarah.jones</span>
-              <span className={`${styles.cursor} ${styles.cursorDark}`}>|</span>
+            <div className={styles.mockLabel}>Email address</div>
+            <div className={`${styles.mockInput} ${styles.mockInputActive}`}>
+              <span className={styles.mockValue}>sarah.jones</span>
+              <span className={styles.cursor} />
             </div>
-            <div className={`${styles.panelNote} ${styles.panelNoteDark}`}>
-              Error is held — user is still entering
-            </div>
+            <div className={styles.panelNote}>Error is held — user is still entering</div>
           </div>
         </div>
       </div>
