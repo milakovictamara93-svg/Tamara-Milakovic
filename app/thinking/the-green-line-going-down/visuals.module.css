@@ -138,11 +138,11 @@
 }
 
 .ratingsBadgeHigh {
-  background: #ececea;
-  color: #111;
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
 }
 
 .ratingsBadgeLow {
-  background: #111;
-  color: #fff;
+  background: rgba(239, 68, 68, 0.08);
+  color: #dc2626;
 }

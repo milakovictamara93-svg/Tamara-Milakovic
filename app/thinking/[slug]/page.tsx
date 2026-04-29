@@ -5,6 +5,7 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
 import TextLink from '@/components/TextLink';
+import RelatedArticles from '@/components/RelatedArticles';
 import { getArticleBySlug, articles } from '@/lib/articles';
 import styles from './page.module.css';
 
@@ -52,7 +53,11 @@ export default async function ArticlePage({ params }: PageProps) {
         <TextLink href="/thinking" back>Thinking</TextLink>
         <h1 className={styles.title}>{article.title}</h1>
         <div className={styles.meta}>
-          <span className={styles.metaPill}>{article.category}</span>
+          {article.tags.map((tag) => (
+            <Link key={tag} href={`/thinking?tag=${encodeURIComponent(tag)}`} className={styles.metaTag}>
+              {tag}
+            </Link>
+          ))}
           <span className={styles.metaSep}>·</span>
           <span className={styles.metaText}>{article.date}</span>
           <span className={styles.metaSep}>·</span>
@@ -87,6 +92,7 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
       </div>
 
+      <RelatedArticles current={article} all={articles} />
       <Marquee text={article.marqueeText} />
       <Footer />
     </>

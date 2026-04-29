@@ -5,6 +5,7 @@ import AnimatedLogos from '@/components/AnimatedLogos';
 import Marquee from '@/components/Marquee';
 import { articles } from '@/lib/articles';
 import styles from './page.module.css';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Thinking — Tamara Milakovic',
@@ -30,7 +31,9 @@ export default function ArticlesPage() {
         </div>
 
         <div className={styles.list}>
-          <FilterableArticleList articles={articles} />
+          <Suspense fallback={null}>
+            <FilterableArticleList articles={articles} />
+          </Suspense>
         </div>
 
         <Marquee text="Writing is thinking made visible. 💡 Thinking without writing is just vibes. 🌫️" />

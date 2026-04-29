@@ -40,11 +40,21 @@
   gap: 8px;
 }
 
-.metaPill {
+.metaTag {
   font-family: var(--font-body);
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
   color: #8a8a84;
+  text-decoration: none;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1px solid #e5e7eb;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.metaTag:hover {
+  border-color: #000;
+  color: #000;
 }
 
 .metaSep {

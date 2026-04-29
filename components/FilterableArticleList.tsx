@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import ArticleCard from '@/components/ArticleCard';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import type { Article } from '@/lib/articles';
@@ -11,7 +12,16 @@ interface Props {
 }
 
 export default function FilterableArticleList({ articles }: Props) {
-  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const initialTag = searchParams.get('tag');
+  const [activeTag, setActiveTag] = useState<string | null>(initialTag);
+
+  useEffect(() => {
+    setActiveTag(searchParams.get('tag'));
+  }, [searchParams]);
 
   const allTags = Array.from(new Set(articles.flatMap((a) => a.tags)));
 
@@ -19,12 +29,23 @@ export default function FilterableArticleList({ articles }: Props) {
     ? articles.filter((a) => a.tags.includes(activeTag))
     : articles;
 
+  function selectTag(tag: string | null) {
+    setActiveTag(tag);
+    const params = new URLSearchParams(searchParams.toString());
+    if (tag) {
+      params.set('tag', tag);
+    } else {
+      params.delete('tag');
+    }
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }
+
   return (
     <>
       <div className={styles.chips}>
         <button
           className={`${styles.chip} ${activeTag === null ? styles.chipActive : ''}`}
-          onClick={() => setActiveTag(null)}
+          onClick={() => selectTag(null)}
         >
           All
         </button>
@@ -32,7 +53,7 @@ export default function FilterableArticleList({ articles }: Props) {
           <button
             key={tag}
             className={`${styles.chip} ${activeTag === tag ? styles.chipActive : ''}`}
-            onClick={() => setActiveTag(tag)}
+            onClick={() => selectTag(tag)}
           >
             {tag}
           </button>
