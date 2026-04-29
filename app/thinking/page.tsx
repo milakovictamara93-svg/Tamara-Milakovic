@@ -1,9 +1,8 @@
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
-import ArticleCard from '@/components/ArticleCard';
+import FilterableArticleList from '@/components/FilterableArticleList';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import Marquee from '@/components/Marquee';
-import RevealOnScroll from '@/components/RevealOnScroll';
 import { articles } from '@/lib/articles';
 import styles from './page.module.css';
 
@@ -31,11 +30,7 @@ export default function ArticlesPage() {
         </div>
 
         <div className={styles.list}>
-          {articles.map((article, i) => (
-            <RevealOnScroll key={article.slug} delay={i * 80}>
-              <ArticleCard article={article} />
-            </RevealOnScroll>
-          ))}
+          <FilterableArticleList articles={articles} />
         </div>
 
         <Marquee text="Writing is thinking made visible. 💡 Thinking without writing is just vibes. 🌫️" />
