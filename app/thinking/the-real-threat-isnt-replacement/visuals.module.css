@@ -128,7 +128,7 @@
 }
 
 .divideColDark {
-  background: #111;
+  background: #f9f9f8;
 }
 
 .divideColHeading {
@@ -142,7 +142,7 @@
 }
 
 .divideColHeadingDark {
-  color: rgba(255, 255, 255, 0.5);
+  color: #8a8a84;
 }
 
 .divideItem {
@@ -162,8 +162,8 @@
 }
 
 .divideItemDark {
-  border-bottom-color: rgba(255, 255, 255, 0.07);
-  color: #fff;
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+  color: #8a8a84;
 }
 
 .divideItemDark:last-child {
@@ -179,5 +179,5 @@
 }
 
 .divideDotDark {
-  background: rgba(255, 255, 255, 0.4);
+  background: #c2c2be;
 }

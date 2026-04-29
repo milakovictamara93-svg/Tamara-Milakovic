@@ -41,10 +41,15 @@
   flex: 1;
   padding: 20px 24px;
   min-width: 0;
+  background: #fff;
+}
+
+.promptPanel + .promptPanel {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .promptPanelDark {
-  background: #111;
+  background: #f9f9f8;
 }
 
 .promptPanelTitle {
@@ -58,7 +63,7 @@
 }
 
 .promptPanelTitleDark {
-  color: rgba(255, 255, 255, 0.5);
+  color: #8a8a84;
 }
 
 .promptBox {
@@ -73,8 +78,8 @@
 }
 
 .promptBoxDark {
-  background: #1a1a1a;
-  border-color: rgba(255, 255, 255, 0.09);
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .promptLine {
@@ -91,7 +96,7 @@
 }
 
 .promptTextDark {
-  color: rgba(255, 255, 255, 0.72);
+  color: #555550;
 }
 
 .promptTag {
@@ -123,8 +128,7 @@
 }
 
 .promptOutputDark {
-  background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: #f0f0ee;
 }
 
 .promptOutputLabel {
@@ -138,7 +142,7 @@
 }
 
 .promptOutputLabelDark {
-  color: rgba(255, 255, 255, 0.2);
+  color: #c2c2be;
 }
 
 .promptOutputItem {
@@ -149,7 +153,7 @@
 }
 
 .promptOutputItemDark {
-  color: rgba(255, 255, 255, 0.72);
+  color: #555550;
 }
 
 .promptOutputNote {
@@ -171,7 +175,7 @@
 }
 
 .compareColDark {
-  background: #111;
+  background: #f9f9f8;
 }
 
 .compareHeading {
@@ -185,7 +189,7 @@
 }
 
 .compareHeadingDark {
-  color: rgba(255, 255, 255, 0.5);
+  color: #8a8a84;
 }
 
 .compareItem {
@@ -202,7 +206,7 @@
 }
 
 .compareItemDark {
-  border-bottom-color: rgba(255, 255, 255, 0.07);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
 .compareItemDark:last-child {
@@ -219,7 +223,7 @@
 }
 
 .compareDotDark {
-  background: rgba(255, 255, 255, 0.35);
+  background: #c2c2be;
 }
 
 .compareItemText {
@@ -235,7 +239,7 @@
 }
 
 .compareItemLabelDark {
-  color: #fff;
+  color: #111;
 }
 
 .compareItemSub {
@@ -244,7 +248,7 @@
 }
 
 .compareItemSubDark {
-  color: rgba(255, 255, 255, 0.72);
+  color: #555550;
 }
 
 @media (max-width: 600px) {

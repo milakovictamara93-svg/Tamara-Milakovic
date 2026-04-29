@@ -86,7 +86,7 @@
 }
 
 .compareColDark {
-  background: #111;
+  background: #f9f9f8;
 }
 
 .compareHeading {
@@ -100,7 +100,7 @@
 }
 
 .compareHeadingDark {
-  color: rgba(255, 255, 255, 0.5);
+  color: #8a8a84;
 }
 
 .compareItem {
@@ -117,7 +117,7 @@
 }
 
 .compareItemDark {
-  border-bottom-color: rgba(255, 255, 255, 0.07);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
 .compareItemDark:last-child {
@@ -134,7 +134,7 @@
 }
 
 .compareDotDark {
-  background: rgba(255, 255, 255, 0.35);
+  background: #c2c2be;
 }
 
 .compareItemText {
@@ -150,7 +150,7 @@
 }
 
 .compareItemLabelDark {
-  color: #fff;
+  color: #111;
 }
 
 .compareItemSub {
@@ -159,5 +159,5 @@
 }
 
 .compareItemSubDark {
-  color: rgba(255, 255, 255, 0.72);
+  color: #555550;
 }

@@ -92,10 +92,15 @@
   flex: 1;
   padding: 20px 24px;
   min-width: 0;
+  background: #fff;
+}
+
+.cardPanel + .cardPanel {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .cardPanelDark {
-  background: #111;
+  background: #f9f9f8;
 }
 
 .cardPanelTitle {
@@ -109,7 +114,7 @@
 }
 
 .cardPanelTitleDark {
-  color: rgba(255, 255, 255, 0.5);
+  color: #8a8a84;
 }
 
 .mockCard {
@@ -120,8 +125,8 @@
 }
 
 .mockCardDark {
-  background: #1a1a1a;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .mockCardHeader {
@@ -134,8 +139,8 @@
 }
 
 .mockCardHeaderDark {
-  border-bottom-color: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.65);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+  color: #8a8a84;
 }
 
 .mockCardBody {
@@ -154,7 +159,7 @@
 }
 
 .mockNumberDark {
-  color: #fff;
+  color: #111;
 }
 
 .mockUnit {
@@ -164,7 +169,7 @@
 }
 
 .mockUnitDark {
-  color: rgba(255, 255, 255, 0.65);
+  color: #8a8a84;
 }
 
 .mockTrend {
@@ -176,7 +181,7 @@
 }
 
 .mockTrendDark {
-  color: #4ade80;
+  color: #16a34a;
 }
 
 .mockMeta {
@@ -197,8 +202,8 @@
 }
 
 .mockTagDark {
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.72);
+  background: #f0f0ee;
+  color: #555550;
 }
 
 .mockFlag {
@@ -215,8 +220,8 @@
 }
 
 .mockFlagDark {
-  background: rgba(234, 179, 8, 0.1);
-  color: #fbbf24;
+  background: #fef3c7;
+  color: #b45309;
 }
 
 .mockHidden {
@@ -228,7 +233,7 @@
 }
 
 .mockHiddenDark {
-  color: rgba(255, 255, 255, 0.2);
+  color: #bbb;
 }
 
 @media (max-width: 600px) {

@@ -47,7 +47,7 @@
 }
 
 .chartPanelDark {
-  background: #111;
+  background: #f9f9f8;
 }
 
 .chartPanelTitle {
@@ -60,7 +60,7 @@
 }
 
 .chartPanelTitleDark {
-  color: rgba(255, 255, 255, 0.5);
+  color: #8a8a84;
 }
 
 .chartSvg {
@@ -77,7 +77,7 @@
 }
 
 .chartNoteDark {
-  color: rgba(255, 255, 255, 0.65);
+  color: #8a8a84;
 }
 
 @media (max-width: 600px) {

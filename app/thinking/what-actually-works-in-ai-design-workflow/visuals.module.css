@@ -86,7 +86,7 @@
 }
 
 .fitColDark {
-  background: #111;
+  background: #f9f9f8;
 }
 
 .fitColHeading {
@@ -100,7 +100,7 @@
 }
 
 .fitColHeadingDark {
-  color: rgba(255, 255, 255, 0.5);
+  color: #8a8a84;
 }
 
 .fitItem {
@@ -117,7 +117,7 @@
 }
 
 .fitItemDark {
-  border-bottom-color: rgba(255, 255, 255, 0.07);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
 .fitItemDark:last-child {
@@ -134,7 +134,7 @@
 }
 
 .fitDotDark {
-  background: rgba(255, 255, 255, 0.35);
+  background: #c2c2be;
 }
 
 .fitItemText {
@@ -150,7 +150,7 @@
 }
 
 .fitItemLabelDark {
-  color: #fff;
+  color: #111;
 }
 
 .fitItemSub {
@@ -159,5 +159,5 @@
 }
 
 .fitItemSubDark {
-  color: rgba(255, 255, 255, 0.72);
+  color: #555550;
 }
