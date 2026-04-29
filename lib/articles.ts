@@ -84,6 +84,42 @@ export const articles: Article[] = [
     image: null,
   },
   {
+    slug: 'why-user-centered-became-meaningless',
+    title: 'Why "User-Centered" Became Meaningless',
+    category: 'Design Process',
+    tags: ['Design Process', 'Critique'],
+    date: 'February 11, 2026',
+    readingTime: 4,
+    standfirst:
+      "There's a phrase that appears in almost every UX job description, almost every design principles deck, almost every product strategy doc written in the last decade. User-centered design. It has become so ubiquitous that it functions as wallpaper. Nobody argues against it. Nobody defines it.",
+    marqueeText: 'User-centered design is only as meaningful as what it costs you to do it. 💸',
+    image: null,
+  },
+  {
+    slug: 'the-portfolio-is-lying-to-you',
+    title: 'The Portfolio Is Lying to You',
+    category: 'Craft',
+    tags: ['Craft', 'Career'],
+    date: 'February 4, 2026',
+    readingTime: 4,
+    standfirst:
+      "Every UX portfolio tells the same story. The designer received a brief. They empathized with users. They ran research. They found insights. They sketched, then wireframed, then prototyped, then tested. Iteration happened. The solution emerged, elegant and justified. It's a compelling narrative. It's also, almost universally, fiction.",
+    marqueeText: 'The case study that admits what went wrong is usually the most credible one in the room. 📋',
+    image: null,
+  },
+  {
+    slug: 'when-the-right-design-decision-is-to-do-nothing',
+    title: 'When the Right Design Decision Is to Do Nothing',
+    category: 'Design Process',
+    tags: ['Design Process', 'Product Design'],
+    date: 'January 28, 2026',
+    readingTime: 4,
+    standfirst:
+      "There's a kind of design work that never makes it into a portfolio. No screens. No deliverables. No artifacts to show. Just the record of something that didn't get built — and the argument made for why it shouldn't.",
+    marqueeText: "The best design decision you'll ever make might be the one that leaves no artifact. 🚫",
+    image: null,
+  },
+  {
     slug: 'what-working-cross-functionally-actually-means',
     title: 'What “Working Cross-Functionally” Actually Means',
     category: 'Design Process',
