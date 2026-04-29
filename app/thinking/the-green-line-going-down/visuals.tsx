@@ -84,15 +84,15 @@ export function ChartContextVisual() {
             {xs.map((x, i) => (
               <circle key={i} cx={x.toFixed(1)} cy={honYs[i].toFixed(1)} r="2.5" fill="#374151" />
             ))}
-            {/* X labels */}
-            {years.map((y, i) => (
+            {/* X labels — skip index 1 (2019) since baseline annotation marks it */}
+            {years.map((y, i) => i === 1 ? null : (
               <text key={i} x={xs[i].toFixed(1)} y={padT + ch + 14} textAnchor="middle" fill="#bbb" style={{ fontSize: 8, fontFamily: 'var(--font-body)' }}>{y}</text>
             ))}
             {/* Annotation: intensity metric */}
             <text x={xs[0] + 4} y={honYs[0] - 6} fill="#8a8a84" style={{ fontSize: 7.5, fontFamily: 'var(--font-body)', fontStyle: 'italic' }}>intensity metric, not absolute</text>
             {/* Annotation: baseline */}
             <line x1={xs[1].toFixed(1)} y1={padT + ch} x2={xs[1].toFixed(1)} y2={padT + ch + 4} stroke="rgba(0,0,0,0.25)" strokeWidth="1" />
-            <text x={xs[1].toFixed(1)} y={padT + ch + 14} textAnchor="middle" fill="#8a8a84" style={{ fontSize: 7, fontFamily: 'var(--font-body)' }}>↑ baseline</text>
+            <text x={xs[1].toFixed(1)} y={padT + ch + 14} textAnchor="middle" fill="#8a8a84" style={{ fontSize: 7, fontFamily: 'var(--font-body)' }}>↑ 2019 baseline</text>
           </svg>
           <div className={`${styles.chartNote} ${styles.chartNoteDark}`}>Y-axis from 0. Same data: a 14% reduction over 5 years — intensity-based, 2019 baseline.</div>
         </div>
