@@ -13,7 +13,12 @@ export default function ArticleCard({ article, headingAs: Heading = 'h2' }: Arti
     <Link href={`/thinking/${article.slug}`} className={styles.card}>
       <div className={styles.left}>
         <div className={styles.meta}>
-          <span className={styles.metaCategory}>{article.category}</span>
+          {article.tags.map((tag, i) => (
+            <span key={tag} className={styles.metaCategory}>
+              {i > 0 && <span className={styles.metaTagSep}>&amp;</span>}
+              {tag}
+            </span>
+          ))}
           <span className={styles.metaSep}>·</span>
           <span className={styles.metaText}>{article.date}</span>
           <span className={styles.metaSep}>·</span>

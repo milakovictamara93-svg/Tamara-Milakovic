@@ -30,6 +30,13 @@
   color: #8a8a84;
 }
 
+.metaTagSep {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #c2c2be;
+  margin: 0 4px;
+}
+
 .metaSep {
   font-family: var(--font-body);
   font-size: 13px;
