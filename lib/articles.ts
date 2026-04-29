@@ -84,6 +84,30 @@ export const articles: Article[] = [
     image: null,
   },
   {
+    slug: 'what-working-cross-functionally-actually-means',
+    title: 'What “Working Cross-Functionally” Actually Means',
+    category: 'Design Process',
+    tags: ['Design Process', 'Leadership'],
+    date: 'February 25, 2026',
+    readingTime: 4,
+    standfirst:
+      "Every designer's CV says it. Cross-functional collaboration. Works effectively with engineering, product, and stakeholders. It's become so universal it's stopped meaning anything. The problem isn't that people are lying. It's that there are two completely different things hiding under that phrase — and only one of them is actually hard.",
+    marqueeText: "Influence isn't what you say in the room. 🗣️ It's what gets decided differently because you were there. 🎯",
+    image: null,
+  },
+  {
+    slug: 'greenfield-work-is-accountability-with-no-precedent',
+    title: 'Greenfield Work Is Accountability with No Precedent',
+    category: 'Design Process',
+    tags: ['Design Process', 'Product Design'],
+    date: 'February 18, 2026',
+    readingTime: 4,
+    standfirst:
+      "Everyone says they want to work on a blank slate. Build something from scratch. No legacy code, no inherited decisions, no one to blame for the constraints. It sounds like freedom. It isn't. It's accountability with nowhere to hide.",
+    marqueeText: "The blank slate isn't a gift. 📄 It's a mandate. 🏗️",
+    image: null,
+  },
+  {
     slug: 'the-brief-is-a-hypothesis',
     title: 'The Brief Is a Hypothesis, Not a Contract',
     category: 'Design Process',
