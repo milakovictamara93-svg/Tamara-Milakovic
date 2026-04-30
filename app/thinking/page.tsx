@@ -8,8 +8,8 @@ import styles from './page.module.css';
 import { Suspense } from 'react';
 
 export const metadata = {
-  title: 'Thinking — Tamara Milakovic',
-  description: 'Writing on design systems, UX, and the decisions that happen upstream of the brief.',
+  title: 'Thinking — Product Design Writing by Tamara Milakovic',
+  description: 'Essays on product design, design systems, and UX craft. Clear thinking about the problems that hide inside design problems.',
 };
 
 export default function ArticlesPage() {

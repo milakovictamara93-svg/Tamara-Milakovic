@@ -6,8 +6,8 @@ import TextLink from '@/components/TextLink';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Contact — Tamara Milakovic',
-  description: 'Get in touch with Tamara Milakovic — open to senior and lead product design roles.',
+  title: 'Contact Tamara Milakovic — Open to Design Leadership Roles',
+  description: "Open to senior and lead product design roles in B2B SaaS. Let's talk about the problem worth solving.",
 };
 
 const DocumentIcon = () => (

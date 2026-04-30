@@ -7,8 +7,8 @@ import TextLink from '@/components/TextLink';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'About — Tamara Milakovic',
-  description: 'Senior product designer with experience across B2B SaaS, sustainability analytics, and monetisation systems.',
+  title: 'About Tamara Milakovic — Senior Product Designer',
+  description: "A decade of B2B SaaS design, from zero-to-one products to broken platforms. I diagnose what's actually wrong before I open Figma.",
 };
 
 export default function AboutPage() {

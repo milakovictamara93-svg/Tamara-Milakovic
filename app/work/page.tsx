@@ -9,8 +9,8 @@ import Arrow from '@/components/Arrow';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Work — Tamara Milakovic',
-  description: 'Selected product design work across B2B SaaS, design systems, and 0→1 products.',
+  title: 'Work & Case Studies — Tamara Milakovic',
+  description: 'Selected product design case studies in B2B SaaS, ESG analytics, and monetisation. Real problems, honest process, measurable outcomes.',
 };
 
 const projects: { slug: string; title: string; description: string; tags: string; image: string; href?: string }[] = [

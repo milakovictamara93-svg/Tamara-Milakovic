@@ -12,8 +12,8 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Tamara Milakovic — Product Designer',
-  description: 'Senior product designer working across B2B SaaS, monetisation systems, and sustainability analytics.',
+  title: 'Tamara Milakovic — Senior Product Designer for B2B SaaS',
+  description: 'Senior product designer specializing in B2B SaaS, monetisation systems, and design leadership. I fix the problem underneath the design problem.',
 };
 
 const projects = [
