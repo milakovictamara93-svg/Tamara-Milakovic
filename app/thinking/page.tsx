@@ -5,7 +5,6 @@ import AnimatedLogos from '@/components/AnimatedLogos';
 import Marquee from '@/components/Marquee';
 import { articles } from '@/lib/articles';
 import styles from './page.module.css';
-import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Thinking — Product Design Writing by Tamara Milakovic',
@@ -22,7 +21,16 @@ export const metadata = {
   },
 };
 
-export default function ArticlesPage() {
+export default async function ArticlesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag?: string }>;
+}) {
+  const { tag } = await searchParams;
+  const activeTag = tag ?? null;
+  const allTags = Array.from(new Set(articles.flatMap((a) => a.tags)));
+  const filtered = activeTag ? articles.filter((a) => a.tags.includes(activeTag)) : articles;
+
   return (
     <>
       <Nav />
@@ -41,9 +49,11 @@ export default function ArticlesPage() {
         </div>
 
         <div className={styles.list}>
-          <Suspense fallback={null}>
-            <FilterableArticleList articles={articles} />
-          </Suspense>
+          <FilterableArticleList
+            articles={filtered}
+            activeTag={activeTag}
+            allTags={allTags}
+          />
         </div>
 
         <Marquee text="Writing is thinking made visible. 💡 Thinking without writing is just vibes. 🌫️" />
