@@ -8,6 +8,16 @@ import styles from './page.module.css';
 export const metadata = {
   title: 'Contact Tamara Milakovic — Open to Design Leadership Roles',
   description: "Open to senior and lead product design roles in B2B SaaS. Let's talk about the problem worth solving.",
+  openGraph: {
+    title: 'Contact Tamara Milakovic — Open to Design Leadership Roles',
+    description: "Open to senior and lead product design roles in B2B SaaS. Let's talk about the problem worth solving.",
+    url: 'https://www.tamaramilakovic.com/contact',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Contact Tamara Milakovic — Open to Design Leadership Roles',
+    description: "Open to senior and lead product design roles in B2B SaaS. Let's talk about the problem worth solving.",
+  },
 };
 
 const DocumentIcon = () => (

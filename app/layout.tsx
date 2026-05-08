@@ -9,9 +9,19 @@ import '@fontsource/inter/700.css';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.tamaramilakovic.com'),
   title: 'Tamara Milakovic',
   description:
     'Designer focused on complex systems, data-heavy products, and the decisions upstream of the brief.',
+  openGraph: {
+    siteName: 'Tamara Milakovic',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@tamaramilakovic',
+  },
 };
 
 export default function RootLayout({

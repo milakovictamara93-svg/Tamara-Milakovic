@@ -9,6 +9,16 @@ import styles from './page.module.css';
 export const metadata = {
   title: 'About Tamara Milakovic — Senior Product Designer',
   description: "A decade of B2B SaaS design, from zero-to-one products to broken platforms. I diagnose what's actually wrong before I open Figma.",
+  openGraph: {
+    title: 'About Tamara Milakovic — Senior Product Designer',
+    description: "A decade of B2B SaaS design, from zero-to-one products to broken platforms. I diagnose what's actually wrong before I open Figma.",
+    url: 'https://www.tamaramilakovic.com/about',
+    type: 'website',
+  },
+  twitter: {
+    title: 'About Tamara Milakovic — Senior Product Designer',
+    description: "A decade of B2B SaaS design, from zero-to-one products to broken platforms. I diagnose what's actually wrong before I open Figma.",
+  },
 };
 
 export default function AboutPage() {

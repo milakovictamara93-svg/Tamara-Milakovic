@@ -27,6 +27,16 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `${article.title} — Tamara Milakovic`,
     description: article.standfirst,
+    openGraph: {
+      title: `${article.title} — Tamara Milakovic`,
+      description: article.standfirst,
+      url: `https://www.tamaramilakovic.com/thinking/${slug}`,
+      type: 'article',
+    },
+    twitter: {
+      title: `${article.title} — Tamara Milakovic`,
+      description: article.standfirst,
+    },
   };
 }
 
