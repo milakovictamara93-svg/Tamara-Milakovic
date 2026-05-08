@@ -13,6 +13,18 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'when-to-standardise-and-when-to-leave-it-alone',
+    title: 'When to Standardise and When to Leave It Alone',
+    category: 'Design Systems',
+    tags: ['Design Systems', 'Process'],
+    date: 'May 27, 2026',
+    readingTime: 7,
+    standfirst:
+      "The most dangerous moment in design systems work isn't when the system is too loose. It's when it's too tight. A system that standardises too much produces a quieter, harder-to-diagnose problem: a product that looks consistent but feels wrong.",
+    marqueeText: 'Not all variation is drift. 🔀 Some of it is the system doing its job. 🧩',
+    image: null,
+  },
+  {
     slug: 'designing-for-confidence-not-just-clarity',
     title: 'Designing for Confidence, Not Just Clarity',
     category: 'Product Design',
