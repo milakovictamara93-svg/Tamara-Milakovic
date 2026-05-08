@@ -23,9 +23,9 @@ export default function Content() {
       </p>
 
       <p>
-        The designers who are good at prompting are, almost without exception, the designers who
-        were already good at specifying problems precisely. The skill isn&rsquo;t new. The surface
-        it runs on is.
+        The designers who are good at AI prompting are, almost without exception, the designers who
+        were already good at specifying problems precisely. AI prompting for designers is not a new
+        skill &mdash; it&rsquo;s an existing one running on a new surface.
       </p>
 
       <hr className={styles.divider} />
@@ -129,6 +129,8 @@ export default function Content() {
           </li>
         </ol>
       </div>
+
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );
 }

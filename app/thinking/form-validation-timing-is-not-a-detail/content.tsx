@@ -12,7 +12,7 @@ export default function FormValidationContent() {
       </p>
 
       <p>
-        Validation timing is one of the most researched interaction design questions and one of the
+        Form validation UX is one of the most researched areas in interaction design &mdash; and one of the
         most consistently mishandled in production. The default in most design systems is
         &ldquo;inline validation&rdquo; &mdash; show errors as the user interacts with each field.
         This feels correct. It is often wrong.
@@ -146,6 +146,8 @@ export default function FormValidationContent() {
           </li>
         </ol>
       </div>
+
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and complex interaction problems.</p>
     </div>
   );
 }

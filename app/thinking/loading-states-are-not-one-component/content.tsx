@@ -17,8 +17,9 @@ export default function LoadingStatesContent() {
         submission, or a spinner on a page that takes eight seconds to load, or nothing at all on a
         surface that took 400ms to respond and now looks broken. Loading states are not one
         component. They&rsquo;re a family of patterns, each designed for a specific combination of
-        duration, content type, and user expectation. Getting it wrong doesn&rsquo;t just look bad
-        &mdash; it erodes the sense that the product is working correctly.
+        duration, content type, and user expectation. Loading states UX design is ultimately about
+        managing expectation during uncertainty &mdash; and getting it wrong doesn&rsquo;t just look
+        bad, it erodes the sense that the product is working correctly.
       </p>
 
       <hr className={styles.divider} />
@@ -146,6 +147,8 @@ export default function LoadingStatesContent() {
           </li>
         </ol>
       </div>
+
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and complex interaction problems.</p>
     </div>
   );
 }
