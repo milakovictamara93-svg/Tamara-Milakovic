@@ -13,6 +13,19 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'modal-or-page',
+    title: 'Modal or Page: The Question Nobody Asks Before Shipping',
+    seoTitle: 'Modal or Page: A Decision Framework for Product Designers',
+    category: 'Interaction Design',
+    tags: ['Interaction Design', 'Process'],
+    date: 'May 27, 2026',
+    readingTime: 8,
+    standfirst:
+      "Every product designer has made this decision dozens of times. Someone says 'let's do it in a modal' or 'this needs its own page.' Nobody asks why. The decision gets made in thirty seconds and shipped six weeks later. Then the complaints come in.",
+    marqueeText: "The container should follow the task. 📦 It almost never does. 🧠 Modal, page, or panel — the surface is a choice, not a default.",
+    image: null,
+  },
+  {
     slug: 'loading-states-are-not-one-component',
     title: 'Loading States Are Not One Component',
     seoTitle: 'Loading States Are Not One Component — UX Design Guide',
