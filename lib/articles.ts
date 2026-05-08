@@ -17,7 +17,7 @@ export const articles: Article[] = [
     title: 'When to Standardise and When to Leave It Alone',
     category: 'Design Systems',
     tags: ['Design Systems', 'Process'],
-    date: 'May 27, 2026',
+    date: 'May 3, 2026',
     readingTime: 7,
     standfirst:
       "The most dangerous moment in design systems work isn't when the system is too loose. It's when it's too tight. A system that standardises too much produces a quieter, harder-to-diagnose problem: a product that looks consistent but feels wrong.",
@@ -29,7 +29,7 @@ export const articles: Article[] = [
     title: 'Designing for Confidence, Not Just Clarity',
     category: 'Product Design',
     tags: ['Product Design', 'Process'],
-    date: 'May 27, 2026',
+    date: 'May 5, 2026',
     readingTime: 6,
     standfirst:
       "Clarity is the wrong goal. Not because clarity doesn't matter — it does, enormously. But clarity is a threshold, not a destination. Once a user understands what they're looking at, clarity has done its job. What happens next is determined by something clarity alone can't produce.",
@@ -41,7 +41,7 @@ export const articles: Article[] = [
     title: 'The Brief Is Rarely the Whole Problem',
     category: 'Process',
     tags: ['Process'],
-    date: 'May 27, 2026',
+    date: 'May 8, 2026',
     readingTime: 6,
     standfirst:
       "The first brief I ever ignored was the best design decision I made that year. Not ignored carelessly — ignored deliberately, after reading it three times and realising that what it described and what it was actually asking for were two different things.",
