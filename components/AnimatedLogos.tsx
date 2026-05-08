@@ -12,7 +12,7 @@ interface AnimatedLogosProps {
   spinDuration?: number;
 }
 
-export default function AnimatedLogos({ size = 150, rightSrc = '/logo-sun.svg', rightAlt = 'Sun', rightSize, spinDuration = 3.5 }: AnimatedLogosProps) {
+export default function AnimatedLogos({ size = 150, rightSrc = '/logo-sun.svg', rightAlt = '', rightSize, spinDuration = 3.5 }: AnimatedLogosProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function AnimatedLogos({ size = 150, rightSrc = '/logo-sun.svg', 
   return (
     <div ref={ref} className={styles.logos} style={{ '--spin-duration': `${spinDuration}s` } as React.CSSProperties}>
       <div className={styles.arrow}>
-        <Image src="/logo-arrow.svg" alt="Arrow" width={size} height={size} />
+        <Image src="/logo-arrow.svg" alt="" width={size} height={size} />
       </div>
       <div className={styles.sun}>
         <Image src={rightSrc} alt={rightAlt} width={rightSize ?? size} height={rightSize ?? size} />
