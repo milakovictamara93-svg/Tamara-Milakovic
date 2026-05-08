@@ -55,3 +55,9 @@
 .referencesList a:hover {
   color: #000;
 }
+
+.byline {
+  font-size: 14px !important;
+  color: #8a8a84 !important;
+  margin-bottom: 48px !important;
+}

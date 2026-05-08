@@ -125,6 +125,8 @@ export default function DashboardContent() {
           </li>
         </ol>
       </div>
+
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );
 }
