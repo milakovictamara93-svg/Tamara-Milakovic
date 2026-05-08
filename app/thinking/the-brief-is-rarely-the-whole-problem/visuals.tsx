@@ -60,7 +60,7 @@ export function DesignerLevelsVisual() {
   const levels = [
     {
       level: 'Junior',
-      action: 'Solves the problem they're given',
+      action: "Solves the problem they're given",
       focus: 'Execution',
       note: 'Executes a bad brief correctly',
     },
