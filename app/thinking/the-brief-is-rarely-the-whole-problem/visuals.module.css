@@ -1,0 +1,214 @@
+.figure {
+  margin: 32px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: #f5f5f3;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.headerLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a8a84;
+  font-family: var(--font-body);
+}
+
+.caption {
+  display: block;
+  font-size: 12px;
+  color: #8a8a84;
+  font-style: italic;
+  padding: 8px 28px 12px;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  font-family: var(--font-body);
+}
+
+/* ── Translation chain ────────────────────────────── */
+.chainWrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 24px 28px;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.chainStep {
+  display: flex;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.chainStepInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 140px;
+}
+
+.chainDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #111;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.chainContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chainLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  font-family: var(--font-body);
+}
+
+.chainDesc {
+  font-size: 11px;
+  color: #555550;
+  font-family: var(--font-body);
+  line-height: 1.4;
+}
+
+.chainError {
+  font-size: 10px;
+  font-weight: 500;
+  color: #b91c1c;
+  background: rgba(239, 68, 68, 0.08);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-family: var(--font-body);
+  margin-top: 2px;
+  display: inline-block;
+}
+
+.chainArrow {
+  font-size: 16px;
+  color: #ccc;
+  padding: 0 12px;
+  margin-top: 0;
+  line-height: 1;
+  flex-shrink: 0;
+  align-self: flex-start;
+  padding-top: 1px;
+}
+
+/* ── Designer levels table ────────────────────────── */
+.levelsHeaderRow {
+  display: grid;
+  grid-template-columns: 100px 1fr 90px 1fr;
+  gap: 12px;
+  padding: 8px 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.levelsColLabel {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  font-family: var(--font-body);
+}
+
+.levelsBody {
+  padding: 0;
+}
+
+.levelsRow {
+  display: grid;
+  grid-template-columns: 100px 1fr 90px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 28px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.levelsRow:last-child {
+  border-bottom: none;
+}
+
+.levelsRowHighlight {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.levelsLevel {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  font-family: var(--font-body);
+}
+
+.levelsAction {
+  font-size: 13px;
+  color: #111;
+  font-family: var(--font-body);
+  line-height: 1.4;
+}
+
+.levelsFocus {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #555550;
+  font-family: var(--font-body);
+}
+
+.levelsNote {
+  font-size: 12px;
+  color: #8a8a84;
+  font-family: var(--font-body);
+  line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+  .chainWrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .chainStep {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .chainArrow {
+    transform: rotate(90deg);
+    padding: 6px 0;
+    align-self: flex-start;
+    margin-left: 0;
+  }
+
+  .chainStepInner {
+    max-width: none;
+  }
+
+  .levelsHeaderRow,
+  .levelsRow {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .levelsColLabel:nth-child(3),
+  .levelsColLabel:nth-child(4),
+  .levelsFocus,
+  .levelsNote {
+    display: none;
+  }
+}

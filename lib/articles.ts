@@ -13,6 +13,30 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'designing-for-confidence-not-just-clarity',
+    title: 'Designing for Confidence, Not Just Clarity',
+    category: 'Product Design',
+    tags: ['Product Design', 'Process'],
+    date: 'May 27, 2026',
+    readingTime: 6,
+    standfirst:
+      "Clarity is the wrong goal. Not because clarity doesn't matter — it does, enormously. But clarity is a threshold, not a destination. Once a user understands what they're looking at, clarity has done its job. What happens next is determined by something clarity alone can't produce.",
+    marqueeText: 'Clarity tells users what they\'re looking at. 🔍 Confidence tells them it\'s safe to act. ✅',
+    image: null,
+  },
+  {
+    slug: 'the-brief-is-rarely-the-whole-problem',
+    title: 'The Brief Is Rarely the Whole Problem',
+    category: 'Process',
+    tags: ['Process'],
+    date: 'May 27, 2026',
+    readingTime: 6,
+    standfirst:
+      "The first brief I ever ignored was the best design decision I made that year. Not ignored carelessly — ignored deliberately, after reading it three times and realising that what it described and what it was actually asking for were two different things.",
+    marqueeText: "The brief is the starting point. 📄 The problem is what you find when you look behind it. 🔍",
+    image: null,
+  },
+  {
     slug: 'modal-or-page',
     title: 'Modal or Page: The Question Nobody Asks Before Shipping',
     seoTitle: 'Modal or Page: A Decision Framework for Product Designers',
