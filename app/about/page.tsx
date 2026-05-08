@@ -39,7 +39,7 @@ export default function AboutPage() {
               <div className={styles.photoWrap}>
                 <Image
                   src="/about/tamara.jpg"
-                  alt="Tamara Milakovic"
+                  alt="Tamara Milakovic, senior product designer"
                   fill
                   className={styles.photo}
                   sizes="308px"
