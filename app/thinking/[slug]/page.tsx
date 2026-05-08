@@ -24,17 +24,18 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
+  const metaTitle = article.seoTitle ?? `${article.title} — Tamara Milakovic`;
   return {
-    title: `${article.title} — Tamara Milakovic`,
+    title: metaTitle,
     description: article.standfirst,
     openGraph: {
-      title: `${article.title} — Tamara Milakovic`,
+      title: metaTitle,
       description: article.standfirst,
       url: `https://www.tamaramilakovic.com/thinking/${slug}`,
       type: 'article',
     },
     twitter: {
-      title: `${article.title} — Tamara Milakovic`,
+      title: metaTitle,
       description: article.standfirst,
     },
   };

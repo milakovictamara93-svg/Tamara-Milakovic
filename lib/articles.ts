@@ -1,6 +1,7 @@
 export interface Article {
   slug: string;
   title: string;
+  seoTitle?: string;
   category: string;
   tags: string[];
   date: string;
@@ -14,6 +15,7 @@ export const articles: Article[] = [
   {
     slug: 'loading-states-are-not-one-component',
     title: 'Loading States Are Not One Component',
+    seoTitle: 'Loading States Are Not One Component — UX Design Guide',
     category: 'Design Systems',
     tags: ['Design Systems'],
     date: 'May 20, 2026',
@@ -26,6 +28,7 @@ export const articles: Article[] = [
   {
     slug: 'form-validation-timing-is-not-a-detail',
     title: 'Form Validation Timing Is Not a Detail',
+    seoTitle: 'Form Validation Timing Is Not a Detail — UX Best Practices',
     category: 'Design Systems',
     tags: ['Design Systems'],
     date: 'May 13, 2026',
@@ -38,6 +41,7 @@ export const articles: Article[] = [
   {
     slug: 'prompting-is-a-design-skill',
     title: 'Prompting Is a Design Skill',
+    seoTitle: 'Prompting Is a Design Skill — AI for Product Designers',
     category: 'AI',
     tags: ['AI', 'Process'],
     date: 'May 6, 2026',
