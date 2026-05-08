@@ -45,6 +45,24 @@ export default async function ArticlePage({ params }: PageProps) {
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
+  const articleStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.standfirst,
+    url: `https://www.tamaramilakovic.com/thinking/${slug}`,
+    author: {
+      '@type': 'Person',
+      name: 'Tamara Milakovic',
+      url: 'https://www.tamaramilakovic.com',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Tamara Milakovic',
+      url: 'https://www.tamaramilakovic.com',
+    },
+  };
+
   // Dynamically load the article content
   let ArticleContent: React.ComponentType | null = null;
   try {
@@ -56,6 +74,10 @@ export default async function ArticlePage({ params }: PageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleStructuredData) }}
+      />
       <Nav />
 
       {/* Article header */}

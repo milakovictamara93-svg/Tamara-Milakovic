@@ -24,6 +24,31 @@ export const metadata: Metadata = {
   },
 };
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': 'https://www.tamaramilakovic.com/#person',
+      name: 'Tamara Milakovic',
+      url: 'https://www.tamaramilakovic.com',
+      jobTitle: 'Senior Product Designer',
+      description: 'Senior product designer specializing in B2B SaaS, monetisation systems, and design leadership.',
+      sameAs: [
+        'https://www.linkedin.com/in/tamaramilakovic/',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://www.tamaramilakovic.com/#website',
+      url: 'https://www.tamaramilakovic.com',
+      name: 'Tamara Milakovic',
+      description: 'Senior product designer specializing in B2B SaaS, monetisation systems, and design leadership.',
+      author: { '@id': 'https://www.tamaramilakovic.com/#person' },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,6 +56,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      </head>
       <body>
         {children}
         <Analytics />
