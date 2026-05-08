@@ -47,6 +47,10 @@
   opacity: 0.6;
 }
 
+.downloadLink:hover .downloadText {
+  text-decoration: underline;
+}
+
 .downloadText {
   font-family: var(--font-body);
   font-size: 20px;
