@@ -109,7 +109,7 @@ export function FirstUseMockup() {
         <Content
           icon={<GridIcon />}
           headline="No projects yet"
-          body="Projects keep your work organised. Create one to get started — you can invite your team once it's set up."
+          body="Projects keep your work organised. Create one to get started. You can invite your team once it's set up."
           cta="Create your first project"
           ctaVariant="primary"
         />
@@ -170,7 +170,7 @@ export function ErrorMockup() {
         icon={<AlertIcon />}
         iconVariant="error"
         headline="Couldn't load your reports"
-        body="There was a problem connecting to the server. Your data is safe — try refreshing or check back in a few minutes."
+        body="There was a problem connecting to the server. Your data is safe. Try refreshing or check back in a few minutes."
         cta="Try again"
         ctaVariant="ghost"
       />

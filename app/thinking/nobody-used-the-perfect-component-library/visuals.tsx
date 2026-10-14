@@ -47,7 +47,7 @@ export function FailureModeVisual() {
         </div>
       </div>
       <figcaption className={styles.caption}>
-        The Figma library is the artifact. The agreement &mdash; documented decisions, interaction contracts, a feedback loop with the teams using it &mdash; is the system.
+        The Figma library is the artifact. The agreement (documented decisions, interaction contracts, a feedback loop with the teams using it) is the system.
       </figcaption>
     </figure>
   );

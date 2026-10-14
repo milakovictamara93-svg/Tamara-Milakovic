@@ -9,16 +9,16 @@ import Arrow from '@/components/Arrow';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Work & Case Studies — Tamara Milakovic',
+  title: 'Work & Case Studies | Tamara Milakovic',
   description: 'Selected product design case studies in B2B SaaS, ESG analytics, and monetisation. Real problems, honest process, measurable outcomes.',
   openGraph: {
-    title: 'Work & Case Studies — Tamara Milakovic',
+    title: 'Work & Case Studies | Tamara Milakovic',
     description: 'Selected product design case studies in B2B SaaS, ESG analytics, and monetisation. Real problems, honest process, measurable outcomes.',
     url: 'https://www.tamaramilakovic.com/work',
     type: 'website',
   },
   twitter: {
-    title: 'Work & Case Studies — Tamara Milakovic',
+    title: 'Work & Case Studies | Tamara Milakovic',
     description: 'Selected product design case studies in B2B SaaS, ESG analytics, and monetisation. Real problems, honest process, measurable outcomes.',
   },
 };

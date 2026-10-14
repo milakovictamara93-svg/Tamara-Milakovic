@@ -5,7 +5,7 @@ export function PlausibleNonsenseVisual() {
     {
       label: 'Persona',
       looks: 'Research-backed profile with themes, quotes, and goals',
-      actually: 'Synthesised from general patterns — no actual user data',
+      actually: 'Synthesised from general patterns, no actual user data',
     },
     {
       label: 'User flow',

@@ -5,29 +5,29 @@ export function LoadingPatternsVisual() {
     {
       pattern: 'Spinner',
       duration: '2–10 seconds',
-      bestFor: 'Single actions, button states after submission — bounded wait with no layout to preview',
+      bestFor: 'Single actions, button states after submission: bounded wait with no layout to preview',
     },
     {
       pattern: 'Skeleton screen',
       duration: '1–10 seconds',
-      bestFor: 'Content loads with predictable structure — cards, lists, grids, data tables',
+      bestFor: 'Content loads with predictable structure: cards, lists, grids, data tables',
     },
     {
       pattern: 'Progress bar',
       duration: '10+ seconds',
-      bestFor: 'Measurable operations — uploads, exports, batch processing, multi-stage flows',
+      bestFor: 'Measurable operations: uploads, exports, batch processing, multi-stage flows',
     },
     {
       pattern: 'Optimistic UI',
       duration: '< 300ms (assumed)',
-      bestFor: 'Low-stakes reversible actions — likes, toggles, task completion, status changes',
+      bestFor: 'Low-stakes reversible actions: likes, toggles, task completion, status changes',
     },
   ];
 
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The four loading state patterns — and when each belongs</span>
+        <span className={styles.headerLabel}>The four loading state patterns, and when each belongs</span>
       </div>
       <div className={styles.timingHeaderRow}>
         <span className={styles.timingColLabel}>Pattern</span>
@@ -56,7 +56,7 @@ export function LoadingDecisionVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The four patterns — what each looks like in use</span>
+        <span className={styles.headerLabel}>The four patterns: what each looks like in use</span>
       </div>
       <div className={styles.patternGrid}>
         <div className={styles.patternCard}>
@@ -112,7 +112,7 @@ export function LoadingDecisionVisual() {
       </div>
       <figcaption className={styles.caption}>
         Start from the condition, not the component. Duration, content type, and action stakes
-        determine the pattern — not which component is in the design system.
+        determine the pattern, not which component is in the design system.
       </figcaption>
     </figure>
   );

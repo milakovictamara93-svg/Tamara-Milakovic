@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
-  const metaTitle = article.seoTitle ?? `${article.title} — Tamara Milakovic`;
+  const metaTitle = article.seoTitle ?? `${article.title} | Tamara Milakovic`;
   return {
     title: metaTitle,
     description: article.standfirst,

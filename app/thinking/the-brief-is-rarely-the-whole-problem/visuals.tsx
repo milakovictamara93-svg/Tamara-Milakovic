@@ -4,7 +4,7 @@ export function TranslationChainVisual() {
   const steps = [
     {
       label: 'Observation',
-      description: 'Something is noticed — a metric, a complaint, a gap',
+      description: 'Something is noticed: a metric, a complaint, a gap',
       error: null,
     },
     {
@@ -27,7 +27,7 @@ export function TranslationChainVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>How a brief loses information — step by step</span>
+        <span className={styles.headerLabel}>How a brief loses information: step by step</span>
       </div>
       <div className={styles.chainWrapper}>
         {steps.map((step, i) => (
@@ -82,7 +82,7 @@ export function DesignerLevelsVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>What changes at each level — and why it matters</span>
+        <span className={styles.headerLabel}>What changes at each level, and why it matters</span>
       </div>
       <div className={styles.levelsHeaderRow}>
         <span className={styles.levelsColLabel}>Level</span>
@@ -104,7 +104,7 @@ export function DesignerLevelsVisual() {
         ))}
       </div>
       <figcaption className={styles.caption}>
-        The difference between mid-level and senior isn&rsquo;t craft &mdash; it&rsquo;s
+        The difference between mid-level and senior isn&rsquo;t craft. It&rsquo;s
         accountability for the problem definition itself.
       </figcaption>
     </figure>

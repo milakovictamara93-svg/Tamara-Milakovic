@@ -32,7 +32,7 @@ export function FeatureCostVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>What features add — and what each one costs</span>
+        <span className={styles.headerLabel}>What features add, and what each one costs</span>
       </div>
       <div className={styles.featureBody}>
         {rows.map((row, i) => (
@@ -58,7 +58,7 @@ export function BenchmarkDecisionVisual() {
   ];
 
   const againstFeature = [
-    { label: 'Wrong cognitive mode', sub: 'Partners still learning their own data — comparison shifts task before baseline exists' },
+    { label: 'Wrong cognitive mode', sub: 'Partners still learning their own data: comparison shifts task before baseline exists' },
     { label: 'Two tasks, one view', sub: 'Understanding own performance and evaluating relative performance require different mental models' },
     { label: 'Noise before signal', sub: 'Context without comprehension creates anxiety, not insight' },
   ];
@@ -66,7 +66,7 @@ export function BenchmarkDecisionVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The benchmark toggle — the case for and the case against</span>
+        <span className={styles.headerLabel}>The benchmark toggle: the case for and the case against</span>
       </div>
       <div className={styles.compareColumns}>
         <div className={styles.compareCol}>

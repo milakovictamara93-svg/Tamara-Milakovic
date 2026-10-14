@@ -7,14 +7,14 @@ export function DecisionFilterVisual() {
     { condition: 'Task done repeatedly by same user', surface: 'Page', tag: 'page' },
     { condition: 'Destructive, irreversible action', surface: 'Modal', tag: 'modal' },
     { condition: 'Task grew beyond original scope', surface: 'Migrate to Page', tag: 'page' },
-    { condition: 'Nested modal required', surface: 'Stop — redesign', tag: 'stop' },
+    { condition: 'Nested modal required', surface: 'Stop: redesign', tag: 'stop' },
     { condition: 'Neither modal nor page feels right', surface: 'Panel or Inline', tag: 'panel' },
   ];
 
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The decision filter — applied before the call gets made</span>
+        <span className={styles.headerLabel}>The decision filter: applied before the call gets made</span>
       </div>
       <div className={styles.filterHeaderRow}>
         <span className={styles.filterColLabel}>Condition</span>
@@ -31,7 +31,7 @@ export function DecisionFilterVisual() {
         ))}
       </div>
       <figcaption className={styles.caption}>
-        These aren&rsquo;t rules — they&rsquo;re a forcing function. A way to make the reasoning
+        These aren&rsquo;t rules. They&rsquo;re a forcing function. A way to make the reasoning
         explicit before the decision gets shipped.
       </figcaption>
     </figure>
@@ -42,7 +42,7 @@ export function SurfaceComparisonVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Three surfaces — what each is built for</span>
+        <span className={styles.headerLabel}>Three surfaces: what each is built for</span>
       </div>
       <div className={styles.surfaceGrid}>
 
@@ -119,7 +119,7 @@ export function SurfaceComparisonVisual() {
 
       </div>
       <figcaption className={styles.caption}>
-        The surface should follow the task&rsquo;s requirements — not the designer&rsquo;s instinct
+        The surface should follow the task&rsquo;s requirements, not the designer&rsquo;s instinct
         about what &ldquo;feels right.&rdquo;
       </figcaption>
     </figure>

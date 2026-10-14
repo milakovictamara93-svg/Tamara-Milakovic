@@ -152,7 +152,7 @@ export default function Pax8Page() {
                     <p>Most products show you the data. Most products give you the tools. Almost none of them do the hardest part: <strong>translate a performance gap into a decision.</strong></p>
                     <p>That translation - from &ldquo;my numbers are low&rdquo; to &ldquo;here&rsquo;s what I should do and why&rdquo; - is where users get lost, and where products quietly lose their value. I called it the bridge. And I treated it as the most important design problem in the entire system.</p>
                   </div>
-                  <ArticleImageReveal src="/work/pax8-3.jpg" alt="Four-stage pipeline: Analytics Center, Opportunity Layer, Promo Center, Measurement — context carried across every transition." />
+                  <ArticleImageReveal src="/work/pax8-3.jpg" alt="Four-stage pipeline: Analytics Center, Opportunity Layer, Promo Center, Measurement, with context carried across every transition." />
                   <div className={styles.sectionBody}>
                     <p>The solution was an Opportunity layer: a surface that sits between Analytics and Promo Center and does the interpretive work for the user. Instead of leaving partners to stare at a chart and figure out what it means for their next action, Opportunities converted performance signals into explicit, actionable recommendations - with enough context to make the action feel justified, not just suggested.</p>
                     <p>This wasn&rsquo;t just a UX convenience. It was a product position. By owning the bridge, the product owned the decision moment - which is exactly where trust is built or lost in a monetization tool.</p>
@@ -200,13 +200,13 @@ export default function Pax8Page() {
                   <div className={styles.sectionBody}>
                     <p>Interaction contracts were written for the moments most likely to drift: how filtering behaves across both surfaces and whether it persists. What drill interactions mean and when they escalate into full detail views. Where exploration ends and commitment begins - the line between browsing and buying intent matters enormously in a monetization context. How empty, loading, and error states maintain orientation without breaking the flow of the loop.</p>
                   </div>
-                  <ArticleImageReveal src="/work/pax8-7.jpg" alt="Behavioral rules: four categories defined once and applied everywhere — filter persistence, drill interactions, exploration vs commitment, empty/loading/error states." />
+                  <ArticleImageReveal src="/work/pax8-7.jpg" alt="Behavioral rules: four categories defined once and applied everywhere (filter persistence, drill interactions, exploration vs commitment, empty/loading/error states)." />
                   <div className={styles.sectionBody}>
                     <p><strong>Validation timing was handled deliberately.</strong> In a monetization product, stakes are real. Validate too early and you interrupt flow. Validate too late and you create regret.</p>
                     <p>We considered inline validation on every field change - a standard pattern for enterprise forms. We rejected it because in a monetization context, constant micro-feedback before a user has formed intent creates anxiety, not confidence. Instead we validated on intentional commit points: when a partner chose to preview or submit. One honest confirmation at the right moment, not a running commentary. In a context where a partner is committing real budget, getting this wrong erodes trust faster than almost any other design failure.</p>
                     <p><strong>Lifecycle status was treated as first-class UX.</strong> A promotion isn&rsquo;t just active or inactive. It&rsquo;s pending, live, paused, ended, under-budget, over-performing. Each of those states means something different about what the partner should do next. Clear status language isn&rsquo;t a labeling exercise - it&rsquo;s how a partner decides whether to act, wait, or change course. Get it wrong and the product feels unpredictable. Get it right and it feels like it&rsquo;s working <em>with</em> you.</p>
                   </div>
-                  <ArticleImageReveal src="/work/pax8-8.jpg" alt="Lifecycle status: six promotion states — Pending, Live, Paused, Ended, Under-budget, Over-performing — each communicating a next action." />
+                  <ArticleImageReveal src="/work/pax8-8.jpg" alt="Lifecycle status: six promotion states (Pending, Live, Paused, Ended, Under-budget, Over-performing) each communicating a next action." />
                 </section>
 
                 <section id="s8" className={styles.section}>

@@ -7,16 +7,16 @@ import { articles } from '@/lib/articles';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Thinking — Product Design Writing by Tamara Milakovic',
+  title: 'Thinking | Product Design Writing by Tamara Milakovic',
   description: 'Essays on product design, design systems, and UX craft. Clear thinking about the problems that hide inside design problems.',
   openGraph: {
-    title: 'Thinking — Product Design Writing by Tamara Milakovic',
+    title: 'Thinking | Product Design Writing by Tamara Milakovic',
     description: 'Essays on product design, design systems, and UX craft. Clear thinking about the problems that hide inside design problems.',
     url: 'https://www.tamaramilakovic.com/thinking',
     type: 'website',
   },
   twitter: {
-    title: 'Thinking — Product Design Writing by Tamara Milakovic',
+    title: 'Thinking | Product Design Writing by Tamara Milakovic',
     description: 'Essays on product design, design systems, and UX craft. Clear thinking about the problems that hide inside design problems.',
   },
 };
