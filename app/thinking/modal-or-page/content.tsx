@@ -256,10 +256,6 @@ export default function ModalOrPageContent() {
         load, orientation, and trust. It deserves more than thirty seconds in a meeting.
       </p>
 
-      <p>
-        <em>The container should follow the task. It almost never does.</em>
-      </p>
-
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>

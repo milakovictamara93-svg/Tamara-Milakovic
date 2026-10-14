@@ -66,10 +66,6 @@ export default function DesigningForConfidenceContent() {
         months later, when you see who keeps coming back.
       </p>
 
-      <p>
-        <em>Clarity tells users what they’re looking at. Confidence tells them it’s safe to act.</em>
-      </p>
-
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );

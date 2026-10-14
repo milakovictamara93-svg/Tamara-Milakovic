@@ -77,10 +77,6 @@ export default function WhenToStandardiseContent() {
 
       <RevealOnScroll><OverStandardisationSymptomsVisual /></RevealOnScroll>
 
-      <p>
-        <em>A system that standardises everything is as broken as one that standardises nothing. The value is in knowing the difference.</em>
-      </p>
-
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );

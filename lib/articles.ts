@@ -21,7 +21,7 @@ export const articles: Article[] = [
     readingTime: 2,
     standfirst:
       "I found a bug in a colleague's design. Then I found out the bug was me.",
-    marqueeText: 'Not all variation is drift. 🔀 Some of it is the system doing its job. 🧩',
+    marqueeText: 'A system that standardises everything is as broken as one that standardises nothing. 🧩 The value is in knowing the difference. 🔀',
     image: null,
   },
   {
