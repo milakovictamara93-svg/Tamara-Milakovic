@@ -60,14 +60,14 @@
 .metaSep {
   font-family: var(--font-body);
   font-size: 13px;
-  color: #c2c2be;
+  color: #000;
 }
 
 .metaText {
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 400;
-  color: #8a8a84;
+  color: #000;
 }
 
 /* Featured image */
