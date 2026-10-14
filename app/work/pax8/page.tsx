@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Arrow from '@/components/Arrow';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
@@ -273,7 +274,7 @@ export default function Pax8Page() {
                 <p className={styles.nextCaseStudyDesc}>When the platform grew faster than its rules and the design system that stopped the drift.</p>
                 <span className={styles.nextCaseStudyTags}>ESG Analytics · Design Systems · SaaS</span>
               </div>
-              <span className={styles.nextCaseStudyArrow}>→</span>
+              <span className={styles.nextCaseStudyArrow}><Arrow size={36} /></span>
             </a>
           </div>
         </div>

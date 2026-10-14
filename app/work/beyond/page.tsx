@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Arrow from '@/components/Arrow';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
@@ -213,7 +214,7 @@ export default function BeyondPage() {
                 <p className={styles.nextCaseStudyDesc}>How I turned a vague commercial opportunity into a coherent product before anyone noticed we were making it up.</p>
                 <span className={styles.nextCaseStudyTags}>B2B SaaS · Monetisation · 0→1</span>
               </div>
-              <span className={styles.nextCaseStudyArrow}>&rarr;</span>
+              <span className={styles.nextCaseStudyArrow}><Arrow size={36} /></span>
             </a>
           </div>
         </div>
