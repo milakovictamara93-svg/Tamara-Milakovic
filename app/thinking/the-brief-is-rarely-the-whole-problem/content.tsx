@@ -74,10 +74,6 @@ export default function TheBriefContent() {
 
       <RevealOnScroll><DesignerLevelsVisual /></RevealOnScroll>
 
-      <p>
-        <em>The brief is the starting point. The problem is what you find when you look behind it.</em>
-      </p>
-
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );
