@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Arrow from '@/components/Arrow';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
@@ -252,7 +253,7 @@ export default function ScalerPage() {
                 <p className={styles.nextCaseStudyDesc}>A platform restyling that 85% of users chose voluntarily.</p>
                 <span className={styles.nextCaseStudyTags}>B2B SaaS</span>
               </div>
-              <span className={styles.nextCaseStudyArrow}>&rarr;</span>
+              <span className={styles.nextCaseStudyArrow}><Arrow size={36} /></span>
             </a>
           </div>
         </div>
