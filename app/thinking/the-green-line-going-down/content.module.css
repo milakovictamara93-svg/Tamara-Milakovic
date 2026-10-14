@@ -10,7 +10,7 @@
   color: #525252;
   margin-bottom: 40px;
   padding-bottom: 40px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #000;
 }
 
 /* Body paragraphs */
@@ -45,7 +45,7 @@
 /* Divider */
 .divider {
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #000;
   margin: 48px 0;
 }
 
@@ -65,7 +65,7 @@
 
 /* References */
 .references {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #000;
   padding-top: 32px;
   margin-top: 48px;
 }
@@ -101,5 +101,10 @@
 }
 
 .referencesList a:hover {
+  color: #000;
+}
+
+.article > p:first-child {
+  font-weight: 600;
   color: #000;
 }
