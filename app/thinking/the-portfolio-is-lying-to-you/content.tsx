@@ -64,16 +64,9 @@ export default function PortfolioContent() {
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
           <li>
-            Latin, M. (2024). 90% of Designers Are Unhirable?{' '}
-            <a href="https://matejlatin.com/blog/90-percent-of-designers-are-unhirable/" target="_blank" rel="noopener noreferrer">
-              matejlatin.com
-            </a>
-          </li>
-          <li>
-            Interaction Design Foundation. How to Write UX/UI Design Case Studies That Boost Your
-            Portfolio.{' '}
-            <a href="https://ixdf.org/literature/article/how-to-write-great-case-studies-for-your-ux-design-portfolio" target="_blank" rel="noopener noreferrer">
-              ixdf.org
+            Latin, M. (2024). 90% of Designers Are Unhirable? <em>UX Collective.</em>{' '}
+            <a href="https://uxdesign.cc/90-of-designers-are-unhirable-3a8238e3cca2" target="_blank" rel="noopener noreferrer">
+              uxdesign.cc
             </a>
           </li>
         </ol>

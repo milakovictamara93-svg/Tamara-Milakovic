@@ -67,29 +67,6 @@ export default function CrossFunctionalContent() {
       </p>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            Finerty, S.Z. (2019). <em>Cross Functional Influence: Getting Things Done Across the
-            Organization.</em> Amazon Publishing.
-          </li>
-          <li>
-            Draghici, M. (2026). The Challenges of Cross-Functional Collaboration, Part 1. LinkedIn.{' '}
-            <a href="https://www.linkedin.com/pulse/challenges-cross-functional-collaboration-part-1-mihaela-draghici-ifive" target="_blank" rel="noopener noreferrer">
-              linkedin.com
-            </a>
-          </li>
-          <li>
-            Sharma, S. (2025). Why Your &lsquo;Cross-Functional&rsquo; Team Is Not Actually
-            Cross-Functional. Medium.{' '}
-            <a href="https://medium.com/@ss-tech/you-probably-dont-know-what-cross-functional-collaboration-really-is-83ee0eaf30cd" target="_blank" rel="noopener noreferrer">
-              medium.com
-            </a>
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

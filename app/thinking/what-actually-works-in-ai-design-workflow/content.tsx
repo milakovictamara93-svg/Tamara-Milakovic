@@ -69,33 +69,6 @@ export default function Content() {
       <RevealOnScroll><FitVisual /></RevealOnScroll>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            Startup House (2026).{' '}
-            <em>The Future of Product Design: Building AI-Native Digital Services.</em>{' '}
-            <a href="https://startup-house.com/blog/future-of-product-design-ai-workflows-2026" target="_blank" rel="noopener noreferrer">
-              startup-house.com
-            </a>
-          </li>
-          <li>
-            Creative Boom (2024).{' '}
-            <em>Special report: how design agencies are actually using AI in 2024.</em>{' '}
-            <a href="https://www.creativeboom.com/insight/special-report-how-design-agencies-are-using-ai-in-2024/" target="_blank" rel="noopener noreferrer">
-              creativeboom.com
-            </a>
-          </li>
-          <li>
-            Standard Beagle Studio (2025).{' '}
-            <em>AI-Assisted Design Workflows: A Strategic Guide for Product Teams.</em>{' '}
-            <a href="https://standardbeagle.com/ai-assisted-design-workflows/" target="_blank" rel="noopener noreferrer">
-              standardbeagle.com
-            </a>
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

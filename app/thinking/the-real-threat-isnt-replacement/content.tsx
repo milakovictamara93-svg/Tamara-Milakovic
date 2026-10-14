@@ -66,30 +66,6 @@ export default function Content() {
       </p>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            AI Operator (2026). <em>AI Job Displacement: Which Jobs Are Safe, Which Are at Risk.</em>{' '}
-            <a href="https://www.aioperator.com/blog/ai-job-displacement-what-the-data-says-about-which-jobs-are-safe/" target="_blank" rel="noopener noreferrer">
-              aioperator.com
-            </a>
-          </li>
-          <li>
-            UOC (2025). <em>How AI is changing professions like design, art, and the media.</em>{' '}
-            <a href="https://www.uoc.edu/en/news/2025/ai-could-automate-creative-professions" target="_blank" rel="noopener noreferrer">
-              uoc.edu
-            </a>
-          </li>
-          <li>
-            Fortune (2025). <em>Creative workers won&rsquo;t be replaced by AI, they will become directors managing AI agents.</em>{' '}
-            <a href="https://fortune.com/2025/12/12/creative-work-ai-agents-automation-salesforce-autodesk-accenture-brainstorm-ai/" target="_blank" rel="noopener noreferrer">
-              fortune.com
-            </a>
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

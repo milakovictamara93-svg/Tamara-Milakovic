@@ -75,40 +75,6 @@ export default function TheBriefContent() {
       <RevealOnScroll><DesignerLevelsVisual /></RevealOnScroll>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            Cross, N. (2011).{' '}
-            <em>Design Thinking: Understanding How Designers Think and Work.</em>{' '}
-            Berg Publishers.
-          </li>
-          <li>
-            Dorst, K. (2015).{' '}
-            <em>Frame Innovation: Create New Thinking by Design.</em>{' '}
-            MIT Press.{' '}
-            <a href="https://mitpress.mit.edu/9780262324274/frame-innovation/" target="_blank" rel="noopener noreferrer">
-              mitpress.mit.edu
-            </a>
-          </li>
-          <li>
-            Rittel, H. &amp; Webber, M. (1973). Dilemmas in a General Theory of Planning.{' '}
-            <em>Policy Sciences</em>, 4(2), 155&ndash;169.
-          </li>
-          <li>
-            Nielsen Norman Group (2021). Discovery: What It Is and Why It Matters.{' '}
-            <a href="https://www.nngroup.com/articles/discovery-phase/" target="_blank" rel="noopener noreferrer">
-              nngroup.com
-            </a>
-          </li>
-          <li>
-            Gothelf, J. &amp; Seiden, J. (2013).{' '}
-            <em>Lean UX: Applying Lean Principles to Improve User Experience.</em>{' '}
-            O&rsquo;Reilly Media.
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

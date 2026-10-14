@@ -95,24 +95,6 @@ export default function EmptyStatesContent() {
             </a>
           </li>
           <li>
-            Mobbin. Empty State UI Pattern: Best Practices.{' '}
-            <a href="https://mobbin.com/glossary/empty-state" target="_blank" rel="noopener noreferrer">
-              mobbin.com
-            </a>
-          </li>
-          <li>
-            Toptal (2025). Empty States - The Most Overlooked Aspect of UX.{' '}
-            <a href="https://www.toptal.com/designers/ux/empty-state-ux-design" target="_blank" rel="noopener noreferrer">
-              toptal.com
-            </a>
-          </li>
-          <li>
-            Eleken (2026). Empty State UX Examples and Design Rules That Actually Work.{' '}
-            <a href="https://www.eleken.co/blog-posts/empty-state-ux" target="_blank" rel="noopener noreferrer">
-              eleken.co
-            </a>
-          </li>
-          <li>
             Carbon Design System (IBM). Empty States Pattern.{' '}
             <a href="https://carbondesignsystem.com/patterns/empty-states-pattern/" target="_blank" rel="noopener noreferrer">
               carbondesignsystem.com

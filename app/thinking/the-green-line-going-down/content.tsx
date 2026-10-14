@@ -69,16 +69,8 @@ export default function GreenLineContent() {
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
           <li>
-            Data-Nizant (2025). 7 Examples of Bad Data Visualization to Learn From.{' '}
-            <a href="https://datanizant.com/examples-of-bad-data-visualization/" target="_blank" rel="noopener noreferrer">
-              datanizant.com
-            </a>
-          </li>
-          <li>
-            CLEVER&deg;FRANKE (2024). ESG Needs Data Design, Part 1. Medium.{' '}
-            <a href="https://medium.com/clever-franke/esg-needs-data-design-part-1-aa8eca5650c9" target="_blank" rel="noopener noreferrer">
-              medium.com
-            </a>
+            Cairo, A. (2019). <em>How Charts Lie: Getting Smarter about Visual Information</em>.
+            W. W. Norton &amp; Company.
           </li>
           <li>
             Berg, F., K&ouml;lbel, J.F., Rigobon, R. (2022). Aggregate Confusion: The Divergence
@@ -99,10 +91,6 @@ export default function GreenLineContent() {
             <a href="https://data.europa.eu/en/publications/datastories/honest-charts-ethics-and-integrity-data-visualisation" target="_blank" rel="noopener noreferrer">
               data.europa.eu
             </a>
-          </li>
-          <li>
-            Cairo, A. (2019). <em>How Charts Lie: Getting Smarter about Visual Information</em>.
-            W. W. Norton &amp; Company.
           </li>
         </ol>
       </div>

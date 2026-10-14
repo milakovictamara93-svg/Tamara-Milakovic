@@ -67,36 +67,6 @@ export default function DesigningForConfidenceContent() {
       </p>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            Kahneman, D. (2011).{' '}
-            <em>Thinking, Fast and Slow.</em>{' '}
-            Farrar, Straus and Giroux. On System 1 vs System 2 thinking and decision-making under cognitive load.
-          </li>
-          <li>
-            Tversky, A. &amp; Kahneman, D. (1974). Judgment under Uncertainty: Heuristics and Biases.{' '}
-            <em>Science</em>, 185(4157), 1124&ndash;1131.
-          </li>
-          <li>
-            Nielsen Norman Group (2020). Confidence in Design: Building Trust Through UX.{' '}
-            <a href="https://www.nngroup.com/articles/trustworthy-design/" target="_blank" rel="noopener noreferrer">
-              nngroup.com
-            </a>
-          </li>
-          <li>
-            Bandura, A. (1977). Self-efficacy: Toward a Unifying Theory of Behavioral Change.{' '}
-            <em>Psychological Review</em>, 84(2), 191&ndash;215.
-          </li>
-          <li>
-            Few, S. (2009).{' '}
-            <em>Now You See It: Simple Visualization Techniques for Quantitative Analysis.</em>{' '}
-            Analytics Press.
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }
