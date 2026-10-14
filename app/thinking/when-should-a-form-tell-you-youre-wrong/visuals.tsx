@@ -4,7 +4,7 @@ export function ValidationTimingVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The same field, mid-input — on keystroke vs. on blur</span>
+        <span className={styles.headerLabel}>The same field, mid-input: on keystroke vs. on blur</span>
       </div>
       <div className={styles.cardsRow}>
         <div className={styles.formPanel}>
@@ -32,7 +32,7 @@ export function ValidationTimingVisual() {
               <span className={styles.mockValue}>john.doe</span>
               <span className={styles.cursor} />
             </div>
-            <div className={styles.panelNote}>No error — user hasn&rsquo;t left the field yet</div>
+            <div className={styles.panelNote}>No error: user hasn&rsquo;t left the field yet</div>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@ export function RewardValidatePrincipleVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Reward early, validate late — in practice</span>
+        <span className={styles.headerLabel}>Reward early, validate late: in practice</span>
       </div>
       <div className={styles.cardsRow}>
         <div className={styles.formPanel}>
@@ -78,7 +78,7 @@ export function RewardValidatePrincipleVisual() {
               <span className={styles.mockValue}>sarah.jones</span>
               <span className={styles.cursor} />
             </div>
-            <div className={styles.panelNote}>Error is held — user is still entering</div>
+            <div className={styles.panelNote}>Error is held: user is still entering</div>
           </div>
         </div>
       </div>

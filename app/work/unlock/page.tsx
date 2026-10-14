@@ -5,7 +5,7 @@ import UnlockForm from './UnlockForm';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'View Work — Tamara Milakovic',
+  title: 'View Work | Tamara Milakovic',
 };
 
 export default function UnlockPage() {

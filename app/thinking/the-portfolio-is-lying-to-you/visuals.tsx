@@ -20,7 +20,7 @@ export function PortfolioVsRealityVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The portfolio version — and what the project actually looked like</span>
+        <span className={styles.headerLabel}>The portfolio version, and what the project actually looked like</span>
       </div>
       <div className={styles.compareColumns}>
         <div className={styles.compareCol}>
@@ -59,7 +59,7 @@ export function WhatsMissingVisual() {
   const shown = [
     { label: 'Process artifacts', sub: 'Research synthesis docs, affinity maps, journey maps' },
     { label: 'Final screens', sub: 'Polished UI, edge cases handled, interactions smooth' },
-    { label: 'Metrics', sub: '"Increased conversion by X%" — usually the one good number' },
+    { label: 'Metrics', sub: '"Increased conversion by X%", usually the one good number' },
     { label: 'Method labels', sub: '"We used design thinking / double diamond / jobs-to-be-done"' },
   ];
 
@@ -73,7 +73,7 @@ export function WhatsMissingVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>What most portfolios show — and what actually reveals how someone thinks</span>
+        <span className={styles.headerLabel}>What most portfolios show, and what actually reveals how someone thinks</span>
       </div>
       <div className={styles.compareColumns}>
         <div className={styles.compareCol}>

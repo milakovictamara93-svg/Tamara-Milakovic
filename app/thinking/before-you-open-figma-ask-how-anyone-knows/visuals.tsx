@@ -37,7 +37,7 @@ export function AssumptionStackVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Assumptions hiding inside a typical brief — cost of being wrong</span>
+        <span className={styles.headerLabel}>Assumptions hiding inside a typical brief: cost of being wrong</span>
       </div>
       <div className={styles.stackBody}>
         {assumptions.map((a) => (

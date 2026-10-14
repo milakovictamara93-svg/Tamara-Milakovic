@@ -25,7 +25,7 @@ export function DensityExperimentVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Density configuration vs. expert task performance — Scaler evaluation sessions</span>
+        <span className={styles.headerLabel}>Density configuration vs. expert task performance: Scaler evaluation sessions</span>
       </div>
       <div className={styles.densityBody}>
         {rows.map((row) => (
@@ -39,7 +39,7 @@ export function DensityExperimentVisual() {
         ))}
       </div>
       <figcaption className={styles.caption}>
-        The layout that looked the most polished performed worst on column-scanning tasks and required the most scrolling. Density wasn&rsquo;t the problem &mdash; unconsidered density was.
+        The layout that looked the most polished performed worst on column-scanning tasks and required the most scrolling. Density wasn&rsquo;t the problem. Unconsidered density was.
       </figcaption>
     </figure>
   );
@@ -49,14 +49,14 @@ export function SignalNoiseVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The same data row — simplified vs. legible</span>
+        <span className={styles.headerLabel}>The same data row: simplified vs. legible</span>
       </div>
       <div className={styles.cardsRow}>
         {/* Simple / stripped view */}
         <div className={styles.cardPanel}>
           <div className={styles.cardPanelTitle}>Simple</div>
           <div className={styles.mockCard}>
-            <div className={styles.mockCardHeader}>Supplier emissions — Q4 2023</div>
+            <div className={styles.mockCardHeader}>Supplier emissions: Q4 2023</div>
             <div className={styles.mockCardBody}>
               <div className={styles.mockNumber}>42.3</div>
               <div className={styles.mockUnit}>tCO2e</div>
@@ -70,7 +70,7 @@ export function SignalNoiseVisual() {
         <div className={`${styles.cardPanel} ${styles.cardPanelDark}`}>
           <div className={`${styles.cardPanelTitle} ${styles.cardPanelTitleDark}`}>Legible</div>
           <div className={`${styles.mockCard} ${styles.mockCardDark}`}>
-            <div className={`${styles.mockCardHeader} ${styles.mockCardHeaderDark}`}>Supplier emissions — Q4 2023</div>
+            <div className={`${styles.mockCardHeader} ${styles.mockCardHeaderDark}`}>Supplier emissions: Q4 2023</div>
             <div className={styles.mockCardBody}>
               <div className={`${styles.mockNumber} ${styles.mockNumberDark}`}>42.3</div>
               <div className={`${styles.mockUnit} ${styles.mockUnitDark}`}>tCO2e</div>
@@ -81,7 +81,7 @@ export function SignalNoiseVisual() {
                 <span className={`${styles.mockTag} ${styles.mockTagDark}`}>Restated</span>
               </div>
               <div className={`${styles.mockFlag} ${styles.mockFlagDark}`}>
-                ⚠ Methodology changed Q3 — prior periods adjusted
+                ⚠ Methodology changed Q3: prior periods adjusted
               </div>
             </div>
           </div>

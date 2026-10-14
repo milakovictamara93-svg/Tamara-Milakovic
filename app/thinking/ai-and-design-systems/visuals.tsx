@@ -9,7 +9,7 @@ export function ArtifactsVisual() {
     },
     {
       label: 'Documentation',
-      desc: 'First-pass docs from component specs — needs editing, faster than blank',
+      desc: 'First-pass docs from component specs, needs editing, faster than blank',
       gain: 'Draft → edit',
     },
     {
@@ -34,7 +34,7 @@ export function ArtifactsVisual() {
         ))}
       </div>
       <figcaption className={styles.caption}>
-        In each case, the remaining work is the judgment call &mdash; whether the pattern is actually correct, why a decision was made, whether an abstraction holds.
+        In each case, the remaining work is the judgment call: whether the pattern is actually correct, why a decision was made, whether an abstraction holds.
       </figcaption>
     </figure>
   );
@@ -87,7 +87,7 @@ export function FrankensteinVisual() {
         </div>
       </div>
       <figcaption className={styles.caption}>
-        AI standardises what it can see. The behavioral layer &mdash; interaction contracts, persistence logic, contextual meaning &mdash; remains invisible to it.
+        AI standardises what it can see. The behavioral layer (interaction contracts, persistence logic, contextual meaning) remains invisible to it.
       </figcaption>
     </figure>
   );

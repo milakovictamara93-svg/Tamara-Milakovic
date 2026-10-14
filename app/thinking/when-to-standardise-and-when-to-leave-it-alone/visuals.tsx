@@ -4,7 +4,7 @@ export function VariationTypesVisual() {
   const types = [
     {
       label: 'Accidental',
-      description: 'Two designers solved the same problem independently and arrived at different answers — not because the contexts differ, but because nobody compared notes.',
+      description: 'Two designers solved the same problem independently and arrived at different answers, not because the contexts differ, but because nobody compared notes.',
       response: 'Standardise it',
       responseType: 'standardise',
     },
@@ -25,7 +25,7 @@ export function VariationTypesVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Three kinds of variation — and what each one requires</span>
+        <span className={styles.headerLabel}>Three kinds of variation, and what each one requires</span>
       </div>
       <div className={styles.typesGrid}>
         {types.map((type) => (
@@ -61,7 +61,7 @@ export function OverStandardisationSymptomsVisual() {
     },
     {
       symptom: 'Exception proliferation',
-      description: 'Teams facing legitimate edge cases accumulate one-off decisions outside the official framework — an undocumented shadow system.',
+      description: 'Teams facing legitimate edge cases accumulate one-off decisions outside the official framework: an undocumented shadow system.',
       signal: 'A growing list of exceptions that nobody governs',
     },
   ];
@@ -86,7 +86,7 @@ export function OverStandardisationSymptomsVisual() {
         ))}
       </div>
       <figcaption className={styles.caption}>
-        These costs are diffuse and slow-moving — they accumulate across thousands of micro-interactions rather than appearing in a single broken component.
+        These costs are diffuse and slow-moving. They accumulate across thousands of micro-interactions rather than appearing in a single broken component.
       </figcaption>
     </figure>
   );

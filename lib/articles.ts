@@ -64,7 +64,7 @@ export const articles: Article[] = [
   {
     slug: 'please-dont-let-it-sit-at-99',
     title: "Please Don’t Let It Sit at 99%",
-    seoTitle: 'Loading States Are Not One Component — UX Design Guide',
+    seoTitle: 'Loading States Are Not One Component | UX Design Guide',
     category: 'Design Systems',
     tags: ['Design Systems'],
     date: 'April 24, 2026',
@@ -77,7 +77,7 @@ export const articles: Article[] = [
   {
     slug: 'when-should-a-form-tell-you-youre-wrong',
     title: "When Should a Form Tell You You’re Wrong?",
-    seoTitle: 'Form Validation Timing Is Not a Detail — UX Best Practices',
+    seoTitle: 'Form Validation Timing Is Not a Detail | UX Best Practices',
     category: 'Design Systems',
     tags: ['Design Systems'],
     date: 'April 21, 2026',
@@ -90,7 +90,7 @@ export const articles: Article[] = [
   {
     slug: 'prompting-is-a-design-skill',
     title: 'Prompting Is a Design Skill',
-    seoTitle: 'Prompting Is a Design Skill — AI for Product Designers',
+    seoTitle: 'Prompting Is a Design Skill | AI for Product Designers',
     category: 'AI',
     tags: ['AI', 'Process'],
     date: 'April 17, 2026',

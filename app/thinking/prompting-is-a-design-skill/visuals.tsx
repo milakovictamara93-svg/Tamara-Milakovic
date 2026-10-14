@@ -4,7 +4,7 @@ export function PromptAnatomyVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The same request — weak prompt vs. specific prompt</span>
+        <span className={styles.headerLabel}>The same request: weak prompt vs. specific prompt</span>
       </div>
       <div className={styles.promptRow}>
         <div className={styles.promptPanel}>
@@ -61,7 +61,7 @@ export function PromptAnatomyVisual() {
       </div>
       <figcaption className={styles.caption}>
         The second prompt is longer. The output is shorter, more specific, and immediately usable.
-        The thinking happened before the model ran — not after.
+        The thinking happened before the model ran, not after.
       </figcaption>
     </figure>
   );
@@ -116,7 +116,7 @@ export function ThinkingShiftVisual() {
       <figcaption className={styles.caption}>
         The thinking doesn&rsquo;t go away when you use AI. It moves earlier. Senior designers get
         better output because they have more clearly articulated mental models of what good looks
-        like &mdash; before they open a tool.
+        like before they open a tool.
       </figcaption>
     </figure>
   );

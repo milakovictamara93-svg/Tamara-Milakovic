@@ -34,7 +34,7 @@ export function WorkflowWinsVisual() {
         ))}
       </div>
       <figcaption className={styles.caption}>
-        In all three cases the output is rarely what you ship &mdash; the value is in the speed of exploration, not the quality of the first pass.
+        In all three cases the output is rarely what you ship. The value is in the speed of exploration, not the quality of the first pass.
       </figcaption>
     </figure>
   );
@@ -87,7 +87,7 @@ export function FitVisual() {
         </div>
       </div>
       <figcaption className={styles.caption}>
-        Most of the important work in design &mdash; defining the right problem, making the judgment call, pushing back on the brief &mdash; falls into the second column.
+        Most of the important work in design (defining the right problem, making the judgment call, pushing back on the brief) falls into the second column.
       </figcaption>
     </figure>
   );

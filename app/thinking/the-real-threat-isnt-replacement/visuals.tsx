@@ -64,7 +64,7 @@ export function OnRampVisual() {
         </div>
       </div>
       <figcaption className={styles.caption}>
-        The execution phase wasn&rsquo;t just work &mdash; it was how designers built taste and judgment. AI is removing that on-ramp.
+        The execution phase wasn&rsquo;t just work. It was how designers built taste and judgment. AI is removing that on-ramp.
       </figcaption>
     </figure>
   );

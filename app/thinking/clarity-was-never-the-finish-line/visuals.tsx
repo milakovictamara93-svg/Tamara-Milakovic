@@ -20,7 +20,7 @@ export function ClarityVsConfidenceVisual() {
     {
       question: 'What it misses',
       clarity: 'The gap between insight and action',
-      confidence: 'Nothing — it contains clarity',
+      confidence: 'Nothing. It contains clarity',
     },
     {
       question: 'Shows up in',
@@ -32,7 +32,7 @@ export function ClarityVsConfidenceVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Clarity vs confidence — what each goal produces</span>
+        <span className={styles.headerLabel}>Clarity vs confidence: what each goal produces</span>
       </div>
       <div className={styles.compareHeaderRow}>
         <span className={styles.compareColLabel}></span>
@@ -60,7 +60,7 @@ export function ThreeIngredientsVisual() {
     {
       number: '01',
       label: 'Interpretive scaffolding',
-      description: 'Context that turns data into signal — benchmarks, directions, suggested responses.',
+      description: 'Context that turns data into signal: benchmarks, directions, suggested responses.',
       before: 'A metric',
       after: 'A metric with context and a direction',
     },

@@ -11,7 +11,7 @@ export function CoordinationInfluenceVisual() {
   const influence = [
     { label: 'Changes direction before it\'s decided', sub: 'In the hallway, three conversations earlier' },
     { label: 'Surfaces problems nobody named', sub: 'Makes the invisible disagreement visible' },
-    { label: 'Shifts what gets built', sub: 'Not just how it looks — what it is' },
+    { label: 'Shifts what gets built', sub: 'Not just how it looks, but what it is' },
     { label: 'Makes engineers care about confusion', sub: 'Translates user insight into what each function values' },
   ];
 
@@ -22,7 +22,7 @@ export function CoordinationInfluenceVisual() {
       </div>
       <div className={styles.compareColumns}>
         <div className={styles.compareCol}>
-          <div className={styles.compareHeading}>Coordination — table stakes</div>
+          <div className={styles.compareHeading}>Coordination: table stakes</div>
           {coordination.map((item) => (
             <div key={item.label} className={styles.compareItem}>
               <span className={styles.compareDot} />
@@ -34,7 +34,7 @@ export function CoordinationInfluenceVisual() {
           ))}
         </div>
         <div className={`${styles.compareCol} ${styles.compareColDark}`}>
-          <div className={`${styles.compareHeading} ${styles.compareHeadingDark}`}>Influence — the actual skill</div>
+          <div className={`${styles.compareHeading} ${styles.compareHeadingDark}`}>Influence: the actual skill</div>
           {influence.map((item) => (
             <div key={item.label} className={`${styles.compareItem} ${styles.compareItemDark}`}>
               <span className={`${styles.compareDot} ${styles.compareDotDark}`} />
@@ -63,19 +63,19 @@ export function TranslationVisual() {
     {
       audience: 'Product',
       quote: '"This confuses users"',
-      translation: '"This is a retention risk — it\'s the exact pattern we see in week-2 drop-off."',
+      translation: '"This is a retention risk. It\'s the exact pattern we see in week-2 drop-off."',
     },
     {
       audience: 'Business',
       quote: '"This confuses users"',
-      translation: '"This is a liability in enterprise demos — it\'s the first thing prospects will ask about."',
+      translation: '"This is a liability in enterprise demos. It\'s the first thing prospects will ask about."',
     },
   ];
 
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>The same user insight — translated into what each function values</span>
+        <span className={styles.headerLabel}>The same user insight: translated into what each function values</span>
       </div>
       <div className={styles.tableBody}>
         {rows.map((row) => (
@@ -89,7 +89,7 @@ export function TranslationVisual() {
         ))}
       </div>
       <figcaption className={styles.caption}>
-        A designer who can speak all three languages isn&rsquo;t compromising their perspective &mdash; they&rsquo;re making it legible to people who need to act on it.
+        A designer who can speak all three languages isn&rsquo;t compromising their perspective. They&rsquo;re making it legible to people who need to act on it.
       </figcaption>
     </figure>
   );

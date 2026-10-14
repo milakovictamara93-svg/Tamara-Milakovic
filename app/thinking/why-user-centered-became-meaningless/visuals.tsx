@@ -9,7 +9,7 @@ export function UCDClaimVsRealityVisual() {
   ];
 
   const actual = [
-    { label: 'Research validates decisions', sub: 'Direction already chosen — evidence assembled afterward' },
+    { label: 'Research validates decisions', sub: 'Direction already chosen: evidence assembled afterward' },
     { label: 'Brief defines the research', sub: 'Questions written to support a predetermined answer' },
     { label: 'Findings confirm the roadmap', sub: 'Contradictory data deprioritised or reframed' },
     { label: 'Validation is theatre', sub: 'Testing confirms what the team already believed' },
@@ -18,7 +18,7 @@ export function UCDClaimVsRealityVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>What user-centered design claims to do — and what often happens instead</span>
+        <span className={styles.headerLabel}>What user-centered design claims to do, and what often happens instead</span>
       </div>
       <div className={styles.compareColumns}>
         <div className={styles.compareCol}>
@@ -47,7 +47,7 @@ export function UCDClaimVsRealityVisual() {
         </div>
       </div>
       <figcaption className={styles.caption}>
-        This is not a character failing &mdash; it&rsquo;s a structural one. Designers are often brought in after strategic decisions are made, and asked to validate rather than interrogate.
+        This is not a character failing. It&rsquo;s a structural one. Designers are often brought in after strategic decisions are made, and asked to validate rather than interrogate.
       </figcaption>
     </figure>
   );
@@ -58,7 +58,7 @@ export function ResearchImpactVisual() {
     {
       artifact: 'User interviews',
       looks: 'Quotes that support the brief',
-      changes: 'Usually nothing — used to illustrate, not inform',
+      changes: 'Usually nothing: used to illustrate, not inform',
     },
     {
       artifact: 'Personas',
@@ -68,7 +68,7 @@ export function ResearchImpactVisual() {
     {
       artifact: 'Usability tests',
       looks: 'A reel of users clicking through screens',
-      changes: 'Minor wording fixes — rarely touches structure',
+      changes: 'Minor wording fixes, rarely touches structure',
     },
     {
       artifact: 'Journey maps',
