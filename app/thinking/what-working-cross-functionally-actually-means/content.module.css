@@ -9,7 +9,7 @@
   color: #525252;
   margin-bottom: 40px;
   padding-bottom: 40px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #000;
 }
 
 .article > p {
@@ -41,12 +41,12 @@
 
 .divider {
   border: none;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #000;
   margin: 48px 0;
 }
 
 .references {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid #000;
   padding-top: 32px;
   margin-top: 48px;
 }
@@ -89,4 +89,9 @@
   font-size: 14px !important;
   color: #8a8a84 !important;
   margin-bottom: 48px !important;
+}
+
+.article > p:first-child {
+  font-weight: 600;
+  color: #000;
 }
