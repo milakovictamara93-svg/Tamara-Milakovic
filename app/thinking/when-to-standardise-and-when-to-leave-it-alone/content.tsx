@@ -38,9 +38,9 @@ export default function WhenToStandardiseContent() {
       </p>
 
       <p>
-        Turns out “different” comes in flavours. Our filters worked four different ways in
-        four modules, for no better reason than different people having a Monday. That got
-        fixed fast.
+        Some of the differences were just mistakes. Our filters worked four different ways
+        in four modules, for no better reason than different people having a Monday. That
+        got fixed fast.
       </p>
 
       <p>

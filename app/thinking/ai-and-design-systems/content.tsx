@@ -6,92 +6,61 @@ export default function Content() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        Design systems work is the area of design practice most immediately and materially affected
-        by AI &mdash; and also the area where the distinction between what AI can do and what it
-        can&rsquo;t matters most.
+        AI can give you a beautifully consistent design system that still behaves like
+        several different products.
       </p>
 
       <p>
-        The confusion comes from conflating two very different things: generating design system
-        artifacts, and making design system decisions. AI can do the first at speed. The second is
-        still entirely human work. Conflating them produces systems that look comprehensive but
-        don&rsquo;t hold.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        Generating component variants is fast and mostly reliable. If you have an established
-        pattern &mdash; a button with five states, a form field with three error conditions &mdash;
-        AI can generate all the variants, apply consistent spacing and color tokens, and produce a
-        first draft that&rsquo;s 80% of the way to production. The remaining 20% is edge case
-        handling, accessibility review, and the judgment call about whether the pattern is actually
-        correct. But 80% in twenty minutes is a real efficiency gain.
+        If you work on design systems, AI is already in your job, and nobody asked you
+        first. Annoyingly, it’s great at some of it.
       </p>
 
       <p>
-        Documentation follows the same pattern. AI writes serviceable first-pass documentation from
-        component specifications. The output needs editing &mdash; it tends toward generic
-        descriptions that don&rsquo;t explain the why behind a decision &mdash; but it&rsquo;s
-        faster than starting from a blank page, and the editing process often surfaces gaps in the
-        specification itself.
-      </p>
-
-      <p>
-        Token naming and organisation is another genuine win. Given a set of design values, AI can
-        suggest systematic naming conventions, identify inconsistencies, and propose hierarchies.
-        This is tedious, rule-bound work that doesn&rsquo;t benefit from human creativity. AI does
-        it reliably.
+        Give it a button with five states and it’ll produce every variant with the right
+        tokens in minutes, most of the way to production. The rest is edge cases and
+        deciding whether the pattern was right in the first place, which is where the real
+        time goes. It drafts documentation too. The drafts are generic and never explain why
+        anything was decided, but editing a bad draft beats staring at an empty page. Naming
+        tokens and spotting inconsistent values is rule-following work, and it does that
+        reliably.
       </p>
 
       <RevealOnScroll><ArtifactsVisual /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
       <p>
-        Deciding what to standardise is not automatable. The hardest question in design systems work
-        isn&rsquo;t &ldquo;how do I build this component&rdquo; &mdash; it&rsquo;s &ldquo;should
-        this be a component at all.&rdquo; That decision requires understanding which problems
-        recur, which variations are genuinely distinct, which patterns are load-bearing, and which
-        ones reflect the accumulated drift of a product built by too many people without enough
-        shared agreements. AI has no knowledge of your product&rsquo;s history, your team&rsquo;s
-        working patterns, or the dynamics that made certain decisions happen the way they did.
+        The trouble starts when people treat making artifacts and making decisions as the
+        same job.
       </p>
 
       <p>
-        Defining behavioral standards is also beyond what AI can reliably do. An AI can generate a
-        specification for how a dropdown should look. It cannot generate the interaction contract
-        that defines how filtering persists across surfaces, how drill interactions escalate, or what
-        the empty state means in the context of the specific workflow this component lives inside.
-        Those decisions require understanding the product deeply enough to have opinions about it.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        A design system that was generated quickly but not decided carefully produces a specific
-        failure: visual consistency without behavioral coherence. The components look like they
-        belong together. The interactions don&rsquo;t. Users experience the surface consistency as a
-        product that looks polished but feels unreliable &mdash; because the visual layer was
-        standardised and the behavioral layer wasn&rsquo;t.
+        The hardest question in systems work is whether something should be a component at
+        all. That depends on what keeps coming up in your product, and on which differences
+        are real and which are just drift from people working without agreements. A model
+        has no idea about any of that. It wasn’t there when your team made those calls, and
+        it doesn’t know which ones were compromises or which ones exist because someone
+        senior really liked purple.
       </p>
 
       <p>
-        This is the Frankenstein problem &mdash; not visible components drifting, but invisible
-        behavioral decisions made independently across modules. AI would have made the visual drift
-        faster to fix and entirely missed the underlying problem.
+        It can’t write the rules for how things behave either. It can tell you what a
+        dropdown looks like. It can’t decide how filters should persist when someone
+        switches views, or what an empty state should say halfway through a compliance
+        workflow. You only know that from living with the product.
+      </p>
+
+      <p>
+        At Scaler I saw what happens when a system is built without those decisions.
+        Navigation looked the same in every module and behaved slightly differently in each
+        one. It all looked polished and felt unreliable, and users are very good at noticing
+        the second part. AI would have tidied up the visual side even faster and never
+        noticed the rest.
       </p>
 
       <RevealOnScroll><FrankensteinVisual /></RevealOnScroll>
 
       <p>
-        The lesson is not to avoid AI in design systems work. It&rsquo;s to be clear about what
-        you&rsquo;re using it for. Generating artifacts: yes. Making the decisions that determine
-        whether those artifacts are correct: no.
-      </p>
-
-      <p>
-        AI can build the system faster. It cannot tell you what the system should be.
+        So I use it for the artifacts and keep the decisions with people. That split has
+        saved me a lot of time, and a few arguments.
       </p>
 
       <div className={styles.references}>

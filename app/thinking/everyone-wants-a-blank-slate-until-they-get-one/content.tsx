@@ -1,0 +1,109 @@
+import RevealOnScroll from '@/components/RevealOnScroll';
+import { VaguePreciseVisual, FramingQuestionVisual } from './visuals';
+import styles from './content.module.css';
+
+export default function GreenfieldContent() {
+  return (
+    <div className={styles.article}>
+      <p className={styles.standfirst}>
+        I spent the first few weeks of a brand-new Pax8 product without designing a single
+        screen.
+      </p>
+
+      <p>
+        Everyone says they want to build something from scratch. No legacy code and nobody
+        else’s mess to work around. It sounds like freedom.
+      </p>
+
+      <p>
+        Then you get one, and you realise every decision you make is about to become the
+        system, and anything you put off will turn into someone else’s expensive problem
+        later. There’s also nothing to point at when two people disagree, because nothing
+        exists yet.
+      </p>
+
+      <p>
+        That last part is the hard bit. On a normal project you can settle an argument by
+        looking at what’s already there. On a greenfield one, every stakeholder has a
+        different product in their head, and they’re all describing it with the same words.
+      </p>
+
+      <RevealOnScroll><VaguePreciseVisual /></RevealOnScroll>
+
+      <p>
+        The Pax8 monetisation work started with no brief and five stakeholders who each
+        pictured something different. I didn’t design anything for the first few weeks. I
+        spent them getting everyone to agree on one question: what does success look like
+        for a partner using this in their first week?
+      </p>
+
+      <p>
+        From then on, every argument about what to build could be checked against that
+        question.
+      </p>
+
+      <RevealOnScroll><FramingQuestionVisual /></RevealOnScroll>
+
+      <p>
+        There’s research behind this. Successful design teams use disagreement to reduce
+        uncertainty, while unsuccessful ones come out of every argument more confused than
+        they went in. The difference is usually whether there’s a shared model concrete
+        enough to disagree with.
+      </p>
+
+      <p>
+        Kahneman’s work on anchoring matters here too. When there’s no reference point,
+        people anchor on whatever comes first, like the first wireframe or the first
+        confident person in the meeting. On a greenfield project, whoever frames the problem
+        first has a huge amount of influence over everything after it. I’d rather that be
+        the designer.
+      </p>
+
+      <p>
+        The other thing nobody warns you about is how long your early decisions last. You’re
+        building the product and its conventions at the same time, with no history to check
+        against. The patterns you set in the first release will still be there years later,
+        in screens nobody has imagined yet.
+      </p>
+
+      <p>
+        So I treat a blank slate as a responsibility to set good constraints early, rather
+        than permission to do anything I like.
+      </p>
+
+      <div className={styles.references}>
+        <p className={styles.referencesLabel}>References</p>
+        <ol className={styles.referencesList}>
+          <li>
+            Kahneman, D. (2011). <em>Thinking, Fast and Slow.</em> Farrar, Straus and Giroux. On
+            anchoring bias and decision-making under uncertainty.
+          </li>
+          <li>
+            Lebiere, C. &amp; Anderson, J.R. (2011). Cognitive Constraints on Decision Making
+            under Uncertainty. <em>Frontiers in Psychology</em>, 2, 305.{' '}
+            <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2011.00305/full" target="_blank" rel="noopener noreferrer">
+              frontiersin.org
+            </a>
+          </li>
+          <li>
+            Youn, N. et al. (2023). Navigating Design, Data, and Decision in an Age of Uncertainty.{' '}
+            <em>Design Studies</em>, 88.{' '}
+            <a href="https://www.sciencedirect.com/science/article/pii/S2405872623000448" target="_blank" rel="noopener noreferrer">
+              sciencedirect.com
+            </a>
+          </li>
+          <li>
+            Eris, O. &amp; Badke-Schaub, P. (2017). The Dynamics of Micro-Conflicts and
+            Uncertainty in Successful and Unsuccessful Design Teams. <em>Design Studies</em>, 50,
+            200&ndash;228.{' '}
+            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0142694X17300133" target="_blank" rel="noopener noreferrer">
+              sciencedirect.com
+            </a>
+          </li>
+        </ol>
+      </div>
+
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
+    </div>
+  );
+}

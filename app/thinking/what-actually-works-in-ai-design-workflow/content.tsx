@@ -6,96 +6,64 @@ export default function Content() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        I&rsquo;ve tested a lot of AI tools in the last two years. Most of them don&rsquo;t save
-        time. They create a different kind of work: prompt writing, output reviewing,
-        direction-correcting, and explaining to stakeholders why the AI-generated thing isn&rsquo;t
-        quite right. The overhead is real.
+        I’ve spent two years testing AI tools. Most of them made my week longer.
       </p>
 
       <p>
-        But some things actually work. Not in the &ldquo;this will change everything&rdquo; sense
-        that every tool launch promises &mdash; in the sense that I now do them this way and
-        wouldn&rsquo;t go back.
-      </p>
-
-      <p>Here&rsquo;s what&rsquo;s actually useful, and where it reliably wastes your time.</p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        Research synthesis is genuinely faster with AI. Feeding twenty user interview transcripts
-        into a language model and asking it to surface themes, contradictions, and unresolved
-        questions compresses two weeks of synthesis work into two to three days. The researcher
-        validates AI-generated themes rather than creating them from scratch. The important caveat:
-        AI will occasionally hallucinate a pattern that isn&rsquo;t there, or flatten a nuanced
-        finding into something neater than the data supports. Your job shifts from synthesis to
-        verification &mdash; which is faster, but requires you to stay critical rather than trusting
-        the output.
+        I’ve tested a lot of AI tools over the last two years, and most of them didn’t save
+        me any time. They just moved the work around. Instead of designing, I was fixing
+        what came back and explaining why the generated screen didn’t match our design
+        system.
       </p>
 
       <p>
-        Generating quantity at the early stage is also genuinely useful. When you need ten layout
-        directions to show that you&rsquo;ve explored the space, AI produces them fast. When you
-        need five versions of a microcopy line to test in research, AI produces them in seconds.
-        The output is rarely what you ship. The value is the exploration that would have taken a
-        day now taking twenty minutes &mdash; leaving more time for the judgment work of selecting
-        and refining.
+        A few things did stick, though, and I wouldn’t go back.
       </p>
 
       <p>
-        Writing first drafts of documentation, design principles, and annotation copy is another
-        real win. AI produces serviceable first drafts that you edit into your voice. That&rsquo;s
-        faster than starting from a blank page, and the editing process is often where clarity
-        emerges anyway.
+        Research synthesis is the big one. I give a model a stack of interview transcripts
+        and ask for themes and anything that contradicts them. What used to take a couple of
+        weeks takes a few days, because my job changes from finding the themes to checking
+        them. And I do check them. Models will happily invent a pattern, or make the
+        findings sound much tidier than the interviews were.
+      </p>
+
+      <p>
+        It’s also great when I need lots of options quickly, like ten layout directions or
+        five versions of a microcopy line to test. A day of exploring turns into about
+        twenty minutes. I rarely ship any of them. I just get to the choosing part faster.
+      </p>
+
+      <p>
+        First drafts of documentation help too. I edit them into my own voice, and the
+        editing is often where I work out what I actually think.
       </p>
 
       <RevealOnScroll><WorkflowWinsVisual /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
       <p>
-        Using AI for anything requiring precision or specificity early in a project wastes time.
-        AI has no access to your users, your product context, your design system, your business
-        constraints, or the seventeen conversations that shaped this brief. It generates
-        plausible-looking outputs that look more informed than they are. The time you spend
-        directing, correcting, and restarting often exceeds what you&rsquo;d have spent starting
-        from scratch with your actual knowledge.
+        Where it wastes my time is anything that needs precision early on. The model doesn’t
+        know my users, my product or the endless conversations that shaped the brief. Its
+        output looks informed, so it takes a while to notice it isn’t, and by then fixing it
+        costs more than starting over would have.
       </p>
 
       <p>
-        Generating UI in production contexts is consistently slower than designing it yourself. The
-        outputs drift from your design system, miss interaction context, and create work for the
-        developer who has to reconcile them with what actually exists. For early exploration,
-        useful. For anything that touches production, not.
+        Generated production UI is the other one. It drifts from the design system and
+        leaves developers to reconcile the difference. I’ll use it to explore and then close
+        the tab.
       </p>
 
       <p>
-        Treating AI output as a starting point when it should be a direction-setter is the most
-        common mistake. Taking an AI-generated layout and trying to iterate from it anchors you to
-        the AI&rsquo;s assumptions. Better to use AI to generate options, extract the principle
-        behind the ones that feel right, and build from that principle in your own design
-        environment.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        AI is most useful when the task is well-defined, the context is available, and speed of
-        generation matters more than precision. It is least useful when the task is ambiguous, the
-        context lives in your head, and precision matters.
+        The trap is iterating on whatever the AI gives you, because you end up stuck with
+        its assumptions. I look at the options, figure out why the good ones work, and build
+        from that in my own tools.
       </p>
 
       <p>
-        Most of the important work in design &mdash; defining the right problem, making the
-        judgment call, pushing back on the brief &mdash; falls into the second category. The tools
-        help most with the work that was never the hard part.
-      </p>
-
-      <p>
-        AI assists with wireframe generation, placeholder copy, and user flow mapping. Human-led
-        work covers design critique, brand alignment, usability, accessibility, and final
-        decision-making. That division isn&rsquo;t a concession &mdash; it&rsquo;s the correct
-        allocation.
+        My rough rule is that AI helps when the task is clear and I can hand over the
+        context. It struggles when the problem is fuzzy or the important context is in
+        someone’s head, which, in my experience, describes most of the interesting work.
       </p>
 
       <RevealOnScroll><FitVisual /></RevealOnScroll>

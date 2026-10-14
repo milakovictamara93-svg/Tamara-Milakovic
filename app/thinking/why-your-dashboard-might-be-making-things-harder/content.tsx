@@ -6,98 +6,79 @@ export default function DashboardContent() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        Picture a spreadsheet. Hundreds of rows. Emissions data, supplier records, compliance
-        deadlines. A sustainability analyst opens it every morning and has to find something specific
-        &mdash; a missing disclosure, a number that doesn&rsquo;t add up, a supplier who
-        hasn&rsquo;t responded in six weeks.
+        We tested the cleanest, airiest table layout against denser ones. The pretty one
+        lost.
       </p>
 
       <p>
-        Now picture someone redesigning that spreadsheet into a &ldquo;modern dashboard.&rdquo;
-        Cards instead of rows. Summary tiles at the top. Progressive disclosure so you don&rsquo;t
-        see the detail until you click for it. Cleaner. More approachable. Slower to actually use.
+        Picture a sustainability analyst who opens a big spreadsheet every morning to hunt
+        for something specific, like a number that doesn’t add up or a supplier who’s gone
+        quiet.
       </p>
 
       <p>
-        This is the readability trap &mdash; and it&rsquo;s one of the most common ways enterprise
-        software quietly fails the people who depend on it most.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        The UX industry has a well-earned obsession with reducing cognitive load. The research is
-        real: unnecessary complexity tires users out, increases errors, drives people away. George
-        Miller&rsquo;s foundational 1956 paper established that working memory can hold only around
-        seven items at once &mdash; a finding that has shaped how designers think about information
-        density for decades. The problem is the word <em>unnecessary</em>.
+        Now someone “modernises” it into a dashboard, with summary tiles on top and cards
+        instead of rows. It looks cleaner and friendlier, and it’s slower to use.
       </p>
 
       <p>
-        In a consumer app, most complexity is unnecessary. Users are doing one thing, occasionally,
-        with low stakes attached to mistakes. Simplify aggressively and things get measurably better.
+        UX has a healthy obsession with reducing cognitive load, and the research behind it
+        is real. Miller’s famous 1956 paper on the limits of working memory has shaped how
+        designers think about density for decades. The catch is the word unnecessary. In a
+        consumer app, most complexity is unnecessary, and simplifying makes things better.
+        In a professional analytics tool, a lot of the complexity is there because the work
+        is complex and the people doing it are experts.
       </p>
 
       <p>
-        In professional analytical tools, complexity is often load-bearing. It&rsquo;s there because
-        the domain is complex, the decisions are consequential, and the users are experts who need
-        the data &mdash; not a curated summary of it. When you remove that complexity in the name of
-        good UX, you don&rsquo;t reduce their cognitive load. You relocate it. Now they have to
-        click through three screens to reconstruct the picture that one well-designed table would
-        have shown them at a glance.
+        Remove it and the load just moves somewhere else, usually into three extra clicks to
+        rebuild the picture one good table would have shown them.
       </p>
 
       <p>
-        This is what researchers call the &ldquo;information scent&rdquo; problem: when the cues
-        that help users navigate toward the data they need are hidden behind progressive disclosure
-        and summary cards, expert users spend more time hunting and less time working. The interface
-        that looks simpler is actually doing more cognitive work to the person using it.
+        There’s a name for part of this. Pirolli and Card called it information scent: the
+        cues that tell people they’re getting closer to what they need. Summary cards and
+        collapsed sections hide those cues, so experts spend their time hunting instead of
+        working. The screen looks simpler while the person using it does more of the
+        thinking.
       </p>
 
-      <hr className={styles.divider} />
-
       <p>
-        When I was working on Scaler &mdash; an ESG analytics platform where users spend the
-        majority of their time in dense, multi-dimensional data views &mdash; I ran evaluation
-        sessions comparing different density configurations on realistic datasets. The kind of data
-        users actually work with, not the sanitized version.
+        At Scaler I ran evaluation sessions comparing table densities, using realistic
+        datasets instead of a tidy demo version. The sparsest layout, with the most
+        whitespace and the most “designed” look, had the lowest accuracy on column-scanning
+        tasks and needed the most scrolling. The densest one was bad for scan speed. A
+        medium-high density with deliberate spacing rules won on everything we measured.
       </p>
 
       <RevealOnScroll><DensityExperimentVisual /></RevealOnScroll>
 
       <p>
-        This finding is consistent with research on expert performance in data-intensive domains.
-        Reducing visible data in the name of simplicity increased task completion time and error
-        rates for expert users, even when novice users benefited from the same change. Experts and
-        novices are not the same user. Designing for one often actively harms the other.
+        Experts and beginners aren’t the same user, and research on expert analysts points
+        the same way: hiding data in the name of simplicity makes experts slower and less
+        accurate, even when it helps beginners.
       </p>
 
-      <hr className={styles.divider} />
+      <p>
+        In sustainability work, the details that get hidden first are often the ones that
+        matter most. Whether a figure is Scope 2 or Scope 3, or whether a supplier number
+        was verified or self-reported, can decide whether a compliance filing is right.
+      </p>
 
       <p>
-        The instinct to simplify is not wrong. It just needs a harder question attached to it: is
-        the complexity I&rsquo;m removing noise, or signal?
+        None of this means simplifying is wrong. Decoration and pointless repetition are
+        noise, and they should go. Alberto Cairo argues in The Truthful Art that the job is
+        to make complexity navigable, not to pretend it isn’t there, and I think that’s the
+        right test for any expert tool.
       </p>
 
       <RevealOnScroll><SignalNoiseVisual /></RevealOnScroll>
 
       <p>
-        Alberto Cairo frames this well in <em>The Truthful Art</em> (2016): the goal of a
-        well-designed data display is not to simplify reality but to make complexity navigable.
-        There is a difference between visual noise &mdash; decoration, redundancy, unnecessary
-        variation &mdash; and substantive complexity that reflects the actual structure of the
-        domain. The designer&rsquo;s job is to know which is which, and to be honest about the
-        difference when stakeholders push for a cleaner screen.
+        So before cutting anything, I ask whether it’s noise or signal. Simple means fewer
+        things on screen. Legible means the right things, arranged so people can find them
+        and act on them. For expert work, those two often pull in opposite directions.
       </p>
-
-      <p>
-        The difference between simple and legible is the whole game. Simple means fewer elements.
-        Legible means the right elements, arranged so the user can find what they need, understand
-        what it means, and act. For expert analytical work, those two things point in opposite
-        directions.
-      </p>
-
-      <p>Design for the task, not the screenshot.</p>
 
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
