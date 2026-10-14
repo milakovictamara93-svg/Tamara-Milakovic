@@ -77,6 +77,40 @@ export default function WhenToStandardiseContent() {
 
       <RevealOnScroll><OverStandardisationSymptomsVisual /></RevealOnScroll>
 
+      <div className={styles.references}>
+        <p className={styles.referencesLabel}>References</p>
+        <ol className={styles.referencesList}>
+          <li>
+            Sweller, J. (1988). Cognitive Load During Problem Solving: Effects on Learning.{' '}
+            <em>Cognitive Science</em>, 12(2), 257&ndash;285.
+          </li>
+          <li>
+            UXPin (2026). <em>Design System Governance: A Guide to Prevent Drift.</em>{' '}
+            <a href="https://www.uxpin.com/studio/blog/design-system-governance/" target="_blank" rel="noopener noreferrer">
+              uxpin.com
+            </a>
+          </li>
+          <li>
+            Frost, B. (2016). <em>Atomic Design.</em> Brad Frost.{' '}
+            <a href="https://atomicdesign.bradfrost.com" target="_blank" rel="noopener noreferrer">
+              atomicdesign.bradfrost.com
+            </a>
+          </li>
+          <li>
+            Curtis, N. (2024). Team Models for Scaling a Design System. UX Planet.{' '}
+            <a href="https://uxplanet.org/design-system-governance-models-f66a97367ad5" target="_blank" rel="noopener noreferrer">
+              uxplanet.org
+            </a>
+          </li>
+          <li>
+            Nielsen Norman Group (2022). Design Systems 101.{' '}
+            <a href="https://www.nngroup.com/articles/design-systems-101/" target="_blank" rel="noopener noreferrer">
+              nngroup.com
+            </a>
+          </li>
+        </ol>
+      </div>
+
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );

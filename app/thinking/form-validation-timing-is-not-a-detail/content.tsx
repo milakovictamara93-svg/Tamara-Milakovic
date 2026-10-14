@@ -60,6 +60,43 @@ export default function FormValidationContent() {
         to work out which of the two is lying.
       </p>
 
+      <div className={styles.references}>
+        <p className={styles.referencesLabel}>References</p>
+        <ol className={styles.referencesList}>
+          <li>
+            Friedman, V. (2022). A Complete Guide to Live Validation UX.{' '}
+            <em>Smashing Magazine.</em>{' '}
+            <a href="https://www.smashingmagazine.com/2022/09/inline-validation-web-forms-ux/" target="_blank" rel="noopener noreferrer">
+              smashingmagazine.com
+            </a>
+          </li>
+          <li>
+            Baymard Institute (2024). Usability Testing of Inline Form Validation.{' '}
+            <a href="https://baymard.com/blog/inline-form-validation" target="_blank" rel="noopener noreferrer">
+              baymard.com
+            </a>
+          </li>
+          <li>
+            UX Movement (2019). Why Users Make More Errors with Instant Inline Validation.{' '}
+            <a href="https://uxmovement.com/forms/why-users-make-more-errors-with-instant-inline-validation/" target="_blank" rel="noopener noreferrer">
+              uxmovement.com
+            </a>
+          </li>
+          <li>
+            Smart Interface Design Patterns. Inline Validation UX.{' '}
+            <a href="https://smart-interface-design-patterns.com/articles/inline-validation-ux/" target="_blank" rel="noopener noreferrer">
+              smart-interface-design-patterns.com
+            </a>
+          </li>
+          <li>
+            GetFormFlow (2026). Form Validation Best Practices: A Complete Guide.{' '}
+            <a href="https://getformflow.io/blog/form-validation-best-practices-a-complete-guide" target="_blank" rel="noopener noreferrer">
+              getformflow.io
+            </a>
+          </li>
+        </ol>
+      </div>
+
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and complex interaction problems.</p>
     </div>
   );

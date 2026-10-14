@@ -65,6 +65,42 @@ export default function LoadingStatesContent() {
         loads. It fixed more than any new component would have.
       </p>
 
+      <div className={styles.references}>
+        <p className={styles.referencesLabel}>References</p>
+        <ol className={styles.referencesList}>
+          <li>
+            Nielsen Norman Group (2024). Skeleton Screens 101.{' '}
+            <a href="https://www.nngroup.com/articles/skeleton-screens/" target="_blank" rel="noopener noreferrer">
+              nngroup.com
+            </a>
+          </li>
+          <li>
+            Nielsen Norman Group. Skeleton Screens vs. Progress Bars vs. Spinners (Video).{' '}
+            <a href="https://www.nngroup.com/videos/skeleton-screens-vs-progress-bars-vs-spinners/" target="_blank" rel="noopener noreferrer">
+              nngroup.com
+            </a>
+          </li>
+          <li>
+            UI Deploy (2025). Skeleton Screens vs. Spinners: Optimizing Perceived Performance.{' '}
+            <a href="https://ui-deploy.com/blog/skeleton-screens-vs-spinners-optimizing-perceived-performance" target="_blank" rel="noopener noreferrer">
+              ui-deploy.com
+            </a>
+          </li>
+          <li>
+            Pencil &amp; Paper (2022). UX Design Patterns for Loading.{' '}
+            <a href="https://www.pencilandpaper.io/articles/ux-pattern-analysis-loading-feedback" target="_blank" rel="noopener noreferrer">
+              pencilandpaper.io
+            </a>
+          </li>
+          <li>
+            LogRocket (2025). Skeleton Loading Screen Design.{' '}
+            <a href="https://blog.logrocket.com/ux-design/skeleton-loading-screen-design/" target="_blank" rel="noopener noreferrer">
+              blog.logrocket.com
+            </a>
+          </li>
+        </ol>
+      </div>
+
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and complex interaction problems.</p>
     </div>
   );
