@@ -5,7 +5,7 @@ import styles from './content.module.css';
 export default function Content() {
   return (
     <div className={styles.article}>
-      <p>
+      <p className={styles.standfirst}>
         Design systems work is the area of design practice most immediately and materially affected
         by AI &mdash; and also the area where the distinction between what AI can do and what it
         can&rsquo;t matters most.

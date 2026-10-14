@@ -5,7 +5,7 @@ import styles from './content.module.css';
 export default function Content() {
   return (
     <div className={styles.article}>
-      <p>
+      <p className={styles.standfirst}>
         I&rsquo;ve tested a lot of AI tools in the last two years. Most of them don&rsquo;t save
         time. They create a different kind of work: prompt writing, output reviewing,
         direction-correcting, and explaining to stakeholders why the AI-generated thing isn&rsquo;t

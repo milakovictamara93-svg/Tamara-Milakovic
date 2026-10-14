@@ -5,7 +5,7 @@ import styles from './content.module.css';
 export default function Content() {
   return (
     <div className={styles.article}>
-      <p>
+      <p className={styles.standfirst}>
         There&rsquo;s a version of this conversation that goes: prompting is just writing better
         instructions. Anyone can do it. It&rsquo;s not really a skill.
       </p>
