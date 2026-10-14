@@ -64,33 +64,6 @@ export default function Content() {
       </p>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            Standard Beagle Studio (2025).{' '}
-            <em>AI-Assisted Design Workflows: A Strategic Guide for Product Teams.</em>{' '}
-            <a href="https://standardbeagle.com/ai-assisted-design-workflows/" target="_blank" rel="noopener noreferrer">
-              standardbeagle.com
-            </a>
-          </li>
-          <li>
-            Figma (2026).{' '}
-            <em>How To Use AI for Product Design: 7 Use Cases.</em>{' '}
-            <a href="https://www.figma.com/resource-library/ai-for-product-design/" target="_blank" rel="noopener noreferrer">
-              figma.com
-            </a>
-          </li>
-          <li>
-            Netguru (2025).{' '}
-            <em>Design System Adoption Pitfalls.</em>{' '}
-            <a href="https://www.netguru.com/blog/design-system-adoption-pitfalls" target="_blank" rel="noopener noreferrer">
-              netguru.com
-            </a>
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

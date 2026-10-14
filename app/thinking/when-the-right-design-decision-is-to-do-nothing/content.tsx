@@ -60,19 +60,7 @@ export default function DoNothingContent() {
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
           <li>
-            Schwartz, B. (2004). <em>The Paradox of Choice: Why More Is Less.</em> Harper Perennial.
-          </li>
-          <li>
-            Sonin (2025). Feature Bloat: The Silent Product Killer.{' '}
-            <a href="https://sonin.agency/insights/feature-bloat-the-silent-product-killer/" target="_blank" rel="noopener noreferrer">
-              sonin.agency
-            </a>
-          </li>
-          <li>
-            Test Double (2025). The Art of Product Restraint: Why Less Delivers More.{' '}
-            <a href="https://testdouble.com/insights/product-management-restraint-why-less-delivers-more" target="_blank" rel="noopener noreferrer">
-              testdouble.com
-            </a>
+            Schwartz, B. (2004).{' '}<em>The Paradox of Choice: Why More Is Less.</em>{' '}Ecco.
           </li>
         </ol>
       </div>

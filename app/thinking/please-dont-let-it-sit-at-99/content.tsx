@@ -82,24 +82,6 @@ export default function LoadingStatesContent() {
               nngroup.com
             </a>
           </li>
-          <li>
-            UI Deploy (2025). Skeleton Screens vs. Spinners: Optimizing Perceived Performance.{' '}
-            <a href="https://ui-deploy.com/blog/skeleton-screens-vs-spinners-optimizing-perceived-performance" target="_blank" rel="noopener noreferrer">
-              ui-deploy.com
-            </a>
-          </li>
-          <li>
-            Pencil &amp; Paper (2022). UX Design Patterns for Loading.{' '}
-            <a href="https://www.pencilandpaper.io/articles/ux-pattern-analysis-loading-feedback" target="_blank" rel="noopener noreferrer">
-              pencilandpaper.io
-            </a>
-          </li>
-          <li>
-            LogRocket (2025). Skeleton Loading Screen Design.{' '}
-            <a href="https://blog.logrocket.com/ux-design/skeleton-loading-screen-design/" target="_blank" rel="noopener noreferrer">
-              blog.logrocket.com
-            </a>
-          </li>
         </ol>
       </div>
     </div>

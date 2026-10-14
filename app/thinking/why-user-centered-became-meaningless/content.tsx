@@ -59,24 +59,6 @@ export default function UserCenteredContent() {
             Norman, D. &amp; Draper, S. (Eds.) (1986). <em>User Centered System Design: New
             Perspectives on Human-Computer Interaction.</em> Lawrence Erlbaum Associates.
           </li>
-          <li>
-            Martin, Y. (n.d.). User Centered Design Is Obsolete. UXDX.{' '}
-            <a href="https://uxdx.com/blog/user-centered-design-is-obsolete/" target="_blank" rel="noopener noreferrer">
-              uxdx.com
-            </a>
-          </li>
-          <li>
-            Pacheco, J. (2025). User-Centred Design Is Not So User-Centered. Medium.{' '}
-            <a href="https://medium.com/@joshuapacheco/user-centred-design-is-not-so-user-centered-how-biased-is-it-1a41f4ac47c" target="_blank" rel="noopener noreferrer">
-              medium.com
-            </a>
-          </li>
-          <li>
-            Nielsen Norman Group (2026). State of UX 2026: Design Deeper to Differentiate.{' '}
-            <a href="https://www.nngroup.com/articles/state-of-ux-2026/" target="_blank" rel="noopener noreferrer">
-              nngroup.com
-            </a>
-          </li>
         </ol>
       </div>
     </div>

@@ -86,21 +86,19 @@ export default function DashboardContent() {
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
           <li>
-            Miller, G.A. (1956). The Magical Number Seven, Plus or Minus Two: Some Limits on Our
-            Capacity for Processing Information. <em>Psychological Review</em>, 63(2), 81&ndash;97.{' '}
-            <a href="https://psychclassics.yorku.ca/Miller/" target="_blank" rel="noopener noreferrer">
-              psychclassics.yorku.ca
+            Miller, G.A. (1956). The Magical Number Seven, Plus or Minus Two: Some Limits on Our Capacity for Processing Information.{' '}<em>Psychological Review</em>, 63(2), 81&ndash;97.{' '}
+            <a href="https://www.yorku.ca/pclassic/Miller/" target="_blank" rel="noopener noreferrer">
+              yorku.ca
             </a>
           </li>
           <li>
-            Pirolli, P. &amp; Card, S. (1999). Information Foraging.{' '}
-            <em>Psychological Review</em>, 106(4), 643&ndash;675. Foundational paper on information
-            scent and navigation in complex data environments.
+            Pirolli, P. &amp; Card, S. (1999). Information Foraging.{' '}<em>Psychological Review</em>, 106(4), 643&ndash;675.{' '}
+            <a href="https://doi.org/10.1037/0033-295X.106.4.643" target="_blank" rel="noopener noreferrer">
+              doi.org
+            </a>
           </li>
           <li>
-            Dull, R.B. &amp; Tegarden, D.P. (1999). A Comparison of Three Visual Representations
-            of Complex Multidimensional Accounting Information.{' '}
-            <em>Journal of Information Systems</em>, 13(2), 117&ndash;131.
+            Kalyuga, S., Ayres, P., Chandler, P. &amp; Sweller, J. (2003). The Expertise Reversal Effect.{' '}<em>Educational Psychologist</em>, 38(1), 23&ndash;31.
           </li>
           <li>
             Cairo, A. (2016).{' '}

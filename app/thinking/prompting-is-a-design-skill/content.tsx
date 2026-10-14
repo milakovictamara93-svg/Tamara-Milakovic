@@ -67,26 +67,6 @@ export default function Content() {
       </p>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            McKinsey &amp; Company (2025).{' '}
-            <em>The state of AI in 2025.</em>{' '}
-            <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener noreferrer">
-              mckinsey.com
-            </a>
-          </li>
-          <li>
-            UOC (2025).{' '}
-            <em>How AI is changing professions like design, art, and the media.</em>{' '}
-            <a href="https://www.uoc.edu/en/news/2025/ai-could-automate-creative-professions" target="_blank" rel="noopener noreferrer">
-              uoc.edu
-            </a>
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

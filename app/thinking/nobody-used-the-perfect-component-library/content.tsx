@@ -60,36 +60,6 @@ export default function DesignSystemsContent() {
       </p>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            Netguru (2025). Design System Adoption Pitfalls.{' '}
-            <a href="https://www.netguru.com/blog/design-system-adoption-pitfalls" target="_blank" rel="noopener noreferrer">
-              netguru.com
-            </a>
-          </li>
-          <li>
-            Okoone (2025). Why Your Design System Isn&rsquo;t Taking Off.{' '}
-            <a href="https://www.okoone.com/spark/product-design-research/why-your-design-system-isnt-taking-off/" target="_blank" rel="noopener noreferrer">
-              okoone.com
-            </a>
-          </li>
-          <li>
-            Rangle.io (2020). Design Without the System: Why Design System Adoptions Fail.{' '}
-            <a href="https://rangle.io/blog/design-without-the-system-why-design-system-adoptions-fail" target="_blank" rel="noopener noreferrer">
-              rangle.io
-            </a>
-          </li>
-          <li>
-            Knapsack (2023). Why Design Systems Fail.{' '}
-            <a href="https://www.knapsack.cloud/blog/why-design-systems-fail" target="_blank" rel="noopener noreferrer">
-              knapsack.cloud
-            </a>
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

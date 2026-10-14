@@ -51,21 +51,14 @@ export default function BriefContent() {
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
           <li>
-            Gothelf, J. &amp; Seiden, J. (2016). <em>Lean UX: Designing Great Products with Agile
-            Teams.</em> O&rsquo;Reilly Media.{' '}
-            <a href="https://www.oreilly.com/library/view/designing-for-product/9781491971451/ch05.html" target="_blank" rel="noopener noreferrer">
+            Gothelf, J. &amp; Seiden, J. (2016).{' '}<em>Lean UX: Designing Great Products with Agile Teams</em>{' '}(2nd ed.). O&rsquo;Reilly Media.{' '}
+            <a href="https://www.oreilly.com/library/view/lean-ux-2nd/9781491953594/" target="_blank" rel="noopener noreferrer">
               oreilly.com
             </a>
           </li>
           <li>
-            Nielsen Norman Group (2024). Discovery: Definition.{' '}
+            Rosala, M. Discovery Phase in UX Projects.{' '}<em>Nielsen Norman Group.</em>{' '}
             <a href="https://www.nngroup.com/articles/discovery-phase/" target="_blank" rel="noopener noreferrer">
-              nngroup.com
-            </a>
-          </li>
-          <li>
-            Nielsen Norman Group (2024). Problem Statements in UX Discovery.{' '}
-            <a href="https://www.nngroup.com/articles/problem-statements/" target="_blank" rel="noopener noreferrer">
               nngroup.com
             </a>
           </li>

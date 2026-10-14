@@ -81,25 +81,9 @@ export default function GreenfieldContent() {
             anchoring bias and decision-making under uncertainty.
           </li>
           <li>
-            Lebiere, C. &amp; Anderson, J.R. (2011). Cognitive Constraints on Decision Making
-            under Uncertainty. <em>Frontiers in Psychology</em>, 2, 305.{' '}
-            <a href="https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2011.00305/full" target="_blank" rel="noopener noreferrer">
-              frontiersin.org
-            </a>
-          </li>
-          <li>
-            Youn, N. et al. (2023). Navigating Design, Data, and Decision in an Age of Uncertainty.{' '}
-            <em>Design Studies</em>, 88.{' '}
-            <a href="https://www.sciencedirect.com/science/article/pii/S2405872623000448" target="_blank" rel="noopener noreferrer">
-              sciencedirect.com
-            </a>
-          </li>
-          <li>
-            Eris, O. &amp; Badke-Schaub, P. (2017). The Dynamics of Micro-Conflicts and
-            Uncertainty in Successful and Unsuccessful Design Teams. <em>Design Studies</em>, 50,
-            200&ndash;228.{' '}
-            <a href="https://www.sciencedirect.com/science/article/abs/pii/S0142694X17300133" target="_blank" rel="noopener noreferrer">
-              sciencedirect.com
+            Paletz, S.B.F., Chan, J. &amp; Schunn, C.D. (2017). Dynamics of Micro-Conflicts and Uncertainty in Successful and Unsuccessful Design Teams.{' '}<em>Design Studies</em>, 50, 39&ndash;69.{' '}
+            <a href="https://doi.org/10.1016/j.destud.2017.02.002" target="_blank" rel="noopener noreferrer">
+              doi.org
             </a>
           </li>
         </ol>

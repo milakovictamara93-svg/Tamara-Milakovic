@@ -78,24 +78,6 @@ export default function FormValidationContent() {
               baymard.com
             </a>
           </li>
-          <li>
-            UX Movement (2019). Why Users Make More Errors with Instant Inline Validation.{' '}
-            <a href="https://uxmovement.com/forms/why-users-make-more-errors-with-instant-inline-validation/" target="_blank" rel="noopener noreferrer">
-              uxmovement.com
-            </a>
-          </li>
-          <li>
-            Smart Interface Design Patterns. Inline Validation UX.{' '}
-            <a href="https://smart-interface-design-patterns.com/articles/inline-validation-ux/" target="_blank" rel="noopener noreferrer">
-              smart-interface-design-patterns.com
-            </a>
-          </li>
-          <li>
-            GetFormFlow (2026). Form Validation Best Practices: A Complete Guide.{' '}
-            <a href="https://getformflow.io/blog/form-validation-best-practices-a-complete-guide" target="_blank" rel="noopener noreferrer">
-              getformflow.io
-            </a>
-          </li>
         </ol>
       </div>
     </div>

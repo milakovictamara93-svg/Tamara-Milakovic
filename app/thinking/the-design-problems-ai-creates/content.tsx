@@ -62,33 +62,6 @@ export default function Content() {
       </p>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
-
-      <div className={styles.references}>
-        <p className={styles.referencesLabel}>References</p>
-        <ol className={styles.referencesList}>
-          <li>
-            Startup House (2026).{' '}
-            <em>The Future of Product Design: Building AI-Native Digital Services.</em>{' '}
-            <a href="https://startup-house.com/blog/future-of-product-design-ai-workflows-2026" target="_blank" rel="noopener noreferrer">
-              startup-house.com
-            </a>
-          </li>
-          <li>
-            UOC (2025).{' '}
-            <em>How AI is changing professions like design, art, and the media.</em>{' '}
-            <a href="https://www.uoc.edu/en/news/2025/ai-could-automate-creative-professions" target="_blank" rel="noopener noreferrer">
-              uoc.edu
-            </a>
-          </li>
-          <li>
-            Creative Boom (2024).{' '}
-            <em>Special report: how design agencies are actually using AI in 2024.</em>{' '}
-            <a href="https://www.creativeboom.com/insight/special-report-how-design-agencies-are-using-ai-in-2024/" target="_blank" rel="noopener noreferrer">
-              creativeboom.com
-            </a>
-          </li>
-        </ol>
-      </div>
     </div>
   );
 }

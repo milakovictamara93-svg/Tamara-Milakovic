@@ -66,26 +66,8 @@ export default function ModalOrPageContent() {
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
           <li>
-            Sweller, J. (1988). Cognitive Load During Problem Solving: Effects on Learning.{' '}
-            <em>Cognitive Science</em>, 12(2), 257&ndash;285.{' '}
-            <a href="https://onlinelibrary.wiley.com/doi/10.1207/s15516709cog1202_4" target="_blank" rel="noopener noreferrer">
-              onlinelibrary.wiley.com
-            </a>
-          </li>
-          <li>
-            O&rsquo;Brien, H.L. &amp; Toms, E.G. (2008). What is user engagement?{' '}
-            <em>Journal of the American Society for Information Science and Technology</em>, 59(6), 938&ndash;955.
-          </li>
-          <li>
             Nielsen Norman Group (2023). Modal &amp; Nonmodal Dialogs: When (&amp; When Not) to Use Them.{' '}
             <a href="https://www.nngroup.com/articles/modal-nonmodal-dialog/" target="_blank" rel="noopener noreferrer">
-              nngroup.com
-            </a>
-          </li>
-          <li>
-            Whitenton, K. (2013). Minimize Cognitive Load to Maximize Usability.{' '}
-            <em>Nielsen Norman Group.</em>{' '}
-            <a href="https://www.nngroup.com/articles/minimize-cognitive-load/" target="_blank" rel="noopener noreferrer">
               nngroup.com
             </a>
           </li>
