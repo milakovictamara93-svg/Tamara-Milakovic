@@ -6,17 +6,17 @@ import TextLink from '@/components/TextLink';
 import styles from './page.module.css';
 
 export const metadata = {
-  title: 'Contact Tamara Milakovic | Open to Design Leadership Roles',
-  description: "Open to senior and lead product design roles in B2B SaaS. Let's talk about the problem worth solving.",
+  title: 'Contact Tamara Milakovic | Open to Principal Product Design Roles',
+  description: 'Open to principal and senior product design roles in B2B SaaS. Get in touch.',
   openGraph: {
-    title: 'Contact Tamara Milakovic | Open to Design Leadership Roles',
-    description: "Open to senior and lead product design roles in B2B SaaS. Let's talk about the problem worth solving.",
+    title: 'Contact Tamara Milakovic | Open to Principal Product Design Roles',
+    description: 'Open to principal and senior product design roles in B2B SaaS. Get in touch.',
     url: 'https://www.tamaramilakovic.com/contact',
     type: 'website',
   },
   twitter: {
-    title: 'Contact Tamara Milakovic | Open to Design Leadership Roles',
-    description: "Open to senior and lead product design roles in B2B SaaS. Let's talk about the problem worth solving.",
+    title: 'Contact Tamara Milakovic | Open to Principal Product Design Roles',
+    description: 'Open to principal and senior product design roles in B2B SaaS. Get in touch.',
   },
 };
 
@@ -43,7 +43,7 @@ export default function ContactPage() {
         <div className={styles.content}>
           <div className={styles.contentInner}>
             <h1 className={styles.heading}>
-              I&rsquo;m open to senior and lead product design roles &ndash; and to conversations worth having. Let&rsquo;s talk.
+              I&rsquo;m open to principal and senior product design roles. I&rsquo;m also happy to talk about a hard problem, even if there&rsquo;s no job attached.
             </h1>
 
             <a
@@ -63,7 +63,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <Marquee text="If you've read this far, you already know if we'd work well together. 🤝" />
+        <Marquee text="Short page, I know. I saved the opinions for the articles. 🤝" />
       </main>
       <Footer />
     </>
