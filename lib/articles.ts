@@ -55,10 +55,10 @@ export const articles: Article[] = [
     category: 'Interaction Design',
     tags: ['Interaction Design', 'Process'],
     date: 'April 28, 2026',
-    readingTime: 8,
+    readingTime: 2,
     standfirst:
-      "Every product designer has made this decision dozens of times. Someone says 'let's do it in a modal' or 'this needs its own page.' Nobody asks why. The decision gets made in thirty seconds and shipped six weeks later. Then the complaints come in.",
-    marqueeText: "The container should follow the task. 📦 It almost never does. 🧠 Modal, page, or panel — the surface is a choice, not a default.",
+      "Someone says \"let's just do it in a modal\" and nobody asks why. I say it myself, way too often.",
+    marqueeText: "The container should follow the task. 📦",
     image: null,
   },
   {
@@ -68,10 +68,10 @@ export const articles: Article[] = [
     category: 'Design Systems',
     tags: ['Design Systems'],
     date: 'April 24, 2026',
-    readingTime: 5,
+    readingTime: 2,
     standfirst:
-      "Every design system has a spinner. Most have added a skeleton screen component at some point. Some have a progress bar. What almost none of them have is a clear decision rule for which one to use when — which means developers reach for whichever is easiest to implement and designers ship whatever ships fastest.",
-    marqueeText: "Loading state is not a design afterthought. ⏳ It's the moment the product earns trust — or quietly loses it. 🔒",
+      "Our table loaded twenty rows behind a skeleton of three, and the whole page jumped.",
+    marqueeText: "The best loading state is the one nobody notices. ⏳",
     image: null,
   },
   {
@@ -81,9 +81,9 @@ export const articles: Article[] = [
     category: 'Design Systems',
     tags: ['Design Systems'],
     date: 'April 21, 2026',
-    readingTime: 5,
+    readingTime: 2,
     standfirst:
-      "Designers spend hours on the visual design of error messages — the red border, the icon, the copy. They spend almost no time on the question that determines whether those messages help or infuriate: when do they appear?",
+      "The form told me my email was invalid before I'd finished typing it. Technically, it was right.",
     marqueeText: "The error message is the last resort. ⛔ Timing is what determines whether you need one at all. ⏰",
     image: null,
   },
