@@ -6,98 +6,69 @@ export default function GreenfieldContent() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        Everyone says they want to work on a blank slate. Build something from scratch. No legacy
-        code, no inherited decisions, no one to blame for the constraints. It sounds like freedom.
-        It isn&rsquo;t. It&rsquo;s accountability with nowhere to hide.
+        I spent the first few weeks of a brand-new Pax8 product without designing a single
+        screen.
       </p>
 
       <p>
-        When there&rsquo;s no existing system to reference, every decision you make <em>is</em>{' '}
-        the system. Every pattern you introduce becomes the convention. Every call you defer becomes
-        someone else&rsquo;s problem to fix later &mdash; usually at three times the cost.
-        Greenfield work feels open until you realize the openness is the challenge. There&rsquo;s
-        no floor. There&rsquo;s no ceiling. There&rsquo;s just you, a blank Figma file, and the
-        question of where to even start.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        Most designers approach greenfield work like they approach any other project: define the
-        problem, sketch solutions, iterate. The issue is that approach assumes a stable problem to
-        iterate on. In greenfield contexts, the problem itself is often contested. Stakeholders have
-        different versions of what&rsquo;s being built in their heads. There&rsquo;s no existing
-        product to point to when someone&rsquo;s interpretation conflicts with another. You
-        can&rsquo;t resolve a disagreement about direction by looking at what already exists
-        &mdash; nothing does yet.
+        Everyone says they want to build something from scratch. No legacy code and nobody
+        else’s mess to work around. It sounds like freedom.
       </p>
 
       <p>
-        Research on design teams confirms what this feels like from the inside: successful design
-        teams harness interpersonal conflicts to reduce uncertainty, while in unsuccessful teams,
-        uncertainty rises after conflict [4]. The difference isn&rsquo;t whether disagreement
-        happens &mdash; it always does &mdash; but whether the team has a shared model visible
-        enough to make disagreements resolvable. Without that shared model, every stakeholder
-        meeting risks generating more uncertainty than it resolves.
+        Then you get one, and you realise every decision you make is about to become the
+        system, and anything you put off will turn into someone else’s expensive problem
+        later. There’s also nothing to point at when two people disagree, because nothing
+        exists yet.
       </p>
 
       <p>
-        This is why the first design deliverable in a greenfield project is almost never a screen.
-        It&rsquo;s a shared question. A model. A framework that gives everyone something concrete
-        enough to disagree with specifically. The goal isn&rsquo;t to have the answer &mdash;
-        it&rsquo;s to convert vague disagreement into precise disagreement. Precise disagreements
-        are solvable. Vague ones compound.
+        That last part is the hard bit. On a normal project you can settle an argument by
+        looking at what’s already there. On a greenfield one, every stakeholder has a
+        different product in their head, and they’re all describing it with the same words.
       </p>
 
       <RevealOnScroll><VaguePreciseVisual /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
       <p>
-        There&rsquo;s a cognitive dimension to this worth naming. Kahneman&rsquo;s work on
-        decision-making under uncertainty shows that when people lack clear reference points, they
-        anchor on whatever comes first &mdash; the first wireframe, the first framing of the
-        problem, the first stakeholder who speaks with confidence [1]. In greenfield work, the
-        designer who defines the frame first has disproportionate influence over everything that
-        follows. That&rsquo;s not a warning. It&rsquo;s a reason to invest in the framing before
-        anything else is visible.
+        The Pax8 monetisation work started with no brief and five stakeholders who each
+        pictured something different. I didn’t design anything for the first few weeks. I
+        spent them getting everyone to agree on one question: what does success look like
+        for a partner using this in their first week?
       </p>
 
       <p>
-        On the Pax8 monetization project, I spent the first weeks not designing &mdash; but
-        establishing a single question that forced alignment across five stakeholders who each had
-        a different product in their head: <em>what does success look like for a partner who uses
-        this in their first week?</em> That question became the design spine for everything that
-        followed. It didn&rsquo;t answer what to build. It made every subsequent disagreement about
-        building answerable.
+        From then on, every argument about what to build could be checked against that
+        question.
       </p>
 
       <RevealOnScroll><FramingQuestionVisual /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
       <p>
-        Greenfield work also means you&rsquo;re setting standards in real time with no
-        organisational memory to draw from. There&rsquo;s no existing interaction pattern to
-        inherit. No one to ask how edge cases were handled before. You&rsquo;re building the product
-        and the conventions and the shared understanding simultaneously &mdash; and the decisions
-        you make in the first phase don&rsquo;t just affect the first release. They compound into
-        every surface that comes after.
+        There’s research behind this. Successful design teams use disagreement to reduce
+        uncertainty, while unsuccessful ones come out of every argument more confused than
+        they went in. The difference is usually whether there’s a shared model concrete
+        enough to disagree with.
       </p>
 
       <p>
-        Designers working in this mode need to move away from the view of design as problem-solving
-        with clear, fixed goals toward a more flexible, adaptive approach that embraces ambiguity
-        &mdash; while still producing something stable enough for a team to build from [3]. In
-        greenfield work, the goal isn&rsquo;t certainty. It&rsquo;s a model that&rsquo;s clear
-        enough to move forward and honest enough to revise when you learn something new.
+        Kahneman’s work on anchoring matters here too. When there’s no reference point,
+        people anchor on whatever comes first, like the first wireframe or the first
+        confident person in the meeting. On a greenfield project, whoever frames the problem
+        first has a huge amount of influence over everything after it. I’d rather that be
+        the designer.
       </p>
 
       <p>
-        The transferable lesson isn&rsquo;t a technique. It&rsquo;s an orientation. Greenfield
-        work rewards the designers who treat the absence of constraints not as freedom to go
-        anywhere, but as responsibility to establish the right constraints early &mdash; because
-        the constraints you set will outlast the first version of the product by years.
+        The other thing nobody warns you about is how long your early decisions last. You’re
+        building the product and its conventions at the same time, with no history to check
+        against. The patterns you set in the first release will still be there years later,
+        in screens nobody has imagined yet.
+      </p>
+
+      <p>
+        So I treat a blank slate as a responsibility to set good constraints early, rather
+        than permission to do anything I like.
       </p>
 
       <div className={styles.references}>

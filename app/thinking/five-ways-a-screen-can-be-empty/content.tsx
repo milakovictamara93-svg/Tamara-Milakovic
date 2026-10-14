@@ -13,140 +13,73 @@ export default function EmptyStatesContent() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        Open almost any design system documentation and find the empty state component. It will have
-        a spot illustration, a headline, a short body copy, and maybe a call-to-action button. One
-        component. One pattern. This is the problem.
+        Most design systems have one empty state component, and it’s usually the wrong one.
       </p>
 
       <p>
-        Empty states aren&rsquo;t one thing. They&rsquo;re at least five distinct situations with
-        different user emotional states, different cognitive needs, and different design jobs to do.
-        Treating them as one component produces the most common empty state failure: the wrong
-        message delivered with the right visual polish.
-      </p>
-
-      <p>Here&rsquo;s how to actually think about them.</p>
-
-      <TaxonomyTable />
-
-      <h2 className={styles.h2}>The five situations</h2>
-
-      {/* 1. First use */}
-      <h3 className={styles.h3}>1. First use - nothing here yet</h3>
-
-      <p>
-        The user has just arrived. There&rsquo;s no content because they haven&rsquo;t created any.
-        Their emotional state is anticipatory, possibly uncertain. The design job is orientation and
-        activation: explain what this space is for, show what it will look like when populated, and
-        give a clear path to the first meaningful action.
+        Open almost any design system and find the empty state. There’ll be a little
+        illustration, a headline, a line of copy and maybe a button, and the same one gets
+        used everywhere.
       </p>
 
       <p>
-        This is the empty state with the highest business stakes. Get it right and you accelerate
-        activation. Get it wrong and you create the blank-page paralysis that kills onboarding. A
-        well-designed empty state is very crucial at this stage - it can make or break your
-        product&rsquo;s key metrics. The content here should answer three questions fast: what is
-        this, why does it matter, and what do I do first?
+        That’s how you end up telling someone who just cleared their whole inbox how to get
+        started.
+      </p>
+
+      <p>
+        An empty screen can mean very different things, and the person looking at it feels
+        different each time. Someone brand new has nothing yet, so they need to know what
+        this space is for and what to do first. This is the empty state that moves business
+        numbers, because a confusing first screen is where a lot of people leave.
       </p>
 
       <RevealOnScroll><FirstUseMockup /></RevealOnScroll>
 
-      {/* 2. User-cleared */}
-      <h3 className={styles.h3}>2. User-cleared - you did it</h3>
-
       <p>
-        The user has completed a task and the result is intentionally empty: inbox zero, all tasks
-        done, no pending items. Their emotional state is accomplishment. The design job is
-        celebration and forward momentum - not more instructions.
-      </p>
-
-      <p>
-        This is the empty state most designers confuse with first use. They apply the same
-        &ldquo;here&rsquo;s how to get started&rdquo; template to a surface the user has been using
-        for months. That&rsquo;s not helpful - it&rsquo;s patronising. Celebratory empty states
-        mark success with positive reinforcement. The design registers the accomplishment, then gets
-        out of the way.
+        Someone who just finished everything is in a great mood. Don’t ruin it with
+        onboarding copy. Tell them they’re done and get out of the way.
       </p>
 
       <RevealOnScroll><UserClearedMockup /></RevealOnScroll>
 
-      {/* 3. No results */}
-      <h3 className={styles.h3}>3. No results - we looked, found nothing</h3>
-
       <p>
-        The user searched or filtered and the system returned nothing. Their emotional state is mild
-        frustration, possibly confusion about whether they did something wrong. The design job is
-        disambiguation and recovery: confirm you understood their query, explain why there are no
-        results if possible, and give them a productive next step.
-      </p>
-
-      <p>
-        The key distinction from first use: this user knows how to use the product. They
-        don&rsquo;t need onboarding copy. They need help getting unstuck.
+        If you searched and got nothing, you’re a bit frustrated and wondering if you did it
+        wrong. You already know the product, so you need help getting unstuck, like a quick
+        way to clear your filters.
       </p>
 
       <RevealOnScroll><NoResultsMockup /></RevealOnScroll>
 
-      {/* 4. Error state */}
-      <h3 className={styles.h3}>4. Error state - something went wrong</h3>
-
       <p>
-        The screen is empty not because there&rsquo;s no content but because the system failed to
-        retrieve it. Connection timeout, server error, permissions issue. Their emotional state
-        ranges from mildly annoyed to concerned. The design job is transparency and recovery: be
-        honest about what happened, don&rsquo;t blame the user, and tell them what to do.
-      </p>
-
-      <p>
-        This is the empty state most often designed as an afterthought and the one users most
-        remember when it goes wrong. Blank screens with no guidance lead to confusion, uncertainty,
-        and higher abandonment rates.{' '}
-        <em>&ldquo;Something went wrong&rdquo;</em> with no context is not a message.
-        It&rsquo;s a shrug.
+        Then there’s the screen that’s empty because something broke. Say what happened and
+        tell them what to do next, without making it sound like their fault. “Something went
+        wrong” on its own doesn’t tell anyone anything.
       </p>
 
       <RevealOnScroll><ErrorMockup /></RevealOnScroll>
 
-      {/* 5. Permission state */}
-      <h3 className={styles.h3}>5. Permission state - you can&rsquo;t see this yet</h3>
-
       <p>
-        The content exists, but the user doesn&rsquo;t have access to it. Their emotional state is
-        confusion or mild frustration depending on whether they expected to have access. The design
-        job is explanation without condescension: clarify what&rsquo;s missing, who has access, and
-        how they can get it.
-      </p>
-
-      <p>
-        This state appears constantly in enterprise products and almost never gets designed
-        deliberately. It ends up looking identical to an error state or a first-use state, which
-        causes entirely avoidable support tickets.
+        And the one nobody designs on purpose: the content exists, but this person isn’t
+        allowed to see it. Enterprise products are full of these, and they usually look
+        exactly like an error or a first-use screen. Users can’t tell whether to wait or ask
+        someone, so they file a support ticket.
       </p>
 
       <RevealOnScroll><PermissionMockup /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
-      <h2 className={styles.h2}>What this means for your design system</h2>
-
       <p>
-        Most design systems document empty states as one component with optional variants. The
-        better approach is to document them as five distinct patterns with distinct copy guidelines,
-        emotional registers, and calls-to-action.
+        So I document these as separate patterns, each with its own copy rules and its own
+        next step. Before any empty state ships, I want to know why it’s empty and how the
+        person feels when they see it. Then I give them one useful thing to do.
       </p>
 
-      <p>
-        At minimum, any empty state in your system should answer three questions before it ships:
-        what caused this empty state, what is the user&rsquo;s emotional state when they see it,
-        and what is the single most useful next action from here? A useful empty state will let the
-        user know what&rsquo;s happening, why it&rsquo;s happening, and what to do about it. If
-        your empty state can only answer one of those three, it needs more work.
-      </p>
+      <TaxonomyTable />
 
       <p>
-        One practical note on illustration: empty state spot art is decorative and should be
-        treated as such. It sets tone, but it doesn&rsquo;t do the communication work - the copy
-        does. Prioritise the copy. The illustration follows.
+        One more opinion while I’m here. The illustration is decoration. It sets the mood,
+        and I like a good one, but the copy does the actual work. If you only have time for
+        one, write the words.
       </p>
 
       <div className={styles.references}>

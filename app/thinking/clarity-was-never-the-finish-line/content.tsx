@@ -12,7 +12,7 @@ export default function DesigningForConfidenceContent() {
 
       <p>
         My biggest fear with any dashboard is that people will understand it perfectly and
-        then ignore it. It’s a weird way to fail, because technically everything works.
+        then ignore it. It’s a weird way to fail, because nothing is broken.
       </p>
 
       <p>
@@ -45,7 +45,7 @@ export default function DesigningForConfidenceContent() {
       <p>
         Around the same time someone asked for benchmark toggles on every chart, so partners
         could see how they stacked up against everyone else. It sounds smart in a roadmap
-        meeting. In real life it means a five-person partner comparing itself to a
+        meeting, but in practice a five-person partner ends up comparing itself to a
         five-hundred-person partner and feeling either amazing or terrible, both for no good
         reason. I said no, which is not my favourite word to say to stakeholders, and parked
         it in the backlog until there’s enough data to make the comparison fair.
@@ -54,8 +54,8 @@ export default function DesigningForConfidenceContent() {
       <p>
         The last bit is the one most products skip. Show people what happened. If you launch
         a promotion and the product just stays silent, you learn that your actions don’t
-        matter, and honestly, why would you bother again? So the flow ends with “did it
-        work?” and the answer feeds straight back into analytics.
+        matter, and why would you bother again? So the flow ends with “did it work?” and the
+        answer feeds straight back into analytics.
       </p>
 
       <RevealOnScroll><ThreeIngredientsVisual /></RevealOnScroll>

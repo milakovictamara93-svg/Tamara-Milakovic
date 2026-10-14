@@ -6,105 +6,64 @@ export default function CrossFunctionalContent() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        Every designer&rsquo;s CV says it. <em>Cross-functional collaboration. Works effectively
-        with engineering, product, and stakeholders.</em> It&rsquo;s become so universal it&rsquo;s
-        stopped meaning anything. The problem isn&rsquo;t that people are lying. It&rsquo;s that
-        there are two completely different things hiding under that phrase &mdash; and only one of
-        them is actually hard.
+        Every designer’s CV says “cross-functional collaboration”. Most of them mean they
+        went to the meetings.
       </p>
 
       <p>
-        The first kind is coordination. You attend the right meetings. You hand off specs on time.
-        You present work clearly and incorporate feedback. This is table stakes. It matters, but
-        it&rsquo;s not a skill &mdash; it&rsquo;s a minimum.
+        Every designer’s CV says it somewhere. “Works effectively with engineering, product
+        and stakeholders.” The phrase covers two very different things, and only one of them
+        is hard.
       </p>
 
       <p>
-        The second kind is influence. You change the direction of something before it&rsquo;s
-        decided. You surface a problem that nobody had named. You make an engineer care about user
-        confusion, or a PM care about interaction cost. You shift what gets built, not just how it
-        looks. This is what &ldquo;working cross-functionally&rdquo; actually means at senior level
-        &mdash; and most portfolios never touch it.
+        The easy one is coordination. You go to the right meetings, hand over specs on time
+        and take feedback well. That’s the minimum. It’s good, but nobody should hire you
+        for it.
+      </p>
+
+      <p>
+        The hard one is influence, which means changing the direction of something before
+        it’s decided, like getting an engineer to care about a confusing flow. That’s what
+        senior designers are hired for, and you almost never see it in a portfolio.
       </p>
 
       <RevealOnScroll><CoordinationInfluenceVisual /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
       <p>
-        Here&rsquo;s the uncomfortable truth about influence in cross-functional teams: where
-        authority ends, influence begins [1]. Designers rarely have formal authority over roadmap
-        decisions, engineering priorities, or what gets scoped out. Which means everything that
-        matters &mdash; the upstream decisions that determine whether the design problem is even the
-        right one &mdash; has to be won through something other than title.
+        The tricky part is that designers rarely have formal authority. We don’t own the
+        roadmap or the engineering priorities, so anything that matters has to be won some
+        other way.
       </p>
 
       <p>
-        Research on cross-functional team dynamics consistently identifies the same gap: giving
-        teams accountability without authority &mdash; telling a team they &ldquo;own the
-        outcome&rdquo; but not giving them the authority to change the roadmap or shift the budget
-        [2] &mdash; is one of the most common structural failures in product organisations.
-        Designers live in this gap permanently. The question is what you do with it.
+        Decisions are almost never made in the meeting where they’re announced. They get
+        made a few conversations earlier, in a Slack thread or a corridor, while someone is
+        still unsure and the framing is still open. If you only show up to the official
+        meeting, you’re usually too late.
       </p>
 
       <p>
-        The designers who navigate it well aren&rsquo;t necessarily more persuasive or more
-        extroverted. They&rsquo;re more deliberate about <em>when</em> they show up and{' '}
-        <em>what they bring</em>. They understand that the moment a decision gets made is rarely
-        the meeting where it gets announced. It&rsquo;s three conversations earlier, in a hallway
-        or a Slack thread, when someone is still uncertain and the framing is still open.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        Practically, this looks like a few specific habits.
-      </p>
-
-      <p>
-        The first is translating. Every function has its own language for what matters. Engineering
-        talks about implementation complexity and technical debt. Product talks about metrics and
-        roadmap sequencing. Business talks about risk and commercial opportunity. A designer who
-        can speak all three &mdash; and translate user insight into each &mdash; is infinitely more
-        influential than one who can only speak design. Not because they&rsquo;re compromising
-        their perspective, but because they&rsquo;re making it legible to people who need to act
-        on it.
+        Translation helps more than anything. Engineers think in complexity and product
+        people think in metrics, and if you can explain a user problem in their terms, they
+        can actually act on it.
       </p>
 
       <RevealOnScroll><TranslationVisual /></RevealOnScroll>
 
       <p>
-        The second is making the invisible visible. Most misalignment in product teams isn&rsquo;t
-        disagreement &mdash; it&rsquo;s different mental models that have never been surfaced.
-        People think they&rsquo;re aligned until a prototype exists and suddenly everyone&rsquo;s
-        surprised by what the other person meant. The most influential design work I&rsquo;ve done
-        wasn&rsquo;t a screen. It was a shared model &mdash; a diagram, a prototype, a framework
-        &mdash; that made a disagreement visible early enough to resolve it cheaply, before it was
-        baked into code.
+        It also helps to make disagreements visible early. Most misalignment is people with
+        different pictures in their heads who think they agree, until a prototype shows up
+        and everyone is surprised. On the Pax8 monetisation project, the most useful thing I
+        made early on was a list of four questions the product had to answer, in order,
+        every time a partner opened it. After that, every feature debate had something to
+        point at.
       </p>
 
       <p>
-        When teams genuinely work cross-functionally, the entire product reflects it: technical
-        architecture reflects actual usage patterns because engineers participated in user research;
-        interface design anticipates technical constraints because designers participated in
-        architecture decisions [3]. This is what genuine cross-functional work produces &mdash; not
-        a series of handoffs, but decisions that carry the perspective of the whole team because the
-        whole team was present when they were made.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        The third habit is the hardest: being willing to be wrong in the room. Influence without
-        authority depends entirely on trust. And trust, in a cross-functional context, is built not
-        by being right every time, but by being honest when you&rsquo;re uncertain &mdash; and by
-        demonstrating that your goal is the best outcome, not winning the argument.
-      </p>
-
-      <p>
-        Cross-functional collaboration at its best isn&rsquo;t a soft skill. It&rsquo;s a strategic
-        capability. The designers who have it don&rsquo;t just work well with others. They change
-        what gets built.
+        And you have to be willing to be wrong in the room. Influence without authority runs
+        on trust, and people trust you more when you can say “I’m not sure” than when you
+        defend every pixel.
       </p>
 
       <div className={styles.references}>

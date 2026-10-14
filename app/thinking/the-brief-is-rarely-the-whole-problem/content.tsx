@@ -26,8 +26,8 @@ export default function TheBriefContent() {
         To be fair, whoever wrote it wasn’t doing anything wrong. That’s just how briefs get
         made. Someone sees a number drop and has a theory about why, and the theory becomes
         the brief. Nobody goes back to check it, because everyone’s busy, so by the time it
-        reaches a designer, a hunch from a Tuesday meeting has turned into a Jira ticket
-        with a due date.
+        reaches a designer, a hunch from a meeting has turned into a Jira ticket with a due
+        date.
       </p>
 
       <RevealOnScroll><TranslationChainVisual /></RevealOnScroll>

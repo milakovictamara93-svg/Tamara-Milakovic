@@ -6,100 +6,58 @@ export default function DesignSystemsContent() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        Every design system post-mortem sounds the same. The components were well-crafted. The
-        documentation was thorough. Someone spent three months building a Figma library with every
-        state, every variant, every edge case covered. And then nobody used it.
-      </p>
-
-      <p>Not because it was bad. Because it solved the wrong problem.</p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        Here&rsquo;s what most design systems are built to fix: inconsistency. Buttons that
-        don&rsquo;t match. Spacing that drifts. Color values that multiply across codebases until
-        nobody knows which shade of blue is the real one.
+        Every design system post-mortem sounds the same, and it’s rarely about the
+        components.
       </p>
 
       <p>
-        Those are real problems. Fixing them is valuable. But inconsistency is a symptom, not a
-        cause &mdash; and building a component library treats the symptom while leaving the cause
-        untouched.
+        Every design system post-mortem I’ve read sounds roughly the same. The library was
+        beautifully made and thoroughly documented, and teams kept doing their own thing
+        anyway, very consistently.
       </p>
 
       <p>
-        The cause is almost always one of two things: designers making independent decisions without
-        a shared reference point, or a team that grew faster than the agreements holding it together.
-        If there&rsquo;s one lesson that stands out across every design system implementation
-        &mdash; successful or not &mdash; it&rsquo;s this: culture matters more than components [1].
-        You can&rsquo;t fix an alignment problem with a Figma file.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        I know this firsthand. At Scaler, I was the designer who had created some of the
-        inconsistency I later had to fix. Patterns I&rsquo;d introduced had been followed &mdash;
-        just slightly wrong, because I&rsquo;d never written them down. The gap wasn&rsquo;t
-        malicious. It wasn&rsquo;t even careless. It was the entirely predictable result of a team
-        moving fast with shared understanding that existed only in one person&rsquo;s head.
+        Usually the system was solving the wrong problem.
       </p>
 
       <p>
-        What I built in response wasn&rsquo;t primarily a component library. It was a set of
-        documented decisions &mdash; interaction contracts that turned implicit knowledge into
-        explicit shared agreements. The components followed. The documentation followed. But none of
-        it would have held without first answering a harder question: <em>what are we actually
-        trying to standardize, and why?</em>
+        Most systems are built to fix inconsistency: buttons that don’t match and several
+        shades of blue that all claim to be the real one. That’s worth fixing. But
+        inconsistency is usually a symptom. The cause is people making decisions without a
+        shared reference, or a team that grew faster than its agreements, and you can’t fix
+        either of those with a Figma file.
       </p>
 
       <p>
-        Adoption isn&rsquo;t simply a usage metric &mdash; it reflects how well the system
-        integrates with real-world workflows. If it&rsquo;s not evolving based on those signals,
-        adoption will stall and eventually regress [2]. A design system that doesn&rsquo;t fit the
-        way teams actually work doesn&rsquo;t get used. And a design system that doesn&rsquo;t get
-        used is documentation &mdash; well-organized, possibly beautiful, and completely inert.
+        I learned this the uncomfortable way at Scaler, where some of the inconsistency I
+        had to fix was mine. What I built first was mostly written decisions, interaction
+        rules that turned what was in my head into something the whole team could check. The
+        components came after.
+      </p>
+
+      <p>
+        The failure nobody talks about is the system built in isolation. A small team
+        disappears for two quarters and comes back with something impressive. The teams who
+        weren’t asked don’t feel any ownership. The teams whose edge cases were never
+        considered find it doesn’t solve their most common problems. So they work around it,
+        and six months later someone announces a brand new design system initiative.
       </p>
 
       <RevealOnScroll><FailureModeVisual /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
       <p>
-        The failure mode that nobody talks about is the system built in isolation. A small team
-        disappears for two quarters, builds something comprehensive and technically impressive, then
-        emerges and presents it to the rest of the organization. Without involving other teams
-        earlier than feels necessary, you risk building tools they can&rsquo;t use [3]. The teams
-        who were never consulted don&rsquo;t feel ownership. The teams who had edge cases that
-        weren&rsquo;t considered find the system doesn&rsquo;t work for their most common problems.
-        So they work around it. Then they stop referring to it. Then six months later someone
-        announces a new design system initiative and the cycle starts again.
+        What works is treating the system as an ongoing agreement between everyone who
+        builds the product, about what’s been decided and how to extend it when you hit a
+        case nobody anticipated. The Figma library is just where some of that gets written
+        down.
       </p>
 
       <p>
-        The fix isn&rsquo;t more components. It&rsquo;s a different definition of what the system
-        is for.
+        That’s slower to build than a library. You have to involve people before you have
+        anything pretty to show them, and you have to write docs for the designer who’s
+        mid-deadline and needs a quick answer they can trust. But it’s the part that makes
+        everything else stick.
       </p>
-
-      <p>
-        A design system isn&rsquo;t a product you ship once. It&rsquo;s an ongoing agreement
-        between everyone who builds the product &mdash; about what decisions have been made, why,
-        and how to extend them when you hit a case the system didn&rsquo;t anticipate. You can&rsquo;t
-        really buy a design system &mdash; it&rsquo;s as much process and culture as it is software
-        [4]. The Figma library is the artifact. The agreement is the system.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        Building that agreement is harder than building the library. It requires conversations that
-        feel slow when you&rsquo;re itching to make things. It requires involving people before
-        you&rsquo;re ready to show them anything. It requires writing documentation for the designer
-        who&rsquo;s mid-problem, under deadline, looking for a fast answer they can trust &mdash;
-        not for the ideal reader who&rsquo;ll study every page.
-      </p>
-
-      <p>But it&rsquo;s the only part that makes the rest of it stick.</p>
 
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>

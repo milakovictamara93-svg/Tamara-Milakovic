@@ -6,95 +6,57 @@ export default function PortfolioContent() {
   return (
     <div className={styles.article}>
       <p className={styles.standfirst}>
-        Every UX portfolio tells the same story. The designer received a brief. They empathized
-        with users. They ran research. They found insights. They sketched, then wireframed, then
-        prototyped, then tested. Iteration happened. The solution emerged, elegant and justified.
-        Results followed. It&rsquo;s a compelling narrative. It&rsquo;s also, almost universally,
-        fiction.
+        Every portfolio tells the same tidy story, and almost none of them happened that
+        way.
       </p>
 
       <p>
-        Not deliberate fiction &mdash; the process happened, the decisions got made, the product
-        shipped. But the clean linear story in the portfolio bears almost no resemblance to what
-        the work actually felt like. The real version had a brief that changed three times. Research
-        that contradicted the direction and got partially ignored. A stakeholder who arrived in week
-        six with a completely different product in their head. Constraints that didn&rsquo;t exist
-        at the start. Decisions made under time pressure with incomplete information, then
-        reverse-engineered into a rationale that looked like strategy.
+        Every UX portfolio tells the same story. Brief, empathy, research, insights,
+        sketches, wireframes, prototype, testing, a bit of iteration, and then a beautiful
+        solution with results attached.
+      </p>
+
+      <p>
+        It’s a lovely story. It almost never happened like that.
+      </p>
+
+      <p>
+        In the real project, the brief changed a few times and the research contradicted the
+        direction and got half ignored. Someone senior showed up in week six with a
+        different product in their head. Decisions got made under pressure and were
+        explained afterwards as if they’d been strategy all along.
       </p>
 
       <RevealOnScroll><PortfolioVsRealityVisual /></RevealOnScroll>
 
-      <hr className={styles.divider} />
-
       <p>
-        Matej Latin, who has reviewed over a thousand design portfolios, puts the observation
-        bluntly: most UX and product design portfolios have two case studies that are the same
-        &mdash; it&rsquo;s just the details that differ slightly. Many case studies read like
-        school homework: the designer knew what the answer and the process were &ldquo;supposed to
-        be&rdquo; according to the textbook, so they made up the story to fit [1].
+        Matej Latin, who has reviewed more than a thousand portfolios, says most case
+        studies read like school homework. The designer knew what the process was supposed
+        to look like and wrote the story to match.
       </p>
 
       <p>
-        This pattern has a name in performance studies: <em>process theatre</em>. The post-hoc
-        reconstruction of a messy, non-linear reality into a story with a clear beginning, middle,
-        and resolution. The Double Diamond didn&rsquo;t drive the project &mdash; the project drove
-        the project, and the Double Diamond got drawn on the slide afterward because that&rsquo;s
-        what the format expected.
+        I don’t blame anyone for doing it, because the format practically asks you to. But
+        it causes real damage. Junior designers try to copy a process that doesn’t exist and
+        feel like they’re failing. And everyone ends up looking the same, which, to a hiring
+        manager going through a pile of portfolios, means invisible.
       </p>
 
       <p>
-        The problem with process theatre isn&rsquo;t just dishonesty. It&rsquo;s that it sets a
-        standard nobody can actually meet &mdash; and junior designers in particular spend enormous
-        energy trying to recreate a process that doesn&rsquo;t exist in practice. If you&rsquo;re
-        doing a good job, you rarely end up with anything remotely like you anticipated when you
-        started out [1]. That&rsquo;s not a failure of process. That&rsquo;s evidence of real work.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        Here&rsquo;s what hiring managers who know what they&rsquo;re looking at are actually
-        looking for: not the clean version of the work, but evidence that you can think through a
-        problem honestly.
-      </p>
-
-      <p>
-        The most interesting thing in a case study isn&rsquo;t the final design. It&rsquo;s the
-        moment something went wrong &mdash; and what you did about it. The constraint that forced a
-        better solution. The research finding that contradicted the assumption and what changed as a
-        result. The decision you pushed back on and why. The thing you&rsquo;d do differently.
+        The most interesting part of any case study is the moment something went wrong and
+        what you did about it. So is the decision you pushed back on, and why. Those don’t
+        fit the template, and they’re the only parts that show how a designer actually
+        thinks.
       </p>
 
       <RevealOnScroll><WhatsMissingVisual /></RevealOnScroll>
 
       <p>
-        Those moments don&rsquo;t fit the template. They&rsquo;re also the only parts that reveal
-        how a designer actually thinks.
+        You don’t need to confess every chaotic meeting. You just need to show that real
+        work happened, that people disagreed and something surprised you. My Scaler case
+        study opens with me realising part of the mess was my fault. I’d take that over a
+        tidy process diagram any day.
       </p>
-
-      <p>
-        The sanitized portfolio protects you from looking imperfect. It also makes you look like
-        everyone else. And in a hiring environment where the signal-to-noise ratio on portfolios is
-        extremely low, &ldquo;looks like everyone else&rdquo; is not a safe position &mdash;
-        it&rsquo;s an invisible one.
-      </p>
-
-      <hr className={styles.divider} />
-
-      <p>
-        The more honest version of a portfolio isn&rsquo;t a confession. You don&rsquo;t need to
-        document every chaotic meeting or failed prototype. But you do need to show that real work
-        happened &mdash; that decisions were contested, that constraints existed, that something
-        surprised you and you adapted.
-      </p>
-
-      <p>
-        That version is harder to write. It requires trusting that an honest account of difficult
-        work is more compelling than a polished account of work that was never difficult.
-      </p>
-
-      <p>It almost always is.</p>
 
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
