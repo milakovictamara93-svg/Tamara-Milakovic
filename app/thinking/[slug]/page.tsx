@@ -125,8 +125,8 @@ export default async function ArticlePage({ params }: PageProps) {
         </div>
       </div>
 
-      <RelatedArticles current={article} all={articles} />
       <Marquee text={article.marqueeText} />
+      <RelatedArticles current={article} all={articles} />
       <Footer />
     </>
   );
