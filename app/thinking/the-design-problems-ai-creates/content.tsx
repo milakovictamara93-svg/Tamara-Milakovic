@@ -61,6 +61,8 @@ export default function Content() {
         lands on my desk, and a bit more carefully when it sounds very sure of itself.
       </p>
 
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
+
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
@@ -87,8 +89,6 @@ export default function Content() {
           </li>
         </ol>
       </div>
-
-      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );
 }

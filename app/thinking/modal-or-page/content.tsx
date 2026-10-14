@@ -60,6 +60,8 @@ export default function ModalOrPageContent() {
 
       <RevealOnScroll><SurfaceComparisonVisual /></RevealOnScroll>
 
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, interaction design, and the decisions upstream of the brief.</p>
+
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
@@ -89,8 +91,6 @@ export default function ModalOrPageContent() {
           </li>
         </ol>
       </div>
-
-      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, interaction design, and the decisions upstream of the brief.</p>
     </div>
   );
 }
