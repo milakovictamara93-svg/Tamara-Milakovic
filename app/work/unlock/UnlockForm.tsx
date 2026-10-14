@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import styles from './page.module.css';
 
 export default function UnlockForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get('next') ?? '/work';
+  const nextParam = searchParams.get('next');
+  // Only allow same-site paths, never "//host" or absolute URLs
+  const next = nextParam?.startsWith('/') && !nextParam.startsWith('//') ? nextParam : '/work';
 
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -25,7 +26,9 @@ export default function UnlockForm() {
     });
 
     if (res.ok) {
-      router.push(next);
+      // Full page load so the server sees the new cookie; a client-side push can
+      // reuse the cached redirect back to this page and hang on "Unlocking…"
+      window.location.assign(next);
     } else {
       setError('Incorrect password. Try again.');
       setLoading(false);
