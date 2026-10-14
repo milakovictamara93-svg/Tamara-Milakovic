@@ -28,6 +28,10 @@
   flex-shrink: 0;
 }
 
+.track:hover .content {
+  animation-play-state: paused;
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);
