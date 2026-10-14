@@ -33,7 +33,7 @@ const structuredData = {
       name: 'Tamara Milakovic',
       url: 'https://www.tamaramilakovic.com',
       jobTitle: 'Senior Product Designer',
-      description: 'Senior product designer specializing in B2B SaaS, monetisation systems, and design leadership.',
+      description: 'Senior product designer in B2B SaaS and monetisation.',
       sameAs: [
         'https://www.linkedin.com/in/tamaramilakovic/',
       ],
@@ -43,7 +43,7 @@ const structuredData = {
       '@id': 'https://www.tamaramilakovic.com/#website',
       url: 'https://www.tamaramilakovic.com',
       name: 'Tamara Milakovic',
-      description: 'Senior product designer specializing in B2B SaaS, monetisation systems, and design leadership.',
+      description: 'Senior product designer in B2B SaaS and monetisation.',
       author: { '@id': 'https://www.tamaramilakovic.com/#person' },
     },
   ],

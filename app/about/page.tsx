@@ -51,25 +51,27 @@ export default function AboutPage() {
                 <p className={styles.specialties}>
                   B2B SaaS<br />
                   Sustainability analytics<br />
-                  Monetisation systems
+                  Monetisation systems<br />
+                  AI and agentic workflows
                 </p>
               </div>
             </div>
 
             <div className={styles.right}>
               <div className={styles.bio}>
-                <p>I&rsquo;m a senior product designer with experience across B2B SaaS, sustainability analytics, and monetisation systems. I&rsquo;ve led design from zero to launch, built systems that teams still use, and stepped into leadership before I had the title.</p>
-                <p>The work I&rsquo;m most proud of started the same way: something was wrong that nobody had named yet. A product nobody could agree on. A platform drifting faster than anyone had measured. My instinct in those moments isn&rsquo;t to start designing, it&rsquo;s to understand what&rsquo;s actually broken, including the parts I might have contributed to.</p>
-                <p>That kind of honest diagnosis is where I think design adds the most value. Not at the level of screens and interactions, but upstream, in the clarity of the problem, the coherence of the system, the shared model that makes good decisions possible in the first place.</p>
-                <p>I&rsquo;m moving into design leadership: owning direction, building infrastructure, and being the person who makes the whole team sharper &ndash; not just the work I personally touch.</p>
+                <p>I&rsquo;m a senior product designer, and most of my career has been B2B products with a lot of data and not much agreement. I&rsquo;ve led products from zero to launch and built design systems that teams still use. I also ended up leading before anyone gave me the title.</p>
+                <p>The projects I&rsquo;m proudest of all started with something wrong that nobody had named yet. At Pax8 it was a product nobody could agree on. At Scaler it was a platform drifting faster than anyone had measured, and some of that drift was mine.</p>
+                <p>So my first move is rarely to design. I try to work out what&rsquo;s actually broken, including the parts I might have caused. I think that&rsquo;s where design does the most good, long before anyone starts arguing about button colours.</p>
+                <p>I also do a lot of AI work, the hands-on kind. I work with a team that builds agents and skills for the whole company to use, so I design both for agents and alongside them. I&rsquo;ve designed an internal AI tool and an AI adoption dashboard that shows who is actually using all of this, and I&rsquo;ve worked AI into end-user product flows.</p>
+                <p>Next, I&rsquo;m aiming for principal roles. I want to keep my hands in the work while setting direction and making the whole team sharper, beyond the files I personally touch.</p>
               </div>
 
               <div className={styles.howIWork}>
                 <p className={styles.sectionLabel}>How I work 🎨</p>
                 <div className={styles.howIWorkBody}>
-                  <p>Most design problems aren&rsquo;t design problems. They&rsquo;re clarity problems, alignment problems, foundation problems dressed up as UI problems. I&rsquo;ve spent a decade learning to tell the difference &ndash; and building the thing that actually fixes it.</p>
-                  <p>I&rsquo;ve built monetisation tools from a PowerPoint slide and no brief. I&rsquo;ve inherited platforms where Frankenstein drift was costing users time in ways nobody had measured. In both cases the first move wasn&rsquo;t to open Figma. It was to ask what was actually wrong and to be honest about the answer, even when it was uncomfortable.</p>
-                  <p>I care about craft. I care about systems. But what I care about most is whether the thinking underneath the work is sound. A beautiful interface built on a weak diagnosis is still a failure. Get the diagnosis right and everything else gets easier.</p>
+                  <p>I&rsquo;ve built monetisation tools from a PowerPoint slide and no brief. I&rsquo;ve inherited platforms where Frankenstein drift was costing users time that nobody had measured. Both times, I kept Figma closed for a while and asked what was actually wrong. Then I tried to be honest about the answer, even when the answer was me.</p>
+                  <p>AI is part of how I work now. I use it for the fast stuff, like rough synthesis and lots of quick options, which leaves more time for figuring out what&rsquo;s actually wrong. It hasn&rsquo;t changed the order I do things in. I still start with the problem.</p>
+                  <p>I care about craft and I care about systems, but mostly I care whether the thinking underneath is sound. A gorgeous interface on top of a bad diagnosis is still a bad product. It just photographs better.</p>
                 </div>
               </div>
 
