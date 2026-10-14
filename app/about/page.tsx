@@ -8,16 +8,16 @@ import styles from './page.module.css';
 
 export const metadata = {
   title: 'About Tamara Milakovic | Senior Product Designer',
-  description: "A decade of B2B SaaS design, from zero-to-one products to broken platforms. I diagnose what's actually wrong before I open Figma.",
+  description: "Senior product designer on data-heavy B2B products and AI tools. I work out what's actually broken before I design anything.",
   openGraph: {
     title: 'About Tamara Milakovic | Senior Product Designer',
-    description: "A decade of B2B SaaS design, from zero-to-one products to broken platforms. I diagnose what's actually wrong before I open Figma.",
+    description: "Senior product designer on data-heavy B2B products and AI tools. I work out what's actually broken before I design anything.",
     url: 'https://www.tamaramilakovic.com/about',
     type: 'website',
   },
   twitter: {
     title: 'About Tamara Milakovic | Senior Product Designer',
-    description: "A decade of B2B SaaS design, from zero-to-one products to broken platforms. I diagnose what's actually wrong before I open Figma.",
+    description: "Senior product designer on data-heavy B2B products and AI tools. I work out what's actually broken before I design anything.",
   },
 };
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
         <div className={styles.contentSection}>
           <div className={styles.contentInner}>
             <div className={styles.left}>
-              <p className={styles.greeting}>Hi, I am Tamara 👋</p>
+              <p className={styles.greeting}>Hi, I&rsquo;m Tamara 👋</p>
               <div className={styles.photoWrap}>
                 <Image
                   src="/about/tamara.jpg"
