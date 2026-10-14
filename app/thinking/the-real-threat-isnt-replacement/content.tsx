@@ -65,6 +65,8 @@ export default function Content() {
         work that’s left is the work that was always hardest.
       </p>
 
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
+
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
@@ -88,8 +90,6 @@ export default function Content() {
           </li>
         </ol>
       </div>
-
-      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );
 }

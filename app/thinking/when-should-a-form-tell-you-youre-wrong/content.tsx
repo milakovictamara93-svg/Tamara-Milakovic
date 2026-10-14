@@ -60,6 +60,8 @@ export default function FormValidationContent() {
         to work out which of the two is lying.
       </p>
 
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and complex interaction problems.</p>
+
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
@@ -96,8 +98,6 @@ export default function FormValidationContent() {
           </li>
         </ol>
       </div>
-
-      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and complex interaction problems.</p>
     </div>
   );
 }

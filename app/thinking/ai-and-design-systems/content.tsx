@@ -63,6 +63,8 @@ export default function Content() {
         saved me a lot of time, and a few arguments.
       </p>
 
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
+
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
@@ -89,8 +91,6 @@ export default function Content() {
           </li>
         </ol>
       </div>
-
-      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );
 }

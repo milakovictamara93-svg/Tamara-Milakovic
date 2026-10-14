@@ -80,6 +80,8 @@ export default function DashboardContent() {
         and act on them. For expert work, those two often pull in opposite directions.
       </p>
 
+      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
+
       <div className={styles.references}>
         <p className={styles.referencesLabel}>References</p>
         <ol className={styles.referencesList}>
@@ -106,8 +108,6 @@ export default function DashboardContent() {
           </li>
         </ol>
       </div>
-
-      <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and the decisions upstream of the brief.</p>
     </div>
   );
 }
