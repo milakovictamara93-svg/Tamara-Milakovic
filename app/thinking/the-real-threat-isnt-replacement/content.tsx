@@ -5,7 +5,7 @@ import styles from './content.module.css';
 export default function Content() {
   return (
     <div className={styles.article}>
-      <p>
+      <p className={styles.standfirst}>
         The conversation about AI and designers goes in circles. AI will replace designers. No it
         won&rsquo;t, creativity is human. Actually some jobs are already gone. But senior designers
         are safe. And so on.

@@ -5,7 +5,7 @@ import styles from './content.module.css';
 export default function Content() {
   return (
     <div className={styles.article}>
-      <p>
+      <p className={styles.standfirst}>
         Most articles about AI and design focus on what AI fixes. This one is about what it breaks.
         Not because AI is bad &mdash; it isn&rsquo;t &mdash; but because the problems it creates are
         real, underexamined, and increasingly showing up in products that were built with good
