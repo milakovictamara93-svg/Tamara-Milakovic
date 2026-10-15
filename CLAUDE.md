@@ -29,7 +29,7 @@ Do real, deep research before building or changing anything, and do it **before*
 - **Good and Bad are always two separate demos, Good first with Bad directly below.** Each has its own header: "✅ Good" or "❌ Bad" in bold, followed by a short description of what it does (for example "✅ Good  The skeleton matches the table"). Each runs on its own with its own trigger.
   - Animated demos play **once** when they first scroll into view, then only replay when the reader presses Replay. Never loop them automatically.
   - No sliders for these comparisons, and no toggles, side-by-side lanes, coloured verdict pills or "show me the fix" modes.
-  - Give each demo a short plain-language readout of what just happened, with a little humour on the Bad one.
+  - Give each demo a short plain-language readout of what just happened. Keep it serious (see section 6).
   - Build them with `Demo` and `Pair` from `components/ArticleDemo.tsx` (shared frame, ✅/❌ headers, readout, chip/primary/link button styles), so every article looks the same.
   - Demos that need input play themselves once when scrolled into view (typing, loading), and readers can always take over and try it themselves.
   - The pairs in `please-dont-let-it-sit-at-99` and `when-should-a-form-tell-you-youre-wrong` are the reference.
@@ -57,12 +57,18 @@ State changes are announced to screen readers (for example through a visually hi
 ### 5. Charts, dashboards and data examples
 
 - Research dashboard and data-table patterns before building (KPI tiles, change indicators, legends, table layout), not just the chart itself.
-- Data examples stay serious: no emojis, jokes or cute placeholders inside the example UI. Humour belongs in the article text, not in a chart pretending to be a real report.
+- Data examples stay serious (see section 6).
 - Change values: arrow + signed number (▲ +11%, ▼ −30%), coloured by whether the change is good for that metric (for emissions, down is good). Use the same sign format everywhere. Green and red are reserved for good and bad, never for series.
 - Every coded symbol has a legend placed before the data it explains, showing the real coloured symbols, including the neutral or flat state and its threshold.
 - Units go in the chart subtitle, not floating above the axis. The chart title sits directly above the chart. Label the start and end values.
 - Tables run full width, numbers right-aligned with tabular figures, and must fit a 390px phone without sideways scrolling.
 
-### 6. Copy
+### 6. Copy and tone
 
-No em dashes anywhere on the site. Copy should read like Tamara wrote it: plain and specific, with a little humour.
+No em dashes anywhere on the site. Copy should read like Tamara wrote it: plain and specific.
+
+**Serious vs playful depends on what the asset is doing:**
+
+- **Serious** whenever the asset shows how something should be designed: design patterns, Good/Bad demos, charts, dashboards, data examples, best practices. No jokes, emojis or cute placeholders in the example UI, its labels or its readouts. Plain, factual, professional.
+- **Playful is fine** where the asset is about opinion, career or reflection rather than teaching a design practice, for example the quiz in "The Portfolio Is Lying to You". Humour, emojis and a cheeky score message all belong there.
+- If it's unclear which one an asset is, ask Tamara before writing the copy.
