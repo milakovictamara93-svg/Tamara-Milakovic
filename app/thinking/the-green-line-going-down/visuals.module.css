@@ -107,12 +107,17 @@
   padding: 16px 16px 8px;
 }
 
-.chartTop {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 4px 12px;
-  flex-wrap: wrap;
+.headerActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* The chart's own title sits right above it, separated from the summary tiles */
+.chartHead {
+  margin: 20px 0 4px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .chartTitle {
@@ -123,6 +128,19 @@
   color: #000;
 }
 
+
+.chartSubtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #525252;
+}
+
+.pointLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  fill: #000;
+}
 
 .truthCount {
   font-size: 12px;
@@ -156,13 +174,6 @@
   font-size: 12px;
   fill: #525252;
   font-variant-numeric: tabular-nums;
-}
-
-.unit {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  fill: #000;
 }
 
 .line {
@@ -314,6 +325,28 @@
   border-left: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: #000;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.legendSymbol {
+  font-size: 11px;
+  font-weight: 600;
+}
+
 .baseTag {
   font-size: 12px;
   font-weight: 500;
@@ -338,9 +371,8 @@
 /* ── KPI tiles and change indicators ── */
 .kpis {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 10px;
-  margin: 12px 0 8px;
 }
 
 .kpi {
@@ -348,22 +380,20 @@
   flex-direction: column;
   gap: 4px;
   min-width: 0;
-  min-height: 128px;
   padding: 12px 14px;
+  animation: tileIn 0.3s ease;
   border: 1px solid rgba(0, 0, 0, 0.14);
   border-radius: 8px;
   background: #fff;
 }
 
-.kpiCharted {
-  border-color: #000;
+@keyframes tileIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
 }
 
-.kpiMissing {
-  justify-content: center;
-  border-style: dashed;
-  border-color: #8a8a84;
-  background: #f5f5f3;
+.kpiCharted {
+  border-color: #000;
 }
 
 .kpiLabel {
@@ -403,12 +433,6 @@
 
 .kpiNote {
   font-size: 12px;
-  color: #525252;
-}
-
-.kpiMissingText {
-  font-size: 15px;
-  font-weight: 600;
   color: #525252;
 }
 
@@ -475,7 +499,7 @@
 @media (max-width: 640px) {
   .table th,
   .table td {
-    padding: 8px 10px;
+    padding: 8px 8px;
   }
 
   .rowTag {
@@ -483,13 +507,12 @@
     margin-left: 0;
   }
 
-  .kpis {
-    grid-template-columns: 1fr;
+  .kpi {
+    padding: 10px 12px;
   }
 
-  .kpi {
-    min-height: 124px;
-    padding: 10px 12px;
+  .headerActions .truthCount {
+    display: none;
   }
 
   .kpiValue {
@@ -499,6 +522,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .kpi {
+    animation: none;
+  }
+
   .line,
   .dot {
     transition: none;

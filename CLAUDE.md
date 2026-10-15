@@ -48,6 +48,15 @@ State changes are announced to screen readers (for example through a visually hi
 - All animation stops under `prefers-reduced-motion: reduce`.
 - Assets must work at phone width.
 
-### 5. Copy
+### 5. Charts, dashboards and data examples
+
+- Research dashboard and data-table patterns before building (KPI tiles, change indicators, legends, table layout), not just the chart itself.
+- Data examples stay serious: no emojis, jokes or cute placeholders inside the example UI. Humour belongs in the article text, not in a chart pretending to be a real report.
+- Change values: arrow + signed number (▲ +11%, ▼ −30%), coloured by whether the change is good for that metric (for emissions, down is good). Use the same sign format everywhere. Green and red are reserved for good and bad, never for series.
+- Every coded symbol has a legend placed before the data it explains, showing the real coloured symbols, including the neutral or flat state and its threshold.
+- Units go in the chart subtitle, not floating above the axis. The chart title sits directly above the chart. Label the start and end values.
+- Tables run full width, numbers right-aligned with tabular figures, and must fit a 390px phone without sideways scrolling.
+
+### 6. Copy
 
 No em dashes anywhere on the site. Copy should read like Tamara wrote it: plain and specific, with a little humour.

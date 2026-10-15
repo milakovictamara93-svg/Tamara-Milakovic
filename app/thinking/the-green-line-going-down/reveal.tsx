@@ -18,10 +18,10 @@ type Truths = Record<Truth, boolean>;
 const NONE: Truths = { baseline: false, zero: false, absolute: false, uncertainty: false };
 
 const SWITCHES: { key: Truth; label: string }[] = [
-  { key: 'baseline', label: '📅 Show the baseline year' },
-  { key: 'zero', label: '📏 Start the axis at zero' },
-  { key: 'absolute', label: '🏭 Show total emissions' },
-  { key: 'uncertainty', label: '🌫️ Show the uncertainty' },
+  { key: 'baseline', label: 'Show the baseline year' },
+  { key: 'zero', label: 'Start the axis at zero' },
+  { key: 'absolute', label: 'Show total emissions' },
+  { key: 'uncertainty', label: 'Show the uncertainty' },
 ];
 
 /** Everything the chart draws from, as numbers, so one state can tween into another. */
@@ -45,10 +45,13 @@ function formatChange(pct: number) {
   return `${pct > 0 ? '+' : pct < 0 ? '−' : '±'}${Math.abs(pct)}%`;
 }
 
+/** Changes smaller than this are within rounding noise, so they read as flat. */
+const FLAT = 3;
+
 /** Lower is better for emissions, so a fall is good news and a rise is bad news. Tiny changes are noise. */
 function polarity(pct: number) {
-  if (pct <= -3) return { tone: 'good', arrow: '▼', word: 'Down' } as const;
-  if (pct >= 3) return { tone: 'bad', arrow: '▲', word: 'Up' } as const;
+  if (pct <= -FLAT) return { tone: 'good', arrow: '▼', word: 'Down' } as const;
+  if (pct >= FLAT) return { tone: 'bad', arrow: '▲', word: 'Up' } as const;
   return { tone: 'flat', arrow: '●', word: 'About flat,' } as const;
 }
 
@@ -59,13 +62,12 @@ function pctChange(values: number[], from: number, to: number) {
 
 function Delta({ pct, since, compact }: { pct: number; since?: number; compact?: boolean }) {
   const p = polarity(pct);
-  const amount = p.tone === 'flat' ? formatChange(pct) : `${Math.abs(pct)}%`;
+  const amount = compact || p.tone === 'flat' ? formatChange(pct) : `${Math.abs(pct)}%`;
   return (
     <span className={`${styles.delta} ${styles[`delta_${p.tone}`]}`}>
       <span aria-hidden="true" className={styles.deltaArrow}>{p.arrow}</span>
       {compact ? (
         <>
-          <span className={styles.srOnly}>{p.word} </span>
           {amount}
         </>
       ) : (
@@ -105,26 +107,26 @@ function niceTicks(min: number, max: number, count = 4) {
 
 function readoutFor(key: Truth, on: boolean, next: Truths) {
   if (Object.values(next).every(Boolean)) {
-    return 'All four truths back. Not a leaf in sight, but now you could actually make a decision with it.';
+    return 'All four added. Total emissions rose 32% since 2018, and the per-euro figure is roughly where it started.';
   }
   const pct = formatChange(change(next));
   switch (key) {
     case 'baseline':
       return on
-        ? `The report started in 2021, which just happens to be the worst year. Measured from 2018, it’s ${pct}.`
-        : 'Back to starting in 2021. Much more flattering.';
+        ? `The report starts in 2021, the highest year in the series. Measured from 2018, the change is ${pct}.`
+        : 'Starting from 2021 again, as the report does.';
     case 'zero':
       return on
-        ? 'Same numbers, much less drama. That cliff was a gentle slope all along.'
-        : 'Zoomed back in. Every wobble looks like a landslide again.';
+        ? 'With the axis at zero, the same change looks much smaller. The data hasn’t changed, only the scale.'
+        : 'The axis is zoomed in again, so small changes look large.';
     case 'absolute':
       return on
-        ? `Per euro of revenue it was falling. In actual tonnes of CO₂ it’s ${pct}. The atmosphere doesn’t care about revenue.`
-        : 'Back to emissions per euro. Revenue grew, so this one always looks nicer.';
+        ? `Per euro of revenue, emissions fell. Total emissions over the same period changed by ${pct}, because revenue grew faster.`
+        : 'Back to emissions per euro of revenue only.';
     case 'uncertainty':
       return on
-        ? `Every point is ± ${UNCERTAINTY * 100}%. Most supplier emissions are estimated from spend, so the line is more of a wide road.`
-        : 'Uncertainty hidden. The data didn’t get any more certain, it just stopped admitting it.';
+        ? `Each value is ± ${UNCERTAINTY * 100}%, mostly because supplier emissions are estimated from spend data.`
+        : 'The uncertainty is hidden again. The data is no more certain than before.';
   }
 }
 
@@ -162,12 +164,12 @@ function KpiTile({
 }
 
 const H = 260;
-const PAD = { l: 44, r: 16, t: 16, b: 32 };
+const PAD = { l: 44, r: 16, t: 28, b: 32 };
 
 export function GreenLineRevealVisual() {
   const [truths, setTruths] = useState<Truths>(NONE);
   const [view, setView] = useState<View>(() => targetView(NONE));
-  const [readout, setReadout] = useState('This is the chart from the report. Looks great, right?');
+  const [readout, setReadout] = useState('This is the chart as the report shows it.');
   const [width, setWidth] = useState(600);
   const [hover, setHover] = useState<number | null>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -250,16 +252,19 @@ export function GreenLineRevealVisual() {
 
   return (
     <DemoFrame
-      title="Add the truth back, one switch at a time"
+      title="Add the missing context, one switch at a time"
       action={
-        <button
-          type="button"
-          className={demoStyles.chip}
-          disabled={!restored}
-          onClick={() => apply(NONE, 'Back to the version that went in the report. Feels nice, doesn’t it?')}
-        >
-          Reset
-        </button>
+        <span className={styles.headerActions}>
+          <span className={styles.truthCount}>{restored} of 4 added</span>
+          <button
+            type="button"
+            className={demoStyles.chip}
+            disabled={!restored}
+            onClick={() => apply(NONE, 'Back to the chart as the report shows it.')}
+          >
+            Reset
+          </button>
+        </span>
       }
       readout={readout}
     >
@@ -278,13 +283,6 @@ export function GreenLineRevealVisual() {
       </div>
 
       <div className={styles.revealCard}>
-        <div className={styles.chartTop}>
-          <p className={styles.chartTitle}>
-            {truths.absolute ? 'Total emissions' : 'Emissions per euro of revenue'}, {startYear(truths)} to {LAST}
-          </p>
-          <span className={styles.truthCount}>{restored} of 4 truths back</span>
-        </div>
-
         {/* Per euro and total side by side, the way the article says to show them */}
         <div className={styles.kpis}>
           <KpiTile
@@ -296,7 +294,7 @@ export function GreenLineRevealVisual() {
             charted={!truths.absolute}
             uncertain={truths.uncertainty}
           />
-          {truths.absolute ? (
+          {truths.absolute && (
             <KpiTile
               label="Total emissions"
               value={ABSOLUTE[ABSOLUTE.length - 1]}
@@ -306,12 +304,16 @@ export function GreenLineRevealVisual() {
               charted
               uncertain={truths.uncertainty}
             />
-          ) : (
-            <div className={`${styles.kpi} ${styles.kpiMissing}`}>
-              <span className={styles.kpiLabel}>Total emissions</span>
-              <span className={styles.kpiMissingText}>Not in the report 🙈</span>
-            </div>
           )}
+        </div>
+
+        <div className={styles.chartHead}>
+          <p className={styles.chartTitle}>
+            {truths.absolute ? 'Total emissions' : 'Emissions per euro of revenue'}
+          </p>
+          <p className={styles.chartSubtitle}>
+            {truths.absolute ? 'Kilotonnes of CO₂e' : 'Tonnes of CO₂e per €1 million of revenue'}, {startYear(truths)} to {LAST}
+          </p>
         </div>
 
         <div ref={wrapRef} className={styles.revealChart}>
@@ -338,7 +340,6 @@ export function GreenLineRevealVisual() {
                 </text>
               </g>
             ))}
-            <text x={PAD.l} y={10} className={styles.unit}>{unit}</text>
 
             <g clipPath="url(#green-line-plot)">
               {view.band > 0.01 && <path d={band} className={styles.bandInk} style={{ opacity: view.band }} />}
@@ -360,6 +361,21 @@ export function GreenLineRevealVisual() {
               ))}
             </g>
 
+            {[startYear(truths), LAST].map((yr) => {
+              const i = YEARS.indexOf(yr);
+              const end = yr === LAST;
+              return (
+                <text
+                  key={`label-${yr}`}
+                  x={x(yr)}
+                  y={y(values[i]) - 12}
+                  textAnchor={end ? 'end' : 'start'}
+                  className={styles.pointLabel}
+                >
+                  {seriesFor(truths)[i]}
+                </text>
+              );
+            })}
             {visibleYears.map((yr) => (
               <text key={yr} x={x(yr)} y={H - 10} textAnchor="middle" className={styles.tick}>
                 {yr}
@@ -387,6 +403,20 @@ export function GreenLineRevealVisual() {
 
       <details className={styles.numbers}>
         <summary>See the numbers</summary>
+        <ul className={styles.legend} aria-label="Key for the change columns">
+          <li>
+            <span className={`${styles.legendSymbol} ${styles.delta_good}`} aria-hidden="true">▼</span>
+            Decrease, good for emissions
+          </li>
+          <li>
+            <span className={`${styles.legendSymbol} ${styles.delta_bad}`} aria-hidden="true">▲</span>
+            Increase, bad for emissions
+          </li>
+          <li>
+            <span className={`${styles.legendSymbol} ${styles.delta_flat}`} aria-hidden="true">●</span>
+            Less than {FLAT}%, about flat
+          </li>
+        </ul>
         <div className={styles.tableCard}>
           <table className={styles.table}>
             <caption className={styles.srOnly}>
@@ -436,8 +466,8 @@ export function GreenLineRevealVisual() {
           </table>
         </div>
         <p>
-          ▼ green is good news, ▲ red is bad news. For emissions, down is the direction you want. Every value is ±{' '}
-          {UNCERTAINTY * 100}%. A made-up company, sadly a very typical one.
+          Changes are compared with {startYear(truths)}. Every value is ± {UNCERTAINTY * 100}%. Illustrative data for a
+          fictional company.
         </p>
       </details>
     </DemoFrame>
