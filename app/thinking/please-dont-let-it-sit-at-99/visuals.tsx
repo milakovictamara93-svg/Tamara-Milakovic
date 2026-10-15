@@ -64,19 +64,6 @@ function Table({ skeleton }: { skeleton?: boolean }) {
   );
 }
 
-/** "✕ Don't" / "✓ Do" label: icon + word, so the meaning never relies on colour alone */
-function Verdict({ kind, children, aside }: { kind: 'do' | 'dont'; children: React.ReactNode; aside?: React.ReactNode }) {
-  return (
-    <div className={styles.verdictRow}>
-      <span className={`${styles.verdict} ${kind === 'do' ? styles.verdictDo : styles.verdictDont}`}>
-        {kind === 'do' ? '✓ Do' : '✕ Don’t'}
-      </span>
-      <span className={styles.verdictText}>{children}</span>
-      {aside && <span className={styles.jumpCount}>{aside}</span>}
-    </div>
-  );
-}
-
 /* ── 1. The jump ─────────────────────────────────────────────── */
 
 export function PageJumpVisual() {
@@ -100,7 +87,9 @@ export function PageJumpVisual() {
       </div>
       <div className={styles.jumpGrid}>
         <div className={styles.jumpCol}>
-          <Verdict kind="dont" aside={`Jumps: ${jumps}`}>Content collapses</Verdict>
+          <div className={styles.jumpLabel}>
+            Content collapses <span className={styles.jumpCount}>Page jumps: {jumps}</span>
+          </div>
           <div className={`${styles.window} ${styles.windowRel}`}>
             <div className={styles.windowTitle}>Supplier emissions</div>
             {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
@@ -118,7 +107,9 @@ export function PageJumpVisual() {
           </div>
         </div>
         <div className={styles.jumpCol}>
-          <Verdict kind="do" aside="Jumps: 0">Skeleton matches the table</Verdict>
+          <div className={styles.jumpLabel}>
+            Skeleton matches the table <span className={styles.jumpCount}>Page jumps: 0</span>
+          </div>
           <div className={styles.window}>
             <div className={styles.windowTitle}>Supplier emissions</div>
             <Table skeleton={!loaded} />
@@ -135,19 +126,31 @@ export function PageJumpVisual() {
 
 /* ── 2. Pick your wait ───────────────────────────────────────── */
 
+// Each demo plays the usual (bad) version first with a note on what went wrong,
+// then "Show me the fix" replays it the right way in the same window.
+
 type Scenario = 'table' | 'save' | 'export' | 'like';
 
-const SCENARIOS: { id: Scenario; label: string; pattern: string; note: string }[] = [
-  { id: 'table', label: 'Loading a table', pattern: 'Skeleton', note: 'The layout is predictable, so show its shape while the data arrives.' },
-  { id: 'save', label: 'Saving a form', pattern: 'Delayed spinner', note: 'Same server, same save. The only difference is whether the spinner waits 200ms before showing up.' },
-  { id: 'export', label: 'Exporting a report', pattern: 'Progress bar', note: 'Long and measurable, so show real progress and a rough time left. Never park it at 99%.' },
-  { id: 'like', label: 'Liking a post', pattern: 'No loading state', note: 'Show it as done straight away and quietly undo on the rare failure.' },
+const SCENARIOS: { id: Scenario; label: string; pattern: string; fix: string }[] = [
+  { id: 'table', label: 'Loading a table', pattern: 'Skeleton', fix: 'Match the skeleton to the real thing: same row count, same column widths.' },
+  { id: 'save', label: 'Saving a form', pattern: 'Delayed spinner', fix: 'Wait 200ms before showing a spinner, so fast saves never flash one at you.' },
+  { id: 'export', label: 'Exporting a report', pattern: 'Progress bar', fix: 'Show real progress and a rough time left. Never park it at 99%.' },
+  { id: 'like', label: 'Liking a post', pattern: 'No loading state', fix: 'Show it as done straight away and quietly undo on the rare failure.' },
 ];
+
+function Note({ children }: { children: React.ReactNode }) {
+  return <p className={styles.note}>↑ {children}</p>;
+}
 
 export function PickYourWaitVisual() {
   const [scenario, setScenario] = useState<Scenario>('table');
+  const [fixed, setFixed] = useState(false);
   const [run, setRun] = useState(0);
   const current = SCENARIOS.find((s) => s.id === scenario)!;
+  const replay = (nextFixed: boolean) => {
+    setFixed(nextFixed);
+    setRun((r) => r + 1);
+  };
 
   return (
     <figure className={styles.figure}>
@@ -164,7 +167,7 @@ export function PickYourWaitVisual() {
             className={`${styles.chip} ${s.id === scenario ? styles.chipActive : ''}`}
             onClick={() => {
               setScenario(s.id);
-              setRun((r) => r + 1);
+              replay(false);
             }}
           >
             {s.label}
@@ -172,30 +175,47 @@ export function PickYourWaitVisual() {
         ))}
       </div>
       <div className={styles.stage}>
-        <div className={styles.stagePattern}>{current.pattern}</div>
-        {scenario === 'table' && <TableDemo key={run} />}
-        {scenario === 'save' && <SaveDemo key={run} />}
-        {scenario === 'export' && <ExportDemo key={run} />}
-        {scenario === 'like' && <LikeDemo key={run} />}
+        <div className={styles.stageHead}>
+          <div>
+            <div className={styles.mode}>{fixed ? 'The fix' : 'The usual way'}</div>
+            <div className={styles.stagePattern}>{current.pattern}</div>
+          </div>
+          <button type="button" className={styles.fixButton} onClick={() => replay(!fixed)}>
+            {fixed ? '↺ Show me the usual way' : 'Show me the fix →'}
+          </button>
+        </div>
+        {scenario === 'table' && <TableDemo key={run} fixed={fixed} />}
+        {scenario === 'save' && <SaveDemo key={run} fixed={fixed} />}
+        {scenario === 'export' && <ExportDemo key={run} fixed={fixed} />}
+        {scenario === 'like' && <LikeDemo key={run} fixed={fixed} />}
       </div>
-      <figcaption className={styles.caption}>{current.note}</figcaption>
+      <figcaption className={styles.caption}>{current.fix}</figcaption>
     </figure>
   );
 }
 
-function TableDemo() {
+function TableDemo({ fixed }: { fixed: boolean }) {
   const [attempt, setAttempt] = useState(0);
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     const t = setTimeout(() => setLoaded(true), 1600);
     return () => clearTimeout(t);
   }, [attempt]);
+
   return (
     <div className={styles.demo}>
       <div className={styles.window}>
         <div className={styles.windowTitle}>Supplier emissions</div>
-        <Table skeleton={!loaded} />
+        {loaded || fixed ? <Table skeleton={!loaded} /> : <ShortSkeleton />}
+        <div className={styles.reading}>📍 You were reading here</div>
       </div>
+      {loaded && (
+        <Note>
+          {fixed
+            ? 'Five skeleton rows, five real rows. Nothing moved.'
+            : 'The skeleton promised two rows and the table brought five. Everything below it just moved.'}
+        </Note>
+      )}
       <button type="button" className={styles.linkButton} onClick={() => { setLoaded(false); setAttempt((n) => n + 1); }} disabled={!loaded}>
         Load it again
       </button>
@@ -203,50 +223,76 @@ function TableDemo() {
   );
 }
 
+function ShortSkeleton() {
+  return (
+    <div className={styles.table}>
+      {[0, 1].map((i) => (
+        <div key={i} className={styles.tableRow}>
+          <span className={`${styles.bone} ${styles.boneWide}`} />
+          <span className={styles.bone} />
+          <span className={`${styles.bone} ${styles.boneShort}`} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 type SaveState = 'idle' | 'waiting' | 'spinning' | 'done';
 
-function SaveDemo() {
+function SaveDemo({ fixed }: { fixed: boolean }) {
   const [speed, setSpeed] = useState<'slow' | 'fast'>('fast');
-  const [dont, setDont] = useState<SaveState>('idle');
-  const [doState, setDoState] = useState<SaveState>('idle');
-  const [ran, setRan] = useState<'slow' | 'fast' | null>(null);
+  const [state, setState] = useState<SaveState>('idle');
+  const [finished, setFinished] = useState<'slow' | 'fast' | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
-  const reset = () => {
-    timers.current.forEach(clearTimeout);
-    setDont('idle');
-    setDoState('idle');
-    setRan(null);
-  };
-
-  // Both buttons save at once against the same server, so the only difference is the spinner delay
   const save = () => {
     timers.current.forEach(clearTimeout);
-    setRan(null);
+    setFinished(null);
     const duration = speed === 'slow' ? 2000 : 100;
-    const lane = (set: (s: SaveState) => void, spinnerDelay: number) => {
-      set(spinnerDelay === 0 ? 'spinning' : 'waiting');
-      if (spinnerDelay > 0 && duration > spinnerDelay) timers.current.push(setTimeout(() => set('spinning'), spinnerDelay));
-      timers.current.push(setTimeout(() => set('done'), duration));
-      timers.current.push(setTimeout(() => set('idle'), duration + 1500));
-    };
-    timers.current = [];
-    lane(setDont, 0);
-    lane(setDoState, 200);
-    timers.current.push(setTimeout(() => setRan(speed), duration));
+    // The fix waits 200ms before showing a spinner; the usual way shows it straight away
+    const spinnerDelay = fixed ? 200 : 0;
+    setState(spinnerDelay === 0 ? 'spinning' : 'waiting');
+    timers.current = [
+      setTimeout(() => {
+        setState('done');
+        setFinished(speed);
+      }, duration),
+      setTimeout(() => setState('idle'), duration + 1500),
+    ];
+    if (spinnerDelay > 0 && duration > spinnerDelay) {
+      timers.current.push(setTimeout(() => setState('spinning'), spinnerDelay));
+    }
   };
 
-  const busy = dont !== 'idle' || doState !== 'idle';
-  const result = (kind: 'do' | 'dont') => {
-    if (!ran) return kind === 'dont' ? 'Spinner shows up straight away' : 'Spinner waits 200ms first';
-    if (ran === 'fast') return kind === 'dont' ? 'A spinner flashed for a split second' : 'No spinner. Done before 200ms';
-    return kind === 'dont' ? 'Spinner, then saved' : 'Spinner after 200ms, then saved';
-  };
+  let note: string | null = null;
+  if (finished === 'fast') {
+    note = fixed
+      ? 'No spinner at all. The save was done before the 200ms wait was up.'
+      : 'A spinner, for a tenth of a second. Blink and you’ll miss it. Your users won’t.';
+  } else if (finished === 'slow') {
+    note = fixed
+      ? 'This one actually took a while, so the spinner turned up after 200ms.'
+      : 'Slow saves look fine. It’s the fast ones that flicker, so try Fast.';
+  }
 
   return (
     <div className={styles.demo}>
-      <div className={styles.controls}>
+      <div className={styles.saveRow}>
+        <button
+          type="button"
+          className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
+          onClick={save}
+          disabled={state !== 'idle'}
+        >
+          {state === 'spinning' ? (
+            <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
+          ) : state === 'done' ? (
+            'Saved ✓'
+          ) : (
+            'Save changes'
+          )}
+        </button>
         <div className={styles.segmented} role="group" aria-label="Server speed">
           <span className={styles.segmentedLabel}>Server</span>
           {(['fast', 'slow'] as const).map((s) => (
@@ -256,7 +302,9 @@ function SaveDemo() {
               aria-pressed={speed === s}
               className={`${styles.chip} ${speed === s ? styles.chipActive : ''}`}
               onClick={() => {
-                reset();
+                timers.current.forEach(clearTimeout);
+                setState('idle');
+                setFinished(null);
                 setSpeed(s);
               }}
             >
@@ -264,35 +312,14 @@ function SaveDemo() {
             </button>
           ))}
         </div>
-        <span className={styles.demoHint}>Press either button. Both save at the same time.</span>
       </div>
-      <div className={styles.lanes}>
-        {([['dont', dont], ['do', doState]] as const).map(([kind, state]) => (
-          <div key={kind} className={styles.lane}>
-            <Verdict kind={kind}>{result(kind)}</Verdict>
-            <button
-              type="button"
-              className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
-              onClick={save}
-              disabled={busy}
-            >
-              {state === 'spinning' ? (
-                <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
-              ) : state === 'done' ? (
-                'Saved ✓'
-              ) : (
-                'Save changes'
-              )}
-            </button>
-          </div>
-        ))}
-      </div>
-      <span className={styles.srOnly} role="status">{doState === 'done' ? 'Changes saved' : ''}</span>
+      {note ? <Note>{note}</Note> : <p className={styles.demoHint}>Press save.</p>}
+      <span className={styles.srOnly} role="status">{state === 'done' ? 'Changes saved' : ''}</span>
     </div>
   );
 }
 
-function ExportDemo() {
+function ExportDemo({ fixed }: { fixed: boolean }) {
   const [ticks, setTicks] = useState(0);
 
   useEffect(() => {
@@ -300,50 +327,69 @@ function ExportDemo() {
     return () => clearInterval(id);
   }, []);
 
-  // Honest bar: 2.5% per tick with a time estimate. Bad bar: races to 99% in 11 ticks, then sits there.
-  const honest = Math.min(100, ticks * 2.5);
-  const fake = Math.min(99, ticks * 9);
-  const stuckFor = Math.max(0, ticks - 11) / 10;
-  const secondsLeft = Math.ceil((100 - honest) / 25);
+  // The fix: 2.5% per tick with a time estimate. The usual way: races to 99% in 11 ticks, then sits there.
+  const pct = fixed ? Math.min(100, ticks * 2.5) : Math.min(99, ticks * 9);
+  const stuck = !fixed && pct >= 99;
+  const secondsLeft = Math.ceil((100 - pct) / 25);
+
+  let meta: string;
+  if (fixed) meta = pct >= 100 ? 'Done. 2.9 MB ready to download.' : `${Math.round(pct)}% · About ${secondsLeft}s left`;
+  else meta = stuck ? '99% · Almost there…' : `${Math.round(pct)}% · Wow, so fast`;
 
   return (
     <div className={styles.demo}>
-      <div className={styles.controls}>
-        <button type="button" className={styles.chip} onClick={() => setTicks(0)}>Start both again</button>
-      </div>
-      <div className={styles.lanes}>
-        <div className={styles.lane}>
-          <Verdict kind="dont">Races ahead, then stalls</Verdict>
-          <div className={styles.exportCard}>
-            <div className={styles.exportName}>emissions_report_q4.csv</div>
-            <div className={styles.track}>
-              <div className={`${styles.fill} ${styles.fillBad}`} style={{ width: `${fake}%` }} />
-            </div>
-            <div className={styles.exportMeta}>
-              {fake >= 99 ? `99% · Almost there… (${stuckFor.toFixed(0)}s and counting)` : `${Math.round(fake)}% · Wow, so fast`}
-            </div>
-          </div>
+      <div className={styles.exportCard}>
+        <div className={styles.exportName}>emissions_report_q4.csv</div>
+        <div className={styles.track}>
+          <div className={`${styles.fill} ${fixed ? '' : styles.fillBad}`} style={{ width: `${pct}%` }} />
         </div>
-        <div className={styles.lane}>
-          <Verdict kind="do">Real progress, rough time left</Verdict>
-          <div className={styles.exportCard}>
-            <div className={styles.exportName}>emissions_report_q4.csv</div>
-            <div className={styles.track}>
-              <div className={styles.fill} style={{ width: `${honest}%` }} />
-            </div>
-            <div className={styles.exportMeta}>
-              {honest >= 100 ? 'Done. 2.9 MB ready to download.' : `${Math.round(honest)}% · About ${secondsLeft}s left`}
-            </div>
-          </div>
-        </div>
+        <div className={styles.exportMeta}>{meta}</div>
       </div>
+      {stuck && <Note>“Almost there…” since Tuesday.</Note>}
+      {fixed && pct >= 100 && <Note>Real progress, an honest estimate, and it actually finished. Boring. Trustworthy.</Note>}
+      <button type="button" className={styles.linkButton} onClick={() => setTicks(0)}>
+        Start the export again
+      </button>
     </div>
   );
 }
 
-function LikeDemo() {
+function LikeDemo({ fixed }: { fixed: boolean }) {
   const [liked, setLiked] = useState(false);
+  const [pending, setPending] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [tapped, setTapped] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const tap = () => {
+    setTapped(true);
+    setFailed(false);
+    if (fixed) {
+      setLiked((l) => !l);
+      return;
+    }
+    // The usual way waits for the server before showing anything
+    setPending(true);
+    timer.current = setTimeout(() => {
+      setPending(false);
+      setLiked((l) => !l);
+    }, 1200);
+  };
+
+  const fail = () => {
+    setTapped(true);
+    setLiked(true);
+    timer.current = setTimeout(() => {
+      setLiked(false);
+      setFailed(true);
+    }, 900);
+  };
+
+  let note: string | null = null;
+  if (failed) note = 'The request failed, so the like quietly rolled back. That’s the whole recovery plan.';
+  else if (tapped && !pending) note = fixed ? 'Done the moment you tap.' : 'A whole second to like a post. It’s a heart, not a bank transfer.';
+
   return (
     <div className={styles.demo}>
       <div className={styles.saveRow}>
@@ -351,30 +397,18 @@ function LikeDemo() {
           type="button"
           className={`${styles.like} ${liked ? styles.likeOn : ''}`}
           aria-pressed={liked}
-          onClick={() => {
-            setFailed(false);
-            setLiked((l) => !l);
-          }}
+          onClick={tap}
+          disabled={pending}
         >
-          {liked ? '♥' : '♡'} {liked ? 43 : 42}
+          {pending ? <span className={`${styles.spinner} ${styles.spinnerDark}`} aria-hidden="true" /> : liked ? '♥' : '♡'} {liked ? 43 : 42}
         </button>
-        <button
-          type="button"
-          className={styles.linkButton}
-          onClick={() => {
-            setLiked(true);
-            setTimeout(() => {
-              setLiked(false);
-              setFailed(true);
-            }, 900);
-          }}
-        >
-          Simulate a failure
-        </button>
+        {fixed && (
+          <button type="button" className={styles.linkButton} onClick={fail}>
+            Simulate a failure
+          </button>
+        )}
       </div>
-      <p className={styles.demoHint}>
-        {failed ? 'The request failed, so the like quietly rolled back. That’s the whole recovery plan.' : 'No spinner. It’s done the moment you tap.'}
-      </p>
+      {note ? <Note>{note}</Note> : <p className={styles.demoHint}>Tap the heart.</p>}
     </div>
   );
 }

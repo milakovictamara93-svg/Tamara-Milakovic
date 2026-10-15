@@ -463,65 +463,78 @@
   white-space: nowrap;
 }
 
-/* Do / Don't comparison */
-.verdictRow {
+/* Story mode: the usual way first, then the fix */
+.stageHead {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 24px;
-  font-size: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.verdict {
-  flex-shrink: 0;
-  padding: 2px 8px;
-  border-radius: 9999px;
-  font-size: 12px;
+.stageHead .stagePattern {
+  margin-bottom: 0;
+}
+
+.mode {
+  font-size: 11px;
   font-weight: 600;
-  color: #fff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a84;
+  margin-bottom: 2px;
 }
 
-.verdictDo {
-  background: #15803d;
-}
-
-.verdictDont {
-  background: #b91c1c;
-}
-
-.verdictText {
-  flex: 1;
+.fixButton {
+  flex-shrink: 0;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid #000;
+  border-radius: 9999px;
+  background: #fec40a;
   color: #000;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.fixButton:hover {
+  background: #f5b800;
+}
+
+.fixButton:active {
+  transform: scale(0.96);
+}
+
+.fixButton:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.note {
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(254, 196, 10, 0.35);
+  font-size: 13px;
   font-weight: 500;
+  color: #000;
 }
 
-.controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 16px;
+.spinnerDark {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: #000;
 }
 
-.lanes {
-  align-self: stretch;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.lane {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.lane > .exportCard {
-  align-self: stretch;
+.like:disabled {
+  cursor: progress;
 }
 
 @media (max-width: 640px) {
-  .lanes {
-    grid-template-columns: 1fr;
+  .stageHead {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
