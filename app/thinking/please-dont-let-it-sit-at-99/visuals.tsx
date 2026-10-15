@@ -85,7 +85,7 @@ function Demo({
     <figure ref={figureRef} className={styles.figure}>
       <div className={styles.header}>
         <span className={styles.headerTitle}>
-          <span className={styles.verdictWord}>{verdict === 'good' ? 'Good' : 'Bad'}</span>
+          <span className={styles.verdictWord}>{verdict === 'good' ? '✓ Good' : '✕ Bad'}</span>
           <span className={styles.headerLabel}>{title}</span>
         </span>
         {action}
@@ -149,10 +149,19 @@ function JumpBad() {
       readout={loaded ? 'The table pushed everything down. Your eyes stayed put.' : 'Loading…'}
     >
       <div className={`${styles.window} ${styles.windowRel}`}>
-        <div className={styles.windowTitle}>Supplier emissions</div>
-        {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
-        <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
-          📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
+        {/* Invisible copy of the loaded layout keeps the box the same height in every state,
+            so only the content inside it jumps, never the article around it */}
+        <div className={styles.sizer} aria-hidden="true">
+          <div className={styles.windowTitle}>Supplier emissions</div>
+          <Table />
+          <div className={styles.reading}>📍 Your spot, way down here</div>
+        </div>
+        <div className={styles.layer}>
+          <div className={styles.windowTitle}>Supplier emissions</div>
+          {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
+          <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
+            📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
+          </div>
         </div>
         {/* Your eyes stay at the same spot on screen while the content moves under them */}
         <div className={styles.eyeLayer} aria-hidden="true">
