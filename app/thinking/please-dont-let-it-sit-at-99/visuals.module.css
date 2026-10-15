@@ -143,16 +143,6 @@
   position: relative;
 }
 
-/* The invisible sizer reserves the loaded height; the real content sits on top of it */
-.sizer {
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.layer {
-  position: absolute;
-  inset: 12px 12px auto;
-}
 
 .eyeLayer {
   position: absolute;

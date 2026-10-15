@@ -11,8 +11,8 @@ const ROWS = [
   ['Orbit Plastics', '531 t', '−5%'],
 ];
 
-/** Calls `fn` every `ms` while the element is on screen; returns a ref for that element. */
-function useLoopWhileVisible(fn: () => void, ms: number) {
+/** Calls `fn` once, the first time the element scrolls into view; returns a ref for that element. */
+function usePlayOnceVisible(fn: () => void) {
   const ref = useRef<HTMLElement>(null);
   const saved = useRef(fn);
   useEffect(() => {
@@ -22,20 +22,15 @@ function useLoopWhileVisible(fn: () => void, ms: number) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    let timer: ReturnType<typeof setInterval> | undefined;
     const observer = new IntersectionObserver(([entry]) => {
-      clearInterval(timer);
       if (entry.isIntersecting) {
         saved.current();
-        timer = setInterval(() => saved.current(), ms);
+        observer.disconnect();
       }
-    }, { threshold: 0.3 });
+    }, { threshold: 0.5 });
     observer.observe(el);
-    return () => {
-      observer.disconnect();
-      clearInterval(timer);
-    };
-  }, [ms]);
+    return () => observer.disconnect();
+  }, []);
 
   return ref;
 }
@@ -115,7 +110,7 @@ function useLoadLoop() {
     timer.current = setTimeout(() => setLoaded(true), 1400);
   }, []);
   useEffect(() => () => clearTimeout(timer.current), []);
-  const ref = useLoopWhileVisible(play, 3600);
+  const ref = usePlayOnceVisible(play);
   return { loaded, play, ref };
 }
 
@@ -149,19 +144,10 @@ function JumpBad() {
       readout={loaded ? 'The table pushed everything down. Your eyes stayed put.' : 'Loading…'}
     >
       <div className={`${styles.window} ${styles.windowRel}`}>
-        {/* Invisible copy of the loaded layout keeps the box the same height in every state,
-            so only the content inside it jumps, never the article around it */}
-        <div className={styles.sizer} aria-hidden="true">
-          <div className={styles.windowTitle}>Supplier emissions</div>
-          <Table />
-          <div className={styles.reading}>📍 Your spot, way down here</div>
-        </div>
-        <div className={styles.layer}>
-          <div className={styles.windowTitle}>Supplier emissions</div>
-          {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
-          <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
-            📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
-          </div>
+        <div className={styles.windowTitle}>Supplier emissions</div>
+        {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
+        <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
+          📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
         </div>
         {/* Your eyes stay at the same spot on screen while the content moves under them */}
         <div className={styles.eyeLayer} aria-hidden="true">
