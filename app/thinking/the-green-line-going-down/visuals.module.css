@@ -107,14 +107,29 @@
   padding: 16px 16px 8px;
 }
 
+.chartTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  flex-wrap: wrap;
+}
+
+.chartTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
 /* Fixed height so the headline changing never moves the chart */
 .headline {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: baseline;
-  gap: 4px 12px;
+  gap: 4px 10px;
   min-height: 40px;
-  margin-bottom: 8px;
+  margin: 2px 0 8px;
 }
 
 .headlineNumber {
@@ -124,7 +139,7 @@
   letter-spacing: -0.02em;
   color: #000;
   font-variant-numeric: tabular-nums;
-  min-width: 4.6em;
+  min-width: 3em;
 }
 
 .headlineLabel {
@@ -261,17 +276,66 @@
   outline-offset: 2px;
 }
 
-.numbers table {
+.tableCard {
   margin-top: 10px;
+  max-width: 440px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
   border-collapse: collapse;
   font-variant-numeric: tabular-nums;
 }
 
-.numbers th,
-.numbers td {
-  padding: 4px 16px 4px 0;
+.table th,
+.table td {
+  padding: 8px 14px;
   text-align: left;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.table thead th {
+  vertical-align: bottom;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  background: #f5f5f3;
+}
+
+.table tbody th {
+  font-weight: 600;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table .num {
+  text-align: right;
+}
+
+.thUnit {
+  display: block;
+  white-space: nowrap;
+  font-weight: 400;
+  color: #525252;
+}
+
+.rowMarked th,
+.rowMarked td {
+  background: rgba(254, 196, 10, 0.22);
+}
+
+.rowTag {
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #525252;
 }
 
 .numbers p {
@@ -279,13 +343,16 @@
   color: #525252;
 }
 
+
 @media (max-width: 640px) {
-  .headline {
-    grid-template-columns: auto 1fr;
+  .table th,
+  .table td {
+    padding: 8px 10px;
   }
 
-  .truthCount {
-    grid-column: 1 / -1;
+  .rowTag {
+    display: block;
+    margin-left: 0;
   }
 }
 

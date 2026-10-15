@@ -169,7 +169,7 @@ export function GreenLineRevealVisual() {
   ].join(' ');
   const ticks = niceTicks(view.yMin, view.yMax);
   const isAbsolute = view.mix > 0.5;
-  const unit = isAbsolute ? 'kt CO₂e, total' : 't CO₂e per €m of revenue';
+  const unit = isAbsolute ? 'kt CO₂e' : 't CO₂e per €m';
   const pct = change(truths);
   const visibleYears = YEARS.filter((yr) => yr >= Math.round(view.x0));
 
@@ -193,7 +193,7 @@ export function GreenLineRevealVisual() {
           disabled={!restored}
           onClick={() => apply(NONE, 'Back to the version that went in the report. Feels nice, doesn’t it?')}
         >
-          Start over
+          Reset
         </button>
       }
       readout={readout}
@@ -213,15 +213,18 @@ export function GreenLineRevealVisual() {
       </div>
 
       <div className={styles.revealCard}>
+        <div className={styles.chartTop}>
+          <p className={styles.chartTitle}>
+            {truths.absolute ? 'Total emissions' : 'Emissions per euro of revenue'}, {startYear(truths)} to {LAST}
+          </p>
+          <span className={styles.truthCount}>{restored} of 4 truths back</span>
+        </div>
         <div className={styles.headline}>
-          <span className={styles.headlineNumber}>
-            {pct < 0 ? '🍃' : '🏭'} {formatChange(pct)}
-          </span>
+          <span className={styles.headlineNumber}>{formatChange(pct)}</span>
           <span className={styles.headlineLabel}>
-            {isAbsolute ? 'Total emissions' : 'Emissions per euro'} since {startYear(truths)}
+            since {startYear(truths)}
             {truths.uncertainty ? `, ± ${UNCERTAINTY * 100}% on every point` : ''}
           </span>
-          <span className={styles.truthCount}>{restored} of 4 truths back</span>
         </div>
 
         <div ref={wrapRef} className={styles.revealChart}>
@@ -297,24 +300,35 @@ export function GreenLineRevealVisual() {
 
       <details className={styles.numbers}>
         <summary>See the numbers</summary>
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Year</th>
-              <th scope="col">t CO₂e per €m</th>
-              <th scope="col">Total kt CO₂e</th>
-            </tr>
-          </thead>
-          <tbody>
-            {YEARS.map((yr, i) => (
-              <tr key={yr}>
-                <th scope="row">{yr}</th>
-                <td>{INTENSITY[i]}</td>
-                <td>{ABSOLUTE[i]}</td>
+        <div className={styles.tableCard}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th scope="col">Year</th>
+                <th scope="col" className={styles.num}>
+                  Per €m of revenue
+                  <span className={styles.thUnit}>t CO₂e</span>
+                </th>
+                <th scope="col" className={styles.num}>
+                  Total
+                  <span className={styles.thUnit}>kt CO₂e</span>
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {YEARS.map((yr, i) => (
+                <tr key={yr} className={yr === REPORT_START ? styles.rowMarked : undefined}>
+                  <th scope="row">
+                    {yr}
+                    {yr === REPORT_START && <span className={styles.rowTag}>Report starts</span>}
+                  </th>
+                  <td className={styles.num}>{INTENSITY[i]}</td>
+                  <td className={styles.num}>{ABSOLUTE[i]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <p>Every value is ± {UNCERTAINTY * 100}%. A made-up company, sadly a very typical one.</p>
       </details>
     </DemoFrame>
