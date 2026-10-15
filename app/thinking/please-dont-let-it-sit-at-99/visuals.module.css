@@ -52,7 +52,7 @@
   background: #fff;
   color: #000;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 
 .chip:hover {
@@ -63,6 +63,10 @@
 .chipActive:hover {
   background: #000;
   color: #fff;
+}
+
+.chip:active {
+  transform: scale(0.96);
 }
 
 .window {
@@ -262,10 +266,19 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
 
 .primary:disabled {
   cursor: progress;
+}
+
+.primary:hover:not(:disabled) {
+  background: #333;
+}
+
+.primary:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 .spinner {
@@ -303,6 +316,14 @@
 .linkButton:disabled {
   color: #c2c2be;
   cursor: default;
+}
+
+.linkButton:hover:not(:disabled) {
+  text-decoration-thickness: 2px;
+}
+
+.linkButton:active:not(:disabled) {
+  opacity: 0.6;
 }
 
 .exportCard {
@@ -371,7 +392,11 @@
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.like:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .like:active {
@@ -380,6 +405,25 @@
 
 .likeOn {
   background: #fec40a;
+}
+
+.likeOn:hover {
+  background: #f5b800;
+}
+
+.toggle:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Keyboard focus, shared by every control in the demos */
+.chip:focus-visible,
+.primary:focus-visible,
+.linkButton:focus-visible,
+.like:focus-visible,
+.toggle input:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
 }
 
 @media (max-width: 640px) {
