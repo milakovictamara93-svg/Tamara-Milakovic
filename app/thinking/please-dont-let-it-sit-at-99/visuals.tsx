@@ -36,11 +36,11 @@ function usePlayOnceVisible(fn: () => void) {
   return ref;
 }
 
-function Table({ skeleton }: { skeleton?: boolean }) {
+function Table({ skeleton, hit }: { skeleton?: boolean; hit?: string | null }) {
   return (
     <div className={styles.table}>
       {ROWS.map(([name, value, change]) => (
-        <div key={name} className={styles.tableRow}>
+        <div key={name} data-target={name} className={`${styles.tableRow} ${hit === name ? styles.hit : ''}`}>
           {skeleton ? (
             <>
               <span className={`${styles.bone} ${styles.boneWide}`} />
@@ -62,62 +62,126 @@ function Table({ skeleton }: { skeleton?: boolean }) {
 
 /* ── 1. The jump ─────────────────────────────────────────────── */
 
-function useLoadLoop() {
+const BUTTON = 'Download report';
+const LOAD_AT = 1400;
+const CLICK_AT = 1600;
+
+/**
+ * Plays one load: the pointer aims at the Download button while the table is loading,
+ * the table arrives, then the pointer clicks. Whatever sits under the pointer at that
+ * moment is what got clicked.
+ */
+function useClickDuringLoad() {
   const [loaded, setLoaded] = useState(true);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
+  const [pressing, setPressing] = useState(false);
+  const [hit, setHit] = useState<string | null>(null);
+  const windowRef = useRef<HTMLDivElement>(null);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+
   const play = useCallback(() => {
-    clearTimeout(timer.current);
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
     setLoaded(false);
-    timer.current = setTimeout(() => setLoaded(true), 1400);
+    setHit(null);
+    setPressing(false);
+    setPointer(null);
+    const win = windowRef.current;
+    const at = (ms: number, fn: () => void) => timers.current.push(setTimeout(fn, ms));
+    // Aim at the button where it sits while the table is still loading
+    at(60, () => {
+      const button = win?.querySelector<HTMLElement>(`[data-target="${BUTTON}"]`);
+      if (!win || !button) return;
+      const w = win.getBoundingClientRect();
+      const r = button.getBoundingClientRect();
+      setPointer({ x: r.left - w.left + r.width * 0.45, y: r.top - w.top + r.height * 0.3 });
+    });
+    at(LOAD_AT, () => setLoaded(true));
+    at(CLICK_AT, () => {
+      setPressing(true);
+      const cursor = win?.querySelector<HTMLElement>('[data-cursor]');
+      if (!cursor) return;
+      const c = cursor.getBoundingClientRect();
+      const under = document
+        .elementsFromPoint(c.left + 1, c.top + 1)
+        .find((el) => el instanceof HTMLElement && el.dataset.target) as HTMLElement | undefined;
+      setHit(under?.dataset.target ?? null);
+    });
+    at(CLICK_AT + 180, () => setPressing(false));
   }, []);
-  useEffect(() => () => clearTimeout(timer.current), []);
+
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
   const ref = usePlayOnceVisible(play);
-  return { loaded, play, ref };
+  return { loaded, pointer, pressing, hit, play, ref, windowRef };
+}
+
+function Pointer({ pointer, pressing }: { pointer: { x: number; y: number } | null; pressing: boolean }) {
+  if (!pointer) return null;
+  return (
+    <span
+      data-cursor
+      aria-hidden="true"
+      className={`${styles.pointer} ${pressing ? styles.pointerPressing : ''}`}
+      style={{ left: pointer.x, top: pointer.y }}
+    >
+      <svg width="18" height="22" viewBox="0 0 18 22">
+        <path d="M1 1 L1 17 L5.5 13 L8.5 20.5 L11.5 19.2 L8.6 12 L14.5 12 Z" fill="#000" stroke="#fff" strokeWidth="1.5" strokeLinejoin="round" />
+      </svg>
+    </span>
+  );
+}
+
+function DownloadButton({ hit }: { hit: string | null }) {
+  return (
+    <div className={styles.downloadRow}>
+      <span data-target={BUTTON} className={`${styles.download} ${hit === BUTTON ? styles.hit : ''}`}>
+        {hit === BUTTON ? 'Downloading…' : BUTTON}
+      </span>
+    </div>
+  );
 }
 
 function JumpGood() {
-  const { loaded, play, ref } = useLoadLoop();
+  const { loaded, pointer, pressing, hit, play, ref, windowRef } = useClickDuringLoad();
   return (
     <Demo
       verdict="good"
-      title="The skeleton matches the table"
+      title="The skeleton reserves the table’s space"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
-      readout={loaded ? 'The skeleton had the same five rows as the table, so your reading position stayed in place.' : 'Loading…'}
+      readout={hit ? 'The table loaded into the space the skeleton reserved, so the button stayed put and the click landed on Download report.' : ''}
     >
-      <div className={styles.window}>
+      <div ref={windowRef} className={`${styles.window} ${styles.viewport}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
-        <Table skeleton={!loaded} />
-        <div className={styles.reading}>You were reading here</div>
+        <Table skeleton={!loaded} hit={hit} />
+        <DownloadButton hit={hit} />
+        <Pointer pointer={pointer} pressing={pressing} />
       </div>
     </Demo>
   );
 }
 
 function JumpBad() {
-  const { loaded, play, ref } = useLoadLoop();
+  const { loaded, pointer, pressing, hit, play, ref, windowRef } = useClickDuringLoad();
   return (
     <Demo
       verdict="bad"
-      title="The content collapses while it loads"
+      title="Nothing reserves the table’s space"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
-      readout={loaded ? 'The table pushed the content down, so your reading position moved.' : 'Loading…'}
+      readout={
+        hit
+          ? hit === BUTTON
+            ? 'The click landed on Download report.'
+            : `The table loaded above the button and pushed it down. The click meant for Download report opened ${hit} instead.`
+          : ''
+      }
     >
-      <div className={`${styles.window} ${styles.windowRel}`}>
+      <div ref={windowRef} className={`${styles.window} ${styles.viewport}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
-        {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
-        <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
-          {loaded ? 'Where you were reading, now further down' : 'You were reading here'}
-        </div>
-        {/* Your eyes stay at the same spot on screen while the content moves under them */}
-        <div className={styles.eyeLayer} aria-hidden="true">
-          <div className={`${styles.windowTitle} ${styles.ghost}`}>Supplier emissions</div>
-          <div className={`${styles.collapsed} ${styles.ghost}`}>Loading…</div>
-          <div className={`${styles.eye} ${loaded ? styles.eyeLost : ''}`}>
-            {loaded ? 'Now you’re looking at Atlas Freight' : 'You were reading here'}
-          </div>
-        </div>
+        {loaded ? <Table hit={hit} /> : <div className={styles.collapsed}>Loading…</div>}
+        <DownloadButton hit={hit} />
+        <Pointer pointer={pointer} pressing={pressing} />
       </div>
     </Demo>
   );

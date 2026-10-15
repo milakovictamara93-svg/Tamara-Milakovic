@@ -30,7 +30,7 @@ export function Demo({
       <div className={styles.inlineDemo}>
         {children}
         {readout !== undefined && (
-          <p className={styles.readout} aria-live="polite">{readout || ' '}</p>
+          <p className={styles.readout} aria-live="polite" aria-atomic="true">{readout || ' '}</p>
         )}
       </div>
     </figure>
@@ -60,7 +60,7 @@ export function DemoFrame({
       <div className={styles.inlineDemo}>
         {children}
         {readout !== undefined && (
-          <p className={styles.readout} aria-live="polite">{readout || '\u00a0'}</p>
+          <p className={styles.readout} aria-live="polite" aria-atomic="true">{readout || '\u00a0'}</p>
         )}
       </div>
     </figure>

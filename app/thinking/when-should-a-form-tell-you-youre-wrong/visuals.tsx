@@ -167,6 +167,7 @@ function TimingGood() {
 function TimingBad() {
   const [value, setValue] = useState('');
   const [nags, setNags] = useState(0);
+  const [focused, setFocused] = useState(false);
   const update = (v: string) => {
     setValue(v);
     if (v && !isEmail(v)) setNags((n) => n + 1);
@@ -181,9 +182,18 @@ function TimingBad() {
       title="Checks on every keystroke"
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setNags(0); auto.play(); }} disabled={auto.typing} />}
-      readout={nags > 0 ? `An error appeared ${nags} time${nags === 1 ? '' : 's'} before you finished typing.` : ''}
+      readout={nags > 0 && !auto.typing && !focused ? `An error appeared ${nags} time${nags === 1 ? '' : 's'} before you finished typing.` : ''}
     >
-      <Field label="Email" value={value} onChange={(v) => { auto.stop(); update(v); }} error={error} valid={valid} inputMode="email" />
+      <Field
+        label="Email"
+        value={value}
+        onChange={(v) => { auto.stop(); update(v); }}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        error={error}
+        valid={valid}
+        inputMode="email"
+      />
     </Demo>
   );
 }
@@ -343,6 +353,7 @@ function CommitGood() {
 function CommitBad() {
   const [value, setValue] = useState('');
   const [warnings, setWarnings] = useState(0);
+  const [focused, setFocused] = useState(false);
   const update = (v: string) => {
     setValue(v);
     if (budgetError(v)) setWarnings((n) => n + 1);
@@ -354,7 +365,7 @@ function CommitBad() {
       title="Warns while you’re still exploring"
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setWarnings(0); auto.play(); }} disabled={auto.typing} />}
-      readout={warnings > 0 ? `${warnings} warning${warnings === 1 ? '' : 's'} shown before you finished entering the amount.` : ''}
+      readout={warnings > 0 && !auto.typing && !focused ? `${warnings} warning${warnings === 1 ? '' : 's'} shown before you finished entering the amount.` : ''}
     >
       <div className={styles.row}>
         <Field
@@ -363,6 +374,8 @@ function CommitBad() {
           inputMode="numeric"
           value={value}
           onChange={(v) => { auto.stop(); update(v.replace(/\D/g, '')); }}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
           error={budgetError(value)}
         />
         <button type="button" className={`${demoStyles.primary} ${styles.inlineButton}`}>
