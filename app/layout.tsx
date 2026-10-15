@@ -1,3 +1,4 @@
+import { site } from '@/lib/site';
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import '@fontsource/dm-sans/400.css';
@@ -35,7 +36,7 @@ const structuredData = {
       jobTitle: 'Senior Product Designer',
       description: 'Senior product designer in B2B SaaS and monetisation.',
       sameAs: [
-        'https://www.linkedin.com/in/tamaramilakovic/',
+        site.linkedin,
       ],
     },
     {

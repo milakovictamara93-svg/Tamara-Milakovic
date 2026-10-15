@@ -1,3 +1,4 @@
+import { site } from '@/lib/site';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -111,10 +112,10 @@ export default function ResumePage() {
           <div className={styles.bio}>
             <p>A senior product designer with experience across B2B SaaS, sustainability analytics, and monetisation systems. I work upstream of the brief: finding what&rsquo;s actually broken before designing the solution. I&rsquo;ve led design from zero to launch, built systems that teams still use, and stepped into leadership before I had the title.</p>
           </div>
-          <a href="https://tamara-milakovic.com" target="_blank" rel="noopener noreferrer" className={styles.sidebarLink}>
-            tamara-milakovic.com <span aria-hidden="true">↗</span>
+          <a href={site.url} target="_blank" rel="noopener noreferrer" className={styles.sidebarLink}>
+            tamaramilakovic.com <span aria-hidden="true">↗</span>
           </a>
-          <a href="https://www.linkedin.com/in/tamaramilakovic/" target="_blank" rel="noopener noreferrer" className={styles.sidebarLink}>
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" className={styles.sidebarLink}>
             LinkedIn <span aria-hidden="true">↗</span>
           </a>
         </aside>
@@ -139,7 +140,7 @@ export default function ResumePage() {
           </section>
 
           <footer className={styles.cvFooter}>
-            <a href="mailto:tamaraoctostudio@gmail.com" className={styles.contactLink}>Contact me</a>
+            <a href={`mailto:${site.email}`} className={styles.contactLink}>Contact me</a>
           </footer>
         </div>
       </main>

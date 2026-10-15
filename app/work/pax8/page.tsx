@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import Arrow from '@/components/Arrow';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
 import Marquee from '@/components/Marquee';
-import ArticleSidebar from './ArticleSidebar';
+import ArticleSidebar from '../CaseStudySidebar';
+import NextCaseStudy from '@/components/NextCaseStudy';
 import ArticleImageReveal from '@/components/ArticleImageReveal';
-import styles from './page.module.css';
+import styles from '../case-study.module.css';
 
 export const metadata = {
   title: 'Pax8: Building a Monetization System from a PowerPoint Slide and a Prayer - Tamara Milakovic',
@@ -255,29 +255,7 @@ export default function Pax8Page() {
           </div>
         </div>
 
-        {/* Next case study */}
-        <div className={styles.nextCaseStudy}>
-          <div className={styles.nextCaseStudyInner}>
-            <a href="/work/scaler" className={styles.nextCaseStudyCard}>
-              <div className={styles.nextCaseStudyImage}>
-                <Image
-                  src="/work/scaler-hero.jpg"
-                  alt="Scaler dashboard"
-                  fill
-                  className={styles.heroImg}
-                  sizes="360px"
-                />
-              </div>
-              <div className={styles.nextCaseStudyContent}>
-                <span className={styles.nextCaseStudyLabel}>Next case study</span>
-                <h2 className={styles.nextCaseStudyTitle}>Scaler: When the Frankenstein Problem Is Partly Your Fault</h2>
-                <p className={styles.nextCaseStudyDesc}>When the platform grew faster than its rules and the design system that stopped the drift.</p>
-                <span className={styles.nextCaseStudyTags}>ESG Analytics · Design Systems · SaaS</span>
-              </div>
-              <span className={styles.nextCaseStudyArrow}><Arrow size={36} /></span>
-            </a>
-          </div>
-        </div>
+        <NextCaseStudy slug="scaler" />
 
         <Marquee text="No brief. 💼 No stakeholders. 👨🏻 No problem. 🤜🤛" />
 

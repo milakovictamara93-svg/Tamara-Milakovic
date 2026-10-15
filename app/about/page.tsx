@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
+import { site } from '@/lib/site';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -75,7 +76,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <TextLink href="mailto:tamaraoctostudio@gmail.com">Get in touch</TextLink>
+              <TextLink href={`mailto:${site.email}`}>Get in touch</TextLink>
             </div>
           </div>
         </div>

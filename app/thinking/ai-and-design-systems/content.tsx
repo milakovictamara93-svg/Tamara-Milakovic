@@ -1,6 +1,6 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
 import { ArtifactsVisual, FrankensteinVisual } from './visuals';
-import styles from './content.module.css';
+import styles from '../article.module.css';
 
 export default function Content() {
   return (

@@ -1,6 +1,6 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
 import { PortfolioVsRealityVisual, WhatsMissingVisual } from './visuals';
-import styles from './content.module.css';
+import styles from '../article.module.css';
 
 export default function PortfolioContent() {
   return (

@@ -9,8 +9,6 @@ import RelatedArticles from '@/components/RelatedArticles';
 import { getArticleBySlug, articles } from '@/lib/articles';
 import styles from './page.module.css';
 
-// Dynamically import article content components
-import { lazy, Suspense } from 'react';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
