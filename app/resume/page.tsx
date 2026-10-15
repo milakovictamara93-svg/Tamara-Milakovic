@@ -110,7 +110,7 @@ export default function ResumePage() {
       <main className={styles.main}>
         <aside className={styles.sidebar}>
           <div className={styles.bio}>
-            <p>A senior product designer with experience across B2B SaaS, sustainability analytics, and monetisation systems. I work upstream of the brief: finding what&rsquo;s actually broken before designing the solution. I&rsquo;ve led design from zero to launch, built systems that teams still use, and stepped into leadership before I had the title.</p>
+            <p>I&rsquo;m a senior product designer, and most of my career has been B2B products with a lot of data and not much agreement. I&rsquo;ve led products from zero to launch and built design systems that teams still use. My first move is rarely to design: I work out what&rsquo;s actually broken, including the parts I might have caused. I also do a lot of hands-on AI work, designing for agents and alongside them. Next, I&rsquo;m aiming for principal roles.</p>
           </div>
           <a href={site.url} target="_blank" rel="noopener noreferrer" className={styles.sidebarLink}>
             tamaramilakovic.com <span aria-hidden="true">↗</span>
