@@ -6,15 +6,21 @@ Next.js site deployed on Vercel from `main`. Every change gets checked in a prod
 
 These rules apply to every visual, diagram or interactive demo created for the Thinking articles (`app/thinking/<slug>/visuals.tsx`) or anywhere else on the site.
 
-### 1. Research before building
+### 1. Deep research before building, for every detail
 
-Before designing any UI pattern in an asset (buttons, loading states, validation, empty states, modals and so on), check what the major design systems and usability research say:
+Do real, deep research before building or changing anything, and do it **before** showing Tamara a single screenshot. Never build from memory or taste and research afterwards.
 
-- **Design systems:** IBM Carbon, Material Design, Apple HIG, Atlassian, GOV.UK, Shopify Polaris
-- **Usability research:** Nielsen Norman Group, Baymard Institute
-- **Accessibility:** WCAG 2.2 (color is never the only signal, AA contrast, keyboard access, screen reader announcements)
-
-Follow the consensus. Where sources disagree or the brand calls for something different, say so and explain the trade-off. Tell Tamara which sources the decision is based on.
+- **Every detail gets researched, not just the main pattern.** List every element in the asset first (layout, hierarchy, titles, labels, units, legends, colours, icons, numbers and their formatting, tables, empty and placeholder states, buttons, hover/pressed/focus/disabled states, motion, copy, mobile layout). Then check the best practice for each one. If a detail wasn't researched, it isn't ready.
+- **Research the context, not just the component.** A chart inside a report or dashboard means researching dashboards, KPI tiles, data tables and legends too, not only the chart.
+- **Go to the primary sources:**
+  - **Design systems:** IBM Carbon, Material Design, Apple HIG, Atlassian, GOV.UK, Shopify Polaris
+  - **Usability research:** Nielsen Norman Group, Baymard Institute
+  - **Data visualisation (for charts, tables, dashboards):** Datawrapper, FT Visual Vocabulary, Stephen Few, Alberto Cairo, ONS and government data guidance
+  - **Accessibility:** WCAG 2.2 (color is never the only signal, AA contrast, keyboard access, screen reader announcements)
+  - Use several searches, read the actual pages where possible, and don't stop at the first result. If a primary source can't be reached, say so instead of presenting a secondhand summary as the source.
+- **Follow the consensus.** Where sources disagree or the brand calls for something different, say so and explain the trade-off.
+- **Check the result against the research before showing it.** Screenshot it at desktop and phone width and go through the list of details again. Look for inconsistencies (sign formats, colours, spacing, wording) and fix them first.
+- **Tell Tamara which sources each decision is based on,** with links.
 
 ### 2. Show the real pattern
 
