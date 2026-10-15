@@ -35,22 +35,30 @@
   border: 1px solid #000;
   background: #fff;
   color: #000;
+  white-space: nowrap;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 
-.chip:hover {
+.chip:hover:not(:disabled) {
   background: rgba(0, 0, 0, 0.06);
 }
 
 .chipActive,
-.chipActive:hover {
+.chipActive:hover:not(:disabled) {
   background: #000;
   color: #fff;
 }
 
-.chip:active {
+.chip:active:not(:disabled) {
   transform: scale(0.96);
+}
+
+.chip:disabled {
+  border-color: #c2c2be;
+  color: #8a8a84;
+  background: #fff;
+  cursor: default;
 }
 
 .primary {

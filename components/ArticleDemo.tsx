@@ -37,6 +37,36 @@ export function Demo({
   );
 }
 
+/** The same frame for demos that aren't a Good/Bad pair: explorables, quizzes. */
+export function DemoFrame({
+  title,
+  action,
+  readout,
+  children,
+  figureRef,
+}: {
+  title: string;
+  action?: React.ReactNode;
+  readout?: React.ReactNode;
+  children: React.ReactNode;
+  figureRef?: React.Ref<HTMLElement>;
+}) {
+  return (
+    <figure ref={figureRef} className={styles.figure}>
+      <div className={styles.header}>
+        <span className={styles.verdictWord}>{title}</span>
+        {action}
+      </div>
+      <div className={styles.inlineDemo}>
+        {children}
+        {readout !== undefined && (
+          <p className={styles.readout} aria-live="polite">{readout || '\u00a0'}</p>
+        )}
+      </div>
+    </figure>
+  );
+}
+
 /** Stacks a Good demo with its Bad twin directly below. */
 export function Pair({ children }: { children: React.ReactNode }) {
   return <div className={styles.pair}>{children}</div>;

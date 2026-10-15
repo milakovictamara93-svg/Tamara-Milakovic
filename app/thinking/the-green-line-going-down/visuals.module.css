@@ -32,60 +32,6 @@
   font-family: var(--font-body);
 }
 
-/* ── Chart comparison ─────────────────────────────── */
-.chartsRow {
-  display: flex;
-}
-
-.chartPanel {
-  flex: 1;
-  padding: 20px 24px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-
-.chartPanelDark {
-  background: #f9f9f8;
-}
-
-.chartPanelTitle {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #8a8a84;
-  font-family: var(--font-body);
-}
-
-.chartPanelTitleDark {
-  color: #8a8a84;
-}
-
-.chartSvg {
-  width: 100%;
-  display: block;
-  overflow: visible;
-}
-
-.chartNote {
-  font-size: 11px;
-  color: #8a8a84;
-  font-family: var(--font-body);
-  line-height: 1.4;
-}
-
-.chartNoteDark {
-  color: #8a8a84;
-}
-
-@media (max-width: 600px) {
-  .chartsRow {
-    flex-direction: column;
-  }
-}
-
 /* ── ESG ratings divergence ──────────────────────── */
 .ratingsBody {
   padding: 8px 28px 16px;
@@ -145,4 +91,207 @@
 .ratingsBadgeLow {
   background: rgba(239, 68, 68, 0.08);
   color: #dc2626;
+}
+
+/* ── Add the truth back ──────────────────────────── */
+.switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.revealCard {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  padding: 16px 16px 8px;
+}
+
+/* Fixed height so the headline changing never moves the chart */
+.headline {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 4px 12px;
+  min-height: 40px;
+  margin-bottom: 8px;
+}
+
+.headlineNumber {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #000;
+  font-variant-numeric: tabular-nums;
+  min-width: 4.6em;
+}
+
+.headlineLabel {
+  font-size: 13px;
+  color: #525252;
+}
+
+.truthCount {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a8a84;
+  font-variant-numeric: tabular-nums;
+}
+
+.revealChart {
+  position: relative;
+  width: 100%;
+}
+
+.revealChart svg {
+  display: block;
+  touch-action: pan-y;
+}
+
+.grid {
+  stroke: rgba(0, 0, 0, 0.07);
+  stroke-width: 1;
+}
+
+.axisZero {
+  stroke: rgba(0, 0, 0, 0.4);
+  stroke-width: 1;
+}
+
+.tick {
+  font-family: var(--font-body);
+  font-size: 12px;
+  fill: #525252;
+  font-variant-numeric: tabular-nums;
+}
+
+.unit {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  fill: #000;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+
+.lineGreen,
+.dotGreen {
+  stroke: #15803d;
+}
+
+.lineInk,
+.dotInk {
+  stroke: #000;
+}
+
+.dot {
+  fill: #fff;
+  stroke-width: 2;
+  transition: r 0.15s ease;
+}
+
+.bandGreen {
+  fill: rgba(21, 128, 61, 0.14);
+}
+
+.bandInk {
+  fill: rgba(0, 0, 0, 0.1);
+}
+
+.marker {
+  stroke: #000;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.markerLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  fill: #000;
+}
+
+.crosshair {
+  stroke: rgba(0, 0, 0, 0.25);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.tooltip {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.numbers {
+  font-size: 13px;
+  color: #000;
+}
+
+.numbers summary {
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  width: fit-content;
+}
+
+.numbers summary:hover {
+  text-decoration-thickness: 2px;
+}
+
+.numbers summary:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.numbers table {
+  margin-top: 10px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.numbers th,
+.numbers td {
+  padding: 4px 16px 4px 0;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.numbers p {
+  margin: 8px 0 0;
+  color: #525252;
+}
+
+@media (max-width: 640px) {
+  .headline {
+    grid-template-columns: auto 1fr;
+  }
+
+  .truthCount {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line,
+  .dot {
+    transition: none;
+  }
 }

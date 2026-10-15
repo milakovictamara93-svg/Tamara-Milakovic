@@ -1,5 +1,6 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { ChartContextVisual, RatingsDivergenceVisual } from './visuals';
+import { RatingsDivergenceVisual } from './visuals';
+import { GreenLineRevealVisual } from './reveal';
 import styles from '../article.module.css';
 
 export default function GreenLineContent() {
@@ -35,7 +36,7 @@ export default function GreenLineContent() {
         revenue, can show lovely progress while total emissions go up.
       </p>
 
-      <RevealOnScroll><ChartContextVisual /></RevealOnScroll>
+      <GreenLineRevealVisual />
 
       <p>
         So the question I ask of every chart is whether it helps someone understand what’s
