@@ -123,29 +123,6 @@
   color: #000;
 }
 
-/* Fixed height so the headline changing never moves the chart */
-.headline {
-  display: flex;
-  align-items: baseline;
-  gap: 4px 10px;
-  min-height: 40px;
-  margin: 2px 0 8px;
-}
-
-.headlineNumber {
-  font-family: var(--font-heading);
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #000;
-  font-variant-numeric: tabular-nums;
-  min-width: 3em;
-}
-
-.headlineLabel {
-  font-size: 13px;
-  color: #525252;
-}
 
 .truthCount {
   font-size: 12px;
@@ -196,11 +173,6 @@
   transition: stroke 0.3s ease;
 }
 
-.lineGreen,
-.dotGreen {
-  stroke: #15803d;
-}
-
 .lineInk,
 .dotInk {
   stroke: #000;
@@ -210,10 +182,6 @@
   fill: #fff;
   stroke-width: 2;
   transition: r 0.15s ease;
-}
-
-.bandGreen {
-  fill: rgba(21, 128, 61, 0.14);
 }
 
 .bandInk {
@@ -278,8 +246,7 @@
 
 .tableCard {
   margin-top: 10px;
-  max-width: 440px;
-  overflow: hidden;
+  overflow-x: auto;
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.14);
   border-radius: 8px;
@@ -319,45 +286,40 @@
   text-align: right;
 }
 
-.thUnit {
-  display: block;
-  white-space: nowrap;
+
+.thBlank {
+  background: #f5f5f3;
+}
+
+.table thead tr:first-child th,
+.table thead tr:first-child td {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.table .thGroup {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+}
+
+.table thead tr:last-child th {
   font-weight: 400;
+  color: #525252;
+  white-space: nowrap;
+}
+
+.table colgroup col + col {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.baseTag {
+  font-size: 12px;
+  font-weight: 500;
   color: #525252;
 }
 
-/* A small line-and-dot key, the same mark as the chart, so each column points to its line */
-.key {
-  position: relative;
-  display: inline-block;
-  width: 16px;
-  height: 2px;
-  margin-right: 6px;
-  vertical-align: middle;
-}
-
-.key::after {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: -3px;
-  width: 8px;
-  height: 8px;
-  box-sizing: border-box;
-  border-radius: 50%;
-  border: 2px solid currentColor;
-  background: #fff;
-}
-
-.keyGreen {
-  color: #15803d;
-  background: #15803d;
-}
-
-.keyInk {
-  color: #000;
-  background: #000;
-}
 
 .rowLeftOut th,
 .rowLeftOut td {
@@ -367,6 +329,134 @@
 .rowMarked th,
 .rowMarked td {
   background: rgba(254, 196, 10, 0.22);
+}
+
+.table td {
+  white-space: nowrap;
+}
+
+/* ── KPI tiles and change indicators ── */
+.kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 12px 0 8px;
+}
+
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  min-height: 128px;
+  padding: 12px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.kpiCharted {
+  border-color: #000;
+}
+
+.kpiMissing {
+  justify-content: center;
+  border-style: dashed;
+  border-color: #8a8a84;
+  background: #f5f5f3;
+}
+
+.kpiLabel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #525252;
+}
+
+.kpiTag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+.kpiValue {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.kpiUnit {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #525252;
+}
+
+.kpiNote {
+  font-size: 12px;
+  color: #525252;
+}
+
+.kpiMissingText {
+  font-size: 15px;
+  font-weight: 600;
+  color: #525252;
+}
+
+.delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table .delta {
+  font-size: 13px;
+}
+
+.deltaArrow {
+  font-size: 0.8em;
+}
+
+.deltaSince {
+  font-weight: 400;
+  color: #525252;
+}
+
+.delta_good {
+  color: #15803d;
+}
+
+.delta_bad {
+  color: #b91c1c;
+}
+
+.delta_flat {
+  color: #525252;
+}
+
+.rowLeftOut .delta {
+  color: inherit;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 .rowTag {
@@ -392,6 +482,20 @@
     display: block;
     margin-left: 0;
   }
+
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi {
+    min-height: 124px;
+    padding: 10px 12px;
+  }
+
+  .kpiValue {
+    font-size: 24px;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {

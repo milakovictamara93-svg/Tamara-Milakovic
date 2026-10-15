@@ -45,6 +45,39 @@ function formatChange(pct: number) {
   return `${pct > 0 ? '+' : pct < 0 ? '−' : '±'}${Math.abs(pct)}%`;
 }
 
+/** Lower is better for emissions, so a fall is good news and a rise is bad news. Tiny changes are noise. */
+function polarity(pct: number) {
+  if (pct <= -3) return { tone: 'good', arrow: '▼', word: 'Down' } as const;
+  if (pct >= 3) return { tone: 'bad', arrow: '▲', word: 'Up' } as const;
+  return { tone: 'flat', arrow: '●', word: 'About flat,' } as const;
+}
+
+function pctChange(values: number[], from: number, to: number) {
+  const a = values[YEARS.indexOf(from)];
+  return Math.round(((values[YEARS.indexOf(to)] - a) / a) * 100);
+}
+
+function Delta({ pct, since, compact }: { pct: number; since?: number; compact?: boolean }) {
+  const p = polarity(pct);
+  const amount = p.tone === 'flat' ? formatChange(pct) : `${Math.abs(pct)}%`;
+  return (
+    <span className={`${styles.delta} ${styles[`delta_${p.tone}`]}`}>
+      <span aria-hidden="true" className={styles.deltaArrow}>{p.arrow}</span>
+      {compact ? (
+        <>
+          <span className={styles.srOnly}>{p.word} </span>
+          {amount}
+        </>
+      ) : (
+        <>
+          {p.word} {amount}
+          {since && <span className={styles.deltaSince}> since {since}</span>}
+        </>
+      )}
+    </span>
+  );
+}
+
 function targetView(t: Truths): View {
   const x0 = startYear(t);
   const visible = seriesFor(t).filter((_, i) => YEARS[i] >= x0);
@@ -93,6 +126,39 @@ function readoutFor(key: Truth, on: boolean, next: Truths) {
         ? `Every point is ± ${UNCERTAINTY * 100}%. Most supplier emissions are estimated from spend, so the line is more of a wide road.`
         : 'Uncertainty hidden. The data didn’t get any more certain, it just stopped admitting it.';
   }
+}
+
+function KpiTile({
+  label,
+  value,
+  unit,
+  pct,
+  since,
+  charted,
+  uncertain,
+}: {
+  label: string;
+  value: number;
+  unit: string;
+  pct: number;
+  since: number;
+  charted: boolean;
+  uncertain: boolean;
+}) {
+  return (
+    <div className={`${styles.kpi} ${charted ? styles.kpiCharted : ''}`}>
+      <span className={styles.kpiLabel}>
+        {label}
+        {charted && <span className={styles.kpiTag}>In the chart</span>}
+      </span>
+      <span className={styles.kpiValue}>
+        {value}
+        <span className={styles.kpiUnit}> {unit} in {LAST}</span>
+      </span>
+      <Delta pct={pct} since={since} />
+      <span className={styles.kpiNote}>{uncertain ? `± ${UNCERTAINTY * 100}% on every value` : '\u00a0'}</span>
+    </div>
+  );
 }
 
 const H = 260;
@@ -170,8 +236,7 @@ export function GreenLineRevealVisual() {
   const ticks = niceTicks(view.yMin, view.yMax);
   const isAbsolute = view.mix > 0.5;
   const unit = isAbsolute ? 'kt CO₂e' : 't CO₂e per €m';
-  const pct = change(truths);
-  const visibleYears = YEARS.filter((yr) => yr >= Math.round(view.x0));
+    const visibleYears = YEARS.filter((yr) => yr >= Math.round(view.x0));
 
   const onPointer = (e: React.PointerEvent<SVGSVGElement>) => {
     const box = e.currentTarget.getBoundingClientRect();
@@ -219,12 +284,34 @@ export function GreenLineRevealVisual() {
           </p>
           <span className={styles.truthCount}>{restored} of 4 truths back</span>
         </div>
-        <div className={styles.headline}>
-          <span className={styles.headlineNumber}>{formatChange(pct)}</span>
-          <span className={styles.headlineLabel}>
-            since {startYear(truths)}
-            {truths.uncertainty ? `, ± ${UNCERTAINTY * 100}% on every point` : ''}
-          </span>
+
+        {/* Per euro and total side by side, the way the article says to show them */}
+        <div className={styles.kpis}>
+          <KpiTile
+            label="Emissions per €m of revenue"
+            value={INTENSITY[INTENSITY.length - 1]}
+            unit="t CO₂e"
+            pct={pctChange(INTENSITY, startYear(truths), LAST)}
+            since={startYear(truths)}
+            charted={!truths.absolute}
+            uncertain={truths.uncertainty}
+          />
+          {truths.absolute ? (
+            <KpiTile
+              label="Total emissions"
+              value={ABSOLUTE[ABSOLUTE.length - 1]}
+              unit="kt CO₂e"
+              pct={pctChange(ABSOLUTE, startYear(truths), LAST)}
+              since={startYear(truths)}
+              charted
+              uncertain={truths.uncertainty}
+            />
+          ) : (
+            <div className={`${styles.kpi} ${styles.kpiMissing}`}>
+              <span className={styles.kpiLabel}>Total emissions</span>
+              <span className={styles.kpiMissingText}>Not in the report 🙈</span>
+            </div>
+          )}
         </div>
 
         <div ref={wrapRef} className={styles.revealChart}>
@@ -233,7 +320,7 @@ export function GreenLineRevealVisual() {
             height={H}
             viewBox={`0 0 ${width} ${H}`}
             role="img"
-            aria-label={`Line chart, ${unit}, ${startYear(truths)} to ${LAST}. Change: ${formatChange(pct)}.`}
+            aria-label={`Line chart, ${unit}, ${startYear(truths)} to ${LAST}. Change: ${formatChange(change(truths))}.`}
             onPointerMove={onPointer}
             onPointerLeave={() => setHover(null)}
           >
@@ -254,21 +341,21 @@ export function GreenLineRevealVisual() {
             <text x={PAD.l} y={10} className={styles.unit}>{unit}</text>
 
             <g clipPath="url(#green-line-plot)">
-              {view.band > 0.01 && <path d={band} className={isAbsolute ? styles.bandInk : styles.bandGreen} style={{ opacity: view.band }} />}
+              {view.band > 0.01 && <path d={band} className={styles.bandInk} style={{ opacity: view.band }} />}
               {view.x0 < REPORT_START - 0.01 && (
                 <g style={{ opacity: (REPORT_START - view.x0) / (REPORT_START - YEARS[0]) }}>
                   <line x1={x(REPORT_START)} x2={x(REPORT_START)} y1={PAD.t} y2={PAD.t + plotH} className={styles.marker} />
                   <text x={x(REPORT_START) + 6} y={PAD.t + plotH - 8} className={styles.markerLabel}>Report starts here</text>
                 </g>
               )}
-              <path d={line} className={`${styles.line} ${isAbsolute ? styles.lineInk : styles.lineGreen}`} />
+              <path d={line} className={`${styles.line} ${styles.lineInk}`} />
               {values.map((v, i) => (
                 <circle
                   key={YEARS[i]}
                   cx={x(YEARS[i])}
                   cy={y(v)}
                   r={hover === YEARS[i] ? 6 : 4}
-                  className={`${styles.dot} ${isAbsolute ? styles.dotInk : styles.dotGreen}`}
+                  className={`${styles.dot} ${styles.dotInk}`}
                 />
               ))}
             </g>
@@ -302,36 +389,46 @@ export function GreenLineRevealVisual() {
         <summary>See the numbers</summary>
         <div className={styles.tableCard}>
           <table className={styles.table}>
+            <caption className={styles.srOnly}>
+              Emissions per €m of revenue and total emissions, 2018 to 2024, with the change since {startYear(truths)}
+            </caption>
+            <colgroup>
+              <col />
+              <col span={2} />
+              <col span={2} />
+            </colgroup>
             <thead>
               <tr>
+                <td className={styles.thBlank} />
+                <th scope="colgroup" colSpan={2} className={styles.thGroup}>Per €m of revenue</th>
+                <th scope="colgroup" colSpan={2} className={styles.thGroup}>Total emissions</th>
+              </tr>
+              <tr>
                 <th scope="col">Year</th>
-                <th scope="col" className={styles.num}>
-                  <span className={`${styles.key} ${styles.keyGreen}`} aria-hidden="true" />
-                  Per €m of revenue
-                  <span className={styles.thUnit}>t CO₂e</span>
-                </th>
-                <th scope="col" className={styles.num}>
-                  <span className={`${styles.key} ${styles.keyInk}`} aria-hidden="true" />
-                  Total
-                  <span className={styles.thUnit}>kt CO₂e</span>
-                </th>
+                <th scope="col" className={styles.num}>t CO₂e</th>
+                <th scope="col" className={styles.num}>vs {startYear(truths)}</th>
+                <th scope="col" className={styles.num}>kt CO₂e</th>
+                <th scope="col" className={styles.num}>vs {startYear(truths)}</th>
               </tr>
             </thead>
             <tbody>
               {YEARS.map((yr, i) => {
-                const leftOut = yr < startYear(truths);
+                const start = startYear(truths);
+                const leftOut = yr < start;
+                const isBase = yr === start;
+                const changeCell = (values: number[]) =>
+                  leftOut ? null : isBase ? <span className={styles.baseTag}>Baseline</span> : <Delta compact pct={pctChange(values, start, yr)} />;
                 return (
-                  <tr
-                    key={yr}
-                    className={yr === REPORT_START ? styles.rowMarked : leftOut ? styles.rowLeftOut : undefined}
-                  >
+                  <tr key={yr} className={isBase ? styles.rowMarked : leftOut ? styles.rowLeftOut : undefined}>
                     <th scope="row">
                       {yr}
-                      {yr === REPORT_START && <span className={styles.rowTag}>Report starts</span>}
                       {leftOut && <span className={styles.rowTag}>Left out</span>}
+                      {yr === REPORT_START && !isBase && <span className={styles.rowTag}>Report starts</span>}
                     </th>
                     <td className={styles.num}>{INTENSITY[i]}</td>
+                    <td className={styles.num}>{changeCell(INTENSITY)}</td>
                     <td className={styles.num}>{ABSOLUTE[i]}</td>
+                    <td className={styles.num}>{changeCell(ABSOLUTE)}</td>
                   </tr>
                 );
               })}
@@ -339,8 +436,8 @@ export function GreenLineRevealVisual() {
           </table>
         </div>
         <p>
-          The coloured keys match the lines on the chart. Every value is ± {UNCERTAINTY * 100}%. A made-up
-          company, sadly a very typical one.
+          ▼ green is good news, ▲ red is bad news. For emissions, down is the direction you want. Every value is ±{' '}
+          {UNCERTAINTY * 100}%. A made-up company, sadly a very typical one.
         </p>
       </details>
     </DemoFrame>
