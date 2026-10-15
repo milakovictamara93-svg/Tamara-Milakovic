@@ -1,5 +1,11 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { PageJumpVisual, PickYourWaitVisual } from './visuals';
+import {
+  PageJumpVisual,
+  SkeletonRowsVisual,
+  SpinnerDelayVisual,
+  StuckBarVisual,
+  OptimisticLikeVisual,
+} from './visuals';
 import styles from '../article.module.css';
 
 export default function LoadingStatesContent() {
@@ -46,12 +52,16 @@ export default function LoadingStatesContent() {
         upload, gets a progress bar.
       </p>
 
-      <RevealOnScroll><PickYourWaitVisual /></RevealOnScroll>
+      <RevealOnScroll><SkeletonRowsVisual /></RevealOnScroll>
+
+      <RevealOnScroll><SpinnerDelayVisual /></RevealOnScroll>
 
       <p>
         Please don’t let that bar sit at 99%. Everyone has watched a progress bar do that,
         and nobody has fully trusted one since.
       </p>
+
+      <RevealOnScroll><StuckBarVisual /></RevealOnScroll>
 
       <p>
         Sometimes the best loading state is none at all. If you like a post or tick off a
@@ -59,6 +69,8 @@ export default function LoadingStatesContent() {
         payments or deleting things, though. When money or someone’s data is involved, a
         second of visible “working on it” is reassuring, and people actually want it.
       </p>
+
+      <RevealOnScroll><OptimisticLikeVisual /></RevealOnScroll>
 
       <p>
         The rule we wrote at Scaler was boring: the layout never collapses while something

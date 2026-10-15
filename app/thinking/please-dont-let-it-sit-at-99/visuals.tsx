@@ -124,291 +124,268 @@ export function PageJumpVisual() {
   );
 }
 
-/* ── 2. Pick your wait ───────────────────────────────────────── */
+/* ── 2. Skeleton rows ────────────────────────────────────────── */
 
-// Each demo plays the usual (bad) version first with a note on what went wrong,
-// then "Show me the fix" replays it the right way in the same window.
+const ROW_HEIGHT = 28;
 
-type Scenario = 'table' | 'save' | 'export' | 'like';
+export function SkeletonRowsVisual() {
+  const [rows, setRows] = useState(2);
+  const [loaded, setLoaded] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-const SCENARIOS: { id: Scenario; label: string; pattern: string; fix: string }[] = [
-  { id: 'table', label: 'Loading a table', pattern: 'Skeleton', fix: 'Match the skeleton to the real thing: same row count, same column widths.' },
-  { id: 'save', label: 'Saving a form', pattern: 'Delayed spinner', fix: 'Wait 200ms before showing a spinner, so fast saves never flash one at you.' },
-  { id: 'export', label: 'Exporting a report', pattern: 'Progress bar', fix: 'Show real progress and a rough time left. Never park it at 99%.' },
-  { id: 'like', label: 'Liking a post', pattern: 'No loading state', fix: 'Show it as done straight away and quietly undo on the rare failure.' },
-];
+  const play = useCallback(() => {
+    clearTimeout(timer.current);
+    setLoaded(false);
+    timer.current = setTimeout(() => setLoaded(true), 1400);
+  }, []);
+  const ref = useLoopWhileVisible(play, 3400);
+  useEffect(() => () => clearTimeout(timer.current), []);
 
-function Note({ children }: { children: React.ReactNode }) {
-  return <p className={styles.note}>↑ {children}</p>;
+  const moved = (ROWS.length - rows) * ROW_HEIGHT;
+
+  return (
+    <figure ref={ref} className={styles.figure}>
+      <div className={styles.header}>
+        <span className={styles.headerLabel}>Drag the slider and watch the pin when the data arrives</span>
+      </div>
+      <div className={styles.inlineDemo}>
+        <label className={styles.slider}>
+          <span className={styles.sliderLabel}>Skeleton rows</span>
+          <input
+            type="range"
+            min={1}
+            max={ROWS.length}
+            value={rows}
+            onChange={(e) => {
+              setRows(Number(e.target.value));
+              play();
+            }}
+          />
+          <output className={styles.sliderValue}>{rows} of {ROWS.length}</output>
+        </label>
+        <div className={styles.window}>
+          <div className={styles.windowTitle}>Supplier emissions</div>
+          {loaded ? (
+            <Table />
+          ) : (
+            <div className={styles.table}>
+              {ROWS.slice(0, rows).map(([name]) => (
+                <div key={name} className={styles.tableRow}>
+                  <span className={`${styles.bone} ${styles.boneWide}`} />
+                  <span className={styles.bone} />
+                  <span className={`${styles.bone} ${styles.boneShort}`} />
+                </div>
+              ))}
+            </div>
+          )}
+          <div className={styles.reading}>📍 You were reading here</div>
+        </div>
+        <p className={styles.readout} aria-live="polite">
+          {moved === 0 ? 'Nothing moved. The skeleton told the truth.' : `When the data lands, everything below jumps ${moved}px.`}
+        </p>
+      </div>
+    </figure>
+  );
 }
 
-export function PickYourWaitVisual() {
-  const [scenario, setScenario] = useState<Scenario>('table');
-  const [fixed, setFixed] = useState(false);
-  const [run, setRun] = useState(0);
-  const current = SCENARIOS.find((s) => s.id === scenario)!;
-  const replay = (nextFixed: boolean) => {
-    setFixed(nextFixed);
-    setRun((r) => r + 1);
+/* ── 3. Spinner delay ────────────────────────────────────────── */
+
+type SaveState = 'idle' | 'waiting' | 'spinning' | 'done';
+
+export function SpinnerDelayVisual() {
+  const [delay, setDelay] = useState(0);
+  const [speed, setSpeed] = useState<'fast' | 'slow'>('fast');
+  const [state, setState] = useState<SaveState>('idle');
+  const [result, setResult] = useState<string | null>(null);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+
+  const clear = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setState('idle');
+    setResult(null);
+  };
+
+  const save = () => {
+    clear();
+    const duration = speed === 'slow' ? 2000 : 100;
+    const shows = duration > delay;
+    setState(delay === 0 ? 'spinning' : 'waiting');
+    if (delay > 0 && shows) timers.current.push(setTimeout(() => setState('spinning'), delay));
+    timers.current.push(
+      setTimeout(() => {
+        setState('done');
+        if (!shows) setResult('No spinner at all. The save finished before the delay was up.');
+        else if (speed === 'fast') setResult(`A spinner flashed for ${duration - delay}ms. That’s the flicker.`);
+        else setResult(`The spinner turned up after ${delay}ms, because this save actually took a while.`);
+      }, duration),
+      setTimeout(() => setState('idle'), duration + 1500),
+    );
   };
 
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Pick your wait</span>
+        <span className={styles.headerLabel}>Press save at 0ms, then drag the delay up and press it again</span>
       </div>
-      <div className={styles.chips} role="tablist" aria-label="Loading scenarios">
-        {SCENARIOS.map((s) => (
-          <button
-            key={s.id}
-            type="button"
-            role="tab"
-            aria-selected={s.id === scenario}
-            className={`${styles.chip} ${s.id === scenario ? styles.chipActive : ''}`}
-            onClick={() => {
-              setScenario(s.id);
-              replay(false);
+      <div className={styles.inlineDemo}>
+        <label className={styles.slider}>
+          <span className={styles.sliderLabel}>Spinner delay</span>
+          <input
+            type="range"
+            min={0}
+            max={500}
+            step={50}
+            value={delay}
+            onChange={(e) => {
+              clear();
+              setDelay(Number(e.target.value));
             }}
+          />
+          <output className={styles.sliderValue}>{delay}ms</output>
+        </label>
+        <div className={styles.saveRow}>
+          <button
+            type="button"
+            className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
+            onClick={save}
+            disabled={state !== 'idle'}
           >
-            {s.label}
+            {state === 'spinning' ? (
+              <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
+            ) : state === 'done' ? (
+              'Saved ✓'
+            ) : (
+              'Save changes'
+            )}
           </button>
-        ))}
-      </div>
-      <div className={styles.stage}>
-        <div className={styles.stageHead}>
-          <div>
-            <div className={styles.mode}>{fixed ? 'The fix' : 'The usual way'}</div>
-            <div className={styles.stagePattern}>{current.pattern}</div>
+          <div className={styles.segmented} role="group" aria-label="Server speed">
+            <span className={styles.segmentedLabel}>Server</span>
+            {(['fast', 'slow'] as const).map((s) => (
+              <button
+                key={s}
+                type="button"
+                aria-pressed={speed === s}
+                className={`${styles.chip} ${speed === s ? styles.chipActive : ''}`}
+                onClick={() => {
+                  clear();
+                  setSpeed(s);
+                }}
+              >
+                {s === 'fast' ? 'Fast (0.1s)' : 'Slow (2s)'}
+              </button>
+            ))}
           </div>
-          <button type="button" className={styles.fixButton} onClick={() => replay(!fixed)}>
-            {fixed ? '↺ Show me the usual way' : 'Show me the fix →'}
-          </button>
         </div>
-        {scenario === 'table' && <TableDemo key={run} fixed={fixed} />}
-        {scenario === 'save' && <SaveDemo key={run} fixed={fixed} />}
-        {scenario === 'export' && <ExportDemo key={run} fixed={fixed} />}
-        {scenario === 'like' && <LikeDemo key={run} fixed={fixed} />}
+        <p className={styles.readout} aria-live="polite">{result ?? ' '}</p>
+        <span className={styles.srOnly} role="status">{state === 'done' ? 'Changes saved' : ''}</span>
       </div>
-      <figcaption className={styles.caption}>{current.fix}</figcaption>
     </figure>
   );
 }
 
-function TableDemo({ fixed }: { fixed: boolean }) {
-  const [attempt, setAttempt] = useState(0);
-  const [loaded, setLoaded] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 1600);
-    return () => clearTimeout(t);
-  }, [attempt]);
+/* ── 4. Stuck at 99% ─────────────────────────────────────────── */
 
-  return (
-    <div className={styles.demo}>
-      <div className={styles.window}>
-        <div className={styles.windowTitle}>Supplier emissions</div>
-        {loaded || fixed ? <Table skeleton={!loaded} /> : <ShortSkeleton />}
-        <div className={styles.reading}>📍 You were reading here</div>
-      </div>
-      {loaded && (
-        <Note>
-          {fixed
-            ? 'Five skeleton rows, five real rows. Nothing moved.'
-            : 'The skeleton promised two rows and the table brought five. Everything below it just moved.'}
-        </Note>
-      )}
-      <button type="button" className={styles.linkButton} onClick={() => { setLoaded(false); setAttempt((n) => n + 1); }} disabled={!loaded}>
-        Load it again
-      </button>
-    </div>
-  );
-}
-
-function ShortSkeleton() {
-  return (
-    <div className={styles.table}>
-      {[0, 1].map((i) => (
-        <div key={i} className={styles.tableRow}>
-          <span className={`${styles.bone} ${styles.boneWide}`} />
-          <span className={styles.bone} />
-          <span className={`${styles.bone} ${styles.boneShort}`} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-type SaveState = 'idle' | 'waiting' | 'spinning' | 'done';
-
-function SaveDemo({ fixed }: { fixed: boolean }) {
-  const [speed, setSpeed] = useState<'slow' | 'fast'>('fast');
-  const [state, setState] = useState<SaveState>('idle');
-  const [finished, setFinished] = useState<'slow' | 'fast' | null>(null);
-  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-  useEffect(() => () => timers.current.forEach(clearTimeout), []);
-
-  const save = () => {
-    timers.current.forEach(clearTimeout);
-    setFinished(null);
-    const duration = speed === 'slow' ? 2000 : 100;
-    // The fix waits 200ms before showing a spinner; the usual way shows it straight away
-    const spinnerDelay = fixed ? 200 : 0;
-    setState(spinnerDelay === 0 ? 'spinning' : 'waiting');
-    timers.current = [
-      setTimeout(() => {
-        setState('done');
-        setFinished(speed);
-      }, duration),
-      setTimeout(() => setState('idle'), duration + 1500),
-    ];
-    if (spinnerDelay > 0 && duration > spinnerDelay) {
-      timers.current.push(setTimeout(() => setState('spinning'), spinnerDelay));
-    }
-  };
-
-  let note: string | null = null;
-  if (finished === 'fast') {
-    note = fixed
-      ? 'No spinner at all. The save was done before the 200ms wait was up.'
-      : 'A spinner, for a tenth of a second. Blink and you’ll miss it. Your users won’t.';
-  } else if (finished === 'slow') {
-    note = fixed
-      ? 'This one actually took a while, so the spinner turned up after 200ms.'
-      : 'Slow saves look fine. It’s the fast ones that flicker, so try Fast.';
-  }
-
-  return (
-    <div className={styles.demo}>
-      <div className={styles.saveRow}>
-        <button
-          type="button"
-          className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
-          onClick={save}
-          disabled={state !== 'idle'}
-        >
-          {state === 'spinning' ? (
-            <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
-          ) : state === 'done' ? (
-            'Saved ✓'
-          ) : (
-            'Save changes'
-          )}
-        </button>
-        <div className={styles.segmented} role="group" aria-label="Server speed">
-          <span className={styles.segmentedLabel}>Server</span>
-          {(['fast', 'slow'] as const).map((s) => (
-            <button
-              key={s}
-              type="button"
-              aria-pressed={speed === s}
-              className={`${styles.chip} ${speed === s ? styles.chipActive : ''}`}
-              onClick={() => {
-                timers.current.forEach(clearTimeout);
-                setState('idle');
-                setFinished(null);
-                setSpeed(s);
-              }}
-            >
-              {s === 'slow' ? 'Slow (2s)' : 'Fast (0.1s)'}
-            </button>
-          ))}
-        </div>
-      </div>
-      {note ? <Note>{note}</Note> : <p className={styles.demoHint}>Press save.</p>}
-      <span className={styles.srOnly} role="status">{state === 'done' ? 'Changes saved' : ''}</span>
-    </div>
-  );
-}
-
-function ExportDemo({ fixed }: { fixed: boolean }) {
+export function StuckBarVisual() {
+  const [honest, setHonest] = useState(false);
   const [ticks, setTicks] = useState(0);
+  const ref = useRef<HTMLElement>(null);
 
+  // Only tick while on screen, so the joke lands when someone is actually looking
   useEffect(() => {
-    const id = setInterval(() => setTicks((t) => t + 1), 100);
-    return () => clearInterval(id);
+    const el = ref.current;
+    if (!el) return;
+    let id: ReturnType<typeof setInterval> | undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      clearInterval(id);
+      if (entry.isIntersecting) id = setInterval(() => setTicks((t) => t + 1), 100);
+    }, { threshold: 0.4 });
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      clearInterval(id);
+    };
   }, []);
 
-  // The fix: 2.5% per tick with a time estimate. The usual way: races to 99% in 11 ticks, then sits there.
-  const pct = fixed ? Math.min(100, ticks * 2.5) : Math.min(99, ticks * 9);
-  const stuck = !fixed && pct >= 99;
-  const secondsLeft = Math.ceil((100 - pct) / 25);
-
+  const pct = honest ? Math.min(100, ticks * 2.5) : Math.min(99, ticks * 9);
+  const stuckFor = Math.floor(Math.max(0, ticks - 11) / 10);
   let meta: string;
-  if (fixed) meta = pct >= 100 ? 'Done. 2.9 MB ready to download.' : `${Math.round(pct)}% · About ${secondsLeft}s left`;
-  else meta = stuck ? '99% · Almost there…' : `${Math.round(pct)}% · Wow, so fast`;
+  if (honest) meta = pct >= 100 ? 'Done. 2.9 MB ready to download.' : `${Math.round(pct)}% · About ${Math.ceil((100 - pct) / 25)}s left`;
+  else meta = pct >= 99 ? `99% · Almost there… (${stuckFor}s and counting)` : `${Math.round(pct)}% · Wow, so fast`;
 
   return (
-    <div className={styles.demo}>
-      <div className={styles.exportCard}>
-        <div className={styles.exportName}>emissions_report_q4.csv</div>
-        <div className={styles.track}>
-          <div className={`${styles.fill} ${fixed ? '' : styles.fillBad}`} style={{ width: `${pct}%` }} />
+    <figure ref={ref} className={styles.figure}>
+      <div className={styles.inlineDemo}>
+        <div className={styles.exportCard}>
+          <div className={styles.exportName}>emissions_report_q4.csv</div>
+          <div className={styles.track}>
+            <div className={`${styles.fill} ${honest ? '' : styles.fillBad}`} style={{ width: `${pct}%` }} />
+          </div>
+          <div className={styles.exportMeta}>{meta}</div>
         </div>
-        <div className={styles.exportMeta}>{meta}</div>
+        <div className={styles.saveRow}>
+          {!honest && ticks > 30 && (
+            <button type="button" className={styles.linkButton} onClick={() => { setHonest(true); setTicks(0); }}>
+              Fine, export it properly
+            </button>
+          )}
+          {(honest || ticks > 30) && (
+            <button type="button" className={styles.linkButton} onClick={() => { setHonest(false); setTicks(0); }}>
+              Start over
+            </button>
+          )}
+        </div>
       </div>
-      {stuck && <Note>“Almost there…” since Tuesday.</Note>}
-      {fixed && pct >= 100 && <Note>Real progress, an honest estimate, and it actually finished. Boring. Trustworthy.</Note>}
-      <button type="button" className={styles.linkButton} onClick={() => setTicks(0)}>
-        Start the export again
-      </button>
-    </div>
+    </figure>
   );
 }
 
-function LikeDemo({ fixed }: { fixed: boolean }) {
+/* ── 5. No loading state ─────────────────────────────────────── */
+
+export function OptimisticLikeVisual() {
   const [liked, setLiked] = useState(false);
-  const [pending, setPending] = useState(false);
-  const [failed, setFailed] = useState(false);
-  const [tapped, setTapped] = useState(false);
+  const [note, setNote] = useState<string | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
 
-  const tap = () => {
-    setTapped(true);
-    setFailed(false);
-    if (fixed) {
-      setLiked((l) => !l);
-      return;
-    }
-    // The usual way waits for the server before showing anything
-    setPending(true);
-    timer.current = setTimeout(() => {
-      setPending(false);
-      setLiked((l) => !l);
-    }, 1200);
-  };
-
-  const fail = () => {
-    setTapped(true);
-    setLiked(true);
-    timer.current = setTimeout(() => {
-      setLiked(false);
-      setFailed(true);
-    }, 900);
-  };
-
-  let note: string | null = null;
-  if (failed) note = 'The request failed, so the like quietly rolled back. That’s the whole recovery plan.';
-  else if (tapped && !pending) note = fixed ? 'Done the moment you tap.' : 'A whole second to like a post. It’s a heart, not a bank transfer.';
-
   return (
-    <div className={styles.demo}>
-      <div className={styles.saveRow}>
-        <button
-          type="button"
-          className={`${styles.like} ${liked ? styles.likeOn : ''}`}
-          aria-pressed={liked}
-          onClick={tap}
-          disabled={pending}
-        >
-          {pending ? <span className={`${styles.spinner} ${styles.spinnerDark}`} aria-hidden="true" /> : liked ? '♥' : '♡'} {liked ? 43 : 42}
-        </button>
-        {fixed && (
-          <button type="button" className={styles.linkButton} onClick={fail}>
-            Simulate a failure
-          </button>
-        )}
+    <figure className={styles.figure}>
+      <div className={styles.header}>
+        <span className={styles.headerLabel}>Tap the heart, then try it with a broken server</span>
       </div>
-      {note ? <Note>{note}</Note> : <p className={styles.demoHint}>Tap the heart.</p>}
-    </div>
+      <div className={styles.inlineDemo}>
+        <div className={styles.saveRow}>
+          <button
+            type="button"
+            className={`${styles.like} ${liked ? styles.likeOn : ''}`}
+            aria-pressed={liked}
+            onClick={() => {
+              clearTimeout(timer.current);
+              setLiked((l) => !l);
+              setNote('Done the moment you tapped. No spinner needed.');
+            }}
+          >
+            {liked ? '♥' : '♡'} {liked ? 43 : 42}
+          </button>
+          <button
+            type="button"
+            className={styles.linkButton}
+            onClick={() => {
+              clearTimeout(timer.current);
+              setLiked(true);
+              setNote(null);
+              timer.current = setTimeout(() => {
+                setLiked(false);
+                setNote('The server said no, so the like quietly rolled back. That’s the whole recovery plan.');
+              }, 900);
+            }}
+          >
+            Like it with a broken server
+          </button>
+        </div>
+        <p className={styles.readout} aria-live="polite">{note ?? ' '}</p>
+      </div>
+    </figure>
   );
 }

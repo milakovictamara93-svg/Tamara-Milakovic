@@ -463,78 +463,65 @@
   white-space: nowrap;
 }
 
-/* Story mode: the usual way first, then the fix */
-.stageHead {
+/* Inline single-idea demos */
+.inlineDemo {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 28px 24px;
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
-}
-
-.stageHead .stagePattern {
-  margin-bottom: 0;
-}
-
-.mode {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #8a8a84;
-  margin-bottom: 2px;
-}
-
-.fixButton {
-  flex-shrink: 0;
-  height: 36px;
-  padding: 0 16px;
-  border: 1px solid #000;
-  border-radius: 9999px;
-  background: #fec40a;
-  color: #000;
-  font-family: var(--font-body);
   font-size: 13px;
+}
+
+.sliderLabel {
   font-weight: 600;
+  color: #000;
+}
+
+.sliderValue {
+  min-width: 64px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #525252;
+}
+
+.slider input[type='range'] {
+  width: 100%;
+  accent-color: #000;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
 }
 
-.fixButton:hover {
-  background: #f5b800;
-}
-
-.fixButton:active {
-  transform: scale(0.96);
-}
-
-.fixButton:focus-visible {
+.slider input[type='range']:focus-visible {
   outline: 2px solid #000;
-  outline-offset: 2px;
+  outline-offset: 4px;
 }
 
-.note {
+.readout {
   margin: 0;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: rgba(254, 196, 10, 0.35);
+  min-height: 1.5em;
   font-size: 13px;
   font-weight: 500;
   color: #000;
 }
 
-.spinnerDark {
-  border-color: rgba(0, 0, 0, 0.2);
-  border-top-color: #000;
-}
-
-.like:disabled {
-  cursor: progress;
-}
-
 @media (max-width: 640px) {
-  .stageHead {
-    flex-direction: column;
-    align-items: flex-start;
+  .inlineDemo {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .slider {
+    grid-template-columns: 1fr auto;
+  }
+
+  .slider input[type='range'] {
+    grid-column: 1 / -1;
+    grid-row: 2;
   }
 }
