@@ -8,6 +8,7 @@ export function Demo({
   title,
   action,
   readout,
+  readoutLines,
   children,
   figureRef,
 }: {
@@ -15,6 +16,8 @@ export function Demo({
   title: string;
   action?: React.ReactNode;
   readout?: React.ReactNode;
+  /** Lines of space to keep for the readout, so it appearing never moves the page */
+  readoutLines?: number;
   children: React.ReactNode;
   figureRef?: React.Ref<HTMLElement>;
 }) {
@@ -30,7 +33,14 @@ export function Demo({
       <div className={styles.inlineDemo}>
         {children}
         {readout !== undefined && (
-          <p className={styles.readout} aria-live="polite" aria-atomic="true">{readout || ' '}</p>
+          <p
+            className={styles.readout}
+            aria-live="polite"
+            aria-atomic="true"
+            style={readoutLines ? { minHeight: `${readoutLines}lh` } : undefined}
+          >
+            {readout || '\u00a0'}
+          </p>
         )}
       </div>
     </figure>

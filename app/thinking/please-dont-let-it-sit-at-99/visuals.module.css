@@ -137,50 +137,50 @@
   overflow: hidden;
 }
 
-.downloadRow {
-  margin-top: 10px;
+/* Exactly one table row tall, so after the jump the outline frames exactly one row */
+.note {
+  height: 28px;
+  margin: 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 28px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #525252;
 }
 
-.download {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 148px;
-  height: 32px;
-  border-radius: 6px;
-  background: #000;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* What the click landed on: outlined, never covered */
-.hit {
-  outline: 2px solid #000;
-  outline-offset: -2px;
-  background: rgba(254, 196, 10, 0.35);
-}
-
-.download.hit {
-  outline-offset: 2px;
-  background: #000;
-}
-
-.pointer {
+/* Where your eyes were: an outline that stays put, never covering the content */
+.readingMark {
   position: absolute;
-  z-index: 1;
+  left: 4px;
+  right: 4px;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  border-radius: 6px;
   pointer-events: none;
-  animation: pointerIn 0.5s ease both;
-  transition: transform 0.1s ease;
+  animation: markIn 0.3s ease both;
 }
 
-.pointerPressing {
-  transform: scale(0.85);
+@keyframes markIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes pointerIn {
-  from { opacity: 0; translate: 40px 30px; }
-  to { opacity: 1; translate: 0 0; }
+.markLegend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  color: #525252;
+}
+
+.markLegendSwatch {
+  flex-shrink: 0;
+  width: 22px;
+  height: 12px;
+  border: 2px solid #000;
+  border-radius: 3px;
 }
 
 .jumpGrid {
@@ -456,12 +456,8 @@
 @media (prefers-reduced-motion: reduce) {
   .bone,
   .spinner,
-  .pointer {
+  .readingMark {
     animation: none;
-  }
-
-  .pointer {
-    transition: none;
   }
 
   .fill {

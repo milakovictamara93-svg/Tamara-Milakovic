@@ -36,11 +36,11 @@ function usePlayOnceVisible(fn: () => void) {
   return ref;
 }
 
-function Table({ skeleton, hit }: { skeleton?: boolean; hit?: string | null }) {
+function Table({ skeleton }: { skeleton?: boolean }) {
   return (
     <div className={styles.table}>
       {ROWS.map(([name, value, change]) => (
-        <div key={name} data-target={name} className={`${styles.tableRow} ${hit === name ? styles.hit : ''}`}>
+        <div key={name} data-target={`the ${name} row`} className={styles.tableRow}>
           {skeleton ? (
             <>
               <span className={`${styles.bone} ${styles.boneWide}`} />
@@ -62,20 +62,18 @@ function Table({ skeleton, hit }: { skeleton?: boolean; hit?: string | null }) {
 
 /* ── 1. The jump ─────────────────────────────────────────────── */
 
-const BUTTON = 'Download report';
 const LOAD_AT = 1400;
-const CLICK_AT = 1600;
+const NOTE = 'the note';
 
 /**
- * Plays one load: the pointer aims at the Download button while the table is loading,
- * the table arrives, then the pointer clicks. Whatever sits under the pointer at that
- * moment is what got clicked.
+ * Plays one load. While the table is loading you're reading the note below it, so an
+ * outline marks that spot on screen. The outline never moves, the way your eyes don't.
+ * When the table arrives, whatever now sits inside the outline is what you're looking at.
  */
-function useClickDuringLoad() {
+function useReadingDuringLoad() {
   const [loaded, setLoaded] = useState(true);
-  const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
-  const [pressing, setPressing] = useState(false);
-  const [hit, setHit] = useState<string | null>(null);
+  const [mark, setMark] = useState<{ top: number; height: number } | null>(null);
+  const [nowReading, setNowReading] = useState<string | null>(null);
   const windowRef = useRef<HTMLDivElement>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
@@ -83,86 +81,78 @@ function useClickDuringLoad() {
     timers.current.forEach(clearTimeout);
     timers.current = [];
     setLoaded(false);
-    setHit(null);
-    setPressing(false);
-    setPointer(null);
+    setMark(null);
+    setNowReading(null);
     const win = windowRef.current;
     const at = (ms: number, fn: () => void) => timers.current.push(setTimeout(fn, ms));
-    // Aim at the button where it sits while the table is still loading
     at(60, () => {
-      const button = win?.querySelector<HTMLElement>(`[data-target="${BUTTON}"]`);
-      if (!win || !button) return;
-      const w = win.getBoundingClientRect();
-      const r = button.getBoundingClientRect();
-      setPointer({ x: r.left - w.left + r.width * 0.45, y: r.top - w.top + r.height * 0.3 });
+      const note = win?.querySelector<HTMLElement>(`[data-target="${NOTE}"]`);
+      if (!win || !note) return;
+      setMark({ top: note.getBoundingClientRect().top - win.getBoundingClientRect().top, height: note.offsetHeight });
     });
     at(LOAD_AT, () => setLoaded(true));
-    at(CLICK_AT, () => {
-      setPressing(true);
-      const cursor = win?.querySelector<HTMLElement>('[data-cursor]');
-      if (!cursor) return;
-      const c = cursor.getBoundingClientRect();
+    at(LOAD_AT + 80, () => {
+      const outline = win?.querySelector<HTMLElement>('[data-mark]');
+      if (!outline) return;
+      const r = outline.getBoundingClientRect();
       const under = document
-        .elementsFromPoint(c.left + 1, c.top + 1)
+        .elementsFromPoint(r.left + 24, r.top + r.height / 2)
         .find((el) => el instanceof HTMLElement && el.dataset.target) as HTMLElement | undefined;
-      setHit(under?.dataset.target ?? null);
+      setNowReading(under?.dataset.target ?? null);
     });
-    at(CLICK_AT + 180, () => setPressing(false));
   }, []);
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
   const ref = usePlayOnceVisible(play);
-  return { loaded, pointer, pressing, hit, play, ref, windowRef };
+  return { loaded, mark, nowReading, play, ref, windowRef };
 }
 
-function Pointer({ pointer, pressing }: { pointer: { x: number; y: number } | null; pressing: boolean }) {
-  if (!pointer) return null;
+function ReadingMark({ mark }: { mark: { top: number; height: number } | null }) {
+  if (!mark) return null;
+  return <span data-mark aria-hidden="true" className={styles.readingMark} style={{ top: mark.top, height: mark.height }} />;
+}
+
+function Note() {
   return (
-    <span
-      data-cursor
-      aria-hidden="true"
-      className={`${styles.pointer} ${pressing ? styles.pointerPressing : ''}`}
-      style={{ left: pointer.x, top: pointer.y }}
-    >
-      <svg width="18" height="22" viewBox="0 0 18 22">
-        <path d="M1 1 L1 17 L5.5 13 L8.5 20.5 L11.5 19.2 L8.6 12 L14.5 12 Z" fill="#000" stroke="#fff" strokeWidth="1.5" strokeLinejoin="round" />
-      </svg>
-    </span>
+    <p data-target={NOTE} className={styles.note}>
+      Note: Scope 3 figures are estimates.
+    </p>
   );
 }
 
-function DownloadButton({ hit }: { hit: string | null }) {
+function MarkLegend() {
   return (
-    <div className={styles.downloadRow}>
-      <span data-target={BUTTON} className={`${styles.download} ${hit === BUTTON ? styles.hit : ''}`}>
-        {hit === BUTTON ? 'Downloading…' : BUTTON}
-      </span>
-    </div>
+    <p className={styles.markLegend}>
+      <span className={styles.markLegendSwatch} aria-hidden="true" />
+      The outline marks where you were reading when the table started loading.
+    </p>
   );
 }
 
 function JumpGood() {
-  const { loaded, pointer, pressing, hit, play, ref, windowRef } = useClickDuringLoad();
+  const { loaded, mark, nowReading, play, ref, windowRef } = useReadingDuringLoad();
   return (
     <Demo
       verdict="good"
       title="The skeleton reserves the table’s space"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
-      readout={hit ? 'The table loaded into the space the skeleton reserved, so the button stayed put and the click landed on Download report.' : ''}
+      readoutLines={2}
+      readout={nowReading ? 'The skeleton held the table’s space, so the note stayed inside the outline.' : ''}
     >
+      <MarkLegend />
       <div ref={windowRef} className={`${styles.window} ${styles.viewport}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
-        <Table skeleton={!loaded} hit={hit} />
-        <DownloadButton hit={hit} />
-        <Pointer pointer={pointer} pressing={pressing} />
+        <Table skeleton={!loaded} />
+        <Note />
+        <ReadingMark mark={mark} />
       </div>
     </Demo>
   );
 }
 
 function JumpBad() {
-  const { loaded, pointer, pressing, hit, play, ref, windowRef } = useClickDuringLoad();
+  const { loaded, mark, nowReading, play, ref, windowRef } = useReadingDuringLoad();
   return (
     <Demo
       verdict="bad"
@@ -170,18 +160,20 @@ function JumpBad() {
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
       readout={
-        hit
-          ? hit === BUTTON
-            ? 'The click landed on Download report.'
-            : `The table loaded above the button and pushed it down. The click meant for Download report opened ${hit} instead.`
+        nowReading
+          ? nowReading === NOTE
+            ? 'The note stayed inside the outline.'
+            : `The table pushed the note down. The outline now holds ${nowReading}.`
           : ''
       }
+      readoutLines={2}
     >
+      <MarkLegend />
       <div ref={windowRef} className={`${styles.window} ${styles.viewport}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
-        {loaded ? <Table hit={hit} /> : <div className={styles.collapsed}>Loading…</div>}
-        <DownloadButton hit={hit} />
-        <Pointer pointer={pointer} pressing={pressing} />
+        {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
+        <Note />
+        <ReadingMark mark={mark} />
       </div>
     </Demo>
   );
