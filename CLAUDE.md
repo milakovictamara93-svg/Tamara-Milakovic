@@ -19,7 +19,7 @@ Follow the consensus. Where sources disagree or the brand calls for something di
 ### 2. Show the real pattern
 
 - Demo the pattern the way it works in a real product, not a simplified stand-in. For example, a save button shows Saving… and then Saved ✓ inside the same button, not as a separate label.
-- Where it helps, add a "Show me the bad one" toggle so readers can compare good and bad behaviour side by side.
+- Where it helps, compare good and bad behaviour **side by side**, never behind a toggle. Label the two sides with "✕ Don't" (red) and "✓ Do" (green) pills plus a short description, so the meaning never relies on colour alone. One trigger runs both sides at once so the difference plays out live. Stack them on phones.
 - Elements that change label or state keep a fixed size so nothing around them shifts.
 
 ### 3. Interaction states

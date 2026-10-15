@@ -382,21 +382,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.toggle input {
-  accent-color: #000;
-  width: 16px;
-  height: 16px;
-}
-
 .like {
   display: inline-flex;
   align-items: center;
@@ -429,17 +414,11 @@
   background: #f5b800;
 }
 
-.toggle:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
 /* Keyboard focus, shared by every control in the demos */
 .chip:focus-visible,
 .primary:focus-visible,
 .linkButton:focus-visible,
-.like:focus-visible,
-.toggle input:focus-visible {
+.like:focus-visible {
   outline: 2px solid #000;
   outline-offset: 2px;
 }
@@ -482,4 +461,67 @@
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
+}
+
+/* Do / Don't comparison */
+.verdictRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+  font-size: 12px;
+}
+
+.verdict {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.verdictDo {
+  background: #15803d;
+}
+
+.verdictDont {
+  background: #b91c1c;
+}
+
+.verdictText {
+  flex: 1;
+  color: #000;
+  font-weight: 500;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.lanes {
+  align-self: stretch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.lane {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.lane > .exportCard {
+  align-self: stretch;
+}
+
+@media (max-width: 640px) {
+  .lanes {
+    grid-template-columns: 1fr;
+  }
 }
