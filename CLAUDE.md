@@ -19,11 +19,11 @@ Follow the consensus. Where sources disagree or the brand calls for something di
 ### 2. Show the real pattern
 
 - Demo the pattern the way it works in a real product, not a simplified stand-in. For example, a save button shows Saving… and then Saved ✓ inside the same button, not as a separate label.
-- Build demos as **explorable explanations** (Bret Victor, Nicky Case, Ciechanowski, Josh Comeau):
-  - **One idea per demo, inline.** Place each small demo right after the sentence it illustrates, instead of a big tabbed widget. The article text does the explaining.
-  - **Let readers control the cause, not "good vs bad".** Expose the one variable that creates the problem (a slider or a single switch), so the bad case is just one end of the range. No good/bad toggles, Do/Don't lanes, verdict pills or "show me the fix" modes.
-  - **Tell readers what to try** in the figure header ("Drag the slider and watch the pin…"), and show a short plain-language readout of what just happened.
-  - The page-jump and skeleton-rows demos in `please-dont-let-it-sit-at-99` are the reference.
+- **One idea per demo, inline.** Place each demo right after the sentence it illustrates, never in a big tabbed widget. The article text does the explaining.
+- **Good and Bad are always two separate demos, Good first with Bad directly below.** Each has its own header: the word "Good" or "Bad" in bold, followed by a short description of what it does (for example "Good  The skeleton matches the table"). Each runs on its own with its own trigger or loop.
+  - No sliders for these comparisons, and no toggles, side-by-side lanes, coloured verdict pills or "show me the fix" modes.
+  - Give each demo a short plain-language readout of what just happened, with a little humour on the Bad one.
+  - The pairs in `please-dont-let-it-sit-at-99` are the reference.
 - Elements that change label or state keep a fixed size so nothing around them shifts.
 
 ### 3. Interaction states

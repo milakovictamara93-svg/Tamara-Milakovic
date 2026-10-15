@@ -64,235 +64,190 @@ function Table({ skeleton }: { skeleton?: boolean }) {
   );
 }
 
-/* ── 1. The jump ─────────────────────────────────────────────── */
+/* ── Shared frame: every idea is a Good demo with its Bad twin directly below ── */
 
-export function PageJumpVisual() {
-  const [loaded, setLoaded] = useState(true);
-  const [jumps, setJumps] = useState(0);
-
-  const play = useCallback(() => {
-    setLoaded(false);
-    setTimeout(() => {
-      setLoaded(true);
-      setJumps((j) => j + 1);
-    }, 1400);
-  }, []);
-  const ref = useLoopWhileVisible(play, 3600);
-
+function Demo({
+  verdict,
+  title,
+  action,
+  readout,
+  children,
+  figureRef,
+}: {
+  verdict: 'good' | 'bad';
+  title: string;
+  action?: React.ReactNode;
+  readout?: React.ReactNode;
+  children: React.ReactNode;
+  figureRef?: React.Ref<HTMLElement>;
+}) {
   return (
-    <figure ref={ref} className={styles.figure}>
+    <figure ref={figureRef} className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Same page, same data, two ways to load it</span>
-        <button type="button" className={styles.chip} onClick={play}>Replay</button>
+        <span className={styles.headerTitle}>
+          <span className={styles.verdictWord}>{verdict === 'good' ? 'Good' : 'Bad'}</span>
+          <span className={styles.headerLabel}>{title}</span>
+        </span>
+        {action}
       </div>
-      <div className={styles.jumpGrid}>
-        <div className={styles.jumpCol}>
-          <div className={styles.jumpLabel}>
-            Content collapses <span className={styles.jumpCount}>Page jumps: {jumps}</span>
-          </div>
-          <div className={`${styles.window} ${styles.windowRel}`}>
-            <div className={styles.windowTitle}>Supplier emissions</div>
-            {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
-            <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
-              📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
-            </div>
-            {/* Your eyes stay at the same spot on screen while the content moves under them */}
-            <div className={styles.eyeLayer} aria-hidden="true">
-              <div className={`${styles.windowTitle} ${styles.ghost}`}>Supplier emissions</div>
-              <div className={`${styles.collapsed} ${styles.ghost}`}>Loading…</div>
-              <div className={`${styles.eye} ${loaded ? styles.eyeLost : ''}`}>
-                👀 {loaded ? 'Now you’re reading… Atlas Freight?!' : 'You were reading here'}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.jumpCol}>
-          <div className={styles.jumpLabel}>
-            Skeleton matches the table <span className={styles.jumpCount}>Page jumps: 0</span>
-          </div>
-          <div className={styles.window}>
-            <div className={styles.windowTitle}>Supplier emissions</div>
-            <Table skeleton={!loaded} />
-            <div className={styles.reading}>📍 You were reading here</div>
-          </div>
-        </div>
+      <div className={styles.inlineDemo}>
+        {children}
+        {readout !== undefined && (
+          <p className={styles.readout} aria-live="polite">{readout || ' '}</p>
+        )}
       </div>
-      <figcaption className={styles.caption}>
-        Same row count, same column widths. The page stays put and so does your place in it.
-      </figcaption>
     </figure>
   );
 }
 
-/* ── 2. Skeleton rows ────────────────────────────────────────── */
+function Pair({ children }: { children: React.ReactNode }) {
+  return <div className={styles.pair}>{children}</div>;
+}
 
-const ROW_HEIGHT = 28;
+/* ── 1. The jump ─────────────────────────────────────────────── */
 
-export function SkeletonRowsVisual() {
-  const [rows, setRows] = useState(2);
-  const [loaded, setLoaded] = useState(false);
+function useLoadLoop() {
+  const [loaded, setLoaded] = useState(true);
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
   const play = useCallback(() => {
     clearTimeout(timer.current);
     setLoaded(false);
     timer.current = setTimeout(() => setLoaded(true), 1400);
   }, []);
-  const ref = useLoopWhileVisible(play, 3400);
   useEffect(() => () => clearTimeout(timer.current), []);
+  const ref = useLoopWhileVisible(play, 3600);
+  return { loaded, play, ref };
+}
 
-  const moved = (ROWS.length - rows) * ROW_HEIGHT;
-
+function JumpGood() {
+  const { loaded, play, ref } = useLoadLoop();
   return (
-    <figure ref={ref} className={styles.figure}>
-      <div className={styles.header}>
-        <span className={styles.headerLabel}>Drag the slider and watch the pin when the data arrives</span>
+    <Demo
+      verdict="good"
+      title="The skeleton matches the table"
+      figureRef={ref}
+      action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
+      readout={loaded ? 'Five skeleton rows, five real rows. Your spot didn’t move.' : 'Loading…'}
+    >
+      <div className={styles.window}>
+        <div className={styles.windowTitle}>Supplier emissions</div>
+        <Table skeleton={!loaded} />
+        <div className={styles.reading}>📍 You were reading here</div>
       </div>
-      <div className={styles.inlineDemo}>
-        <label className={styles.slider}>
-          <span className={styles.sliderLabel}>Skeleton rows</span>
-          <input
-            type="range"
-            min={1}
-            max={ROWS.length}
-            value={rows}
-            onChange={(e) => {
-              setRows(Number(e.target.value));
-              play();
-            }}
-          />
-          <output className={styles.sliderValue}>{rows} of {ROWS.length}</output>
-        </label>
-        <div className={styles.window}>
-          <div className={styles.windowTitle}>Supplier emissions</div>
-          {loaded ? (
-            <Table />
-          ) : (
-            <div className={styles.table}>
-              {ROWS.slice(0, rows).map(([name]) => (
-                <div key={name} className={styles.tableRow}>
-                  <span className={`${styles.bone} ${styles.boneWide}`} />
-                  <span className={styles.bone} />
-                  <span className={`${styles.bone} ${styles.boneShort}`} />
-                </div>
-              ))}
-            </div>
-          )}
-          <div className={styles.reading}>📍 You were reading here</div>
-        </div>
-        <p className={styles.readout} aria-live="polite">
-          {moved === 0 ? 'Nothing moved. The skeleton told the truth.' : `When the data lands, everything below jumps ${moved}px.`}
-        </p>
-      </div>
-    </figure>
+    </Demo>
   );
 }
 
-/* ── 3. Spinner delay ────────────────────────────────────────── */
+function JumpBad() {
+  const { loaded, play, ref } = useLoadLoop();
+  return (
+    <Demo
+      verdict="bad"
+      title="The content collapses while it loads"
+      figureRef={ref}
+      action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
+      readout={loaded ? 'The table pushed everything down. Your eyes stayed put.' : 'Loading…'}
+    >
+      <div className={`${styles.window} ${styles.windowRel}`}>
+        <div className={styles.windowTitle}>Supplier emissions</div>
+        {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
+        <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
+          📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
+        </div>
+        {/* Your eyes stay at the same spot on screen while the content moves under them */}
+        <div className={styles.eyeLayer} aria-hidden="true">
+          <div className={`${styles.windowTitle} ${styles.ghost}`}>Supplier emissions</div>
+          <div className={`${styles.collapsed} ${styles.ghost}`}>Loading…</div>
+          <div className={`${styles.eye} ${loaded ? styles.eyeLost : ''}`}>
+            👀 {loaded ? 'Now you’re reading… Atlas Freight?!' : 'You were reading here'}
+          </div>
+        </div>
+      </div>
+    </Demo>
+  );
+}
+
+export function PageJumpVisual() {
+  return (
+    <Pair>
+      <JumpGood />
+      <JumpBad />
+    </Pair>
+  );
+}
+
+/* ── 2. Spinner delay ────────────────────────────────────────── */
 
 type SaveState = 'idle' | 'waiting' | 'spinning' | 'done';
+const FAST_SAVE = 100;
 
-export function SpinnerDelayVisual() {
-  const [delay, setDelay] = useState(0);
-  const [speed, setSpeed] = useState<'fast' | 'slow'>('fast');
+function SaveDemo({ verdict, spinnerDelay }: { verdict: 'good' | 'bad'; spinnerDelay: number }) {
   const [state, setState] = useState<SaveState>('idle');
-  const [result, setResult] = useState<string | null>(null);
+  const [result, setResult] = useState('');
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
-  const clear = () => {
+  const save = () => {
     timers.current.forEach(clearTimeout);
     timers.current = [];
-    setState('idle');
-    setResult(null);
-  };
-
-  const save = () => {
-    clear();
-    const duration = speed === 'slow' ? 2000 : 100;
-    const shows = duration > delay;
-    setState(delay === 0 ? 'spinning' : 'waiting');
-    if (delay > 0 && shows) timers.current.push(setTimeout(() => setState('spinning'), delay));
+    setResult('');
+    const shows = FAST_SAVE > spinnerDelay;
+    setState(spinnerDelay === 0 ? 'spinning' : 'waiting');
+    if (spinnerDelay > 0 && shows) timers.current.push(setTimeout(() => setState('spinning'), spinnerDelay));
     timers.current.push(
       setTimeout(() => {
         setState('done');
-        if (!shows) setResult('No spinner at all. The save finished before the delay was up.');
-        else if (speed === 'fast') setResult(`A spinner flashed for ${duration - delay}ms. That’s the flicker.`);
-        else setResult(`The spinner turned up after ${delay}ms, because this save actually took a while.`);
-      }, duration),
-      setTimeout(() => setState('idle'), duration + 1500),
+        setResult(shows
+          ? `A spinner flashed for ${FAST_SAVE - spinnerDelay}ms. That’s the flicker.`
+          : 'No spinner at all. The save was done before the 200ms wait was up.');
+      }, FAST_SAVE),
+      setTimeout(() => setState('idle'), FAST_SAVE + 1500),
     );
   };
 
   return (
-    <figure className={styles.figure}>
-      <div className={styles.header}>
-        <span className={styles.headerLabel}>Press save at 0ms, then drag the delay up and press it again</span>
+    <Demo
+      verdict={verdict}
+      title={spinnerDelay ? 'The spinner waits 200ms before showing up' : 'The spinner shows up straight away'}
+      readout={result}
+    >
+      <div className={styles.saveRow}>
+        <button
+          type="button"
+          className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
+          onClick={save}
+          disabled={state !== 'idle'}
+        >
+          {state === 'spinning' ? (
+            <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
+          ) : state === 'done' ? (
+            'Saved ✓'
+          ) : (
+            'Save changes'
+          )}
+        </button>
+        <span className={styles.demoHint}>The server answers in 0.1s</span>
       </div>
-      <div className={styles.inlineDemo}>
-        <label className={styles.slider}>
-          <span className={styles.sliderLabel}>Spinner delay</span>
-          <input
-            type="range"
-            min={0}
-            max={500}
-            step={50}
-            value={delay}
-            onChange={(e) => {
-              clear();
-              setDelay(Number(e.target.value));
-            }}
-          />
-          <output className={styles.sliderValue}>{delay}ms</output>
-        </label>
-        <div className={styles.saveRow}>
-          <button
-            type="button"
-            className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
-            onClick={save}
-            disabled={state !== 'idle'}
-          >
-            {state === 'spinning' ? (
-              <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
-            ) : state === 'done' ? (
-              'Saved ✓'
-            ) : (
-              'Save changes'
-            )}
-          </button>
-          <div className={styles.segmented} role="group" aria-label="Server speed">
-            <span className={styles.segmentedLabel}>Server</span>
-            {(['fast', 'slow'] as const).map((s) => (
-              <button
-                key={s}
-                type="button"
-                aria-pressed={speed === s}
-                className={`${styles.chip} ${speed === s ? styles.chipActive : ''}`}
-                onClick={() => {
-                  clear();
-                  setSpeed(s);
-                }}
-              >
-                {s === 'fast' ? 'Fast (0.1s)' : 'Slow (2s)'}
-              </button>
-            ))}
-          </div>
-        </div>
-        <p className={styles.readout} aria-live="polite">{result ?? ' '}</p>
-        <span className={styles.srOnly} role="status">{state === 'done' ? 'Changes saved' : ''}</span>
-      </div>
-    </figure>
+      <span className={styles.srOnly} role="status">{state === 'done' ? 'Changes saved' : ''}</span>
+    </Demo>
   );
 }
 
-/* ── 4. Stuck at 99% ─────────────────────────────────────────── */
+export function SpinnerDelayVisual() {
+  return (
+    <Pair>
+      <SaveDemo verdict="good" spinnerDelay={200} />
+      <SaveDemo verdict="bad" spinnerDelay={0} />
+    </Pair>
+  );
+}
 
-export function StuckBarVisual() {
-  const [honest, setHonest] = useState(false);
+/* ── 3. Progress bar ─────────────────────────────────────────── */
+
+/** Ticks every 100ms while the figure is on screen. */
+function useTicksWhileVisible() {
   const [ticks, setTicks] = useState(0);
   const ref = useRef<HTMLElement>(null);
-
-  // Only tick while on screen, so the joke lands when someone is actually looking
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -307,85 +262,143 @@ export function StuckBarVisual() {
       clearInterval(id);
     };
   }, []);
+  return { ticks, reset: () => setTicks(0), ref };
+}
 
-  const pct = honest ? Math.min(100, ticks * 2.5) : Math.min(99, ticks * 9);
-  const stuckFor = Math.floor(Math.max(0, ticks - 11) / 10);
-  let meta: string;
-  if (honest) meta = pct >= 100 ? 'Done. 2.9 MB ready to download.' : `${Math.round(pct)}% · About ${Math.ceil((100 - pct) / 25)}s left`;
-  else meta = pct >= 99 ? `99% · Almost there… (${stuckFor}s and counting)` : `${Math.round(pct)}% · Wow, so fast`;
-
+function ExportCard({ pct, meta, bad }: { pct: number; meta: string; bad?: boolean }) {
   return (
-    <figure ref={ref} className={styles.figure}>
-      <div className={styles.inlineDemo}>
-        <div className={styles.exportCard}>
-          <div className={styles.exportName}>emissions_report_q4.csv</div>
-          <div className={styles.track}>
-            <div className={`${styles.fill} ${honest ? '' : styles.fillBad}`} style={{ width: `${pct}%` }} />
-          </div>
-          <div className={styles.exportMeta}>{meta}</div>
-        </div>
-        <div className={styles.saveRow}>
-          {!honest && ticks > 30 && (
-            <button type="button" className={styles.linkButton} onClick={() => { setHonest(true); setTicks(0); }}>
-              Fine, export it properly
-            </button>
-          )}
-          {(honest || ticks > 30) && (
-            <button type="button" className={styles.linkButton} onClick={() => { setHonest(false); setTicks(0); }}>
-              Start over
-            </button>
-          )}
-        </div>
+    <div className={styles.exportCard}>
+      <div className={styles.exportName}>emissions_report_q4.csv</div>
+      <div className={styles.track}>
+        <div className={`${styles.fill} ${bad ? styles.fillBad : ''}`} style={{ width: `${pct}%` }} />
       </div>
-    </figure>
+      <div className={styles.exportMeta}>{meta}</div>
+    </div>
   );
 }
 
-/* ── 5. No loading state ─────────────────────────────────────── */
+function BarGood() {
+  const { ticks, reset, ref } = useTicksWhileVisible();
+  const pct = Math.min(100, ticks * 2.5);
+  const done = pct >= 100;
+  return (
+    <Demo
+      verdict="good"
+      title="Real progress and a rough time left"
+      figureRef={ref}
+      action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
+      readout={done ? 'It said four seconds, it took four seconds. Boring. Trustworthy.' : ''}
+    >
+      <ExportCard pct={pct} meta={done ? 'Done. 2.9 MB ready to download.' : `${Math.round(pct)}% · About ${Math.ceil((100 - pct) / 25)}s left`} />
+    </Demo>
+  );
+}
 
-export function OptimisticLikeVisual() {
+function BarBad() {
+  const { ticks, reset, ref } = useTicksWhileVisible();
+  const pct = Math.min(99, ticks * 9);
+  const stuck = pct >= 99;
+  const stuckFor = Math.floor(Math.max(0, ticks - 11) / 10);
+  return (
+    <Demo
+      verdict="bad"
+      title="Races to 99%, then sits there"
+      figureRef={ref}
+      action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
+      readout={stuck && stuckFor >= 3 ? '“Almost there…” since Tuesday.' : ''}
+    >
+      <ExportCard bad pct={pct} meta={stuck ? `99% · Almost there… (${stuckFor}s and counting)` : `${Math.round(pct)}% · Wow, so fast`} />
+    </Demo>
+  );
+}
+
+export function StuckBarVisual() {
+  return (
+    <Pair>
+      <BarGood />
+      <BarBad />
+    </Pair>
+  );
+}
+
+/* ── 4. No loading state ─────────────────────────────────────── */
+
+function LikeGood() {
   const [liked, setLiked] = useState(false);
-  const [note, setNote] = useState<string | null>(null);
+  const [note, setNote] = useState('');
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
-
   return (
-    <figure className={styles.figure}>
-      <div className={styles.header}>
-        <span className={styles.headerLabel}>Tap the heart, then try it with a broken server</span>
+    <Demo verdict="good" title="It’s done the moment you tap" readout={note}>
+      <div className={styles.saveRow}>
+        <button
+          type="button"
+          className={`${styles.like} ${liked ? styles.likeOn : ''}`}
+          aria-pressed={liked}
+          onClick={() => {
+            clearTimeout(timer.current);
+            setLiked((l) => !l);
+            setNote('No spinner. The server catches up in the background.');
+          }}
+        >
+          {liked ? '♥' : '♡'} {liked ? 43 : 42}
+        </button>
+        <button
+          type="button"
+          className={styles.linkButton}
+          onClick={() => {
+            clearTimeout(timer.current);
+            setLiked(true);
+            setNote('');
+            timer.current = setTimeout(() => {
+              setLiked(false);
+              setNote('The server said no, so the like quietly rolled back. That’s the whole recovery plan.');
+            }, 900);
+          }}
+        >
+          Try it with a broken server
+        </button>
       </div>
-      <div className={styles.inlineDemo}>
-        <div className={styles.saveRow}>
-          <button
-            type="button"
-            className={`${styles.like} ${liked ? styles.likeOn : ''}`}
-            aria-pressed={liked}
-            onClick={() => {
-              clearTimeout(timer.current);
+    </Demo>
+  );
+}
+
+function LikeBad() {
+  const [liked, setLiked] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [note, setNote] = useState('');
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  return (
+    <Demo verdict="bad" title="It waits for the server first" readout={note}>
+      <div className={styles.saveRow}>
+        <button
+          type="button"
+          className={`${styles.like} ${liked ? styles.likeOn : ''}`}
+          aria-pressed={liked}
+          disabled={pending}
+          onClick={() => {
+            setPending(true);
+            setNote('');
+            timer.current = setTimeout(() => {
+              setPending(false);
               setLiked((l) => !l);
-              setNote('Done the moment you tapped. No spinner needed.');
-            }}
-          >
-            {liked ? '♥' : '♡'} {liked ? 43 : 42}
-          </button>
-          <button
-            type="button"
-            className={styles.linkButton}
-            onClick={() => {
-              clearTimeout(timer.current);
-              setLiked(true);
-              setNote(null);
-              timer.current = setTimeout(() => {
-                setLiked(false);
-                setNote('The server said no, so the like quietly rolled back. That’s the whole recovery plan.');
-              }, 900);
-            }}
-          >
-            Like it with a broken server
-          </button>
-        </div>
-        <p className={styles.readout} aria-live="polite">{note ?? ' '}</p>
+              setNote('A whole second to like a post. It’s a heart, not a bank transfer.');
+            }, 1200);
+          }}
+        >
+          {pending ? <span className={`${styles.spinner} ${styles.spinnerDark}`} aria-hidden="true" /> : liked ? '♥' : '♡'} {liked ? 43 : 42}
+        </button>
       </div>
-    </figure>
+    </Demo>
+  );
+}
+
+export function OptimisticLikeVisual() {
+  return (
+    <Pair>
+      <LikeGood />
+      <LikeBad />
+    </Pair>
   );
 }

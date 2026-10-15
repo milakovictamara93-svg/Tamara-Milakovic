@@ -1,7 +1,6 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
 import {
   PageJumpVisual,
-  SkeletonRowsVisual,
   SpinnerDelayVisual,
   StuckBarVisual,
   OptimisticLikeVisual,
@@ -51,8 +50,6 @@ export default function LoadingStatesContent() {
         flash when the response is quick. Anything long and measurable, like an export or an
         upload, gets a progress bar.
       </p>
-
-      <RevealOnScroll><SkeletonRowsVisual /></RevealOnScroll>
 
       <RevealOnScroll><SpinnerDelayVisual /></RevealOnScroll>
 

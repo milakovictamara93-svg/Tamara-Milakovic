@@ -525,3 +525,39 @@
     grid-row: 2;
   }
 }
+
+/* Good / Bad pairs */
+.pair {
+  margin: 32px 0;
+}
+
+.pair .figure {
+  margin: 0;
+}
+
+.pair .figure + .figure {
+  margin-top: 12px;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.verdictWord {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.spinnerDark {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: #000;
+}
+
+.like:disabled {
+  cursor: progress;
+}
