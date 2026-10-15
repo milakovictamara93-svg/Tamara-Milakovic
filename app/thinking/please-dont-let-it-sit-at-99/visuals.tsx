@@ -90,10 +90,20 @@ export function PageJumpVisual() {
           <div className={styles.jumpLabel}>
             Content collapses <span className={styles.jumpCount}>Page jumps: {jumps}</span>
           </div>
-          <div className={styles.window}>
+          <div className={`${styles.window} ${styles.windowRel}`}>
             <div className={styles.windowTitle}>Supplier emissions</div>
             {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
-            <div className={styles.reading}>📍 You were reading here</div>
+            <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
+              📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
+            </div>
+            {/* Your eyes stay at the same spot on screen while the content moves under them */}
+            <div className={styles.eyeLayer} aria-hidden="true">
+              <div className={`${styles.windowTitle} ${styles.ghost}`}>Supplier emissions</div>
+              <div className={`${styles.collapsed} ${styles.ghost}`}>Loading…</div>
+              <div className={`${styles.eye} ${loaded ? styles.eyeLost : ''}`}>
+                👀 {loaded ? 'Now you’re reading… Atlas Freight?!' : 'You were reading here'}
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.jumpCol}>

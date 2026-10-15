@@ -135,6 +135,39 @@
 }
 
 /* 1. Page jump */
+.windowRel {
+  position: relative;
+}
+
+.eyeLayer {
+  position: absolute;
+  inset: 12px 12px auto;
+  pointer-events: none;
+}
+
+.ghost {
+  visibility: hidden;
+}
+
+.eye {
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgb(254, 236, 170);
+  font-weight: 500;
+}
+
+.eyeLost {
+  background: rgba(255, 255, 255, 0.92);
+  outline: 2px dashed #000;
+  outline-offset: -2px;
+  font-weight: 600;
+}
+
+.readingLost {
+  opacity: 0.55;
+}
+
 .jumpGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
