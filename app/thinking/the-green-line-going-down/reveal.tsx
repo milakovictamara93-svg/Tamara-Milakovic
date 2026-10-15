@@ -306,30 +306,42 @@ export function GreenLineRevealVisual() {
               <tr>
                 <th scope="col">Year</th>
                 <th scope="col" className={styles.num}>
+                  <span className={`${styles.key} ${styles.keyGreen}`} aria-hidden="true" />
                   Per €m of revenue
                   <span className={styles.thUnit}>t CO₂e</span>
                 </th>
                 <th scope="col" className={styles.num}>
+                  <span className={`${styles.key} ${styles.keyInk}`} aria-hidden="true" />
                   Total
                   <span className={styles.thUnit}>kt CO₂e</span>
                 </th>
               </tr>
             </thead>
             <tbody>
-              {YEARS.map((yr, i) => (
-                <tr key={yr} className={yr === REPORT_START ? styles.rowMarked : undefined}>
-                  <th scope="row">
-                    {yr}
-                    {yr === REPORT_START && <span className={styles.rowTag}>Report starts</span>}
-                  </th>
-                  <td className={styles.num}>{INTENSITY[i]}</td>
-                  <td className={styles.num}>{ABSOLUTE[i]}</td>
-                </tr>
-              ))}
+              {YEARS.map((yr, i) => {
+                const leftOut = yr < startYear(truths);
+                return (
+                  <tr
+                    key={yr}
+                    className={yr === REPORT_START ? styles.rowMarked : leftOut ? styles.rowLeftOut : undefined}
+                  >
+                    <th scope="row">
+                      {yr}
+                      {yr === REPORT_START && <span className={styles.rowTag}>Report starts</span>}
+                      {leftOut && <span className={styles.rowTag}>Left out</span>}
+                    </th>
+                    <td className={styles.num}>{INTENSITY[i]}</td>
+                    <td className={styles.num}>{ABSOLUTE[i]}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
-        <p>Every value is ± {UNCERTAINTY * 100}%. A made-up company, sadly a very typical one.</p>
+        <p>
+          The coloured keys match the lines on the chart. Every value is ± {UNCERTAINTY * 100}%. A made-up
+          company, sadly a very typical one.
+        </p>
       </details>
     </DemoFrame>
   );

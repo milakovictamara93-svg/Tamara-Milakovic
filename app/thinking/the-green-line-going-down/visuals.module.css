@@ -326,6 +326,44 @@
   color: #525252;
 }
 
+/* A small line-and-dot key, the same mark as the chart, so each column points to its line */
+.key {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 2px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.key::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  background: #fff;
+}
+
+.keyGreen {
+  color: #15803d;
+  background: #15803d;
+}
+
+.keyInk {
+  color: #000;
+  background: #000;
+}
+
+.rowLeftOut th,
+.rowLeftOut td {
+  color: #8a8a84;
+}
+
 .rowMarked th,
 .rowMarked td {
   background: rgba(254, 196, 10, 0.22);
