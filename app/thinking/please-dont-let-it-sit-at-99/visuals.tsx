@@ -80,7 +80,7 @@ function Demo({
     <figure ref={figureRef} className={styles.figure}>
       <div className={styles.header}>
         <span className={styles.headerTitle}>
-          <span className={styles.verdictWord}>{verdict === 'good' ? '✓ Good' : '✕ Bad'}</span>
+          <span className={styles.verdictWord}>{verdict === 'good' ? '✅ Good' : '❌ Bad'}</span>
           <span className={styles.headerLabel}>{title}</span>
         </span>
         {action}
