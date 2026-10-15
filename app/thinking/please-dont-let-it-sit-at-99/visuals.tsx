@@ -221,7 +221,7 @@ function SaveDemo() {
         setFinished({ speed, bad });
       }, duration),
       // "Saved" confirms for a moment, then the button goes back to normal
-      setTimeout(() => setState('idle'), duration + 1800),
+      setTimeout(() => setState('idle'), duration + 1500),
     ];
     if (spinnerDelay > 0 && duration > spinnerDelay) {
       timers.current.push(setTimeout(() => setState('spinning'), spinnerDelay));
@@ -248,7 +248,6 @@ function SaveDemo() {
           className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
           onClick={save}
           disabled={busy}
-          aria-live="polite"
         >
           {state === 'spinning' ? (
             <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
@@ -276,6 +275,7 @@ function SaveDemo() {
           ))}
         </div>
       </div>
+      <span className={styles.srOnly} role="status">{state === 'done' ? 'Changes saved' : ''}</span>
       <p className={styles.demoHint}>{hint}</p>
       <label className={styles.toggle}>
         <input
