@@ -18,7 +18,7 @@ export function CoordinationInfluenceVisual() {
   return (
     <figure className={styles.figure}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>Two things hiding under "cross-functional collaboration"</span>
+        <span className={styles.headerLabel}>Two things hiding under &ldquo;cross-functional collaboration&rdquo;</span>
       </div>
       <div className={styles.compareColumns}>
         <div className={styles.compareCol}>

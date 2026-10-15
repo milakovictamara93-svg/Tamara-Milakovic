@@ -1,14 +1,13 @@
 import Image from 'next/image';
-import Arrow from '@/components/Arrow';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
 import Marquee from '@/components/Marquee';
-import ArticleSidebar from './ArticleSidebar';
-import ArticleImageReveal from '@/components/ArticleImageReveal';
+import ArticleSidebar from '../CaseStudySidebar';
+import NextCaseStudy from '@/components/NextCaseStudy';
 import BeforeAfterSlider from '@/components/BeforeAfterSlider';
-import styles from './page.module.css';
+import styles from '../case-study.module.css';
 
 export const metadata = {
   title: 'Beyond the Legacy: Restyling a Platform Without Losing It | Tamara Milakovic',
@@ -195,29 +194,7 @@ export default function BeyondPage() {
           </div>
         </div>
 
-        {/* Next case study */}
-        <div className={styles.nextCaseStudy}>
-          <div className={styles.nextCaseStudyInner}>
-            <a href="/work/pax8" className={styles.nextCaseStudyCard}>
-              <div className={styles.nextCaseStudyImage}>
-                <Image
-                  src="/work/Pax8-hero.jpg"
-                  alt="Pax8"
-                  fill
-                  className={styles.heroImg}
-                  sizes="360px"
-                />
-              </div>
-              <div className={styles.nextCaseStudyContent}>
-                <span className={styles.nextCaseStudyLabel}>Next case study</span>
-                <h2 className={styles.nextCaseStudyTitle}>Pax8: Building a Monetisation System from a PowerPoint Slide and a Prayer</h2>
-                <p className={styles.nextCaseStudyDesc}>How I turned a vague commercial opportunity into a coherent product before anyone noticed we were making it up.</p>
-                <span className={styles.nextCaseStudyTags}>B2B SaaS · Monetisation · 0→1</span>
-              </div>
-              <span className={styles.nextCaseStudyArrow}><Arrow size={36} /></span>
-            </a>
-          </div>
-        </div>
+        <NextCaseStudy slug="pax8" />
 
         <Marquee text="The ambition was always there. 🏃‍♀️ The UI just needed to catch up. 🏃‍♀️" />
 

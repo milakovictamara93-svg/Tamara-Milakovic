@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
+import { site } from '@/lib/site';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -47,7 +48,7 @@ export default function ContactPage() {
             </h1>
 
             <a
-              href="https://drive.google.com/file/d/10-Xe6sLg0XOJmIZofjTMtKkXBfcMZWdV/view?usp=sharing"
+              href={site.resume}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.downloadLink}
@@ -57,8 +58,8 @@ export default function ContactPage() {
             </a>
 
             <div className={styles.links}>
-              <TextLink href="mailto:tamaraoctostudio@gmail.com">Send me an email</TextLink>
-              <TextLink href="https://www.linkedin.com/in/tamaramilakovic/" external>Find me on LinkedIn</TextLink>
+              <TextLink href={`mailto:${site.email}`}>Send me an email</TextLink>
+              <TextLink href={site.linkedin} external>Find me on LinkedIn</TextLink>
             </div>
           </div>
         </div>

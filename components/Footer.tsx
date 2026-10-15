@@ -1,6 +1,8 @@
 import TextLink from './TextLink';
 import AnimatedLogos from './AnimatedLogos';
 import FitWordmark from './FitWordmark';
+import { projects } from '@/lib/projects';
+import { site } from '@/lib/site';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -15,15 +17,16 @@ export default function Footer() {
             <div className={styles.column}>
               <p className={styles.columnHeading}>Selected work</p>
               <div className={styles.columnLinks}>
-                <TextLink href="/work/pax8">Pax8: PowerPoint Slide and a Prayer</TextLink>
-                <TextLink href="/work/scaler">Scaler: When the Problem Is Your Fault</TextLink>
+                {projects.map((project) => (
+                  <TextLink key={project.slug} href={`/work/${project.slug}`}>{project.shortTitle}</TextLink>
+                ))}
               </div>
             </div>
             <div className={styles.column}>
               <p className={styles.columnHeading}>Contact</p>
               <div className={styles.columnLinks}>
-                <TextLink href="mailto:tamaraoctostudio@gmail.com">Send me an email</TextLink>
-                <TextLink href="https://www.linkedin.com/in/tamaramilakovic/" external>Find me on LinkedIn</TextLink>
+                <TextLink href={`mailto:${site.email}`}>Send me an email</TextLink>
+                <TextLink href={site.linkedin} external>Find me on LinkedIn</TextLink>
               </div>
             </div>
           </div>

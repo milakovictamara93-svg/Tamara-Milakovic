@@ -7,7 +7,7 @@ import {
   PermissionMockup,
 } from '@/components/AppMockup';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import styles from './content.module.css';
+import styles from '../article.module.css';
 
 export default function EmptyStatesContent() {
   return (

@@ -1,11 +1,10 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import Marquee from '@/components/Marquee';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import RevealOnScroll from '@/components/RevealOnScroll';
-import Arrow from '@/components/Arrow';
+import ProjectCard from '@/components/ProjectCard';
+import { projects } from '@/lib/projects';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -22,30 +21,6 @@ export const metadata = {
     description: 'Selected product design case studies in B2B SaaS, ESG analytics, and monetisation. Real problems, honest process, measurable outcomes.',
   },
 };
-
-const projects: { slug: string; title: string; description: string; tags: string; image: string; href?: string }[] = [
-  {
-    slug: 'pax8',
-    title: 'Pax8: Building a Monetisation System from a PowerPoint Slide and a Prayer',
-    description: 'How I turned a vague commercial opportunity into a coherent product before anyone noticed we were making it up.',
-    tags: 'B2B SaaS · Monetisation · 0→1',
-    image: '/work/Pax8-hero.jpg',
-  },
-  {
-    slug: 'scaler',
-    title: 'Scaler: When the Frankenstein Problem Is Partly Your Fault',
-    description: 'When the platform grew faster than its rules and the design system that stopped the drift.',
-    tags: 'ESG Analytics · Design Systems · SaaS',
-    image: '/work/scaler-hero.jpg',
-  },
-  {
-    slug: 'beyond',
-    title: 'Beyond the Legacy: Restyling a Platform Without Losing It',
-    description: 'A platform restyling that 85% of users chose voluntarily.',
-    tags: 'B2B SaaS',
-    image: '/work/Beyond hero.jpg',
-  },
-];
 
 const marqueeText = 'The work is the argument. 👆 Everything else is details. 🤏';
 
@@ -71,41 +46,11 @@ export default function WorkPage() {
         <div className={styles.grid}>
           {rows.map((row, ri) => (
             <div key={ri} className={styles.row}>
-              {row.map((project, ci) => {
-                const isExternal = !!project.href;
-                const href = project.href ?? `/work/${project.slug}`;
-                return (
-                  <RevealOnScroll key={project.slug} delay={ci * 150}>
-                    <div className={styles.card}>
-                      <Link href={href} {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
-                        <div className={styles.imageWrap}>
-                          <Image
-                            src={project.image}
-                            alt={project.title}
-                            fill
-                            className={styles.image}
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                          />
-                        </div>
-                      </Link>
-                      <div className={styles.cardBody}>
-                        <Link
-                          href={href}
-                          className={styles.cardTitle}
-                          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                        >
-                          {project.title}
-                        </Link>
-                        <p className={styles.cardDesc}>{project.description}</p>
-                        <p className={styles.cardTags}>{project.tags}</p>
-                        <Link href={href} className={styles.cardArrow} {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
-                          <Arrow size={36} />
-                        </Link>
-                      </div>
-                    </div>
-                  </RevealOnScroll>
-                );
-              })}
+              {row.map((project, ci) => (
+                <RevealOnScroll key={project.slug} delay={ci * 150}>
+                  <ProjectCard project={project} priority={ri === 0 && ci === 0} />
+                </RevealOnScroll>
+              ))}
               {row.length === 1 && <div className={styles.cardEmpty} />}
             </div>
           ))}

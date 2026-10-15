@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import Arrow from '@/components/Arrow';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import AnimatedLogos from '@/components/AnimatedLogos';
 import TextLink from '@/components/TextLink';
 import Marquee from '@/components/Marquee';
-import ArticleSidebar from './ArticleSidebar';
+import ArticleSidebar from '../CaseStudySidebar';
+import NextCaseStudy from '@/components/NextCaseStudy';
 import ArticleImageReveal from '@/components/ArticleImageReveal';
-import styles from './page.module.css';
+import styles from '../case-study.module.css';
 
 export const metadata = {
   title: 'Scaler: When the Frankenstein Problem Is Partly Your Fault | Tamara Milakovic',
@@ -234,29 +234,7 @@ export default function ScalerPage() {
           </div>
         </div>
 
-        {/* Next case study */}
-        <div className={styles.nextCaseStudy}>
-          <div className={styles.nextCaseStudyInner}>
-            <a href="/work/beyond" className={styles.nextCaseStudyCard}>
-              <div className={styles.nextCaseStudyImage}>
-                <Image
-                  src="/work/Beyond hero.jpg"
-                  alt="Beyond the Legacy"
-                  fill
-                  className={styles.heroImg}
-                  sizes="360px"
-                />
-              </div>
-              <div className={styles.nextCaseStudyContent}>
-                <span className={styles.nextCaseStudyLabel}>Next case study</span>
-                <h2 className={styles.nextCaseStudyTitle}>Beyond the Legacy: Restyling a Platform Without Losing It</h2>
-                <p className={styles.nextCaseStudyDesc}>A platform restyling that 85% of users chose voluntarily.</p>
-                <span className={styles.nextCaseStudyTags}>B2B SaaS</span>
-              </div>
-              <span className={styles.nextCaseStudyArrow}><Arrow size={36} /></span>
-            </a>
-          </div>
-        </div>
+        <NextCaseStudy slug="beyond" />
 
         <Marquee text="Tables got smaller. 🤏 Confidence got bigger. 💪" />
 
