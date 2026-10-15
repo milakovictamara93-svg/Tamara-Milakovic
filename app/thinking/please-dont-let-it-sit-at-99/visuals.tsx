@@ -196,44 +196,85 @@ function TableDemo() {
 
 function SaveDemo() {
   const [bad, setBad] = useState(false);
+  const [speed, setSpeed] = useState<'slow' | 'fast'>('slow');
   const [state, setState] = useState<'idle' | 'waiting' | 'spinning' | 'done'>('idle');
-  const [last, setLast] = useState<'slow' | 'fast' | null>(null);
+  const [finished, setFinished] = useState<{ speed: 'slow' | 'fast'; bad: boolean } | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
-  const save = (speed: 'slow' | 'fast') => {
+  const reset = () => {
     timers.current.forEach(clearTimeout);
-    setLast(speed);
+    setState('idle');
+    setFinished(null);
+  };
+
+  const save = () => {
+    timers.current.forEach(clearTimeout);
+    setFinished(null);
     const duration = speed === 'slow' ? 2000 : 100;
     // The good version waits 200ms before showing a spinner; the bad one shows it straight away
     const spinnerDelay = bad ? 0 : 200;
     setState(spinnerDelay === 0 ? 'spinning' : 'waiting');
-    timers.current = [setTimeout(() => setState('done'), duration)];
+    timers.current = [
+      setTimeout(() => {
+        setState('done');
+        setFinished({ speed, bad });
+      }, duration),
+      // "Saved" confirms for a moment, then the button goes back to normal
+      setTimeout(() => setState('idle'), duration + 1800),
+    ];
     if (spinnerDelay > 0 && duration > spinnerDelay) {
       timers.current.push(setTimeout(() => setState('spinning'), spinnerDelay));
     }
   };
 
-  const busy = state === 'waiting' || state === 'spinning';
-  let hint = 'Try both. The server is slow sometimes and fast other times.';
-  if (state === 'done' && last === 'fast') {
-    hint = bad
+  const busy = state !== 'idle';
+  let hint = 'Pick a server speed and hit save.';
+  if (finished?.speed === 'fast') {
+    hint = finished.bad
       ? 'Did you catch that? A spinner flashed for a tenth of a second. That’s the flicker.'
       : 'No spinner at all. The save finished before the 200ms wait was up.';
-  } else if (state === 'done' && last === 'slow') {
-    hint = bad ? 'Slow saves look fine either way. It’s the fast ones that flicker.' : 'The spinner showed up after 200ms, because this one actually took a while.';
+  } else if (finished?.speed === 'slow') {
+    hint = finished.bad
+      ? 'Slow saves look fine either way. It’s the fast ones that flicker.'
+      : 'The spinner showed up after 200ms, because this one actually took a while.';
   }
 
   return (
     <div className={styles.demo}>
       <div className={styles.saveRow}>
-        <button type="button" className={styles.primary} onClick={() => save('slow')} disabled={busy}>
-          {state === 'spinning' && last === 'slow' ? <><span className={styles.spinner} aria-hidden="true" /> Saving…</> : 'Slow save (2s)'}
+        <button
+          type="button"
+          className={`${styles.primary} ${styles.saveButton} ${state === 'done' ? styles.primaryDone : ''}`}
+          onClick={save}
+          disabled={busy}
+          aria-live="polite"
+        >
+          {state === 'spinning' ? (
+            <><span className={styles.spinner} aria-hidden="true" /> Saving…</>
+          ) : state === 'done' ? (
+            'Saved ✓'
+          ) : (
+            'Save changes'
+          )}
         </button>
-        <button type="button" className={styles.primary} onClick={() => save('fast')} disabled={busy}>
-          {state === 'spinning' && last === 'fast' ? <><span className={styles.spinner} aria-hidden="true" /> Saving…</> : 'Fast save (0.1s)'}
-        </button>
-        {state === 'done' && <span className={styles.saved}>Saved ✓</span>}
+        <div className={styles.segmented} role="group" aria-label="Server speed">
+          <span className={styles.segmentedLabel}>Server</span>
+          {(['slow', 'fast'] as const).map((s) => (
+            <button
+              key={s}
+              type="button"
+              aria-pressed={speed === s}
+              className={`${styles.chip} ${speed === s ? styles.chipActive : ''}`}
+              onClick={() => {
+                reset();
+                setSpeed(s);
+              }}
+            >
+              {s === 'slow' ? 'Slow (2s)' : 'Fast (0.1s)'}
+            </button>
+          ))}
+        </div>
       </div>
       <p className={styles.demoHint}>{hint}</p>
       <label className={styles.toggle}>
@@ -241,9 +282,7 @@ function SaveDemo() {
           type="checkbox"
           checked={bad}
           onChange={(e) => {
-            timers.current.forEach(clearTimeout);
-            setState('idle');
-            setLast(null);
+            reset();
             setBad(e.target.checked);
           }}
         />

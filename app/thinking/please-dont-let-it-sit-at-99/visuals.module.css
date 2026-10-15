@@ -294,10 +294,28 @@
   to { transform: rotate(360deg); }
 }
 
-.saved {
-  font-size: 14px;
-  font-weight: 600;
-  color: #15803d;
+/* Fixed width so the label change never shifts anything around it */
+.saveButton {
+  width: 168px;
+  min-width: 0;
+}
+
+.primaryDone,
+.primaryDone:disabled {
+  background: #15803d;
+  cursor: default;
+}
+
+.segmented {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.segmentedLabel {
+  font-size: 13px;
+  color: #525252;
+  margin-right: 2px;
 }
 
 .linkButton {
