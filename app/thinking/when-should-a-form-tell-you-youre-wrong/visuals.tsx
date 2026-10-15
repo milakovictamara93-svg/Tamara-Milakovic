@@ -1,91 +1,406 @@
+'use client';
+
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Demo, Pair, demoStyles } from '@/components/ArticleDemo';
 import styles from './visuals.module.css';
+
+const isEmail = (v: string) => /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v);
+
+/**
+ * Types `text` into a field one character at a time, once, the first time the figure scrolls
+ * into view (instantly under reduced motion). Calls onType for every character so each demo
+ * reacts exactly as it would to a person typing, then blurs the field.
+ */
+function useAutoType(text: string, onType: (value: string) => void, onBlur: () => void, start = '') {
+  const ref = useRef<HTMLElement>(null);
+  const [typing, setTyping] = useState(false);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const handlers = useRef({ onType, onBlur });
+  useEffect(() => {
+    handlers.current = { onType, onBlur };
+  });
+
+  const play = useCallback(() => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    const instant = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const step = instant ? 0 : 110;
+    setTyping(true);
+    handlers.current.onType(start);
+    for (let i = start.length + 1; i <= text.length; i++) {
+      timers.current.push(setTimeout(() => handlers.current.onType(text.slice(0, i)), (i - start.length) * step));
+    }
+    timers.current.push(
+      setTimeout(() => {
+        setTyping(false);
+        handlers.current.onBlur();
+      }, (text.length - start.length) * step + (instant ? 0 : 500)),
+    );
+  }, [text, start]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        play();
+        observer.disconnect();
+      }
+    }, { threshold: 0.6 });
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      timers.current.forEach(clearTimeout);
+    };
+  }, [play]);
+
+  const stop = () => {
+    timers.current.forEach(clearTimeout);
+    setTyping(false);
+  };
+
+  return { ref, typing, play, stop };
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  onFocus,
+  onBlur,
+  error,
+  valid,
+  type = 'text',
+  prefix,
+  inputMode,
+  readOnly,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
+  error?: string | null;
+  valid?: boolean;
+  type?: string;
+  prefix?: string;
+  inputMode?: 'numeric' | 'email' | 'text';
+  readOnly?: boolean;
+}) {
+  return (
+    <label className={styles.field}>
+      <span className={styles.label}>{label}</span>
+      <span className={`${styles.inputWrap} ${error ? styles.inputError : ''} ${valid ? styles.inputValid : ''}`}>
+        {prefix && <span className={styles.prefix}>{prefix}</span>}
+        <input
+          className={styles.input}
+          type={type}
+          value={value}
+          inputMode={inputMode}
+          readOnly={readOnly}
+          aria-invalid={!!error}
+          onChange={(e) => onChange(e.target.value)}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+        {valid && <span className={styles.tick} aria-label="Looks good">✓</span>}
+      </span>
+      {/* Fixed-height slot, so a message appearing never pushes anything around */}
+      <span className={styles.message}>{error ? `⚠ ${error}` : ' '}</span>
+    </label>
+  );
+}
+
+function ReplayButton({ onClick, disabled }: { onClick: () => void; disabled?: boolean }) {
+  return (
+    <button type="button" className={demoStyles.chip} onClick={onClick} disabled={disabled}>
+      Type it again
+    </button>
+  );
+}
+
+/* ── 1. When to check ──────────────────────────────────────────── */
+
+const EMAIL = 'tamara@pax8.com';
+const EMAIL_ERROR = 'Enter an email like name@company.com';
+
+function TimingGood() {
+  const [value, setValue] = useState('');
+  const [touched, setTouched] = useState(false);
+  const [focused, setFocused] = useState(false);
+  // An error is only raised when you leave the field, and drops the moment the value is fixed
+  const [flagged, setFlagged] = useState(false);
+  const change = (v: string) => {
+    setValue(v);
+    if (isEmail(v)) setFlagged(false);
+  };
+  const leave = (v: string) => {
+    setFocused(false);
+    setTouched(true);
+    setFlagged(!!v && !isEmail(v));
+  };
+  const auto = useAutoType(EMAIL, (v) => { setFocused(true); change(v); }, () => leave(EMAIL));
+
+  const valid = isEmail(value);
+  return (
+    <Demo
+      verdict="good"
+      title="Checks when you leave the field"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={() => { setTouched(false); setFlagged(false); auto.play(); }} disabled={auto.typing} />}
+      readout={auto.typing || focused ? 'Typing… and it’s letting you get on with it.' : touched ? (valid ? 'Not a peep until you were done. Then a tick.' : 'You left the field, so now it’s a fair time to mention it.') : ''}
+    >
+      <Field
+        label="Email"
+        value={value}
+        onChange={(v) => { auto.stop(); change(v); }}
+        onFocus={() => setFocused(true)}
+        onBlur={() => leave(value)}
+        error={flagged ? EMAIL_ERROR : null}
+        valid={touched && !focused && valid}
+        inputMode="email"
+      />
+    </Demo>
+  );
+}
+
+function TimingBad() {
+  const [value, setValue] = useState('');
+  const [nags, setNags] = useState(0);
+  const update = (v: string) => {
+    setValue(v);
+    if (v && !isEmail(v)) setNags((n) => n + 1);
+  };
+  const auto = useAutoType(EMAIL, update, () => {});
+
+  const valid = isEmail(value);
+  const error = value && !valid ? EMAIL_ERROR : null;
+  return (
+    <Demo
+      verdict="bad"
+      title="Checks on every keystroke"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={() => { setNags(0); auto.play(); }} disabled={auto.typing} />}
+      readout={nags > 0 ? `Told you that you were wrong ${nags} time${nags === 1 ? '' : 's'} while you were still typing.` : ''}
+    >
+      <Field label="Email" value={value} onChange={(v) => { auto.stop(); update(v); }} error={error} valid={valid} inputMode="email" />
+    </Demo>
+  );
+}
 
 export function ValidationTimingVisual() {
   return (
-    <figure className={styles.figure}>
-      <div className={styles.header}>
-        <span className={styles.headerLabel}>The same field, mid-input: on keystroke vs. on blur</span>
-      </div>
-      <div className={styles.cardsRow}>
-        <div className={styles.formPanel}>
-          <div className={styles.panelBadgeBad}>Don&rsquo;t</div>
-          <div className={styles.formPanelTitle}>On keystroke</div>
-          <div className={styles.mockField}>
-            <div className={styles.mockLabel}>Email address</div>
-            <div className={`${styles.mockInput} ${styles.mockInputError}`}>
-              <span className={styles.mockValue}>john.doe</span>
-              <span className={styles.cursor} />
-            </div>
-            <div className={styles.mockErrorMsg}>
-              <span className={styles.mockErrorIcon}>⚠</span> Please enter a valid email address
-            </div>
-          </div>
-          <div className={styles.panelNote}>Error fires before the user has finished typing</div>
-        </div>
+    <Pair>
+      <TimingGood />
+      <TimingBad />
+    </Pair>
+  );
+}
 
-        <div className={styles.formPanel}>
-          <div className={styles.panelBadgeGood}>Do</div>
-          <div className={styles.formPanelTitle}>On blur</div>
-          <div className={styles.mockField}>
-            <div className={styles.mockLabel}>Email address</div>
-            <div className={`${styles.mockInput} ${styles.mockInputActive}`}>
-              <span className={styles.mockValue}>john.doe</span>
-              <span className={styles.cursor} />
-            </div>
-            <div className={styles.panelNote}>No error: user hasn&rsquo;t left the field yet</div>
-          </div>
-        </div>
-      </div>
-      <figcaption className={styles.caption}>
-        Both panels show the same moment: the user has typed &ldquo;john.doe&rdquo; and is still
-        entering their address. On the left, they&rsquo;re already wrong. On the right, the form
-        is waiting.
-      </figcaption>
-    </figure>
+/* ── 2. Reward early, validate late ───────────────────────────── */
+
+const PASSWORD = 'sunflower';
+const PASSWORD_ERROR = 'Use at least 8 characters';
+
+function RewardGood() {
+  const [value, setValue] = useState('');
+  const [flagged, setFlagged] = useState(false);
+  const change = (v: string) => {
+    setValue(v);
+    if (v.length >= 8) setFlagged(false);
+  };
+  const leave = (v: string) => setFlagged(!!v && v.length < 8);
+  const auto = useAutoType(PASSWORD, change, () => leave(PASSWORD));
+  const valid = value.length >= 8;
+  return (
+    <Demo
+      verdict="good"
+      title="Tick straight away, error only once you’ve left"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={() => { setFlagged(false); auto.play(); }} disabled={auto.typing} />}
+      readout={valid ? 'The tick showed up the moment you hit 8 characters.' : flagged ? 'You left it short, so now it says something.' : ''}
+    >
+      <Field
+        label="New password"
+        value={value}
+        onChange={(v) => { auto.stop(); change(v); }}
+        onBlur={() => leave(value)}
+        error={flagged ? PASSWORD_ERROR : null}
+        valid={valid}
+      />
+    </Demo>
+  );
+}
+
+function RewardBad() {
+  const [value, setValue] = useState('');
+  const [touched, setTouched] = useState(false);
+  const auto = useAutoType(PASSWORD, setValue, () => setTouched(true));
+  const valid = value.length >= 8;
+  return (
+    <Demo
+      verdict="bad"
+      title="Error straight away, tick only once you’ve left"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={() => { setTouched(false); auto.play(); }} disabled={auto.typing} />}
+      readout={touched && valid ? 'Seven characters of being told off, and the tick only turned up after you left.' : value && !valid ? 'Still typing, already in trouble.' : ''}
+    >
+      <Field
+        label="New password"
+        value={value}
+        onChange={(v) => { auto.stop(); setTouched(false); setValue(v); }}
+        onBlur={() => setTouched(true)}
+        error={value && !valid ? PASSWORD_ERROR : null}
+        valid={touched && valid}
+      />
+    </Demo>
   );
 }
 
 export function RewardValidatePrincipleVisual() {
   return (
-    <figure className={styles.figure}>
-      <div className={styles.header}>
-        <span className={styles.headerLabel}>Reward early, validate late: in practice</span>
-      </div>
-      <div className={styles.cardsRow}>
-        <div className={styles.formPanel}>
-          <div className={styles.formPanelTitle}>Reward early</div>
-          <div className={styles.mockField}>
-            <div className={styles.mockLabel}>Email address</div>
-            <div className={`${styles.mockInput} ${styles.mockInputSuccess}`}>
-              <span className={styles.mockValue}>sarah@company.com</span>
-              <svg className={styles.checkIcon} width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <circle cx="8" cy="8" r="7" stroke="#22c55e" strokeWidth="1.5"/>
-                <path d="M5 8.5l2 2 4-4" stroke="#22c55e" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <div className={styles.mockSuccessMsg}>Looks good</div>
-          </div>
-          <div className={styles.panelNote}>
-            Success signal appears the instant the field is valid
-          </div>
-        </div>
+    <Pair>
+      <RewardGood />
+      <RewardBad />
+    </Pair>
+  );
+}
 
-        <div className={styles.formPanel}>
-          <div className={styles.formPanelTitle}>Validate late</div>
-          <div className={styles.mockField}>
-            <div className={styles.mockLabel}>Email address</div>
-            <div className={`${styles.mockInput} ${styles.mockInputActive}`}>
-              <span className={styles.mockValue}>sarah.jones</span>
-              <span className={styles.cursor} />
-            </div>
-            <div className={styles.panelNote}>Error is held: user is still entering</div>
-          </div>
-        </div>
+/* ── 3. Validate when they commit ──────────────────────────────── */
+
+const MIN_BUDGET = 500;
+const BUDGET = '1200';
+const budgetError = (v: string) => (v && Number(v) < MIN_BUDGET ? `Budget must be at least $${MIN_BUDGET}` : null);
+
+function CommitGood() {
+  const [value, setValue] = useState('');
+  const [checked, setChecked] = useState(false);
+  const [previewed, setPreviewed] = useState(false);
+  const auto = useAutoType(BUDGET, setValue, () => {});
+  const error = checked ? budgetError(value) : null;
+  return (
+    <Demo
+      verdict="good"
+      title="Checks when you hit preview"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={() => { setChecked(false); setPreviewed(false); auto.play(); }} disabled={auto.typing} />}
+      readout={previewed ? (error ? 'You asked, so it told you.' : 'Checked once, when you were ready. Looks good.') : value ? 'Try a few numbers. Nothing will shout at you until you preview.' : ''}
+    >
+      <div className={styles.row}>
+        <Field
+          label="Campaign budget"
+          prefix="$"
+          inputMode="numeric"
+          value={value}
+          onChange={(v) => { auto.stop(); setPreviewed(false); setValue(v.replace(/\D/g, '')); }}
+          error={error}
+        />
+        <button
+          type="button"
+          className={`${demoStyles.primary} ${styles.inlineButton}`}
+          onClick={() => { setChecked(true); setPreviewed(true); }}
+        >
+          Preview campaign
+        </button>
       </div>
-      <figcaption className={styles.caption}>
-        A green checkmark is welcome at almost any point. An error message is only useful when the
-        user is ready to act on it. Most validation systems treat both signals identically.
-      </figcaption>
-    </figure>
+    </Demo>
+  );
+}
+
+function CommitBad() {
+  const [value, setValue] = useState('');
+  const [warnings, setWarnings] = useState(0);
+  const update = (v: string) => {
+    setValue(v);
+    if (budgetError(v)) setWarnings((n) => n + 1);
+  };
+  const auto = useAutoType(BUDGET, update, () => {});
+  return (
+    <Demo
+      verdict="bad"
+      title="Warns while you’re still exploring"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={() => { setWarnings(0); auto.play(); }} disabled={auto.typing} />}
+      readout={warnings > 0 ? `${warnings} warning${warnings === 1 ? '' : 's'} about money before you’d finished typing a number.` : ''}
+    >
+      <div className={styles.row}>
+        <Field
+          label="Campaign budget"
+          prefix="$"
+          inputMode="numeric"
+          value={value}
+          onChange={(v) => { auto.stop(); update(v.replace(/\D/g, '')); }}
+          error={budgetError(value)}
+        />
+        <button type="button" className={`${demoStyles.primary} ${styles.inlineButton}`}>
+          Preview campaign
+        </button>
+      </div>
+    </Demo>
+  );
+}
+
+export function CommitValidationVisual() {
+  return (
+    <Pair>
+      <CommitGood />
+      <CommitBad />
+    </Pair>
+  );
+}
+
+/* ── 4. Clear the error once it’s fixed ────────────────────────── */
+
+const BROKEN = 'tamara@pax8';
+
+function FixGood() {
+  const [value, setValue] = useState(BROKEN);
+  const auto = useAutoType(EMAIL, setValue, () => {}, BROKEN);
+  const valid = isEmail(value);
+  return (
+    <Demo
+      verdict="good"
+      title="The error goes the moment it’s fixed"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
+      readout={valid ? 'Fixed, and the form agrees. One signal, no arguments.' : 'Missing the end of the address. Watch what happens when it’s fixed.'}
+    >
+      <Field label="Email" value={value} onChange={(v) => { auto.stop(); setValue(v); }} error={valid ? null : EMAIL_ERROR} valid={valid} inputMode="email" />
+    </Demo>
+  );
+}
+
+function FixBad() {
+  const [value, setValue] = useState(BROKEN);
+  const [stale, setStale] = useState(true);
+  const auto = useAutoType(EMAIL, setValue, () => {}, BROKEN);
+  const valid = isEmail(value);
+  return (
+    <Demo
+      verdict="bad"
+      title="The error hangs around after it’s fixed"
+      figureRef={auto.ref}
+      action={<ReplayButton onClick={() => { setStale(true); auto.play(); }} disabled={auto.typing} />}
+      readout={valid ? 'Green tick, red message. Now you have to work out which one is lying.' : 'Missing the end of the address. Watch what happens when it’s fixed.'}
+    >
+      <Field
+        label="Email"
+        value={value}
+        onChange={(v) => { auto.stop(); setStale(true); setValue(v); }}
+        // The message only refreshes on submit, so it lingers next to a valid value
+        error={stale ? EMAIL_ERROR : null}
+        valid={valid}
+        inputMode="email"
+      />
+    </Demo>
+  );
+}
+
+export function ErrorClearsVisual() {
+  return (
+    <Pair>
+      <FixGood />
+      <FixBad />
+    </Pair>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Demo, Pair } from '@/components/ArticleDemo';
 import styles from './visuals.module.css';
 
 const ROWS = [
@@ -57,46 +58,6 @@ function Table({ skeleton }: { skeleton?: boolean }) {
       ))}
     </div>
   );
-}
-
-/* ── Shared frame: every idea is a Good demo with its Bad twin directly below ── */
-
-function Demo({
-  verdict,
-  title,
-  action,
-  readout,
-  children,
-  figureRef,
-}: {
-  verdict: 'good' | 'bad';
-  title: string;
-  action?: React.ReactNode;
-  readout?: React.ReactNode;
-  children: React.ReactNode;
-  figureRef?: React.Ref<HTMLElement>;
-}) {
-  return (
-    <figure ref={figureRef} className={styles.figure}>
-      <div className={styles.header}>
-        <span className={styles.headerTitle}>
-          <span className={styles.verdictWord}>{verdict === 'good' ? '✅ Good' : '❌ Bad'}</span>
-          <span className={styles.headerLabel}>{title}</span>
-        </span>
-        {action}
-      </div>
-      <div className={styles.inlineDemo}>
-        {children}
-        {readout !== undefined && (
-          <p className={styles.readout} aria-live="polite">{readout || ' '}</p>
-        )}
-      </div>
-    </figure>
-  );
-}
-
-function Pair({ children }: { children: React.ReactNode }) {
-  return <div className={styles.pair}>{children}</div>;
 }
 
 /* ── 1. The jump ─────────────────────────────────────────────── */
