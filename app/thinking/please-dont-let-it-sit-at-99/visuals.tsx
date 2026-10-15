@@ -130,7 +130,7 @@ type Scenario = 'table' | 'save' | 'export' | 'like';
 
 const SCENARIOS: { id: Scenario; label: string; pattern: string; note: string }[] = [
   { id: 'table', label: 'Loading a table', pattern: 'Skeleton', note: 'The layout is predictable, so show its shape while the data arrives.' },
-  { id: 'save', label: 'Saving a form', pattern: 'Delayed spinner', note: 'The spinner waits 200ms, so a quick save never flashes one at you.' },
+  { id: 'save', label: 'Saving a form', pattern: 'Delayed spinner', note: 'The spinner waits 200ms before it appears, so fast saves never flash one at you.' },
   { id: 'export', label: 'Exporting a report', pattern: 'Progress bar', note: 'Long and measurable, so show real progress and a rough time left.' },
   { id: 'like', label: 'Liking a post', pattern: 'No loading state', note: 'Show it as done straight away and quietly undo on the rare failure.' },
 ];
@@ -195,33 +195,60 @@ function TableDemo() {
 }
 
 function SaveDemo() {
+  const [bad, setBad] = useState(false);
   const [state, setState] = useState<'idle' | 'waiting' | 'spinning' | 'done'>('idle');
+  const [last, setLast] = useState<'slow' | 'fast' | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
 
-  const save = (slow: boolean) => {
+  const save = (speed: 'slow' | 'fast') => {
     timers.current.forEach(clearTimeout);
-    setState('waiting');
-    if (slow) {
-      timers.current = [setTimeout(() => setState('spinning'), 200), setTimeout(() => setState('done'), 1800)];
-    } else {
-      timers.current = [setTimeout(() => setState('done'), 120)];
+    setLast(speed);
+    const duration = speed === 'slow' ? 2000 : 100;
+    // The good version waits 200ms before showing a spinner; the bad one shows it straight away
+    const spinnerDelay = bad ? 0 : 200;
+    setState(spinnerDelay === 0 ? 'spinning' : 'waiting');
+    timers.current = [setTimeout(() => setState('done'), duration)];
+    if (spinnerDelay > 0 && duration > spinnerDelay) {
+      timers.current.push(setTimeout(() => setState('spinning'), spinnerDelay));
     }
   };
+
+  const busy = state === 'waiting' || state === 'spinning';
+  let hint = 'Try both. The server is slow sometimes and fast other times.';
+  if (state === 'done' && last === 'fast') {
+    hint = bad
+      ? 'Did you catch that? A spinner flashed for a tenth of a second. That’s the flicker.'
+      : 'No spinner at all. The save finished before the 200ms wait was up.';
+  } else if (state === 'done' && last === 'slow') {
+    hint = bad ? 'Slow saves look fine either way. It’s the fast ones that flicker.' : 'The spinner showed up after 200ms, because this one actually took a while.';
+  }
 
   return (
     <div className={styles.demo}>
       <div className={styles.saveRow}>
-        <button type="button" className={styles.primary} onClick={() => save(true)} disabled={state === 'waiting' || state === 'spinning'}>
-          {state === 'spinning' ? <><span className={styles.spinner} aria-hidden="true" /> Saving…</> : state === 'done' ? 'Saved ✓' : 'Save changes'}
+        <button type="button" className={styles.primary} onClick={() => save('slow')} disabled={busy}>
+          {state === 'spinning' && last === 'slow' ? <><span className={styles.spinner} aria-hidden="true" /> Saving…</> : 'Slow save (2s)'}
         </button>
-        <button type="button" className={styles.linkButton} onClick={() => save(false)}>
-          Try a fast save (120ms)
+        <button type="button" className={styles.primary} onClick={() => save('fast')} disabled={busy}>
+          {state === 'spinning' && last === 'fast' ? <><span className={styles.spinner} aria-hidden="true" /> Saving…</> : 'Fast save (0.1s)'}
         </button>
+        {state === 'done' && <span className={styles.saved}>Saved ✓</span>}
       </div>
-      <p className={styles.demoHint}>
-        {state === 'done' ? 'Fast saves skip the spinner entirely. Slow ones get one after 200ms.' : 'Hit save. The server takes a while today.'}
-      </p>
+      <p className={styles.demoHint}>{hint}</p>
+      <label className={styles.toggle}>
+        <input
+          type="checkbox"
+          checked={bad}
+          onChange={(e) => {
+            timers.current.forEach(clearTimeout);
+            setState('idle');
+            setLast(null);
+            setBad(e.target.checked);
+          }}
+        />
+        Show me the bad one
+      </label>
     </div>
   );
 }

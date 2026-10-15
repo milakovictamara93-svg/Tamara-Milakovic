@@ -281,6 +281,12 @@
   to { transform: rotate(360deg); }
 }
 
+.saved {
+  font-size: 14px;
+  font-weight: 600;
+  color: #15803d;
+}
+
 .linkButton {
   padding: 0;
   border: none;
