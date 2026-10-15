@@ -24,7 +24,9 @@ Follow the consensus. Where sources disagree or the brand calls for something di
   - Animated demos play **once** when they first scroll into view, then only replay when the reader presses Replay. Never loop them automatically.
   - No sliders for these comparisons, and no toggles, side-by-side lanes, coloured verdict pills or "show me the fix" modes.
   - Give each demo a short plain-language readout of what just happened, with a little humour on the Bad one.
-  - The pairs in `please-dont-let-it-sit-at-99` are the reference.
+  - Build them with `Demo` and `Pair` from `components/ArticleDemo.tsx` (shared frame, ✅/❌ headers, readout, chip/primary/link button styles), so every article looks the same.
+  - Demos that need input play themselves once when scrolled into view (typing, loading), and readers can always take over and try it themselves.
+  - The pairs in `please-dont-let-it-sit-at-99` and `when-should-a-form-tell-you-youre-wrong` are the reference.
 - Elements that change label or state keep a fixed size so nothing around them shifts.
 
 ### 3. Interaction states

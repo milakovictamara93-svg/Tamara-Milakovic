@@ -1,187 +1,125 @@
-.figure {
-  margin: 32px 0;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: #f5f5f3;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  padding: 10px 28px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  background: #fff;
-}
-
-.headerLabel {
-  font-size: 12px;
-  font-weight: 500;
-  color: #8a8a84;
-  font-family: var(--font-body);
-}
-
-.caption {
-  display: block;
-  font-size: 12px;
-  color: #8a8a84;
-  font-style: italic;
-  padding: 8px 28px 12px;
-  background: #fff;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  font-family: var(--font-body);
-}
-
-/* ── Panel layout ─────────────────────────────────── */
-.cardsRow {
-  display: flex;
-}
-
-.formPanel {
-  flex: 1;
-  padding: 20px 24px 20px;
-  background: #fff;
-  min-width: 0;
-}
-
-.formPanel + .formPanel {
-  border-left: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-/* ── Do / Don't badges ────────────────────────────── */
-.panelBadgeBad,
-.panelBadgeGood {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-family: var(--font-body);
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
-}
-
-.panelBadgeBad {
-  background: rgba(239, 68, 68, 0.08);
-  color: #dc2626;
-}
-
-.panelBadgeGood {
-  background: rgba(34, 197, 94, 0.1);
-  color: #16a34a;
-}
-
-.formPanelTitle {
-  font-size: 13px;
-  font-weight: 600;
-  color: #111;
-  font-family: var(--font-body);
-  margin-bottom: 14px;
-}
-
-/* ── Mock form field ──────────────────────────────── */
-.mockField {
+.field {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  max-width: 360px;
 }
 
-.mockLabel {
-  font-size: 12px;
-  font-weight: 500;
-  color: #374151;
-  font-family: var(--font-body);
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
 }
 
-.mockInput {
-  padding: 7px 10px;
-  border-radius: 6px;
-  border: 1.5px solid #d1d5db;
+.inputWrap {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid #000;
+  border-radius: 8px;
   background: #fff;
-  font-size: 13px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.inputWrap:focus-within {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+.inputError {
+  border-color: #b91c1c;
+}
+
+.inputValid {
+  border-color: #15803d;
+}
+
+.prefix {
+  margin-right: 4px;
+  color: #525252;
+  font-size: 15px;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
   font-family: var(--font-body);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 15px;
+  color: #000;
 }
 
-.mockInputError {
-  border-color: #ef4444;
-  background: #fff9f9;
-}
-
-.mockInputActive {
-  border-color: #9ca3af;
-}
-
-.mockInputSuccess {
-  border-color: #22c55e;
-  background: #f0fdf4;
-}
-
-.mockValue {
-  color: #111;
-  font-family: var(--font-body);
-  font-size: 13px;
-}
-
-/* ── Cursor ───────────────────────────────────────── */
-.cursor {
-  display: inline-block;
-  width: 1.5px;
-  height: 13px;
-  background: #374151;
-  vertical-align: middle;
-  margin-left: 1px;
-  border-radius: 1px;
-  animation: blink 1.1s step-end infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
-/* ── Check icon ───────────────────────────────────── */
-.checkIcon {
+.tick {
   flex-shrink: 0;
+  margin-left: 8px;
+  color: #15803d;
+  font-weight: 700;
 }
 
-/* ── Validation messages ──────────────────────────── */
-.mockErrorMsg {
-  font-size: 12px;
-  color: #ef4444;
-  font-family: var(--font-body);
+/* Always takes one line, so a message appearing never shifts the layout */
+.message {
+  min-height: 18px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #b91c1c;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.inlineButton {
+  margin-top: 25px;
+}
+
+.passwordBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 132px;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rule {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  font-size: 13px;
+  color: #525252;
 }
 
-.mockErrorIcon {
-  font-size: 11px;
+.ruleIcon {
+  width: 14px;
+  text-align: center;
+  font-weight: 700;
 }
 
-.mockSuccessMsg {
-  font-size: 12px;
-  color: #16a34a;
-  font-family: var(--font-body);
+.ruleOk {
+  color: #15803d;
 }
 
-.panelNote {
-  font-size: 11px;
-  color: #8a8a84;
-  font-family: var(--font-body);
-  margin-top: 10px;
-  line-height: 1.4;
+.ruleMissed {
+  color: #b91c1c;
 }
 
-@media (max-width: 600px) {
-  .cardsRow {
-    flex-direction: column;
-  }
-
-  .formPanel + .formPanel {
-    border-left: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+@media (prefers-reduced-motion: reduce) {
+  .inputWrap {
+    transition: none;
   }
 }

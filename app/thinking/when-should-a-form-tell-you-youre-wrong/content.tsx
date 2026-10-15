@@ -1,5 +1,10 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { ValidationTimingVisual, RewardValidatePrincipleVisual } from './visuals';
+import {
+  ValidationTimingVisual,
+  RewardValidatePrincipleVisual,
+  CommitValidationVisual,
+  ErrorClearsVisual,
+} from './visuals';
 import styles from '../article.module.css';
 
 export default function FormValidationContent() {
@@ -53,12 +58,16 @@ export default function FormValidationContent() {
         stays safe.
       </p>
 
+      <RevealOnScroll><CommitValidationVisual /></RevealOnScroll>
+
       <p>
         One last thing, and it’s tiny, but it drives me mad. When someone fixes an error,
         the message has to disappear the moment it’s fixed. I’ve seen so many forms where
         the field turns green and the red text just stays there underneath. Now the user has
         to work out which of the two is lying.
       </p>
+
+      <RevealOnScroll><ErrorClearsVisual /></RevealOnScroll>
 
       <p className={styles.byline}>Tamara Milakovic is a senior product designer specialising in B2B SaaS, design systems, and complex interaction problems.</p>
 
