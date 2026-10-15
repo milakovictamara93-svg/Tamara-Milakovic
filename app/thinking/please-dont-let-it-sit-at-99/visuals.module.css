@@ -4,11 +4,14 @@
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.14);
   background: #f5f5f3;
+  font-family: var(--font-body);
 }
 
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 10px 28px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   background: #fff;
@@ -18,7 +21,6 @@
   font-size: 12px;
   font-weight: 500;
   color: #8a8a84;
-  font-family: var(--font-body);
 }
 
 .caption {
@@ -29,274 +31,534 @@
   padding: 8px 28px 12px;
   background: #fff;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Shared bits */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 28px 0;
+}
+
+.chip {
   font-family: var(--font-body);
-}
-
-/* ── Loading patterns table ───────────────────────── */
-.timingHeaderRow {
-  display: grid;
-  grid-template-columns: 160px 140px 1fr;
-  gap: 16px;
-  padding: 8px 28px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  background: #fff;
-}
-
-.timingColLabel {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #8a8a84;
-  font-family: var(--font-body);
-}
-
-.timingBody {
-  padding: 0;
-}
-
-.timingRow {
-  display: grid;
-  grid-template-columns: 160px 140px 1fr;
-  gap: 16px;
-  align-items: start;
-  padding: 14px 28px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.timingRow:last-child {
-  border-bottom: none;
-}
-
-.timingLabel {
   font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.chip:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.chipActive,
+.chipActive:hover {
+  background: #000;
+  color: #fff;
+}
+
+.chip:active {
+  transform: scale(0.96);
+}
+
+.window {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 12px;
+  color: #000;
+}
+
+.windowTitle {
+  font-family: var(--font-heading);
   font-weight: 600;
-  color: #111;
-  font-family: var(--font-body);
+  font-size: 13px;
+  margin-bottom: 8px;
 }
 
-.timingWhen {
-  font-size: 12px;
-  color: #555550;
-  font-family: var(--font-body);
-  line-height: 1.5;
+.table {
+  display: flex;
+  flex-direction: column;
 }
 
-.timingTradeoff {
-  font-size: 12px;
-  color: #8a8a84;
-  font-family: var(--font-body);
-  line-height: 1.5;
+.tableRow {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 0.6fr;
+  align-items: center;
+  gap: 12px;
+  height: 28px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-/* ── Pattern mockup grid ──────────────────────────── */
-.patternGrid {
+.up {
+  color: #c2410c;
+}
+
+.down {
+  color: #15803d;
+}
+
+.bone {
+  display: block;
+  height: 8px;
+  width: 70%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #ececea 25%, #f7f7f5 50%, #ececea 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+}
+
+.boneWide {
+  width: 85%;
+}
+
+.boneShort {
+  width: 45%;
+}
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.reading {
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(254, 196, 10, 0.35);
+  font-weight: 500;
+}
+
+/* 1. Page jump */
+.windowRel {
+  position: relative;
+}
+
+
+.eyeLayer {
+  position: absolute;
+  inset: 12px 12px auto;
+  pointer-events: none;
+}
+
+.ghost {
+  visibility: hidden;
+}
+
+.eye {
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgb(254, 236, 170);
+  font-weight: 500;
+}
+
+.eyeLost {
+  background: rgba(255, 255, 255, 0.92);
+  outline: 2px dashed #000;
+  outline-offset: -2px;
+  font-weight: 600;
+}
+
+.readingLost {
+  opacity: 0.55;
+}
+
+.jumpGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  gap: 16px;
+  padding: 20px 28px 24px;
+  align-items: start;
 }
 
-.patternCard {
-  padding: 20px 24px;
-  border-right: 1px solid rgba(0, 0, 0, 0.06);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+.jumpCol {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.patternCard:nth-child(2),
-.patternCard:nth-child(4) {
-  border-right: none;
-}
-
-.patternCard:nth-child(3),
-.patternCard:nth-child(4) {
-  border-bottom: none;
-}
-
-.patternCardDark {
-  background: #f9f9f8;
-  border-color: rgba(0, 0, 0, 0.06);
-}
-
-.patternCardTitle {
-  font-size: 11px;
+.jumpLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #8a8a84;
-  margin-bottom: 14px;
-  font-family: var(--font-body);
+  color: #000;
 }
 
-.patternCardTitleDark {
+.jumpCount {
+  font-weight: 500;
   color: #8a8a84;
+  font-variant-numeric: tabular-nums;
 }
 
-.patternCardDemo {
-  min-height: 64px;
+.collapsed {
   display: flex;
   align-items: center;
+  height: 28px;
+  color: #8a8a84;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.patternCardMeta {
-  font-size: 11px;
-  color: #c2c2be;
-  font-family: var(--font-body);
-  margin-top: 14px;
+/* 2. Pick your wait */
+.stage {
+  position: relative;
+  padding: 16px 28px 24px;
+  min-height: 250px;
 }
 
-.patternCardMetaDark {
-  color: #c2c2be;
+.stagePattern {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #000;
 }
 
-/* ── Spinner ──────────────────────────────────────── */
-.mockButton {
+.demo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.demo > .window {
+  align-self: stretch;
+}
+
+.demoHint {
+  font-size: 13px;
+  color: #525252;
+  margin: 0;
+}
+
+.saveRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.primary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  background: #111;
+  min-width: 148px;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 8px;
+  background: #000;
   color: #fff;
-  font-size: 13px;
   font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
 }
 
-.mockSpinner {
-  display: inline-block;
-  width: 13px;
-  height: 13px;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-top-color: #fff;
+.primary:disabled {
+  cursor: progress;
+}
+
+.primary:hover:not(:disabled) {
+  background: #333;
+}
+
+.primary:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fec40a;
   animation: spin 0.7s linear infinite;
-  flex-shrink: 0;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
 
-/* ── Skeleton ─────────────────────────────────────── */
-.skeletonLines {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  width: 100%;
+/* Fixed width so the label change never shifts anything around it */
+.saveButton {
+  width: 168px;
+  min-width: 0;
 }
 
-.skeletonBar {
-  height: 11px;
-  border-radius: 4px;
-  background: #e5e7eb;
-  animation: shimmer 1.5s ease-in-out infinite;
+.primaryDone,
+.primaryDone:disabled {
+  background: #15803d;
+  cursor: default;
 }
 
-.skeletonBarFull  { width: 100%; }
-.skeletonBarMed   { width: 72%; }
-.skeletonBarShort { width: 46%; }
-
-@keyframes shimmer {
-  0%, 100% { opacity: 0.55; }
-  50%       { opacity: 1; }
-}
-
-/* ── Progress bar ─────────────────────────────────── */
-.mockProgress {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+.segmented {
+  display: inline-flex;
+  align-items: center;
   gap: 6px;
 }
 
-.mockProgressName {
-  font-size: 12px;
-  color: #555550;
+.segmentedLabel {
+  font-size: 13px;
+  color: #525252;
+  margin-right: 2px;
+}
+
+.linkButton {
+  padding: 0;
+  border: none;
+  background: none;
   font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
 }
 
-.mockProgressNameDark {
-  color: #555550;
+.linkButton:disabled {
+  color: #c2c2be;
+  cursor: default;
 }
 
-.progressTrack {
-  height: 5px;
-  border-radius: 9999px;
-  background: rgba(0, 0, 0, 0.1);
+.linkButton:hover:not(:disabled) {
+  text-decoration-thickness: 2px;
+}
+
+.linkButton:active:not(:disabled) {
+  opacity: 0.6;
+}
+
+.exportCard {
+  align-self: stretch;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.exportName {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.track {
+  height: 8px;
+  border-radius: 4px;
+  background: #ececea;
   overflow: hidden;
 }
 
-.progressFill {
+.fill {
   height: 100%;
-  border-radius: 9999px;
-  background: #374151;
+  background: #000;
+  transition: width 0.1s linear;
 }
 
-.mockProgressMeta {
-  font-size: 11px;
-  color: #8a8a84;
-  font-family: var(--font-body);
+.fillBad {
+  background: #fec40a;
 }
 
-.mockProgressMetaDark {
-  color: #8a8a84;
-}
-
-/* ── Optimistic UI ────────────────────────────────── */
-.mockOptimistic {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.mockOptimisticStar {
-  color: #fbbf24;
-  font-size: 16px;
-  line-height: 1;
-}
-
-.mockOptimisticLabel {
-  font-size: 13px;
-  color: #111;
-  font-family: var(--font-body);
-}
-
-.mockOptimisticLabelDark {
-  color: #111;
-}
-
-.mockOptimisticUndo {
+.exportMeta {
+  margin-top: 8px;
   font-size: 12px;
-  color: #8a8a84;
+  color: #525252;
+  font-variant-numeric: tabular-nums;
+}
+
+.like {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid #000;
+  border-radius: 9999px;
+  background: #fff;
   font-family: var(--font-body);
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.mockOptimisticUndoDark {
-  color: #8a8a84;
+.like:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 
-@media (max-width: 600px) {
-  .patternGrid {
+.like:active {
+  transform: scale(0.94);
+}
+
+.likeOn {
+  background: #fec40a;
+}
+
+.likeOn:hover {
+  background: #f5b800;
+}
+
+/* Keyboard focus, shared by every control in the demos */
+.chip:focus-visible,
+.primary:focus-visible,
+.linkButton:focus-visible,
+.like:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .jumpGrid {
     grid-template-columns: 1fr;
   }
 
-  .patternCard {
-    border-right: none;
+  .header,
+  .chips,
+  .stage,
+  .jumpGrid {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .patternCard:nth-child(3) {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  .caption {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bone,
+  .spinner {
+    animation: none;
   }
 
-  .timingRow,
-  .timingHeaderRow {
-    grid-template-columns: 1fr;
-    gap: 4px;
+  .fill {
+    transition: none;
+  }
+}
+
+/* Announced to screen readers, not shown */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Inline single-idea demos */
+.inlineDemo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px 28px 24px;
+}
+
+.slider {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.sliderLabel {
+  font-weight: 600;
+  color: #000;
+}
+
+.sliderValue {
+  min-width: 64px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: #525252;
+}
+
+.slider input[type='range'] {
+  width: 100%;
+  accent-color: #000;
+  cursor: pointer;
+}
+
+.slider input[type='range']:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+.readout {
+  margin: 0;
+  min-height: 1.5em;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+
+@media (max-width: 640px) {
+  .inlineDemo {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .timingColLabel:not(:first-child) {
-    display: none;
+  .slider {
+    grid-template-columns: 1fr auto;
   }
+
+  .slider input[type='range'] {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+/* Good / Bad pairs */
+.pair {
+  margin: 32px 0;
+}
+
+.pair .figure {
+  margin: 0;
+}
+
+.pair .figure + .figure {
+  margin-top: 12px;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+}
+
+.verdictWord {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.spinnerDark {
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top-color: #000;
+}
+
+.like:disabled {
+  cursor: progress;
 }

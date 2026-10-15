@@ -1,5 +1,10 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { LoadingPatternsVisual, LoadingDecisionVisual } from './visuals';
+import {
+  PageJumpVisual,
+  SpinnerDelayVisual,
+  StuckBarVisual,
+  OptimisticLikeVisual,
+} from './visuals';
 import styles from '../article.module.css';
 
 export default function LoadingStatesContent() {
@@ -29,6 +34,8 @@ export default function LoadingStatesContent() {
         product starts to feel like it’s working against you a little.
       </p>
 
+      <RevealOnScroll><PageJumpVisual /></RevealOnScroll>
+
       <p>
         We had all the usual loading components in the library. Nobody had written down when
         to use which one, so people grabbed whatever was quickest to build. I can’t really
@@ -44,12 +51,14 @@ export default function LoadingStatesContent() {
         upload, gets a progress bar.
       </p>
 
-      <RevealOnScroll><LoadingPatternsVisual /></RevealOnScroll>
+      <RevealOnScroll><SpinnerDelayVisual /></RevealOnScroll>
 
       <p>
         Please don’t let that bar sit at 99%. Everyone has watched a progress bar do that,
         and nobody has fully trusted one since.
       </p>
+
+      <RevealOnScroll><StuckBarVisual /></RevealOnScroll>
 
       <p>
         Sometimes the best loading state is none at all. If you like a post or tick off a
@@ -58,7 +67,7 @@ export default function LoadingStatesContent() {
         second of visible “working on it” is reassuring, and people actually want it.
       </p>
 
-      <RevealOnScroll><LoadingDecisionVisual /></RevealOnScroll>
+      <RevealOnScroll><OptimisticLikeVisual /></RevealOnScroll>
 
       <p>
         The rule we wrote at Scaler was boring: the layout never collapses while something
