@@ -148,7 +148,7 @@ function TimingGood() {
       title="Checks when you leave the field"
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setTouched(false); setFlagged(false); auto.play(); }} disabled={auto.typing} />}
-      readout={auto.typing || focused ? 'Typing… and it’s letting you get on with it.' : touched ? (valid ? 'Not a peep until you were done. Then a tick.' : 'You left the field, so now it’s a fair time to mention it.') : ''}
+      readout={auto.typing || focused ? 'No message while you type.' : touched ? (valid ? 'No messages while typing. The tick appeared once you left a valid field.' : 'The error appeared after you left the field, once your input was complete.') : ''}
     >
       <Field
         label="Email"
@@ -181,7 +181,7 @@ function TimingBad() {
       title="Checks on every keystroke"
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setNags(0); auto.play(); }} disabled={auto.typing} />}
-      readout={nags > 0 ? `Told you that you were wrong ${nags} time${nags === 1 ? '' : 's'} while you were still typing.` : ''}
+      readout={nags > 0 ? `An error appeared ${nags} time${nags === 1 ? '' : 's'} before you finished typing.` : ''}
     >
       <Field label="Email" value={value} onChange={(v) => { auto.stop(); update(v); }} error={error} valid={valid} inputMode="email" />
     </Demo>
@@ -220,11 +220,11 @@ function RewardGood() {
       action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
       readout={
         passwordOk(value)
-          ? 'Each rule ticked itself off the moment you met it. Nothing went red.'
+          ? 'Each rule was marked as met as soon as you met it. No errors were shown.'
           : left && value
-            ? 'You left with a rule still unmet, so now that one turns red.'
+            ? 'You left the field with a rule unmet, so that rule is now shown as an error.'
             : met > 0
-              ? 'One down, while you were still typing.'
+              ? 'One rule was marked as met while you typed.'
               : ''
       }
     >
@@ -267,11 +267,11 @@ function RewardBad() {
       action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
       readout={
         left && ok
-          ? 'Red the whole way through. The good news only arrived once you’d left.'
+          ? 'The error showed the whole time you typed. Confirmation only came after you left the field.'
           : ok
-            ? 'The password is fine. The form hasn’t noticed yet.'
+            ? 'The password meets both rules, but the error is still showing.'
             : value
-              ? 'Still typing, already in trouble.'
+              ? 'An error is showing before you have finished typing.'
               : ''
       }
     >
@@ -317,7 +317,7 @@ function CommitGood() {
       title="Checks when you hit preview"
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setChecked(false); setPreviewed(false); auto.play(); }} disabled={auto.typing} />}
-      readout={previewed ? (error ? 'You asked, so it told you.' : 'Checked once, when you were ready. Looks good.') : value ? 'Try a few numbers. Nothing will shout at you until you preview.' : ''}
+      readout={previewed ? (error ? 'The budget was checked when you selected Preview.' : 'Checked once, on Preview. The budget is valid.') : value ? 'Enter any amount. It is checked when you select Preview.' : ''}
     >
       <div className={styles.row}>
         <Field
@@ -354,7 +354,7 @@ function CommitBad() {
       title="Warns while you’re still exploring"
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setWarnings(0); auto.play(); }} disabled={auto.typing} />}
-      readout={warnings > 0 ? `${warnings} warning${warnings === 1 ? '' : 's'} about money before you’d finished typing a number.` : ''}
+      readout={warnings > 0 ? `${warnings} warning${warnings === 1 ? '' : 's'} shown before you finished entering the amount.` : ''}
     >
       <div className={styles.row}>
         <Field
@@ -396,7 +396,7 @@ function FixGood() {
       title="The error goes the moment it’s fixed"
       figureRef={auto.ref}
       action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
-      readout={valid ? 'Fixed, and the form agrees. One signal, no arguments.' : 'Missing the end of the address. Watch what happens when it’s fixed.'}
+      readout={valid ? 'The error cleared as soon as the address was valid.' : 'The address is incomplete. Complete it to see what happens to the error.'}
     >
       <Field label="Email" value={value} onChange={(v) => { auto.stop(); setValue(v); }} error={valid ? null : EMAIL_ERROR} valid={valid} inputMode="email" />
     </Demo>
@@ -414,7 +414,7 @@ function FixBad() {
       title="The error hangs around after it’s fixed"
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setStale(true); auto.play(); }} disabled={auto.typing} />}
-      readout={valid ? 'Green tick, red message. Now you have to work out which one is lying.' : 'Missing the end of the address. Watch what happens when it’s fixed.'}
+      readout={valid ? 'The field shows a tick and an error at the same time.' : 'The address is incomplete. Complete it to see what happens to the error.'}
     >
       <Field
         label="Email"

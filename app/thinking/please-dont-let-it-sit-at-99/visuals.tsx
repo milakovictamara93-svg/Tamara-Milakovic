@@ -83,12 +83,12 @@ function JumpGood() {
       title="The skeleton matches the table"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
-      readout={loaded ? 'Five skeleton rows, five real rows. Your spot didn’t move.' : 'Loading…'}
+      readout={loaded ? 'The skeleton had the same five rows as the table, so your reading position stayed in place.' : 'Loading…'}
     >
       <div className={styles.window}>
         <div className={styles.windowTitle}>Supplier emissions</div>
         <Table skeleton={!loaded} />
-        <div className={styles.reading}>📍 You were reading here</div>
+        <div className={styles.reading}>You were reading here</div>
       </div>
     </Demo>
   );
@@ -102,20 +102,20 @@ function JumpBad() {
       title="The content collapses while it loads"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
-      readout={loaded ? 'The table pushed everything down. Your eyes stayed put.' : 'Loading…'}
+      readout={loaded ? 'The table pushed the content down, so your reading position moved.' : 'Loading…'}
     >
       <div className={`${styles.window} ${styles.windowRel}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
         {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
         <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
-          📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
+          {loaded ? 'Where you were reading, now further down' : 'You were reading here'}
         </div>
         {/* Your eyes stay at the same spot on screen while the content moves under them */}
         <div className={styles.eyeLayer} aria-hidden="true">
           <div className={`${styles.windowTitle} ${styles.ghost}`}>Supplier emissions</div>
           <div className={`${styles.collapsed} ${styles.ghost}`}>Loading…</div>
           <div className={`${styles.eye} ${loaded ? styles.eyeLost : ''}`}>
-            👀 {loaded ? 'Now you’re reading… Atlas Freight?!' : 'You were reading here'}
+            {loaded ? 'Now you’re looking at Atlas Freight' : 'You were reading here'}
           </div>
         </div>
       </div>
@@ -154,8 +154,8 @@ function SaveDemo({ verdict, spinnerDelay }: { verdict: 'good' | 'bad'; spinnerD
       setTimeout(() => {
         setState('done');
         setResult(shows
-          ? `A spinner flashed for ${FAST_SAVE - spinnerDelay}ms. That’s the flicker.`
-          : 'No spinner at all. The save was done before the 200ms wait was up.');
+          ? `A spinner flashed for ${FAST_SAVE - spinnerDelay}ms before the save finished.`
+          : 'No spinner appeared. The save finished before the 200ms delay ran out.');
       }, FAST_SAVE),
       setTimeout(() => setState('idle'), FAST_SAVE + 1500),
     );
@@ -243,7 +243,7 @@ function BarGood() {
       title="Real progress and a rough time left"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
-      readout={done ? 'It said four seconds, it took four seconds. Boring. Trustworthy.' : ''}
+      readout={done ? 'The estimate said four seconds, and the export took four seconds.' : ''}
     >
       <ExportCard pct={pct} meta={done ? 'Done. 2.9 MB ready to download.' : `${Math.round(pct)}% · About ${Math.ceil((100 - pct) / 25)}s left`} />
     </Demo>
@@ -261,9 +261,9 @@ function BarBad() {
       title="Races to 99%, then sits there"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
-      readout={stuck && stuckFor >= 3 ? '“Almost there…” since Tuesday.' : ''}
+      readout={stuck && stuckFor >= 3 ? 'The bar raced to 99% and stopped there, with no sign of how long is left.' : ''}
     >
-      <ExportCard bad pct={pct} meta={stuck ? `99% · Almost there… (${stuckFor}s and counting)` : `${Math.round(pct)}% · Wow, so fast`} />
+      <ExportCard bad pct={pct} meta={stuck ? '99% · Almost there…' : `${Math.round(pct)}%`} />
     </Demo>
   );
 }
@@ -308,7 +308,7 @@ function LikeGood() {
             setNote('');
             timer.current = setTimeout(() => {
               setLiked(false);
-              setNote('The server said no, so the like quietly rolled back. That’s the whole recovery plan.');
+              setNote('The server rejected the like, so it rolled back and the count returned to 42.');
             }, 900);
           }}
         >
@@ -339,7 +339,7 @@ function LikeBad() {
             timer.current = setTimeout(() => {
               setPending(false);
               setLiked((l) => !l);
-              setNote('A whole second to like a post. It’s a heart, not a bank transfer.');
+              setNote('The like took over a second to register, because it waited for the server.');
             }, 1200);
           }}
         >
