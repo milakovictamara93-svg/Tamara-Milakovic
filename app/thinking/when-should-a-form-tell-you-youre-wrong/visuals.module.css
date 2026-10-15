@@ -80,6 +80,44 @@
   margin-top: 25px;
 }
 
+.passwordBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 132px;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rule {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #525252;
+}
+
+.ruleIcon {
+  width: 14px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.ruleOk {
+  color: #15803d;
+}
+
+.ruleMissed {
+  color: #b91c1c;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .inputWrap {
     transition: none;

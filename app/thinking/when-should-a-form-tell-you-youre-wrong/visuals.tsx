@@ -11,7 +11,7 @@ const isEmail = (v: string) => /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(v);
  * into view (instantly under reduced motion). Calls onType for every character so each demo
  * reacts exactly as it would to a person typing, then blurs the field.
  */
-function useAutoType(text: string, onType: (value: string) => void, onBlur: () => void, start = '') {
+function useAutoType(text: string, onType: (value: string) => void, onBlur: () => void, start = '', pauseBeforeBlur = 500) {
   const ref = useRef<HTMLElement>(null);
   const [typing, setTyping] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -34,9 +34,9 @@ function useAutoType(text: string, onType: (value: string) => void, onBlur: () =
       setTimeout(() => {
         setTyping(false);
         handlers.current.onBlur();
-      }, (text.length - start.length) * step + (instant ? 0 : 500)),
+      }, (text.length - start.length) * step + (instant ? 0 : pauseBeforeBlur)),
     );
-  }, [text, start]);
+  }, [text, start, pauseBeforeBlur]);
 
   useEffect(() => {
     const el = ref.current;
@@ -199,60 +199,93 @@ export function ValidationTimingVisual() {
 
 /* ── 2. Reward early, validate late ───────────────────────────── */
 
-const PASSWORD = 'sunflower';
-const PASSWORD_ERROR = 'Use at least 8 characters';
+const PASSWORD = 'sunflower7';
+const RULES = [
+  { id: 'length', label: 'At least 8 characters', test: (v: string) => v.length >= 8 },
+  { id: 'number', label: 'Includes a number', test: (v: string) => /\d/.test(v) },
+];
+const PASSWORD_ERROR = 'Use at least 8 characters, including a number';
+const passwordOk = (v: string) => RULES.every((r) => r.test(v));
 
 function RewardGood() {
   const [value, setValue] = useState('');
-  const [flagged, setFlagged] = useState(false);
-  const change = (v: string) => {
-    setValue(v);
-    if (v.length >= 8) setFlagged(false);
-  };
-  const leave = (v: string) => setFlagged(!!v && v.length < 8);
-  const auto = useAutoType(PASSWORD, change, () => leave(PASSWORD));
-  const valid = value.length >= 8;
+  const [left, setLeft] = useState(false);
+  const auto = useAutoType(PASSWORD, (v) => { setLeft(false); setValue(v); }, () => setLeft(true), '', 1400);
+  const met = RULES.filter((r) => r.test(value)).length;
   return (
     <Demo
       verdict="good"
-      title="Tick straight away, error only once you’ve left"
+      title="Good news straight away, bad news only once you’ve left"
       figureRef={auto.ref}
-      action={<ReplayButton onClick={() => { setFlagged(false); auto.play(); }} disabled={auto.typing} />}
-      readout={valid ? 'The tick showed up the moment you hit 8 characters.' : flagged ? 'You left it short, so now it says something.' : ''}
+      action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
+      readout={
+        passwordOk(value)
+          ? 'Each rule ticked itself off the moment you met it. Nothing went red.'
+          : left && value
+            ? 'You left with a rule still unmet, so now that one turns red.'
+            : met > 0
+              ? 'One down, while you were still typing.'
+              : ''
+      }
     >
-      <Field
-        label="New password"
-        value={value}
-        onChange={(v) => { auto.stop(); change(v); }}
-        onBlur={() => leave(value)}
-        error={flagged ? PASSWORD_ERROR : null}
-        valid={valid}
-      />
+      <div className={styles.passwordBlock}>
+        <Field
+          label="New password"
+          value={value}
+          onChange={(v) => { auto.stop(); setLeft(false); setValue(v); }}
+          onBlur={() => setLeft(true)}
+          valid={passwordOk(value)}
+        />
+        <ul className={styles.rules}>
+          {RULES.map((r) => {
+            const ok = r.test(value);
+            const missed = !ok && left && value.length > 0;
+            return (
+              <li key={r.id} className={`${styles.rule} ${ok ? styles.ruleOk : ''} ${missed ? styles.ruleMissed : ''}`}>
+                <span className={styles.ruleIcon} aria-hidden="true">{ok ? '✓' : missed ? '✕' : '○'}</span>
+                {r.label}
+                <span className={demoStyles.srOnly}>{ok ? ' (done)' : missed ? ' (missing)' : ''}</span>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </Demo>
   );
 }
 
 function RewardBad() {
   const [value, setValue] = useState('');
-  const [touched, setTouched] = useState(false);
-  const auto = useAutoType(PASSWORD, setValue, () => setTouched(true));
-  const valid = value.length >= 8;
+  const [left, setLeft] = useState(false);
+  const auto = useAutoType(PASSWORD, (v) => { setLeft(false); setValue(v); }, () => setLeft(true), '', 1400);
+  const ok = passwordOk(value);
   return (
     <Demo
       verdict="bad"
-      title="Error straight away, tick only once you’ve left"
+      title="Bad news straight away, good news only once you’ve left"
       figureRef={auto.ref}
-      action={<ReplayButton onClick={() => { setTouched(false); auto.play(); }} disabled={auto.typing} />}
-      readout={touched && valid ? 'Seven characters of being told off, and the tick only turned up after you left.' : value && !valid ? 'Still typing, already in trouble.' : ''}
+      action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
+      readout={
+        left && ok
+          ? 'Red the whole way through. The good news only arrived once you’d left.'
+          : ok
+            ? 'The password is fine. The form hasn’t noticed yet.'
+            : value
+              ? 'Still typing, already in trouble.'
+              : ''
+      }
     >
-      <Field
-        label="New password"
-        value={value}
-        onChange={(v) => { auto.stop(); setTouched(false); setValue(v); }}
-        onBlur={() => setTouched(true)}
-        error={value && !valid ? PASSWORD_ERROR : null}
-        valid={touched && valid}
-      />
+      <div className={styles.passwordBlock}>
+        <Field
+          label="New password"
+          value={value}
+          onChange={(v) => { auto.stop(); setLeft(false); setValue(v); }}
+          onBlur={() => setLeft(true)}
+          // Errors fire on every keystroke, but the tick waits until you leave
+          error={value && !(left && ok) ? PASSWORD_ERROR : null}
+          valid={left && ok}
+        />
+      </div>
     </Demo>
   );
 }
