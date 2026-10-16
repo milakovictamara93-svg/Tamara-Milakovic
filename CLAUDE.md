@@ -8,7 +8,7 @@ These rules apply to every visual, diagram or interactive demo created for the T
 
 ### 1. Deep research before building, for every detail
 
-Do real, deep research before building or changing anything, and do it **before** showing Tamara a single screenshot. Never build from memory or taste and research afterwards.
+**Always, without exception: research every single detail, and deep dive as far as it takes.** This applies to new assets and to every follow-up tweak, however small (a label, a colour, a timing, a legend, a placeholder). Do real, deep research before building or changing anything, and do it **before** showing Tamara a single screenshot. Never build from memory or taste and research afterwards. If a first search is thin or secondhand, keep going until the primary sources are found or it's clear they can't be reached.
 
 - **Every detail gets researched, not just the main pattern.** List every element in the asset first (layout, hierarchy, titles, labels, units, legends, colours, icons, numbers and their formatting, tables, empty and placeholder states, buttons, hover/pressed/focus/disabled states, motion, copy, mobile layout). Then check the best practice for each one. If a detail wasn't researched, it isn't ready.
 - **Research the context, not just the component.** A chart inside a report or dashboard means researching dashboards, KPI tiles, data tables and legends too, not only the chart.
@@ -20,6 +20,7 @@ Do real, deep research before building or changing anything, and do it **before*
   - Use several searches, read the actual pages where possible, and don't stop at the first result. If a primary source can't be reached, say so instead of presenting a secondhand summary as the source.
 - **Follow the consensus.** Where sources disagree or the brand calls for something different, say so and explain the trade-off.
 - **Check the result against the research before showing it.** Screenshot it at desktop and phone width and go through the list of details again. Look for inconsistencies (sign formats, colours, spacing, wording) and fix them first.
+- **Check every state of an animated demo, not just the end.** Capture the loading or in-between states too, and make sure each one is visible long enough to be noticed (skeletons with enough contrast, loaders that actually animate) and that the demo never changes size and moves the page while it plays.
 - **Tell Tamara which sources each decision is based on,** with links.
 
 ### 2. Show the real pattern
