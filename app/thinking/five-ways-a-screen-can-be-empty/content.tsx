@@ -1,12 +1,5 @@
 import TaxonomyTable from '@/components/TaxonomyTable';
-import {
-  FirstUseMockup,
-  UserClearedMockup,
-  NoResultsMockup,
-  ErrorMockup,
-  PermissionMockup,
-} from '@/components/AppMockup';
-import RevealOnScroll from '@/components/RevealOnScroll';
+import { FirstUseVisual, UserClearedVisual, NoResultsVisual, ErrorVisual, PermissionVisual } from './visuals';
 import styles from '../article.module.css';
 
 export default function EmptyStatesContent() {
@@ -34,14 +27,14 @@ export default function EmptyStatesContent() {
         numbers, because a confusing first screen is where a lot of people leave.
       </p>
 
-      <RevealOnScroll><FirstUseMockup /></RevealOnScroll>
+      <FirstUseVisual />
 
       <p>
         Someone who just finished everything is in a great mood. Don’t ruin it with
         onboarding copy. Tell them they’re done and get out of the way.
       </p>
 
-      <RevealOnScroll><UserClearedMockup /></RevealOnScroll>
+      <UserClearedVisual />
 
       <p>
         If you searched and got nothing, you’re a bit frustrated and wondering if you did it
@@ -49,7 +42,7 @@ export default function EmptyStatesContent() {
         way to clear your filters.
       </p>
 
-      <RevealOnScroll><NoResultsMockup /></RevealOnScroll>
+      <NoResultsVisual />
 
       <p>
         Then there’s the screen that’s empty because something broke. Say what happened and
@@ -57,7 +50,7 @@ export default function EmptyStatesContent() {
         wrong” on its own doesn’t tell anyone anything.
       </p>
 
-      <RevealOnScroll><ErrorMockup /></RevealOnScroll>
+      <ErrorVisual />
 
       <p>
         And the one nobody designs on purpose: the content exists, but this person isn’t
@@ -66,7 +59,7 @@ export default function EmptyStatesContent() {
         someone, so they file a support ticket.
       </p>
 
-      <RevealOnScroll><PermissionMockup /></RevealOnScroll>
+      <PermissionVisual />
 
       <p>
         So I document these as separate patterns, each with its own copy rules and its own

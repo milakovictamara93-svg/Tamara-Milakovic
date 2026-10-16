@@ -1,0 +1,373 @@
+/* A small product window. The body has a fixed height so no state ever resizes the demo. */
+.app {
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font-size: 13px;
+}
+
+.appBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 44px;
+  padding: 0 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.appTitle {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.appBody {
+  position: relative;
+  height: 252px;
+  overflow: hidden;
+}
+
+/* Empty state: decorative icon, title, one or two sentences, actions. Centred, as in most systems. */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.emptyIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: #f0f0ee;
+  color: #525252;
+}
+
+.emptyIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.emptyTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+.emptyBody {
+  max-width: 380px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #525252;
+}
+
+.emptyActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 16px;
+  margin-top: 8px;
+}
+
+/* Fixed width so a changing label never moves anything around it */
+.button {
+  width: 168px;
+  min-width: 0;
+  height: 36px;
+  font-size: 13px;
+}
+
+.button[aria-disabled='true'] {
+  cursor: default;
+}
+
+.button[aria-disabled='true']:hover {
+  background: #000;
+}
+
+.buttonDone,
+.buttonDone:hover,
+.buttonDone[aria-disabled='true']:hover {
+  background: #15803d;
+}
+
+.after {
+  flex-basis: 100%;
+  margin: 0;
+  min-height: 1.5em;
+  font-size: 12px;
+  color: #525252;
+}
+
+.focusTarget {
+  height: 100%;
+}
+
+.focusTarget:focus,
+.table:focus {
+  outline: none;
+}
+
+.focusTarget:focus-visible,
+.table:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: -2px;
+}
+
+.code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+}
+
+/* Table */
+.table {
+  padding: 4px 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 0.8fr;
+  align-items: center;
+  gap: 12px;
+  height: 36px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.rowHead {
+  height: 32px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #525252;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.bone {
+  display: block;
+  width: 70%;
+  height: 10px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #dcdcd8 30%, #f2f2ef 50%, #dcdcd8 70%);
+  background-size: 300% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.boneWide {
+  width: 85%;
+}
+
+.boneShort {
+  width: 45%;
+  justify-self: end;
+}
+
+@keyframes shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Requests list */
+.requests {
+  padding: 4px 16px;
+}
+
+.request {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.requestName {
+  display: block;
+  font-weight: 600;
+}
+
+.requestWhat {
+  display: block;
+  font-size: 12px;
+  color: #525252;
+}
+
+.smallButton {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #000;
+  border-radius: 6px;
+  background: #fff;
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.smallButton:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.smallButton:disabled {
+  border-color: #c2c2be;
+  color: #8a8a84;
+  cursor: default;
+}
+
+.smallButton:active:not(:disabled),
+.smallButtonPressed {
+  transform: scale(0.96);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+/* Search and filters */
+.search {
+  display: flex;
+  flex: 1 1 180px;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #000;
+  border-radius: 6px;
+}
+
+.search:focus-within {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #000;
+}
+
+.searchIcon {
+  display: flex;
+  color: #525252;
+}
+
+.searchIcon svg {
+  width: 14px;
+  height: 14px;
+}
+
+.filterChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid #000;
+  border-radius: 9999px;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.filterChip:hover {
+  background: #333;
+}
+
+.filterChip:active {
+  transform: scale(0.96);
+}
+
+.count {
+  margin-left: auto;
+  font-size: 12px;
+  color: #525252;
+  font-variant-numeric: tabular-nums;
+}
+
+.smallButton:focus-visible,
+.filterChip:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .appBody {
+    height: 284px;
+  }
+
+  .empty {
+    padding: 12px 16px;
+  }
+
+  .table,
+  .requests {
+    padding: 4px 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bone,
+  .spinner {
+    animation: none;
+  }
+
+  .smallButton,
+  .filterChip {
+    transition: none;
+  }
+}
