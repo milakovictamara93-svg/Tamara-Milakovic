@@ -124,3 +124,168 @@
     flex-direction: column;
   }
 }
+
+/* ── Quiz: which line would a hiring manager remember? ── */
+.quizProgress {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  color: #525252;
+  font-variant-numeric: tabular-nums;
+}
+
+.quizMoment {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+
+.quizMoment:focus,
+.quizScore:focus {
+  outline: none;
+}
+
+.quizMoment:focus-visible,
+.quizScore:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+.quizMomentLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8a84;
+}
+
+.quizOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease, opacity 0.2s ease;
+}
+
+.option:hover:not([aria-disabled='true']) {
+  background: rgba(254, 196, 10, 0.18);
+}
+
+.option:active:not([aria-disabled='true']) {
+  transform: scale(0.99);
+  background: rgba(254, 196, 10, 0.35);
+}
+
+.option:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.option[aria-disabled='true'] {
+  cursor: default;
+}
+
+.optionReal {
+  border-width: 2px;
+  padding: 13px 15px;
+  border-color: #15803d;
+}
+
+.optionTemplate {
+  border-style: dashed;
+  color: #525252;
+}
+
+.optionFaded {
+  opacity: 0.55;
+}
+
+.optionTag {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.optionReal .optionTag {
+  color: #15803d;
+}
+
+.optionTemplate .optionTag {
+  color: #525252;
+}
+
+.quizFeedback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+}
+
+.quizFeedbackText {
+  flex: 1 1 260px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #000;
+}
+
+.quizNext {
+  width: 148px;
+}
+
+.quizNext:disabled {
+  background: #d4d4d0;
+  color: #525252;
+  cursor: not-allowed;
+}
+
+.quizResult {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quizScore {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+}
+
+.quizVerdict {
+  margin: 0;
+  font-size: 15px;
+  color: #000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option {
+    transition: none;
+  }
+}

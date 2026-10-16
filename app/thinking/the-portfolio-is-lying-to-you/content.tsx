@@ -1,5 +1,6 @@
 import RevealOnScroll from '@/components/RevealOnScroll';
-import { PortfolioVsRealityVisual, WhatsMissingVisual } from './visuals';
+import { PortfolioVsRealityVisual } from './visuals';
+import { SpotTheRealOneQuiz } from './quiz';
 import styles from '../article.module.css';
 
 export default function PortfolioContent() {
@@ -49,7 +50,7 @@ export default function PortfolioContent() {
         thinks.
       </p>
 
-      <RevealOnScroll><WhatsMissingVisual /></RevealOnScroll>
+      <SpotTheRealOneQuiz />
 
       <p>
         You don’t need to confess every chaotic meeting. You just need to show that real

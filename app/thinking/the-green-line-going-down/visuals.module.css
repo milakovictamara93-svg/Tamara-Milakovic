@@ -32,60 +32,6 @@
   font-family: var(--font-body);
 }
 
-/* ── Chart comparison ─────────────────────────────── */
-.chartsRow {
-  display: flex;
-}
-
-.chartPanel {
-  flex: 1;
-  padding: 20px 24px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-
-.chartPanelDark {
-  background: #f9f9f8;
-}
-
-.chartPanelTitle {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #8a8a84;
-  font-family: var(--font-body);
-}
-
-.chartPanelTitleDark {
-  color: #8a8a84;
-}
-
-.chartSvg {
-  width: 100%;
-  display: block;
-  overflow: visible;
-}
-
-.chartNote {
-  font-size: 11px;
-  color: #8a8a84;
-  font-family: var(--font-body);
-  line-height: 1.4;
-}
-
-.chartNoteDark {
-  color: #8a8a84;
-}
-
-@media (max-width: 600px) {
-  .chartsRow {
-    flex-direction: column;
-  }
-}
-
 /* ── ESG ratings divergence ──────────────────────── */
 .ratingsBody {
   padding: 8px 28px 16px;
@@ -145,4 +91,443 @@
 .ratingsBadgeLow {
   background: rgba(239, 68, 68, 0.08);
   color: #dc2626;
+}
+
+/* ── Add the truth back ──────────────────────────── */
+.switches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.revealCard {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  padding: 16px 16px 8px;
+}
+
+.headerActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* The chart's own title sits right above it, separated from the summary tiles */
+.chartHead {
+  margin: 20px 0 4px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.chartTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+
+
+.chartSubtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #525252;
+}
+
+.pointLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  fill: #000;
+}
+
+.truthCount {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a8a84;
+  font-variant-numeric: tabular-nums;
+}
+
+.revealChart {
+  position: relative;
+  width: 100%;
+}
+
+.revealChart svg {
+  display: block;
+  touch-action: pan-y;
+}
+
+.grid {
+  stroke: rgba(0, 0, 0, 0.07);
+  stroke-width: 1;
+}
+
+.axisZero {
+  stroke: rgba(0, 0, 0, 0.4);
+  stroke-width: 1;
+}
+
+.tick {
+  font-family: var(--font-body);
+  font-size: 12px;
+  fill: #525252;
+  font-variant-numeric: tabular-nums;
+}
+
+.line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+
+.lineInk,
+.dotInk {
+  stroke: #000;
+}
+
+.dot {
+  fill: #fff;
+  stroke-width: 2;
+  transition: r 0.15s ease;
+}
+
+.bandInk {
+  fill: rgba(0, 0, 0, 0.1);
+}
+
+.marker {
+  stroke: #000;
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.markerLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  fill: #000;
+}
+
+.crosshair {
+  stroke: rgba(0, 0, 0, 0.25);
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+.tooltip {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.numbers {
+  font-size: 13px;
+  color: #000;
+}
+
+.numbers summary {
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  width: fit-content;
+}
+
+.numbers summary:hover {
+  text-decoration-thickness: 2px;
+}
+
+.numbers summary:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+.tableCard {
+  margin-top: 10px;
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th,
+.table td {
+  padding: 8px 14px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.table thead th {
+  vertical-align: bottom;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+  background: #f5f5f3;
+}
+
+.table tbody th {
+  font-weight: 600;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table .num {
+  text-align: right;
+}
+
+
+.thBlank {
+  background: #f5f5f3;
+}
+
+.table thead tr:first-child th,
+.table thead tr:first-child td {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.table .thGroup {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000;
+}
+
+.table thead tr:last-child th {
+  font-weight: 400;
+  color: #525252;
+  white-space: nowrap;
+}
+
+.table colgroup col + col {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: #000;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.legendSymbol {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.baseTag {
+  font-size: 12px;
+  font-weight: 500;
+  color: #525252;
+}
+
+
+.rowLeftOut th,
+.rowLeftOut td {
+  color: #8a8a84;
+}
+
+.rowMarked th,
+.rowMarked td {
+  background: rgba(254, 196, 10, 0.22);
+}
+
+.table td {
+  white-space: nowrap;
+}
+
+/* ── KPI tiles and change indicators ── */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 14px;
+  animation: tileIn 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  border-radius: 8px;
+  background: #fff;
+}
+
+@keyframes tileIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+
+.kpiCharted {
+  border-color: #000;
+}
+
+.kpiLabel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #525252;
+}
+
+.kpiTag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+.kpiValue {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.kpiUnit {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #525252;
+}
+
+.kpiNote {
+  font-size: 12px;
+  color: #525252;
+}
+
+.delta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table .delta {
+  font-size: 13px;
+}
+
+.deltaArrow {
+  font-size: 0.8em;
+}
+
+.deltaSince {
+  font-weight: 400;
+  color: #525252;
+}
+
+.delta_good {
+  color: #15803d;
+}
+
+.delta_bad {
+  color: #b91c1c;
+}
+
+.delta_flat {
+  color: #525252;
+}
+
+.rowLeftOut .delta {
+  color: inherit;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.rowTag {
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #525252;
+}
+
+.numbers p {
+  margin: 8px 0 0;
+  color: #525252;
+}
+
+
+@media (max-width: 640px) {
+  .table th,
+  .table td {
+    padding: 8px 8px;
+  }
+
+  .rowTag {
+    display: block;
+    margin-left: 0;
+  }
+
+  .kpi {
+    padding: 10px 12px;
+  }
+
+  .headerActions .truthCount {
+    display: none;
+  }
+
+  .kpiValue {
+    font-size: 24px;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kpi {
+    animation: none;
+  }
+
+  .line,
+  .dot {
+    transition: none;
+  }
 }

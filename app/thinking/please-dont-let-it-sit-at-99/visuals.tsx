@@ -13,7 +13,7 @@ const ROWS = [
 ];
 
 /** Calls `fn` once, the first time the element scrolls into view; returns a ref for that element. */
-function usePlayOnceVisible(fn: () => void) {
+function usePlayOnceVisible(fn: () => void, threshold = 0.5) {
   const ref = useRef<HTMLElement>(null);
   const saved = useRef(fn);
   useEffect(() => {
@@ -28,10 +28,10 @@ function usePlayOnceVisible(fn: () => void) {
         saved.current();
         observer.disconnect();
       }
-    }, { threshold: 0.5 });
+    }, { threshold });
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
   return ref;
 }
@@ -40,7 +40,7 @@ function Table({ skeleton }: { skeleton?: boolean }) {
   return (
     <div className={styles.table}>
       {ROWS.map(([name, value, change]) => (
-        <div key={name} className={styles.tableRow}>
+        <div key={name} data-target={`the ${name} row`} className={styles.tableRow}>
           {skeleton ? (
             <>
               <span className={`${styles.bone} ${styles.boneWide}`} />
@@ -62,62 +62,127 @@ function Table({ skeleton }: { skeleton?: boolean }) {
 
 /* ── 1. The jump ─────────────────────────────────────────────── */
 
-function useLoadLoop() {
+// Long enough to actually see the loading state before the table arrives
+const LOAD_AT = 2600;
+const NOTE = 'the note';
+
+/**
+ * Plays one load. While the table is loading you're reading the note below it, so an
+ * outline marks that spot on screen. The outline never moves, the way your eyes don't.
+ * When the table arrives, whatever now sits inside the outline is what you're looking at.
+ */
+function useReadingDuringLoad() {
   const [loaded, setLoaded] = useState(true);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const [mark, setMark] = useState<{ top: number; height: number } | null>(null);
+  const [nowReading, setNowReading] = useState<string | null>(null);
+  const windowRef = useRef<HTMLDivElement>(null);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+
   const play = useCallback(() => {
-    clearTimeout(timer.current);
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
     setLoaded(false);
-    timer.current = setTimeout(() => setLoaded(true), 1400);
+    setMark(null);
+    setNowReading(null);
+    const win = windowRef.current;
+    const at = (ms: number, fn: () => void) => timers.current.push(setTimeout(fn, ms));
+    at(60, () => {
+      const note = win?.querySelector<HTMLElement>(`[data-target="${NOTE}"]`);
+      if (!win || !note) return;
+      setMark({ top: note.getBoundingClientRect().top - win.getBoundingClientRect().top, height: note.offsetHeight });
+    });
+    at(LOAD_AT, () => setLoaded(true));
+    at(LOAD_AT + 80, () => {
+      const outline = win?.querySelector<HTMLElement>('[data-mark]');
+      if (!outline) return;
+      const r = outline.getBoundingClientRect();
+      const under = document
+        .elementsFromPoint(r.left + 24, r.top + r.height / 2)
+        .find((el) => el instanceof HTMLElement && el.dataset.target) as HTMLElement | undefined;
+      setNowReading(under?.dataset.target ?? null);
+    });
   }, []);
-  useEffect(() => () => clearTimeout(timer.current), []);
-  const ref = usePlayOnceVisible(play);
-  return { loaded, play, ref };
+
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+  // Wait until the whole demo is on screen, so the loading state isn't missed
+  const ref = usePlayOnceVisible(play, 0.85);
+  return { loaded, mark, nowReading, play, ref, windowRef };
+}
+
+function ReadingMark({ mark }: { mark: { top: number; height: number } | null }) {
+  if (!mark) return null;
+  return <span data-mark aria-hidden="true" className={styles.readingMark} style={{ top: mark.top, height: mark.height }} />;
+}
+
+function Note() {
+  return (
+    <p data-target={NOTE} className={styles.note}>
+      Note: Scope 3 figures are estimates.
+    </p>
+  );
+}
+
+function MarkLegend() {
+  return (
+    <p className={styles.markLegend}>
+      <span className={styles.markLegendSwatch} aria-hidden="true" />
+      The outline marks where you were reading when the table started loading.
+    </p>
+  );
 }
 
 function JumpGood() {
-  const { loaded, play, ref } = useLoadLoop();
+  const { loaded, mark, nowReading, play, ref, windowRef } = useReadingDuringLoad();
   return (
     <Demo
       verdict="good"
-      title="The skeleton matches the table"
+      title="The skeleton reserves the table’s space"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
-      readout={loaded ? 'Five skeleton rows, five real rows. Your spot didn’t move.' : 'Loading…'}
+      readoutLines={2}
+      readout={nowReading ? 'The skeleton held the table’s space, so the note stayed inside the outline.' : ''}
     >
-      <div className={styles.window}>
+      <MarkLegend />
+      <div ref={windowRef} className={`${styles.window} ${styles.viewport}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
         <Table skeleton={!loaded} />
-        <div className={styles.reading}>📍 You were reading here</div>
+        <Note />
+        <ReadingMark mark={mark} />
       </div>
     </Demo>
   );
 }
 
 function JumpBad() {
-  const { loaded, play, ref } = useLoadLoop();
+  const { loaded, mark, nowReading, play, ref, windowRef } = useReadingDuringLoad();
   return (
     <Demo
       verdict="bad"
-      title="The content collapses while it loads"
+      title="Nothing reserves the table’s space"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
-      readout={loaded ? 'The table pushed everything down. Your eyes stayed put.' : 'Loading…'}
+      readout={
+        nowReading
+          ? nowReading === NOTE
+            ? 'The note stayed inside the outline.'
+            : `The table pushed the note down. The outline now holds ${nowReading}.`
+          : ''
+      }
+      readoutLines={2}
     >
-      <div className={`${styles.window} ${styles.windowRel}`}>
+      <MarkLegend />
+      <div ref={windowRef} className={`${styles.window} ${styles.viewport}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
-        {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
-        <div className={`${styles.reading} ${loaded ? styles.readingLost : ''}`}>
-          📍 {loaded ? 'Your spot, way down here' : 'You were reading here'}
-        </div>
-        {/* Your eyes stay at the same spot on screen while the content moves under them */}
-        <div className={styles.eyeLayer} aria-hidden="true">
-          <div className={`${styles.windowTitle} ${styles.ghost}`}>Supplier emissions</div>
-          <div className={`${styles.collapsed} ${styles.ghost}`}>Loading…</div>
-          <div className={`${styles.eye} ${loaded ? styles.eyeLost : ''}`}>
-            👀 {loaded ? 'Now you’re reading… Atlas Freight?!' : 'You were reading here'}
+        {loaded ? (
+          <Table />
+        ) : (
+          <div className={styles.collapsed}>
+            <span className={`${styles.spinner} ${styles.spinnerDark}`} aria-hidden="true" />
+            Loading…
           </div>
-        </div>
+        )}
+        <Note />
+        <ReadingMark mark={mark} />
       </div>
     </Demo>
   );
@@ -154,8 +219,8 @@ function SaveDemo({ verdict, spinnerDelay }: { verdict: 'good' | 'bad'; spinnerD
       setTimeout(() => {
         setState('done');
         setResult(shows
-          ? `A spinner flashed for ${FAST_SAVE - spinnerDelay}ms. That’s the flicker.`
-          : 'No spinner at all. The save was done before the 200ms wait was up.');
+          ? `A spinner flashed for ${FAST_SAVE - spinnerDelay}ms before the save finished.`
+          : 'No spinner appeared. The save finished before the 200ms delay ran out.');
       }, FAST_SAVE),
       setTimeout(() => setState('idle'), FAST_SAVE + 1500),
     );
@@ -243,7 +308,7 @@ function BarGood() {
       title="Real progress and a rough time left"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
-      readout={done ? 'It said four seconds, it took four seconds. Boring. Trustworthy.' : ''}
+      readout={done ? 'The estimate said four seconds, and the export took four seconds.' : ''}
     >
       <ExportCard pct={pct} meta={done ? 'Done. 2.9 MB ready to download.' : `${Math.round(pct)}% · About ${Math.ceil((100 - pct) / 25)}s left`} />
     </Demo>
@@ -261,9 +326,9 @@ function BarBad() {
       title="Races to 99%, then sits there"
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
-      readout={stuck && stuckFor >= 3 ? '“Almost there…” since Tuesday.' : ''}
+      readout={stuck && stuckFor >= 3 ? 'The bar raced to 99% and stopped there, with no sign of how long is left.' : ''}
     >
-      <ExportCard bad pct={pct} meta={stuck ? `99% · Almost there… (${stuckFor}s and counting)` : `${Math.round(pct)}% · Wow, so fast`} />
+      <ExportCard bad pct={pct} meta={stuck ? '99% · Almost there…' : `${Math.round(pct)}%`} />
     </Demo>
   );
 }
@@ -308,7 +373,7 @@ function LikeGood() {
             setNote('');
             timer.current = setTimeout(() => {
               setLiked(false);
-              setNote('The server said no, so the like quietly rolled back. That’s the whole recovery plan.');
+              setNote('The server rejected the like, so it rolled back and the count returned to 42.');
             }, 900);
           }}
         >
@@ -339,7 +404,7 @@ function LikeBad() {
             timer.current = setTimeout(() => {
               setPending(false);
               setLiked((l) => !l);
-              setNote('A whole second to like a post. It’s a heart, not a bank transfer.');
+              setNote('The like took over a second to register, because it waited for the server.');
             }, 1200);
           }}
         >

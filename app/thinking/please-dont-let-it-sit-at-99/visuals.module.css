@@ -109,12 +109,13 @@
 
 .bone {
   display: block;
-  height: 8px;
+  height: 10px;
   width: 70%;
   border-radius: 4px;
-  background: linear-gradient(90deg, #ececea 25%, #f7f7f5 50%, #ececea 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.2s linear infinite;
+  /* Mid-grey bones with a slow left-to-right sweep, visible against white */
+  background: linear-gradient(90deg, #dcdcd8 30%, #f2f2ef 50%, #dcdcd8 70%);
+  background-size: 300% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
 }
 
 .boneWide {
@@ -126,51 +127,61 @@
 }
 
 @keyframes shimmer {
-  from { background-position: 200% 0; }
-  to { background-position: -200% 0; }
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
 }
 
-.reading {
-  margin-top: 8px;
-  padding: 6px 8px;
-  border-radius: 6px;
-  background: rgba(254, 196, 10, 0.35);
-  font-weight: 500;
-}
-
-/* 1. Page jump */
-.windowRel {
+/* 1. Page jump: a fixed-height window, so only the content inside it moves */
+.viewport {
   position: relative;
+  height: 236px;
+  overflow: hidden;
 }
 
+/* Exactly one table row tall, so after the jump the outline frames exactly one row */
+.note {
+  height: 28px;
+  margin: 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  line-height: 28px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #525252;
+}
 
-.eyeLayer {
+/* Where your eyes were: an outline that stays put, never covering the content */
+.readingMark {
   position: absolute;
-  inset: 12px 12px auto;
-  pointer-events: none;
-}
-
-.ghost {
-  visibility: hidden;
-}
-
-.eye {
-  margin-top: 8px;
-  padding: 6px 8px;
+  left: 4px;
+  right: 4px;
+  box-sizing: border-box;
+  border: 2px solid #000;
   border-radius: 6px;
-  background: rgb(254, 236, 170);
-  font-weight: 500;
+  pointer-events: none;
+  animation: markIn 0.3s ease both;
 }
 
-.eyeLost {
-  background: rgba(255, 255, 255, 0.92);
-  outline: 2px dashed #000;
-  outline-offset: -2px;
-  font-weight: 600;
+@keyframes markIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.readingLost {
-  opacity: 0.55;
+.markLegend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 13px;
+  color: #525252;
+}
+
+.markLegendSwatch {
+  flex-shrink: 0;
+  width: 22px;
+  height: 12px;
+  border: 2px solid #000;
+  border-radius: 3px;
 }
 
 .jumpGrid {
@@ -205,6 +216,7 @@
 .collapsed {
   display: flex;
   align-items: center;
+  gap: 8px;
   height: 28px;
   color: #8a8a84;
   border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -445,7 +457,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bone,
-  .spinner {
+  .spinner,
+  .readingMark {
     animation: none;
   }
 
