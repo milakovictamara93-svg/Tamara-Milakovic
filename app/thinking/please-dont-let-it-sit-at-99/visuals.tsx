@@ -13,7 +13,7 @@ const ROWS = [
 ];
 
 /** Calls `fn` once, the first time the element scrolls into view; returns a ref for that element. */
-function usePlayOnceVisible(fn: () => void) {
+function usePlayOnceVisible(fn: () => void, threshold = 0.5) {
   const ref = useRef<HTMLElement>(null);
   const saved = useRef(fn);
   useEffect(() => {
@@ -28,10 +28,10 @@ function usePlayOnceVisible(fn: () => void) {
         saved.current();
         observer.disconnect();
       }
-    }, { threshold: 0.5 });
+    }, { threshold });
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
   return ref;
 }
@@ -62,7 +62,8 @@ function Table({ skeleton }: { skeleton?: boolean }) {
 
 /* ── 1. The jump ─────────────────────────────────────────────── */
 
-const LOAD_AT = 1400;
+// Long enough to actually see the loading state before the table arrives
+const LOAD_AT = 2600;
 const NOTE = 'the note';
 
 /**
@@ -103,7 +104,8 @@ function useReadingDuringLoad() {
   }, []);
 
   useEffect(() => () => timers.current.forEach(clearTimeout), []);
-  const ref = usePlayOnceVisible(play);
+  // Wait until the whole demo is on screen, so the loading state isn't missed
+  const ref = usePlayOnceVisible(play, 0.85);
   return { loaded, mark, nowReading, play, ref, windowRef };
 }
 
@@ -171,7 +173,14 @@ function JumpBad() {
       <MarkLegend />
       <div ref={windowRef} className={`${styles.window} ${styles.viewport}`}>
         <div className={styles.windowTitle}>Supplier emissions</div>
-        {loaded ? <Table /> : <div className={styles.collapsed}>Loading…</div>}
+        {loaded ? (
+          <Table />
+        ) : (
+          <div className={styles.collapsed}>
+            <span className={`${styles.spinner} ${styles.spinnerDark}`} aria-hidden="true" />
+            Loading…
+          </div>
+        )}
         <Note />
         <ReadingMark mark={mark} />
       </div>
