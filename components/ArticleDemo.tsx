@@ -2,12 +2,34 @@ import styles from './ArticleDemo.module.css';
 
 export { styles as demoStyles };
 
+/**
+ * What just happened. Before anything happens it shows a short hint instead of blank space.
+ * Only the result is announced to screen readers, once, through its own live region.
+ */
+function Readout({ readout, hint, lines }: { readout?: React.ReactNode; hint?: string; lines?: number }) {
+  return (
+    <>
+      <p
+        className={`${styles.readout} ${readout ? '' : styles.readoutHint}`}
+        aria-hidden="true"
+        style={lines ? ({ '--readout-lines': lines } as React.CSSProperties) : undefined}
+      >
+        {readout || hint || '\u00a0'}
+      </p>
+      <span className={styles.srOnly} role="status" aria-live="polite" aria-atomic="true">
+        {readout}
+      </span>
+    </>
+  );
+}
+
 /** One demo in a Good/Bad pair. Header reads "✅ Good" or "❌ Bad" plus a short description. */
 export function Demo({
   verdict,
   title,
   action,
   readout,
+  hint,
   readoutLines,
   children,
   figureRef,
@@ -16,7 +38,9 @@ export function Demo({
   title: string;
   action?: React.ReactNode;
   readout?: React.ReactNode;
-  /** Lines of space to keep for the readout, so it appearing never moves the page */
+  /** Shown in the readout's place before anything has happened */
+  hint?: string;
+  /** Lines to keep for the readout on phones, where it wraps, so it appearing never moves the page */
   readoutLines?: number;
   children: React.ReactNode;
   figureRef?: React.Ref<HTMLElement>;
@@ -32,16 +56,7 @@ export function Demo({
       </div>
       <div className={styles.inlineDemo}>
         {children}
-        {readout !== undefined && (
-          <p
-            className={styles.readout}
-            aria-live="polite"
-            aria-atomic="true"
-            style={readoutLines ? { minHeight: `${readoutLines}lh` } : undefined}
-          >
-            {readout || '\u00a0'}
-          </p>
-        )}
+        {readout !== undefined && <Readout readout={readout} hint={hint} lines={readoutLines} />}
       </div>
     </figure>
   );
@@ -69,9 +84,7 @@ export function DemoFrame({
       </div>
       <div className={styles.inlineDemo}>
         {children}
-        {readout !== undefined && (
-          <p className={styles.readout} aria-live="polite" aria-atomic="true">{readout || '\u00a0'}</p>
-        )}
+        {readout !== undefined && <Readout readout={readout} />}
       </div>
     </figure>
   );

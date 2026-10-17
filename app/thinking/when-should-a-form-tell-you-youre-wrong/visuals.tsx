@@ -146,6 +146,7 @@ function TimingGood() {
     <Demo
       verdict="good"
       title="Checks when you leave the field"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setTouched(false); setFlagged(false); auto.play(); }} disabled={auto.typing} />}
       readout={auto.typing || focused ? 'No message while you type.' : touched ? (valid ? 'No messages while typing. The tick appeared once you left a valid field.' : 'The error appeared after you left the field, once your input was complete.') : ''}
@@ -180,6 +181,7 @@ function TimingBad() {
     <Demo
       verdict="bad"
       title="Checks on every keystroke"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setNags(0); auto.play(); }} disabled={auto.typing} />}
       readout={nags > 0 && !auto.typing && !focused ? `An error appeared ${nags} time${nags === 1 ? '' : 's'} before you finished typing.` : ''}
@@ -226,6 +228,7 @@ function RewardGood() {
     <Demo
       verdict="good"
       title="Good news straight away, bad news only once you’ve left"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
       readout={
@@ -273,6 +276,7 @@ function RewardBad() {
     <Demo
       verdict="bad"
       title="Bad news straight away, good news only once you’ve left"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
       readout={
@@ -325,6 +329,7 @@ function CommitGood() {
     <Demo
       verdict="good"
       title="Checks when you hit preview"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setChecked(false); setPreviewed(false); auto.play(); }} disabled={auto.typing} />}
       readout={previewed ? (error ? 'The budget was checked when you selected Preview.' : 'Checked once, on Preview. The budget is valid.') : value ? 'Enter any amount. It is checked when you select Preview.' : ''}
@@ -363,6 +368,7 @@ function CommitBad() {
     <Demo
       verdict="bad"
       title="Warns while you’re still exploring"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setWarnings(0); auto.play(); }} disabled={auto.typing} />}
       readout={warnings > 0 && !auto.typing && !focused ? `${warnings} warning${warnings === 1 ? '' : 's'} shown before you finished entering the amount.` : ''}
@@ -407,6 +413,7 @@ function FixGood() {
     <Demo
       verdict="good"
       title="The error goes the moment it’s fixed"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={auto.play} disabled={auto.typing} />}
       readout={valid ? 'The error cleared as soon as the address was valid.' : 'The address is incomplete. Complete it to see what happens to the error.'}
@@ -425,6 +432,7 @@ function FixBad() {
     <Demo
       verdict="bad"
       title="The error hangs around after it’s fixed"
+      hint="Watch it fill in, then try it yourself."
       figureRef={auto.ref}
       action={<ReplayButton onClick={() => { setStale(true); auto.play(); }} disabled={auto.typing} />}
       readout={valid ? 'The field shows a tick and an error at the same time.' : 'The address is incomplete. Complete it to see what happens to the error.'}

@@ -118,19 +118,26 @@
   opacity: 0.6;
 }
 
+/* Equal padding on every side (24px, 16px on phones) */
 .inlineDemo {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 20px 28px 24px;
+  gap: 12px;
+  padding: 24px 28px;
 }
 
 .readout {
   margin: 0;
-  min-height: 1.5em;
+  min-height: 1lh;
   font-size: 13px;
+  line-height: 1.5;
   font-weight: 500;
   color: #000;
+}
+
+.readoutHint {
+  font-weight: 400;
+  color: #525252;
 }
 
 .pair {
@@ -176,9 +183,16 @@
 }
 
 @media (max-width: 640px) {
-  .header,
-  .inlineDemo {
+  .header {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .inlineDemo {
+    padding: 16px;
+  }
+
+  .readout {
+    min-height: calc(var(--readout-lines, 1) * 1lh);
   }
 }

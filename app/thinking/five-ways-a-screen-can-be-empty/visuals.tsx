@@ -1,12 +1,15 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { Demo, Pair, demoStyles } from '@/components/ArticleDemo';
 import styles from './visuals.module.css';
 
 /* ── Shared pieces ───────────────────────────────────────────── */
 
 const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** Waits `ms`, or not at all under reduced motion, so state changes still happen without the movement. */
+const after = (ms: number, fn: () => void) => setTimeout(fn, reducedMotion() ? 0 : ms);
 
 /**
  * Runs a timed script once, the first time the figure is fully on screen, and again on Replay.
@@ -61,7 +64,7 @@ function Reset({ onClick, disabled }: { onClick: () => void; disabled: boolean }
 }
 
 /** A small product window: page title, optional toolbar, and a body of fixed height so states never resize it. */
-function AppFrame({ title, action, toolbar, children }: { title: string; action?: React.ReactNode; toolbar?: React.ReactNode; children: React.ReactNode }) {
+function AppFrame({ title, action, toolbar, overlay, children }: { title: string; action?: React.ReactNode; toolbar?: React.ReactNode; overlay?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className={styles.app}>
       <div className={styles.appBar}>
@@ -70,6 +73,7 @@ function AppFrame({ title, action, toolbar, children }: { title: string; action?
       </div>
       {toolbar && <div className={styles.toolbar}>{toolbar}</div>}
       <div className={styles.appBody}>{children}</div>
+      {overlay}
     </div>
   );
 }
@@ -107,17 +111,18 @@ const SUPPLIERS: Supplier[] = [
   { name: 'Halden Foods', region: 'Americas', emissions: '655 t' },
   { name: 'Orbit Plastics', region: 'APAC', emissions: '531 t' },
 ];
+const REGIONS = ['Europe', 'APAC', 'Americas'];
 
-function SupplierTable({ rows, tableRef }: { rows: Supplier[]; tableRef?: React.Ref<HTMLDivElement> }) {
+function SupplierTable({ rows, tableRef, highlight }: { rows: Supplier[]; tableRef?: React.Ref<HTMLDivElement>; highlight?: string | null }) {
   return (
-    <div ref={tableRef} tabIndex={-1} className={styles.table} role="table" aria-label="Suppliers">
+    <div ref={tableRef} tabIndex={-1} className={`${styles.table} ${styles.fadeIn}`} role="table" aria-label="Suppliers">
       <div role="row" className={`${styles.row} ${styles.rowHead}`}>
         <span role="columnheader">Supplier</span>
         <span role="columnheader">Region</span>
         <span role="columnheader" className={styles.num}>Emissions</span>
       </div>
       {rows.map((s) => (
-        <div role="row" key={s.name} className={styles.row}>
+        <div role="row" key={s.name} className={`${styles.row} ${highlight === s.name ? styles.rowNew : ''}`}>
           <span role="cell">{s.name}</span>
           <span role="cell">{s.region}</span>
           <span role="cell" className={styles.num}>{s.emissions}</span>
@@ -148,56 +153,217 @@ function Skeleton() {
 
 /* ── 1. First use ────────────────────────────────────────────── */
 
+const NEW_SUPPLIER = 'Northwind Metals';
+
+/** A short create dialog: focus starts in the first field, Escape cancels, Tab stays inside. */
+function AddSupplierDialog({
+  name,
+  region,
+  error,
+  pressing,
+  autoFocus,
+  onName,
+  onRegion,
+  onCancel,
+  onSubmit,
+}: {
+  name: string;
+  region: string;
+  error: boolean;
+  pressing: boolean;
+  autoFocus: boolean;
+  onName: (v: string) => void;
+  onRegion: (v: string) => void;
+  onCancel: () => void;
+  onSubmit: () => void;
+}) {
+  const id = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (autoFocus) nameRef.current?.focus();
+  }, [autoFocus]);
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') onCancel();
+    if (e.key !== 'Tab') return;
+    const focusable = dialogRef.current?.querySelectorAll<HTMLElement>('input, select, button');
+    if (!focusable?.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+
+  return (
+    <div className={styles.scrim}>
+      <div
+        ref={dialogRef}
+        className={styles.dialog}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`${id}-title`}
+        onKeyDown={onKeyDown}
+      >
+        <p id={`${id}-title`} className={styles.dialogTitle}>Add supplier</p>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSubmit();
+          }}
+        >
+          <label className={styles.field}>
+            <span className={styles.label}>Supplier name</span>
+            <input
+              ref={nameRef}
+              className={`${styles.input} ${error ? styles.inputError : ''}`}
+              value={name}
+              onChange={(e) => onName(e.target.value)}
+              aria-invalid={error}
+              aria-describedby={error ? `${id}-error` : undefined}
+            />
+            <span id={`${id}-error`} className={styles.fieldError}>{error ? 'Enter a supplier name' : ' '}</span>
+          </label>
+          <label className={styles.field}>
+            <span className={styles.label}>Region</span>
+            <select className={styles.input} value={region} onChange={(e) => onRegion(e.target.value)}>
+              {REGIONS.map((r) => <option key={r}>{r}</option>)}
+            </select>
+          </label>
+          <div className={styles.dialogActions}>
+            <button type="button" className={styles.secondaryButton} onClick={onCancel}>Cancel</button>
+            <button type="submit" className={`${demoStyles.primary} ${styles.dialogPrimary} ${pressing ? styles.pressed : ''}`}>
+              Add supplier
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function FirstUseGood() {
   const [rows, setRows] = useState<Supplier[]>([]);
+  const [open, setOpen] = useState(false);
+  const [manual, setManual] = useState(false);
+  const [name, setName] = useState('');
+  const [region, setRegion] = useState(REGIONS[0]);
+  const [error, setError] = useState(false);
+  const [pressing, setPressing] = useState<'empty' | 'dialog' | null>(null);
+  const [highlight, setHighlight] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
   const tableRef = useRef<HTMLDivElement>(null);
-  const add = (next: Supplier[]) => {
-    setRows(next);
-    // The buttons that were pressed are gone, so focus moves to what replaced them
-    requestAnimationFrame(() => tableRef.current?.focus());
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+
+  const openDialog = (byReader: boolean) => {
+    setManual(byReader);
+    setName('');
+    setRegion(REGIONS[0]);
+    setError(false);
+    setPressing(null);
+    setOpen(true);
   };
+
+  const submit = (value: string, byReader: boolean) => {
+    if (!value.trim()) {
+      setError(true);
+      return;
+    }
+    const added = { name: value.trim(), region, emissions: 'Pending' };
+    setRows((r) => [...r, added]);
+    setOpen(false);
+    setPressing(null);
+    setHighlight(added.name);
+    setToast(`${added.name} added`);
+    timers.current.forEach(clearTimeout);
+    timers.current = [after(2000, () => setHighlight(null)), after(5000, () => setToast(null))];
+    // The button that opened the dialog is gone, so focus goes to the new content
+    if (byReader) requestAnimationFrame(() => tableRef.current?.focus());
+  };
+
+  const script = useScript(
+    [
+      [500, () => setPressing('empty')],
+      [650, () => openDialog(false)],
+      ...NEW_SUPPLIER.split('').map((_, i) => [1000 + i * 70, () => setName(NEW_SUPPLIER.slice(0, i + 1))] as [number, () => void]),
+      [1000 + NEW_SUPPLIER.length * 70 + 400, () => setPressing('dialog')],
+      [1000 + NEW_SUPPLIER.length * 70 + 550, () => submit(NEW_SUPPLIER, false)],
+    ],
+    () => {
+      timers.current.forEach(clearTimeout);
+      setRows([]);
+      setOpen(false);
+      setHighlight(null);
+      setToast(null);
+      setPressing(null);
+    },
+  );
+
+  const takeOver = () => script.stop();
+
   return (
     <Demo
       verdict="good"
-      title="Explains the page and gives one first step"
-      action={<Reset onClick={() => setRows([])} disabled={!rows.length} />}
+      title="Explains the page and starts the create flow"
+      figureRef={script.ref}
+      action={<Replay onClick={script.play} />}
+      hint="Watch a supplier get added, or try it yourself."
       readoutLines={2}
-      readout={
-        rows.length === 1
-          ? 'The empty page led straight to the first supplier. More are added from the page header.'
-          : rows.length > 1
-            ? `The empty page led straight to ${rows.length} suppliers. More are added from the page header.`
-            : ''
-      }
+      readout={rows.length ? 'The empty page led straight into adding a supplier, and the new row stood out when it arrived.' : ''}
     >
       <AppFrame
         title="Suppliers"
         action={
           rows.length ? (
-            <button
-              type="button"
-              className={styles.smallButton}
-              disabled={rows.length >= SUPPLIERS.length}
-              onClick={() => setRows(SUPPLIERS.slice(0, rows.length + 1))}
-            >
+            <button type="button" className={styles.smallButton} onClick={() => { takeOver(); openDialog(true); }}>
               Add supplier
             </button>
           ) : undefined
         }
+        overlay={
+          <>
+            {open && (
+              <AddSupplierDialog
+                name={name}
+                region={region}
+                error={error}
+                pressing={pressing === 'dialog'}
+                autoFocus={manual}
+                onName={(v) => { takeOver(); setName(v); setError(false); }}
+                onRegion={(v) => { takeOver(); setRegion(v); }}
+                onCancel={() => { takeOver(); setOpen(false); }}
+                onSubmit={() => { takeOver(); submit(name, true); }}
+              />
+            )}
+            {toast && (
+              <div className={styles.toast} role="status">
+                <span>{toast}</span>
+                <button type="button" className={styles.toastClose} aria-label="Dismiss" onClick={() => setToast(null)}>✕</button>
+              </div>
+            )}
+          </>
+        }
       >
         {rows.length ? (
-          <SupplierTable rows={rows} tableRef={tableRef} />
+          <SupplierTable rows={rows} tableRef={tableRef} highlight={highlight} />
         ) : (
           <EmptyState
             icon={<SupplierIcon />}
-            title="Add your first supplier"
-            body="Suppliers you add here are tracked against your emissions targets. Start with one, or import a list."
+            title="Start by adding suppliers"
+            body="Add the suppliers you buy from to track their emissions against your targets."
           >
-            <button type="button" className={`${demoStyles.primary} ${styles.button}`} onClick={() => add(SUPPLIERS.slice(0, 1))}>
+            <button
+              type="button"
+              className={`${demoStyles.primary} ${styles.button} ${pressing === 'empty' ? styles.pressed : ''}`}
+              onClick={() => { takeOver(); openDialog(true); }}
+            >
               Add supplier
-            </button>
-            <button type="button" className={demoStyles.linkButton} onClick={() => add(SUPPLIERS)}>
-              Import from CSV
             </button>
           </EmptyState>
         )}
@@ -237,77 +403,95 @@ const REQUESTS = [
   { id: 'orbit', supplier: 'Orbit Plastics', what: 'Updated energy mix' },
 ];
 
+type RowState = 'approved' | 'leaving' | 'gone';
+
+/** Approving shows "Approved ✓" on the button, then the row collapses out of the list. */
 function useRequests() {
-  const [open, setOpen] = useState(REQUESTS.map((r) => r.id));
+  const [rowState, setRowState] = useState<Record<string, RowState>>({});
   const [pressing, setPressing] = useState<string | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const emptyRef = useRef<HTMLDivElement>(null);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  useEffect(() => () => timers.current.forEach(clearTimeout), []);
+
   const approve = useCallback((id: string, moveFocus = false) => {
     setPressing(null);
-    setOpen((o) => {
-      const next = o.filter((x) => x !== id);
-      if (moveFocus) {
-        requestAnimationFrame(() => {
-          const nextButton = listRef.current?.querySelector<HTMLButtonElement>('button');
-          (nextButton ?? emptyRef.current)?.focus();
-        });
-      }
-      return next;
-    });
+    setRowState((s) => ({ ...s, [id]: 'approved' }));
+    timers.current.push(
+      after(600, () => setRowState((s) => ({ ...s, [id]: 'leaving' }))),
+      after(800, () => {
+        setRowState((s) => ({ ...s, [id]: 'gone' }));
+        if (moveFocus) {
+          requestAnimationFrame(() => {
+            const next = listRef.current?.querySelector<HTMLButtonElement>('button:not([aria-disabled="true"])');
+            (next ?? emptyRef.current)?.focus();
+          });
+        }
+      }),
+    );
   }, []);
+
   const script = useScript(
     [
-      [1100, () => setPressing('atlas')],
-      [1300, () => approve('atlas')],
-      [2300, () => setPressing('orbit')],
-      [2500, () => approve('orbit')],
+      [1000, () => setPressing('atlas')],
+      [1100, () => approve('atlas')],
+      [2200, () => setPressing('orbit')],
+      [2300, () => approve('orbit')],
     ],
     () => {
-      setOpen(REQUESTS.map((r) => r.id));
+      timers.current.forEach(clearTimeout);
+      timers.current = [];
+      setRowState({});
       setPressing(null);
     },
   );
-  return { open, pressing, approve, listRef, emptyRef, script };
+  const open = REQUESTS.filter((r) => rowState[r.id] !== 'gone');
+  return { open, rowState, pressing, approve, listRef, emptyRef, script };
 }
 
-function RequestList({ open, pressing, onApprove, listRef }: { open: string[]; pressing: string | null; onApprove: (id: string) => void; listRef: React.Ref<HTMLDivElement> }) {
+function RequestList({ open, rowState, pressing, onApprove, listRef }: { open: typeof REQUESTS; rowState: Record<string, RowState>; pressing: string | null; onApprove: (id: string) => void; listRef: React.Ref<HTMLDivElement> }) {
   return (
     <div ref={listRef} className={styles.requests}>
-      {REQUESTS.filter((r) => open.includes(r.id)).map((r) => (
-        <div key={r.id} className={styles.request}>
-          <span>
-            <span className={styles.requestName}>{r.supplier}</span>
-            <span className={styles.requestWhat}>{r.what}</span>
-          </span>
-          <button
-            type="button"
-            className={`${styles.smallButton} ${pressing === r.id ? styles.smallButtonPressed : ''}`}
-            onClick={() => onApprove(r.id)}
-          >
-            Approve
-          </button>
-        </div>
-      ))}
+      {open.map((r) => {
+        const state = rowState[r.id];
+        return (
+          <div key={r.id} className={`${styles.request} ${state === 'leaving' ? styles.requestLeaving : ''}`}>
+            <span>
+              <span className={styles.requestName}>{r.supplier}</span>
+              <span className={styles.requestWhat}>{r.what}</span>
+            </span>
+            <button
+              type="button"
+              className={`${styles.smallButton} ${styles.approve} ${pressing === r.id ? styles.pressed : ''} ${state ? styles.approveDone : ''}`}
+              aria-disabled={!!state}
+              onClick={() => !state && onApprove(r.id)}
+            >
+              {state ? 'Approved ✓' : 'Approve'}
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }
 
 function ClearedGood() {
-  const { open, pressing, approve, listRef, emptyRef, script } = useRequests();
+  const { open, rowState, pressing, approve, listRef, emptyRef, script } = useRequests();
   return (
     <Demo
       verdict="good"
       title="Confirms the work is done, then stays out of the way"
       figureRef={script.ref}
       action={<Replay onClick={script.play} />}
+      hint="Watch the requests get approved."
       readoutLines={2}
       readout={open.length ? '' : 'After the last approval, the page confirmed everything was reviewed and asked for nothing else.'}
     >
       <AppFrame title="Supplier requests">
         {open.length ? (
-          <RequestList open={open} pressing={pressing} onApprove={(id) => { script.stop(); approve(id, true); }} listRef={listRef} />
+          <RequestList open={open} rowState={rowState} pressing={pressing} onApprove={(id) => { script.stop(); approve(id, true); }} listRef={listRef} />
         ) : (
-          <div ref={emptyRef} tabIndex={-1} className={styles.focusTarget}>
+          <div ref={emptyRef} tabIndex={-1} className={`${styles.focusTarget} ${styles.fadeIn}`}>
             <EmptyState icon={<CheckIcon />} title="All requests reviewed" body="New requests from suppliers will show up here." />
           </div>
         )}
@@ -317,7 +501,7 @@ function ClearedGood() {
 }
 
 function ClearedBad() {
-  const { open, pressing, approve, listRef, emptyRef, script } = useRequests();
+  const { open, rowState, pressing, approve, listRef, emptyRef, script } = useRequests();
   const [clicked, setClicked] = useState(false);
   return (
     <Demo
@@ -325,6 +509,7 @@ function ClearedBad() {
       title="Shows first-time setup after the work is done"
       figureRef={script.ref}
       action={<Replay onClick={() => { setClicked(false); script.play(); }} />}
+      hint="Watch the requests get approved."
       readoutLines={2}
       readout={
         open.length
@@ -336,9 +521,9 @@ function ClearedBad() {
     >
       <AppFrame title="Supplier requests">
         {open.length ? (
-          <RequestList open={open} pressing={pressing} onApprove={(id) => { script.stop(); approve(id, true); }} listRef={listRef} />
+          <RequestList open={open} rowState={rowState} pressing={pressing} onApprove={(id) => { script.stop(); approve(id, true); }} listRef={listRef} />
         ) : (
-          <div ref={emptyRef} tabIndex={-1} className={styles.focusTarget}>
+          <div ref={emptyRef} tabIndex={-1} className={`${styles.focusTarget} ${styles.fadeIn}`}>
             <EmptyState
               icon={<BoxIcon />}
               title="Start collecting supplier data"
@@ -371,6 +556,7 @@ const QUERY = 'Kestrel';
 function useSearch() {
   const [query, setQuery] = useState('');
   const [apac, setApac] = useState(true);
+  const [chipLeaving, setChipLeaving] = useState(false);
   const [typing, setTyping] = useState(false);
   const script = useScript(
     [
@@ -380,16 +566,26 @@ function useSearch() {
     () => {
       setQuery('');
       setApac(true);
+      setChipLeaving(false);
       setTyping(true);
     },
   );
+  /** The chip fades out first, then the filter comes off. */
+  const removeApac = (onDone?: () => void) => {
+    setChipLeaving(true);
+    after(150, () => {
+      setApac(false);
+      setChipLeaving(false);
+      onDone?.();
+    });
+  };
   const rows = SUPPLIERS.filter(
     (s) => (!apac || s.region === 'APAC') && s.name.toLowerCase().includes(query.trim().toLowerCase()),
   );
-  return { query, setQuery, apac, setApac, typing, setTyping, rows, script };
+  return { query, setQuery, apac, chipLeaving, removeApac, typing, setTyping, rows, script };
 }
 
-function SearchToolbar({ query, onQuery, apac, onRemoveApac, count }: { query: string; onQuery: (v: string) => void; apac: boolean; onRemoveApac: () => void; count: number }) {
+function SearchToolbar({ query, onQuery, apac, chipLeaving, onRemoveApac, count }: { query: string; onQuery: (v: string) => void; apac: boolean; chipLeaving: boolean; onRemoveApac: () => void; count: number }) {
   return (
     <>
       <label className={styles.search}>
@@ -398,7 +594,12 @@ function SearchToolbar({ query, onQuery, apac, onRemoveApac, count }: { query: s
         <input value={query} onChange={(e) => onQuery(e.target.value)} placeholder="Search suppliers" />
       </label>
       {apac && (
-        <button type="button" className={styles.filterChip} onClick={onRemoveApac} aria-label="Remove filter: Region is APAC">
+        <button
+          type="button"
+          className={`${styles.filterChip} ${chipLeaving ? styles.chipLeaving : ''}`}
+          onClick={onRemoveApac}
+          aria-label="Remove filter: Region is APAC"
+        >
           Region: APAC <span aria-hidden="true">✕</span>
         </button>
       )}
@@ -408,13 +609,11 @@ function SearchToolbar({ query, onQuery, apac, onRemoveApac, count }: { query: s
 }
 
 function NoResultsGood() {
-  const { query, setQuery, apac, setApac, typing, setTyping, rows, script } = useSearch();
+  const { query, setQuery, apac, chipLeaving, removeApac, typing, setTyping, rows, script } = useSearch();
   const tableRef = useRef<HTMLDivElement>(null);
   const hidden = SUPPLIERS.filter((s) => s.region !== 'APAC' && query && s.name.toLowerCase().includes(query.trim().toLowerCase()));
-  const removeFilter = () => {
-    setApac(false);
-    requestAnimationFrame(() => tableRef.current?.focus());
-  };
+  // The button that was pressed is gone afterwards, so focus moves to the results
+  const removeFilter = () => removeApac(() => requestAnimationFrame(() => tableRef.current?.focus()));
   const empty = !rows.length && !typing;
   return (
     <Demo
@@ -422,6 +621,7 @@ function NoResultsGood() {
       title="Keeps the search, names the filter, offers the fix"
       figureRef={script.ref}
       action={<Replay onClick={script.play} />}
+      hint="Watch the search run, then try it yourself."
       readoutLines={2}
       readout={
         typing ? '' : empty
@@ -433,7 +633,7 @@ function NoResultsGood() {
     >
       <AppFrame
         title="Suppliers"
-        toolbar={<SearchToolbar query={query} onQuery={(v) => { script.stop(); setTyping(false); setQuery(v); }} apac={apac} onRemoveApac={removeFilter} count={rows.length} />}
+        toolbar={<SearchToolbar query={query} onQuery={(v) => { script.stop(); setTyping(false); setQuery(v); }} apac={apac} chipLeaving={chipLeaving} onRemoveApac={removeFilter} count={rows.length} />}
       >
         {empty ? (
           <EmptyState
@@ -460,7 +660,7 @@ function NoResultsGood() {
 }
 
 function NoResultsBad() {
-  const { query, setQuery, apac, setApac, typing, setTyping, rows, script } = useSearch();
+  const { query, setQuery, apac, chipLeaving, removeApac, typing, setTyping, rows, script } = useSearch();
   const empty = !rows.length && !typing;
   return (
     <Demo
@@ -468,12 +668,13 @@ function NoResultsBad() {
       title="A generic tip that ignores the filter"
       figureRef={script.ref}
       action={<Replay onClick={script.play} />}
+      hint="Watch the search run, then try it yourself."
       readoutLines={2}
       readout={empty && query === QUERY ? 'The spelling was fine. The APAC filter was hiding the supplier, and the message didn’t mention it.' : ''}
     >
       <AppFrame
         title="Suppliers"
-        toolbar={<SearchToolbar query={query} onQuery={(v) => { script.stop(); setTyping(false); setQuery(v); }} apac={apac} onRemoveApac={() => setApac(false)} count={rows.length} />}
+        toolbar={<SearchToolbar query={query} onQuery={(v) => { script.stop(); setTyping(false); setQuery(v); }} apac={apac} chipLeaving={chipLeaving} onRemoveApac={() => removeApac()} count={rows.length} />}
       >
         {empty ? (
           <EmptyState icon={<SearchIcon />} title="No results found" body="Check your spelling or try different keywords." />
@@ -514,10 +715,10 @@ function ErrorGood() {
     if (state === 'retrying') return;
     setRetried(true);
     setState('retrying');
-    timer.current = setTimeout(() => {
+    timer.current = after(1200, () => {
       setState('loaded');
       requestAnimationFrame(() => tableRef.current?.focus());
-    }, reducedMotion() ? 0 : 1200);
+    });
   };
   return (
     <Demo
@@ -525,6 +726,7 @@ function ErrorGood() {
       title="Says what failed and how to recover"
       figureRef={script.ref}
       action={<Replay onClick={() => { clearTimeout(timer.current); setRetried(false); script.play(); }} />}
+      hint="Watch the suppliers load."
       readoutLines={2}
       readout={
         state === 'failed' || state === 'retrying'
@@ -540,20 +742,22 @@ function ErrorGood() {
         ) : state === 'loaded' ? (
           <SupplierTable rows={SUPPLIERS} tableRef={tableRef} />
         ) : (
-          <EmptyState
-            icon={<AlertIcon />}
-            title="Suppliers couldn’t load"
-            body="This is a problem on our side, not something you did. Try again, and if it keeps happening, contact support."
-          >
-            <button
-              type="button"
-              className={`${demoStyles.primary} ${styles.button}`}
-              aria-disabled={state === 'retrying'}
-              onClick={retry}
+          <div className={`${styles.focusTarget} ${styles.fadeIn}`}>
+            <EmptyState
+              icon={<AlertIcon />}
+              title="Suppliers couldn’t load"
+              body="This is a problem on our side, not something you did. Try again, and if it keeps happening, contact support."
             >
-              {state === 'retrying' ? <><span className={styles.spinner} aria-hidden="true" /> Loading…</> : 'Try again'}
-            </button>
-          </EmptyState>
+              <button
+                type="button"
+                className={`${demoStyles.primary} ${styles.button}`}
+                aria-disabled={state === 'retrying'}
+                onClick={retry}
+              >
+                {state === 'retrying' ? <><span className={styles.spinner} aria-hidden="true" /> Loading…</> : 'Try again'}
+              </button>
+            </EmptyState>
+          </div>
         )}
       </AppFrame>
     </Demo>
@@ -568,6 +772,7 @@ function ErrorBad() {
       title="A vague message and a code"
       figureRef={script.ref}
       action={<Replay onClick={script.play} />}
+      hint="Watch the suppliers load."
       readoutLines={2}
       readout={state === 'failed' ? 'It didn’t say what failed, whose problem it was or what to do next.' : ''}
     >
@@ -577,7 +782,9 @@ function ErrorBad() {
         ) : state === 'loaded' ? (
           <SupplierTable rows={SUPPLIERS} />
         ) : (
-          <EmptyState icon={<AlertIcon />} title="Something went wrong" body={<span className={styles.code}>Error 503: Service Unavailable</span>} />
+          <div className={`${styles.focusTarget} ${styles.fadeIn}`}>
+            <EmptyState icon={<AlertIcon />} title="Something went wrong" body={<span className={styles.code}>Error 503: Service Unavailable</span>} />
+          </div>
         )}
       </AppFrame>
     </Demo>
@@ -596,14 +803,22 @@ export function ErrorVisual() {
 /* ── 5. No permission ────────────────────────────────────────── */
 
 function PermissionGood() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  useEffect(() => () => clearTimeout(timer.current), []);
+  const request = () => {
+    if (status !== 'idle') return;
+    setStatus('sending');
+    timer.current = after(700, () => setStatus('sent'));
+  };
   return (
     <Demo
       verdict="good"
       title="Says who to ask, and asks for you"
-      action={<Reset onClick={() => setSent(false)} disabled={!sent} />}
+      action={<Reset onClick={() => { clearTimeout(timer.current); setStatus('idle'); }} disabled={status === 'idle'} />}
+      hint="Press Request access."
       readoutLines={2}
-      readout={sent ? 'The request went to the person who manages access, and the page said what happens next.' : ''}
+      readout={status === 'sent' ? 'The request went to the person who manages access, and the page said what happens next.' : ''}
     >
       <AppFrame title="Finance reports">
         <EmptyState
@@ -613,13 +828,15 @@ function PermissionGood() {
         >
           <button
             type="button"
-            className={`${demoStyles.primary} ${styles.button} ${sent ? styles.buttonDone : ''}`}
-            aria-disabled={sent}
-            onClick={() => setSent(true)}
+            className={`${demoStyles.primary} ${styles.button} ${status === 'sent' ? styles.buttonDone : ''}`}
+            aria-disabled={status !== 'idle'}
+            onClick={request}
           >
-            {sent ? 'Request sent ✓' : 'Request access'}
+            {status === 'sending' ? <><span className={styles.spinner} aria-hidden="true" /> Sending…</> : status === 'sent' ? 'Request sent ✓' : 'Request access'}
           </button>
-          <p className={styles.after}>{sent ? 'We’ll email you when Ana responds.' : ' '}</p>
+          <p className={`${styles.after} ${status === 'sent' ? styles.fadeIn : ''}`}>
+            {status === 'sent' ? 'We’ll email you when Ana responds.' : ' '}
+          </p>
         </EmptyState>
       </AppFrame>
     </Demo>
@@ -645,7 +862,7 @@ function PermissionBad() {
           <button type="button" className={`${demoStyles.primary} ${styles.button}`} onClick={() => setTried(true)}>
             Create report
           </button>
-          <p className={styles.after}>{tried ? 'You don’t have permission to do this.' : ' '}</p>
+          <p className={`${styles.after} ${tried ? styles.fadeIn : ''}`}>{tried ? 'You don’t have permission to do this.' : ' '}</p>
         </EmptyState>
       </AppFrame>
     </Demo>

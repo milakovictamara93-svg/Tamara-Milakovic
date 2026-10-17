@@ -137,6 +137,7 @@ function JumpGood() {
     <Demo
       verdict="good"
       title="The skeleton reserves the table’s space"
+      hint="Watch where the note ends up when the table loads."
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
       readoutLines={2}
@@ -159,6 +160,7 @@ function JumpBad() {
     <Demo
       verdict="bad"
       title="Nothing reserves the table’s space"
+      hint="Watch where the note ends up when the table loads."
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={play}>Replay</button>}
       readout={
@@ -230,6 +232,7 @@ function SaveDemo({ verdict, spinnerDelay }: { verdict: 'good' | 'bad'; spinnerD
     <Demo
       verdict={verdict}
       title={spinnerDelay ? 'The spinner waits 200ms before showing up' : 'The spinner shows up straight away'}
+      hint="Press Save changes."
       readout={result}
     >
       <div className={styles.saveRow}>
@@ -306,6 +309,7 @@ function BarGood() {
     <Demo
       verdict="good"
       title="Real progress and a rough time left"
+      hint="Watch the export progress."
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
       readout={done ? 'The estimate said four seconds, and the export took four seconds.' : ''}
@@ -324,6 +328,7 @@ function BarBad() {
     <Demo
       verdict="bad"
       title="Races to 99%, then sits there"
+      hint="Watch the export progress."
       figureRef={ref}
       action={<button type="button" className={styles.chip} onClick={reset}>Start again</button>}
       readout={stuck && stuckFor >= 3 ? 'The bar raced to 99% and stopped there, with no sign of how long is left.' : ''}
@@ -350,7 +355,8 @@ function LikeGood() {
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
   return (
-    <Demo verdict="good" title="It’s done the moment you tap" readout={note}>
+    <Demo verdict="good" title="It’s done the moment you tap"
+      hint="Press the heart, or try it with a broken server." readout={note}>
       <div className={styles.saveRow}>
         <button
           type="button"
@@ -391,7 +397,8 @@ function LikeBad() {
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(timer.current), []);
   return (
-    <Demo verdict="bad" title="It waits for the server first" readout={note}>
+    <Demo verdict="bad" title="It waits for the server first"
+      hint="Press the heart." readout={note}>
       <div className={styles.saveRow}>
         <button
           type="button"
